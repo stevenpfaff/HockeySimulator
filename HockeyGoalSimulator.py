@@ -18,12 +18,3 @@ for i in range(ShotsOnGoal):
 
 print("Total Goals:", TotalGoals)
 print("Shots on goal:",ShotsOnGoal)
-
-
-
-
-
-
-
-
-
