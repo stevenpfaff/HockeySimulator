@@ -9,8 +9,12 @@ AwayPoints = 0
 Ties = 0
 TotalHomeGoals = 0
 TotalAwayGoals = 0
+HomeOffense = int(input("Enter Home Offense Rating on 20-80 scale"))
+# HomeGoalie = int(input("Enter Goalie Rating on 20-80 scale"))
+AwayOffense = int(input("Enter Away Offense Rating on 20-80 scale"))
+# AwayGoalie = int(input("Enter Opponent Goalie Rating on 20-80 scale"))
 
-for i in range (82):
+for i in range(82):
     HomeShots = 0
     HomeGoals = 0
     HomeSaves = 0
@@ -25,37 +29,137 @@ for i in range (82):
     aSog = random.randint(15, 50)
     AwayShots += aSog
 
-    # Shooting% set to 8.6% here (NHL League Average)
-    for i in range(HomeShots):
-        Goals = random.randrange(1,1000)
-        if Goals <= 86:
-            HomeGoals +=1
-            TotalHomeGoals +=1
-        else:
-            HomeSaves +=1
-    for i in range(AwayShots):
-        Goals = random.randrange(1,1000)
-        if Goals <= 86:
-            AwayGoals +=1
-            TotalAwayGoals+=1
-        else:
-            AwaySaves +=1
+    # Home Shooting% logic set here
+    if HomeOffense <= 20:
+        for i in range(HomeShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 68:
+                HomeGoals += 1
+                TotalHomeGoals += 1
+            else:
+                HomeSaves += 1
+    elif HomeOffense <= 30 & HomeOffense > 20:
+        for i in range(HomeShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 76:
+                HomeGoals += 1
+                TotalHomeGoals += 1
+            else:
+                HomeSaves += 1
+    elif HomeOffense <= 40 & HomeOffense > 30:
+        for i in range(HomeShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 83:
+                HomeGoals += 1
+                TotalHomeGoals += 1
+            else:
+                HomeSaves += 1
+    elif HomeOffense <= 50 & HomeOffense > 40:
+        for i in range(HomeShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 86:
+                HomeGoals += 1
+                TotalHomeGoals += 1
+            else:
+                HomeSaves += 1
+    elif HomeOffense <= 60 & HomeOffense > 50:
+        for i in range(HomeShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 89:
+                HomeGoals += 1
+                TotalHomeGoals += 1
+            else:
+                HomeSaves += 1
+    elif HomeOffense <= 70 & HomeOffense > 60:
+        for i in range(HomeShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 93:
+                HomeGoals += 1
+                TotalHomeGoals += 1
+            else:
+                HomeSaves += 1
+    elif HomeOffense <= 80 & HomeOffense > 70:
+        for i in range(HomeShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 105:
+                HomeGoals += 1
+                TotalHomeGoals += 1
+            else:
+                HomeSaves += 1
 
-    #Wins and Losses tracked here
+    # Away Shooting% logic set here
+    if AwayOffense <= 20:
+        for i in range(AwayShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 68:
+                AwayGoals += 1
+                TotalAwayGoals += 1
+            else:
+                AwaySaves += 1
+    elif AwayOffense <= 30 & AwayOffense > 20:
+        for i in range(AwayShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 76:
+                AwayGoals += 1
+                TotalAwayGoals += 1
+            else:
+                AwaySaves += 1
+    elif AwayOffense <= 40 & AwayOffense > 30:
+        for i in range(AwayShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 83:
+                AwayGoals += 1
+                TotalAwayGoals += 1
+            else:
+                AwaySaves += 1
+    elif AwayOffense <= 50 & AwayOffense > 40:
+        for i in range(AwayShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 86:
+                AwayGoals += 1
+                TotalAwayGoals += 1
+            else:
+                AwaySaves += 1
+    elif AwayOffense <= 60 & AwayOffense > 50:
+        for i in range(AwayShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 89:
+                AwayGoals += 1
+                TotalAwayGoals += 1
+            else:
+                AwaySaves += 1
+    elif AwayOffense <= 70 & AwayOffense > 60:
+        for i in range(AwayShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 93:
+                AwayGoals += 1
+                TotalAwayGoals += 1
+            else:
+                AwaySaves += 1
+    elif AwayOffense <= 80 & AwayOffense > 70:
+        for i in range(AwayShots):
+            Goals = random.randrange(1, 1000)
+            if Goals <= 105:
+                AwayGoals += 1
+                TotalAwayGoals += 1
+            else:
+                AwaySaves += 1
+
+    # Wins and Losses tracked here
     if AwayGoals > HomeGoals:
         AwayWins += 1
         HomeLosses += 1
-        AwayPoints +=2
+        AwayPoints += 2
     elif HomeGoals > AwayGoals:
         HomeWins += 1
         AwayLosses += 1
-        HomePoints +=2
+        HomePoints += 2
     else:
-        Ties +=1
-        HomePoints +=1
-        AwayPoints +=1
-        
-print("Home Wins:", HomeWins, "Home Losses:", HomeLosses, "Ties:", Ties, "Home Points:", HomePoints)
-print("Away Wins:", AwayWins, "Away Losses:", AwayLosses, "Ties:", Ties, "Away Points:", AwayPoints)
-print("Home Total Goals:", TotalHomeGoals)
-print("Away Total Goals:", TotalAwayGoals)
+        Ties += 1
+        HomePoints += 1
+        AwayPoints += 1
+
+print("Projections: Wins:", HomeWins, "Losses:", HomeLosses, "Ties:", Ties, "Points:", HomePoints)
+print("Total Goals:", TotalHomeGoals)
+print("Projections: Wins:", AwayWins, "Losses:", AwayLosses, "Ties:", Ties, "Points:", AwayPoints)
+print("Total Goals:", TotalAwayGoals)
