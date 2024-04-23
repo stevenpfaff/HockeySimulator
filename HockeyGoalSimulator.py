@@ -9,12 +9,13 @@ AwayPoints = 0
 Ties = 0
 TotalHomeGoals = 0
 TotalAwayGoals = 0
+HomeTeam = input("Enter The Home Team")
+AwayTeam = input("Enter The Away Team")
 HomeOffense = int(input("Enter Home Offense Rating on 20-80 scale"))
-# HomeGoalie = int(input("Enter Goalie Rating on 20-80 scale"))
 AwayOffense = int(input("Enter Away Offense Rating on 20-80 scale"))
-# AwayGoalie = int(input("Enter Opponent Goalie Rating on 20-80 scale"))
+Games = int(input("Enter Amount of Games You'd Like to Simulate"))
 
-for i in range(82):
+for i in range(Games):
     HomeShots = 0
     HomeGoals = 0
     HomeSaves = 0
@@ -144,7 +145,7 @@ for i in range(82):
                 TotalAwayGoals += 1
             else:
                 AwaySaves += 1
-
+    print(HomeTeam, "Shots:", HomeShots, "Goals:", HomeGoals, AwayTeam, "Shots:", AwayShots, "Goals:", AwayGoals)
     # Wins and Losses tracked here
     if AwayGoals > HomeGoals:
         AwayWins += 1
@@ -159,7 +160,7 @@ for i in range(82):
         HomePoints += 1
         AwayPoints += 1
 
-print("Projections: Wins:", HomeWins, "Losses:", HomeLosses, "Ties:", Ties, "Points:", HomePoints)
-print("Total Goals:", TotalHomeGoals)
-print("Projections: Wins:", AwayWins, "Losses:", AwayLosses, "Ties:", Ties, "Points:", AwayPoints)
-print("Total Goals:", TotalAwayGoals)
+print(HomeTeam, "Wins:", HomeWins, "Losses:", HomeLosses, "Ties:", Ties, "Points:", HomePoints)
+print(HomeTeam,"Total Goals:", TotalHomeGoals)
+print(AwayTeam, "Wins:", AwayWins, "Losses:", AwayLosses, "Ties:", Ties, "Points:", AwayPoints)
+print(AwayTeam, "Total Goals:", TotalAwayGoals)
