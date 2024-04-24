@@ -23,15 +23,11 @@ for i in range(Games):
     AwayGoals = 0
     AwaySaves = 0
 
-    # Shots on goal generated randomly
-    hSog = random.randint(15, 50)
-    HomeShots += hSog
-
-    aSog = random.randint(15, 50)
-    AwayShots += aSog
-
     # Home Shooting% logic set here
     if HomeOffense <= 20:
+        #Shots On Goal Randomly Generated
+        hSog = random.randint(13, 28)
+        HomeShots += hSog
         for i in range(HomeShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 68:
@@ -40,6 +36,8 @@ for i in range(Games):
             else:
                 HomeSaves += 1
     elif HomeOffense <= 30 & HomeOffense > 20:
+        hSog = random.randint(15, 30)
+        HomeShots += hSog
         for i in range(HomeShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 76:
@@ -48,6 +46,8 @@ for i in range(Games):
             else:
                 HomeSaves += 1
     elif HomeOffense <= 40 & HomeOffense > 30:
+        hSog = random.randint(20, 35)
+        HomeShots += hSog
         for i in range(HomeShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 83:
@@ -56,6 +56,8 @@ for i in range(Games):
             else:
                 HomeSaves += 1
     elif HomeOffense <= 50 & HomeOffense > 40:
+        hSog = random.randint(22, 38)
+        HomeShots += hSog
         for i in range(HomeShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 86:
@@ -64,6 +66,8 @@ for i in range(Games):
             else:
                 HomeSaves += 1
     elif HomeOffense <= 60 & HomeOffense > 50:
+        hSog = random.randint(25, 42)
+        HomeShots += hSog
         for i in range(HomeShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 89:
@@ -72,6 +76,8 @@ for i in range(Games):
             else:
                 HomeSaves += 1
     elif HomeOffense <= 70 & HomeOffense > 60:
+        hSog = random.randint(28, 45)
+        HomeShots += hSog
         for i in range(HomeShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 93:
@@ -80,6 +86,8 @@ for i in range(Games):
             else:
                 HomeSaves += 1
     elif HomeOffense <= 80 & HomeOffense > 70:
+        hSog = random.randint(30, 50)
+        HomeShots += hSog
         for i in range(HomeShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 105:
@@ -90,6 +98,8 @@ for i in range(Games):
 
     # Away Shooting% logic set here
     if AwayOffense <= 20:
+        aSog = random.randint(13, 28)
+        AwayShots += aSog
         for i in range(AwayShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 68:
@@ -98,6 +108,8 @@ for i in range(Games):
             else:
                 AwaySaves += 1
     elif AwayOffense <= 30 & AwayOffense > 20:
+        aSog = random.randint(15, 30)
+        AwayShots += aSog
         for i in range(AwayShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 76:
@@ -106,6 +118,8 @@ for i in range(Games):
             else:
                 AwaySaves += 1
     elif AwayOffense <= 40 & AwayOffense > 30:
+        aSog = random.randint(20, 35)
+        AwayShots += aSog
         for i in range(AwayShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 83:
@@ -114,6 +128,8 @@ for i in range(Games):
             else:
                 AwaySaves += 1
     elif AwayOffense <= 50 & AwayOffense > 40:
+        aSog = random.randint(22, 38)
+        AwayShots += aSog
         for i in range(AwayShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 86:
@@ -122,6 +138,8 @@ for i in range(Games):
             else:
                 AwaySaves += 1
     elif AwayOffense <= 60 & AwayOffense > 50:
+        aSog = random.randint(25, 42)
+        AwayShots += aSog
         for i in range(AwayShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 89:
@@ -130,6 +148,8 @@ for i in range(Games):
             else:
                 AwaySaves += 1
     elif AwayOffense <= 70 & AwayOffense > 60:
+        aSog = random.randint(28, 45)
+        AwayShots += aSog
         for i in range(AwayShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 93:
@@ -138,6 +158,8 @@ for i in range(Games):
             else:
                 AwaySaves += 1
     elif AwayOffense <= 80 & AwayOffense > 70:
+        aSog = random.randint(30, 50)
+        AwayShots += aSog
         for i in range(AwayShots):
             Goals = random.randrange(1, 1000)
             if Goals <= 105:
