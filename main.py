@@ -469,29 +469,36 @@ for i in range(Games):
         print("Overtime!")
         Team1Pts += 1
         Team2Pts += 1
-        aSog = random.randint(1, 7)
-        Team2Shots += aSog
-        Team2TotalShots += Team2Shots
-        for i in range(Team2Shots):
-            Goals = random.randrange(1, 1000)
-            if Goals <= 120:
-                Team2Goals += 1
-                Team2TotalGoals += 1
-            else:
-                Team1Saves += 1
-                Team1TotalSaves += 1
-
-        aSog = random.randint(1, 7)
-        Team1Shots += aSog
-        Team1TotalShots += Team1Shots
-        for i in range(Team1Shots):
-            Goals = random.randrange(1, 1000)
-            if Goals <= 120:
-                Team1Goals += 1
-                Team1TotalGoals += 1
-            else:
-                Team2Saves += 1
-                Team2TotalSaves += 1
+        Goal = random.randint(1,2)
+        if Goal == 1:
+            Team1Goals += 1
+            Team1TotalGoals += 1
+        elif Goal == 2:
+            Team2Goals += 1
+            Team2TotalGoals += 1
+        # aSog = random.randint(1, 7)
+        # Team2Shots += aSog
+        # Team2TotalShots += Team2Shots
+        # for i in range(Team2Shots):
+        #     Goals = random.randrange(1, 1000)
+        #     if Goals <= 120:
+        #         Team2Goals += 1
+        #         Team2TotalGoals += 1
+        #     else:
+        #         Team1Saves += 1
+        #         Team1TotalSaves += 1
+        #
+        # aSog = random.randint(1, 7)
+        # Team1Shots += aSog
+        # Team1TotalShots += Team1Shots
+        # for i in range(Team1Shots):
+        #     Goals = random.randrange(1, 1000)
+        #     if Goals <= 120:
+        #         Team1Goals += 1
+        #         Team1TotalGoals += 1
+        #     else:
+        #         Team2Saves += 1
+        #         Team2TotalSaves += 1
 
         if Team1Goals > Team2Goals:
             Team1Pts += 1
