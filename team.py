@@ -16,7 +16,7 @@ class Team(object):
         self.points = points
     def game(self):
         for i in range(5):
-            team1 = ana
+            team1 = tor[0]
             team2 = det[0]
             team1_sog = 0
             team2_sog = 0
@@ -487,7 +487,7 @@ class Team(object):
                         team1.goals_against += 1
                     else:
                         team1_saves += 1
-            print(team1_goals, team1_sog, team2_goals, team2_sog)
+            print(f"{team1.name}", "Goals:",team1_goals, "Shots:",team1_sog, f"{team2.name}", "Goals:",team2_goals, "Shots:",team2_sog)
             # Wins and Losses Tracked Here
             if team1_goals > team2_goals:
                 team1.points += 2
@@ -505,10 +505,12 @@ class Team(object):
                     team1_goals += 1
                     team1.goals += 1
                     team1_sog += 1
+                    team2.goals_against += 1
                 elif goal == 2:
                     team2_goals += 1
                     team2.goals += 1
                     team2_sog += 1
+                    team1.goals_against += 1
                 if team1_goals > team2_goals:
                     team1.points += 1
                     team2.otl += 1
@@ -517,8 +519,8 @@ class Team(object):
                     team2.points += 1
                     team1.otl += 1
                     team2.wins += 1
-        print(team1.name, team1.wins, team1.losses, team1.otl, team1.points, team1.goals, team1.goals_against)
-        print(team2.name, team2.wins, team2.losses, team2.otl, team2.points, team2.goals, team2.goals_against)
+        print(team1.name,"W:", team1.wins, "L:", team1.losses, "OTL:",team1.otl, "PTS:",team1.points,"G:", team1.goals,"GA:", team1.goals_against)
+        print(team2.name,"W:", team2.wins, "L:",team2.losses, "OTL:",team2.otl, "PTS:",team2.points, "G:",team2.goals,"GA:", team2.goals_against)
 ana = Team("Anaheim Ducks", 30, 30, 30,0,0,0,0,0,0,0)
 ari = Team("Arizona Coyotes", 40, 30, 40,0,0,0,0,0,0,0)
 bos = Team("Boston Bruins", 50, 50, 80,0,0,0,0,0,0,0)
@@ -552,7 +554,3 @@ vgk = Team("Vegas Golden Knights", 50, 60, 60,0,0,0,0,0,0,0),
 wsh = Team("Washington Capitals", 40, 50, 50,0,0,0,0,0,0,0),
 wpg = Team("Winnipeg Jets", 50, 60, 80,0,0,0,0,0,0,0)
 ana.game()
-
-
-
-
