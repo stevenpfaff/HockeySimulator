@@ -1,6 +1,5 @@
 import random
 
-
 class Team(object):
     def __init__(self, name, offense, defense, goalie, sog, goals, goals_against, wins, losses, otl, points):
         self.name = name
@@ -14,543 +13,542 @@ class Team(object):
         self.losses = losses
         self.otl = otl
         self.points = points
-    def game(self):
-        for i in range(5):
-            team1 = tor[0]
-            team2 = det[0]
-            team1_sog = 0
-            team2_sog = 0
-            team1_goals = 0
-            team2_goals = 0
-            team1_saves = 0
-            team2_saves = 0
-            # Minimum Defense Team 2
-            if team1.offense <= 20 and team2.defense <= 20:
-                sog = random.randint(18, 35)
-                team1_sog += sog
-            elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 20:
-                sog = random.randint(20, 35)
-                team1_sog += sog
-            elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 20:
-                sog = random.randint(22, 38)
-                team1_sog += sog
-            elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 20:
-                sog = random.randint(25, 40)
-                team1_sog += sog
-            elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 20:
-                sog = random.randint(28, 42)
-                team1_sog += sog
-            elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 20:
-                sog = random.randint(28, 45)
-                team1_sog += sog
-            elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 20:
-                sog = random.randint(30, 50)
-                team1_sog += sog
 
-            #30-21 Defense Team 2
-            elif team1.offense <= 20 and team2.defense <= 30 & team2.defense > 20:
-                sog = random.randint(15, 32)
-                team1_sog += sog
-            elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 30 & team2.defense > 20:
-                sog = random.randint(18, 32)
-                team1_sog += sog
-            elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 30 & team2.defense > 20:
-                sog = random.randint(18, 35)
-                team1_sog += sog
-            elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 30 & team2.defense > 20:
-                sog = random.randint(20, 35)
-                team1_sog += sog
-            elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 30 & team2.defense > 20:
-                sog = random.randint(25, 38)
-                team1_sog += sog
-            elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 30 & team2.defense > 20:
-                sog = random.randint(28, 42)
-                team1_sog += sog
-            elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 30 & team2.defense > 20:
-                sog = random.randint(30, 50)
-                team1_sog += sog
-
-            #40-31 Defense Team 2
-            elif team1.offense <= 20 and team2.defense <= 40 & team2.defense > 30:
-                sog = random.randint(13, 28)
-                team1_sog += sog
-            elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 40 & team2.defense > 30:
-                sog = random.randint(15, 30)
-                team1_sog += sog
-            elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 40 & team2.defense > 30:
-                sog = random.randint(15, 32)
-                team1_sog += sog
-            elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 40 & team2.defense > 30:
-                sog = random.randint(18, 35)
-                team1_sog += sog
-            elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 40 & team2.defense > 30:
-                sog = random.randint(22, 38)
-                team1_sog += sog
-            elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 40 & team2.defense > 30:
-                sog = random.randint(25, 40)
-                team1_sog += sog
-            elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 40 & team2.defense > 30:
-                sog = random.randint(28, 48)
-                team1_sog += sog
-
-            #50-41 Defense Team 2
-            elif team1.offense <= 20 and team2.defense <= 50 & team2.defense > 40:
-                sog = random.randint(13, 25)
-                team1_sog += sog
-            elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 50 & team2.defense > 40:
-                sog = random.randint(13, 28)
-                team1_sog += sog
-            elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 50 & team2.defense > 40:
-                sog = random.randint(15, 30)
-                team1_sog += sog
-            elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 50 & team2.defense > 40:
-                sog = random.randint(18, 32)
-                team1_sog += sog
-            elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 50 & team2.defense > 40:
-                sog = random.randint(22, 35)
-                team1_sog += sog
-            elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 50 & team2.defense > 40:
-                sog = random.randint(25, 40)
-                team1_sog += sog
-            elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 50 & team2.defense > 40:
-                sog = random.randint(25, 40)
-                team1_sog += sog
-
-            #60-51 Defense Team 2
-            elif team1.offense <= 20 and team2.defense <= 60 & team2.defense > 50:
-                sog = random.randint(13, 22)
-                team1_sog += sog
-            elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 60 & team2.defense > 50:
-                sog = random.randint(13, 25)
-                team1_sog += sog
-            elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 60 & team2.defense > 50:
-                sog = random.randint(15, 28)
-                team1_sog += sog
-            elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 60 & team2.defense > 50:
-                sog = random.randint(18, 30)
-                team1_sog += sog
-            elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 60 & team2.defense > 50:
-                sog = random.randint(22, 32)
-                team1_sog += sog
-            elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 60 & team2.defense > 50:
-                sog = random.randint(25, 35)
-                team1_sog += sog
-            elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 60 & team2.defense > 50:
-                sog = random.randint(25, 45)
-                team1_sog += sog
-
-            #70-61 Defense Team 2
-            elif team1.offense <= 20 and team2.defense <= 70 & team2.defense > 60:
-                sog = random.randint(13, 20)
-                team1_sog += sog
-            elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 70 & team2.defense > 60:
-                sog = random.randint(13, 22)
-                team1_sog += sog
-            elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 70 & team2.defense > 60:
-                sog = random.randint(15, 25)
-                team1_sog += sog
-            elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 70 & team2.defense > 60:
-                sog = random.randint(17, 30)
-                team1_sog += sog
-            elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 70 & team2.defense > 60:
-                sog = random.randint(20, 32)
-                team1_sog += sog
-            elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 70 & team2.defense > 60:
-                sog = random.randint(22, 35)
-                team1_sog += sog
-            elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 70 & team2.defense > 60:
-                sog = random.randint(25, 40)
-                team1_sog += sog
-
-            #80-71 Defense
-            elif team1.offense <= 20 and team2.defense <= 80 & team2.defense > 70:
-                sog = random.randint(10, 20)
-                team1_sog += sog
-            elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 80 & team2.defense > 70:
-                sog = random.randint(13, 22)
-                team1_sog += sog
-            elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 80 & team2.defense > 70:
-                sog = random.randint(15, 22)
-                team1_sog += sog
-            elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 80 & team2.defense > 70:
-                sog = random.randint(17, 25)
-                team1_sog += sog
-            elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 80 & team2.defense > 70:
-                sog = random.randint(20, 28)
-                team1_sog += sog
-            elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 80 & team2.defense > 70:
-                sog = random.randint(22, 30)
-                team1_sog += sog
-            elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 80 & team2.defense > 70:
-                sog = random.randint(22, 30)
-                team1_sog += sog
-
-            # Minimum Defense Team 1
-            if team2.offense <= 20 and team1.defense <= 20:
-                sog = random.randint(18, 35)
-                team2_sog += sog
-            elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 20:
-                sog = random.randint(20, 35)
-                team2_sog += sog
-            elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 20:
-                sog = random.randint(22, 38)
-                team2_sog += sog
-            elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 20:
-                sog = random.randint(25, 40)
-                team2_sog += sog
-            elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 20:
-                sog = random.randint(28, 42)
-                team2_sog += sog
-            elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 20:
-                sog = random.randint(28, 45)
-                team2_sog += sog
-            elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 20:
-                sog = random.randint(30, 50)
-                team2_sog += sog
-
-            # 30-21 Defense Team 2
-            elif team2.offense <= 20 and team1.defense <= 30 & team1.defense > 20:
-                sog = random.randint(15, 32)
-                team2_sog += sog
-            elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 30 & team1.defense > 20:
-                sog = random.randint(18, 32)
-                team2_sog += sog
-            elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 30 & team1.defense > 20:
-                sog = random.randint(18, 35)
-                team2_sog += sog
-            elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 30 & team1.defense > 20:
-                sog = random.randint(20, 35)
-                team2_sog += sog
-            elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 30 & team1.defense > 20:
-                sog = random.randint(25, 38)
-                team2_sog += sog
-            elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 30 & team1.defense > 20:
-                sog = random.randint(28, 42)
-                team2_sog += sog
-            elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 30 & team1.defense > 20:
-                sog = random.randint(30, 50)
-                team2_sog += sog
-
-            # 40-31 Defense Team 2
-            elif team2.offense <= 20 and team1.defense <= 40 & team1.defense > 30:
-                sog = random.randint(13, 28)
-                team2_sog += sog
-            elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 40 & team1.defense > 30:
-                sog = random.randint(15, 30)
-                team2_sog += sog
-            elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 40 & team1.defense > 30:
-                sog = random.randint(15, 32)
-                team2_sog += sog
-            elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 40 & team1.defense > 30:
-                sog = random.randint(18, 35)
-                team2_sog += sog
-            elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 40 & team1.defense > 30:
-                sog = random.randint(22, 38)
-                team2_sog += sog
-            elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 40 & team1.defense > 30:
-                sog = random.randint(25, 40)
-                team2_sog += sog
-            elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 40 & team1.defense > 30:
-                sog = random.randint(28, 48)
-                team2_sog += sog
-
-            # 50-41 Defense Team 2
-            elif team2.offense <= 20 and team1.defense <= 50 & team1.defense > 40:
-                sog = random.randint(13, 25)
-                team2_sog += sog
-            elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 50 & team1.defense > 40:
-                sog = random.randint(13, 28)
-                team2_sog += sog
-            elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 50 & team1.defense > 40:
-                sog = random.randint(15, 30)
-                team2_sog += sog
-            elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 50 & team1.defense > 40:
-                sog = random.randint(18, 32)
-                team2_sog += sog
-            elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 50 & team1.defense > 40:
-                sog = random.randint(22, 35)
-                team2_sog += sog
-            elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 50 & team1.defense > 40:
-                sog = random.randint(25, 40)
-                team2_sog += sog
-            elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 50 & team1.defense > 40:
-                sog = random.randint(25, 40)
-                team2_sog += sog
-
-            # 60-51 Defense Team 2
-            elif team2.offense <= 20 and team1.defense <= 60 & team1.defense > 50:
-                sog = random.randint(13, 22)
-                team2_sog += sog
-            elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 60 & team1.defense > 50:
-                sog = random.randint(13, 25)
-                team2_sog += sog
-            elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 60 & team1.defense > 50:
-                sog = random.randint(15, 28)
-                team2_sog += sog
-            elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 60 & team1.defense > 50:
-                sog = random.randint(18, 30)
-                team2_sog += sog
-            elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 60 & team1.defense > 50:
-                sog = random.randint(22, 32)
-                team2_sog += sog
-            elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 60 & team1.defense > 50:
-                sog = random.randint(25, 35)
-                team2_sog += sog
-            elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 60 & team1.defense > 50:
-                sog = random.randint(25, 45)
-                team2_sog += sog
-
-            # 70-61 Defense Team 2
-            elif team2.offense <= 20 and team1.defense <= 70 & team1.defense > 60:
-                sog = random.randint(13, 20)
-                team2_sog += sog
-            elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 70 & team1.defense > 60:
-                sog = random.randint(13, 22)
-                team2_sog += sog
-            elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 70 & team1.defense > 60:
-                sog = random.randint(15, 25)
-                team2_sog += sog
-            elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 70 & team1.defense > 60:
-                sog = random.randint(17, 30)
-                team2_sog += sog
-            elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 70 & team1.defense > 60:
-                sog = random.randint(20, 32)
-                team2_sog += sog
-            elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 70 & team1.defense > 60:
-                sog = random.randint(22, 35)
-                team2_sog += sog
-            elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 70 & team1.defense > 60:
-                sog = random.randint(25, 40)
-                team2_sog += sog
-
-            # 80-71 Defense
-            elif team2.offense <= 20 and team1.defense <= 80 & team1.defense > 70:
-                sog = random.randint(10, 20)
-                team2_sog += sog
-            elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 80 & team1.defense > 70:
-                sog = random.randint(13, 22)
-                team2_sog += sog
-            elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 80 & team1.defense > 70:
-                sog = random.randint(15, 22)
-                team2_sog += sog
-            elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 80 & team1.defense > 70:
-                sog = random.randint(17, 25)
-                team2_sog += sog
-            elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 80 & team1.defense > 70:
-                sog = random.randint(20, 28)
-                team2_sog += sog
-            elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 80 & team1.defense > 70:
-                sog = random.randint(22, 30)
-                team2_sog += sog
-            elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 80 & team1.defense > 70:
-                sog = random.randint(22, 30)
-                team2_sog += sog
-
-            # Minimum Goalie Team 2
-            if team2.goalie <= 20:
-                for i in range(team1_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 125:
-                        team1_goals += 1
-                        team1.goals += 1
-                        team2.goals_against += 1
-                    else:
-                        team2_saves += 1
-            # 30-21 Goalie Team 2
-            elif team2.goalie <= 30 & team2.goalie > 20:
-                for i in range(team1_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 120:
-                        team1_goals += 1
-                        team1.goals += 1
-                        team2.goals_against += 1
-                    else:
-                        team2_saves += 1
-            #40-31 Goalie Team 2
-            elif team2.goalie <= 40 & team2.goalie > 30:
-                for i in range(team1_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 110:
-                        team1_goals += 1
-                        team1.goals += 1
-                        team2.goals_against += 1
-                    else:
-                        team2_saves += 1
-            #50-41 Goalie Team 2
-            elif team2.goalie <= 50 & team2.goalie > 40:
-                for i in range(team1_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 100:
-                        team1_goals += 1
-                        team1.goals += 1
-                        team2.goals_against += 1
-                    else:
-                        team2_saves += 1
-            #60-51 Goalie Team 2
-            elif team2.goalie <= 60 & team2.goalie > 50:
-                for i in range(team1_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 98:
-                        team1_goals += 1
-                        team1.goals += 1
-                        team2.goals_against += 1
-                    else:
-                        team2_saves += 1
-            #70-61 Goalie Team 2
-            elif team2.goalie <= 70 & team2.goalie > 60:
-                for i in range(team1_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 92:
-                        team1_goals += 1
-                        team1.goals += 1
-                        team2.goals_against += 1
-                    else:
-                        team2_saves += 1
-            #80-71 Goalie Team 2
-            elif team2.goalie <= 80 & team2.goalie > 70:
-                for i in range(team1_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 85:
-                        team1_goals += 1
-                        team1.goals += 1
-                        team2.goals_against += 1
-                    else:
-                        team2_saves += 1
-
-            # Minimum Goalie Team 1
-            if team1.goalie <= 20:
-                for i in range(team2_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 125:
-                        team2_goals += 1
-                        team2.goals += 1
-                        team1.goals_against += 1
-                    else:
-                        team1_saves += 1
-            # 30-21 Goalie Team 1
-            elif team1.goalie <= 30 & team1.goalie > 20:
-                for i in range(team2_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 120:
-                        team2_goals += 1
-                        team2.goals += 1
-                        team1.goals_against += 1
-                    else:
-                        team1_saves += 1
-            # 40-31 Goalie Team 1
-            elif team1.goalie <= 40 & team1.goalie > 30:
-                for i in range(team2_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 110:
-                        team2_goals += 1
-                        team2.goals += 1
-                        team1.goals_against += 1
-                    else:
-                        team1_saves += 1
-            # 50-41 Goalie Team 1
-            elif team1.goalie <= 50 & team1.goalie > 40:
-                for i in range(team2_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 100:
-                        team2_goals += 1
-                        team2.goals += 1
-                        team1.goals_against += 1
-                    else:
-                        team1_saves += 1
-            # 60-51 Goalie Team 1
-            elif team1.goalie <= 60 & team1.goalie > 50:
-                for i in range(team2_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 98:
-                        team2_goals += 1
-                        team2.goals += 1
-                        team1.goals_against += 1
-                    else:
-                        team1_saves += 1
-            # 70-61 Goalie Team 1
-            elif team1.goalie <= 70 & team1.goalie > 60:
-                for i in range(team2_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 92:
-                        team2_goals += 1
-                        team2.goals += 1
-                        team1.goals_against += 1
-                    else:
-                        team1_saves += 1
-            # 80-71 Goalie Team 1
-            elif team1.goalie <= 80 & team1.goalie > 70:
-                for i in range(team2_sog):
-                    goals = random.randrange(1, 1000)
-                    if goals <= 85:
-                        team2_goals += 1
-                        team2.goals += 1
-                        team1.goals_against += 1
-                    else:
-                        team1_saves += 1
-            print(f"{team1.name}", "Goals:",team1_goals, "Shots:",team1_sog, f"{team2.name}", "Goals:",team2_goals, "Shots:",team2_sog)
-            # Wins and Losses Tracked Here
-            if team1_goals > team2_goals:
-                team1.points += 2
-                team1.wins += 1
-                team2.losses += 1
-            elif team2_goals > team1_goals:
-                team2.points += 2
-                team2.wins += 1
-                team1.losses += 1
-            while team1_goals == team2_goals:
-                team1.points += 1
-                team2.points += 1
-                goal = random.randint(1, 2)
-                if goal == 1:
-                    team1_goals += 1
-                    team1.goals += 1
-                    team1_sog += 1
-                    team2.goals_against += 1
-                elif goal == 2:
-                    team2_goals += 1
-                    team2.goals += 1
-                    team2_sog += 1
-                    team1.goals_against += 1
-                if team1_goals > team2_goals:
-                    team1.points += 1
-                    team2.otl += 1
-                    team1.wins += 1
-                elif team2_goals > team1_goals:
-                    team2.points += 1
-                    team1.otl += 1
-                    team2.wins += 1
-        print(team1.name,"W:", team1.wins, "L:", team1.losses, "OTL:",team1.otl, "PTS:",team1.points,"G:", team1.goals,"GA:", team1.goals_against)
-        print(team2.name,"W:", team2.wins, "L:",team2.losses, "OTL:",team2.otl, "PTS:",team2.points, "G:",team2.goals,"GA:", team2.goals_against)
 ana = Team("Anaheim Ducks", 30, 30, 30,0,0,0,0,0,0,0)
 ari = Team("Arizona Coyotes", 40, 30, 40,0,0,0,0,0,0,0)
 bos = Team("Boston Bruins", 50, 50, 80,0,0,0,0,0,0,0)
-buf = Team("Buffalo Sabres", 50, 40, 50,0,0,0,0,0,0, 0),
-cgy = Team("Calgary Flames", 40, 50, 40,0,0,0,0,0,0,0),
-car = Team("Carolina Hurricanes", 70, 80, 50,0,0,0,0,0,0,0),
-chi = Team("Chicago Blackhawks", 20, 30, 40,0,0,0,0,0,0,0),
-col = Team("Colorado Avalanche", 70, 40, 40,0,0,0,0,0,0,0),
-cbj = Team("Columbus Blue Jackets", 30, 20, 40,0,0,0,0,0,0,0),
-dal = Team("Dallas Stars", 60, 70, 60,0,0,0,0,0,0,0),
-det = Team("Detroit Red Wings", 40, 40, 50,0,0,0,0,0,0,0),
-edm = Team("Edmonton Oilers", 80, 70, 50,0,0,0,0,0,0,0),
-fla = Team("Florida Panthers", 80, 70, 80,0,0,0,0,0,0,0),
-la = Team("Los Angeles Kings", 60, 70, 70,0,0,0,0,0,0,0),
-min = Team("Minnesota Wild", 50, 60, 40,0,0,0,0,0,0,0),
-mtl = Team("Montreal Canadiens", 30, 30, 40,0,0,0,0,0,0,0),
-nsh = Team("Nashville Predators", 50, 60, 60,0,0,0,0,0,0,0),
-nj = Team("New Jersey Devils", 50, 40, 20,0,0,0,0,0,0,0),
-nyi = Team("New York Islanders", 40, 50, 60,0,0,0,0,0,0,0),
-nyr = Team("New York Rangers", 60, 60, 70,0,0,0,0,0,0,0),
-ott = Team("Ottawa Senators", 40, 60, 20,0,0,0,0,0,0,0),
-phi = Team("Philadelphia Flyers", 40, 70, 20,0,0,0,0,0,0,0),
-pit = Team("Pittsburgh Penguins", 50, 50, 50,0,0,0,0,0,0,0),
-sj = Team("San Jose Sharks", 20, 20, 20,0,0,0,0,0,0,0),
-sea = Team("Seattle Kraken", 30, 70, 60,0,0,0,0,0,0,0),
-stl = Team("St. Louis Blues", 40, 40, 60,0,0,0,0,0,0,0),
-tb = Team("Tampa Bay Lightning", 50, 50, 50,0,0,0,0,0,0,0),
-tor = Team("Toronto Maple Leafs", 70, 50, 40,0,0,0,0,0,0,0),
-van = Team("Vancouver Canucks", 60, 60, 60,0,0,0,0,0,0,0),
-vgk = Team("Vegas Golden Knights", 50, 60, 60,0,0,0,0,0,0,0),
-wsh = Team("Washington Capitals", 40, 50, 50,0,0,0,0,0,0,0),
+buf = Team("Buffalo Sabres", 50, 40, 50,0,0,0,0,0,0, 0)
+cgy = Team("Calgary Flames", 40, 50, 40,0,0,0,0,0,0,0)
+car = Team("Carolina Hurricanes", 70, 80, 50,0,0,0,0,0,0,0)
+chi = Team("Chicago Blackhawks", 20, 30, 40,0,0,0,0,0,0,0)
+col = Team("Colorado Avalanche", 70, 40, 40,0,0,0,0,0,0,0)
+cbj = Team("Columbus Blue Jackets", 30, 20, 40,0,0,0,0,0,0,0)
+dal = Team("Dallas Stars", 60, 70, 60,0,0,0,0,0,0,0)
+det = Team("Detroit Red Wings", 40, 40, 50,0,0,0,0,0,0,0)
+edm = Team("Edmonton Oilers", 80, 70, 50,0,0,0,0,0,0,0)
+fla = Team("Florida Panthers", 80, 70, 80,0,0,0,0,0,0,0)
+la = Team("Los Angeles Kings", 60, 70, 70,0,0,0,0,0,0,0)
+min = Team("Minnesota Wild", 50, 60, 40,0,0,0,0,0,0,0)
+mtl = Team("Montreal Canadiens", 30, 30, 40,0,0,0,0,0,0,0)
+nsh = Team("Nashville Predators", 50, 60, 60,0,0,0,0,0,0,0)
+nj = Team("New Jersey Devils", 50, 40, 20,0,0,0,0,0,0,0)
+nyi = Team("New York Islanders", 40, 50, 60,0,0,0,0,0,0,0)
+nyr = Team("New York Rangers", 60, 60, 70,0,0,0,0,0,0,0)
+ott = Team("Ottawa Senators", 40, 60, 20,0,0,0,0,0,0,0)
+phi = Team("Philadelphia Flyers", 40, 70, 20,0,0,0,0,0,0,0)
+pit = Team("Pittsburgh Penguins", 50, 50, 50,0,0,0,0,0,0,0)
+sj = Team("San Jose Sharks", 20, 20, 20,0,0,0,0,0,0,0)
+sea = Team("Seattle Kraken", 30, 70, 60,0,0,0,0,0,0,0)
+stl = Team("St. Louis Blues", 40, 40, 60,0,0,0,0,0,0,0)
+tb = Team("Tampa Bay Lightning", 50, 50, 50,0,0,0,0,0,0,0)
+tor = Team("Toronto Maple Leafs", 70, 50, 40,0,0,0,0,0,0,0)
+van = Team("Vancouver Canucks", 60, 60, 60,0,0,0,0,0,0,0)
+vgk = Team("Vegas Golden Knights", 50, 60, 60,0,0,0,0,0,0,0)
+wsh = Team("Washington Capitals", 40, 50, 50,0,0,0,0,0,0,0)
 wpg = Team("Winnipeg Jets", 50, 60, 80,0,0,0,0,0,0,0)
-ana.game()
+
+teams = [
+    "ana", "ari", "bos", "buf", "cgy", "car", "chi", "col", "cbj", "dal",
+    "det", "edm", "fla", "la", "min", "mtl", "nsh", "nj", "nyi", "nyr",
+    "ott", "phi", "pit", "sj", "sea", "stl", "tb", "tor", "van", "vgk", "wsh", "wpg"
+]
+
+
+matchups = {
+    ("ana", "ari"): 3,
+    ("ana", "bos"): 2,
+    ("ana", "buf"): 2,
+    ("ana", "cgy"): 3,
+    ("ana", "car"): 2,
+    ("ana", "chi"): 3,
+    ("ana", "col"): 3,
+    ("ana", "cbj"): 2,
+    ("ana", "dal"): 3,
+    ("ana", "det"): 2,
+    ("ana", "edm"): 4,
+    ("ana", "fla"): 2,
+    ("ana", "la"): 4,
+    ("ana", "min"): 3,
+    ("ana", "mtl"): 2,
+    ("ana", "nsh"): 3,
+    ("ana", "nj"): 2,
+    ("ana", "nyi"): 2,
+    ("ana", "nyr"): 2,
+    ("ana", "ott"): 2,
+    ("ana", "phi"): 2,
+    ("ana", "pit"): 2,
+    ("ana", "sj"): 4,
+    ("ana", "sea"): 4,
+    ("ana", "stl"): 3,
+    ("ana", "tb"): 2,
+    ("ana", "tor"): 2,
+    ("ana", "van"): 3,
+    ("ana", "vgk"): 4,
+    ("ana", "wsh"): 2,
+    ("ana", "wpg"): 3,
+    ("ari", "bos"): 2,
+    ("ari", "buf"): 2,
+    ("ari", "cgy"): 3,
+    ("ari", "car"): 2,
+    ("ari", "chi"): 3,
+    ("ari", "col"): 4,
+    ("ari", "cbj"): 2,
+    ("ari", "dal"): 3,
+    ("ari", "det"): 2,
+    ("ari", "edm"): 3,
+    ("ari", "fla"): 2,
+    ("ari", "la"): 3,
+    ("ari", "min"): 4,
+    ("ari", "mtl"): 2,
+    ("ari", "nsh"): 4,
+    ("ari", "nj"): 2,
+    ("ari", "nyi"): 2,
+    ("ari", "nyr"): 2,
+    ("ari", "ott"): 2,
+    ("ari", "phi"): 2,
+    ("ari", "pit"): 2,
+    ("ari", "sj"): 3,
+    ("ari", "sea"): 3,
+    ("ari", "stl"): 4,
+    ("ari", "tb"): 2,
+    ("ari", "tor"): 2,
+    ("ari", "van"): 3,
+    ("ari", "vgk"): 3,
+    ("ari", "wsh"): 2,
+    ("ari", "wpg"): 4,
+    ("bos", "buf"): 3,
+    ("bos", "cgy"): 2,
+    ("bos", "car"): 3,
+    ("bos", "chi"): 2,
+    ("bos", "col"): 2,
+    ("bos", "cbj"): 3,
+    ("bos", "dal"): 2,
+    ("bos", "det"): 4,
+    ("bos", "edm"): 2,
+    ("bos", "fla"): 4,
+    ("bos", "la"): 2,
+    ("bos", "min"): 2,
+    ("bos", "mtl"): 4,
+    ("bos", "nsh"): 2,
+    ("bos", "nj"): 3,
+    ("bos", "nyi"): 3,
+    ("bos", "nyr"): 3,
+    ("bos", "ott"): 3,
+    ("bos", "phi"): 3,
+    ("bos", "pit"): 3,
+    ("bos", "sj"): 2,
+    ("bos", "sea"): 2,
+    ("bos", "stl"): 2,
+    ("bos", "tb"): 4,
+    ("bos", "tor"): 4,
+    ("bos", "van"): 2,
+    ("bos", "vgk"): 2,
+    ("bos", "wsh"): 3,
+    ("bos", "wpg"): 2,
+    ("buf", "cgy"): 2,
+    ("buf", "car"): 3,
+    ("buf", "chi"): 2,
+    ("buf", "col"): 2,
+    ("buf", "cbj"): 3,
+    ("buf", "dal"): 2,
+    ("buf", "det"): 4,
+    ("buf", "edm"): 2,
+    ("buf", "fla"): 3,
+    ("buf", "la"): 2,
+    ("buf", "min"): 2,
+    ("buf", "mtl"): 4,
+    ("buf", "nsh"): 2,
+    ("buf", "nj"): 3,
+    ("buf", "nyi"): 3,
+    ("buf", "nyr"): 3,
+    ("buf", "ott"): 4,
+    ("buf", "phi"): 3,
+    ("buf", "pit"): 3,
+    ("buf", "sj"): 2,
+    ("buf", "sea"): 2,
+    ("buf", "stl"): 2,
+    ("buf", "tb"): 4,
+    ("buf", "tor"): 4,
+    ("buf", "van"): 2,
+    ("buf", "vgk"): 2,
+    ("buf", "wsh"): 3,
+    ("buf", "wpg"): 2,
+    ("cgy", "car"): 2,
+    ("cgy", "chi"): 3,
+    ("cgy", "col"): 3,
+    ("cgy", "cbj"): 2,
+    ("cgy", "dal"): 3,
+    ("cgy", "det"): 2,
+    ("cgy", "edm"): 4,
+    ("cgy", "fla"): 2,
+    ("cgy", "la"): 4,
+    ("cgy", "min"): 3,
+    ("cgy", "mtl"): 2,
+    ("cgy", "nsh"): 3,
+    ("cgy", "nj"): 2,
+    ("cgy", "nyi"): 2,
+    ("cgy", "nyr"): 2,
+    ("cgy", "ott"): 2,
+    ("cgy", "phi"): 2,
+    ("cgy", "pit"): 2,
+    ("cgy", "sj"): 3,
+    ("cgy", "sea"): 4,
+    ("cgy", "stl"): 3,
+    ("cgy", "tb"): 2,
+    ("cgy", "tor"): 2,
+    ("cgy", "van"): 4,
+    ("cgy", "vgk"): 4,
+    ("cgy", "wsh"): 2,
+    ("cgy", "wpg"): 3,
+    ("car", "chi"): 2,
+    ("car", "col"): 2,
+    ("car", "cbj"): 4,
+    ("car", "dal"): 2,
+    ("car", "det"): 3,
+    ("car", "edm"): 2,
+    ("car", "fla"): 3,
+    ("car", "la"): 2,
+    ("car", "min"): 2,
+    ("car", "mtl"): 3,
+    ("car", "nsh"): 2,
+    ("car", "nj"): 3,
+    ("car", "nyi"): 4,
+    ("car", "nyr"): 3,
+    ("car", "ott"): 3,
+    ("car", "phi"): 4,
+    ("car", "pit"): 4,
+    ("car", "sj"): 2,
+    ("car", "sea"): 2,
+    ("car", "stl"): 2,
+    ("car", "tb"): 3,
+    ("car", "tor"): 3,
+    ("car", "van"): 2,
+    ("car", "vgk"): 2,
+    ("car", "wsh"): 4,
+    ("car", "wpg"): 2,
+    ("chi", "col"): 4,
+    ("chi", "cbj"): 2,
+    ("chi", "dal"): 4,
+    ("chi", "det"): 2,
+    ("chi", "edm"): 3,
+    ("chi", "fla"): 2,
+    ("chi", "la"): 3,
+    ("chi", "min"): 3,
+    ("chi", "mtl"): 2,
+    ("chi", "nsh"): 4,
+    ("chi", "nj"): 2,
+    ("chi", "nyi"): 2,
+    ("chi", "nyr"): 2,
+    ("chi", "ott"): 2,
+    ("chi", "phi"): 2,
+    ("chi", "pit"): 2,
+    ("chi", "sj"): 3,
+    ("chi", "sea"): 3,
+    ("chi", "stl"): 4,
+    ("chi", "tb"): 2,
+    ("chi", "tor"): 2,
+    ("chi", "van"): 3,
+    ("chi", "vgk"): 3,
+    ("chi", "wsh"): 2,
+    ("chi", "wpg"): 4,
+    ("col", "cbj"): 2,
+    ("col", "dal"): 4,
+    ("col", "det"): 2,
+    ("col", "edm"): 3,
+    ("col", "fla"): 2,
+    ("col", "la"): 3,
+    ("col", "min"): 4,
+    ("col", "mtl"): 2,
+    ("col", "nsh"): 3,
+    ("col", "nj"): 2,
+    ("col", "nyi"): 2,
+    ("col", "nyr"): 2,
+    ("col", "ott"): 2,
+    ("col", "phi"): 2,
+    ("col", "pit"): 2,
+    ("col", "sj"): 3,
+    ("col", "sea"): 3,
+    ("col", "stl"): 4,
+    ("col", "tb"): 2,
+    ("col", "tor"): 2,
+    ("col", "van"): 3,
+    ("col", "vgk"): 3,
+    ("col", "wsh"): 2,
+    ("col", "wpg"): 3,
+    ("cbj", "dal"): 2,
+    ("cbj", "det"): 3,
+    ("cbj", "edm"): 2,
+    ("cbj", "fla"): 3,
+    ("cbj", "la"): 2,
+    ("cbj", "min"): 2,
+    ("cbj", "mtl"): 3,
+    ("cbj", "nsh"): 2,
+    ("cbj", "nj"): 4,
+    ("cbj", "nyi"): 3,
+    ("cbj", "nyr"): 4,
+    ("cbj", "ott"): 3,
+    ("cbj", "phi"): 4,
+    ("cbj", "pit"): 4,
+    ("cbj", "sj"): 2,
+    ("cbj", "sea"): 2,
+    ("cbj", "stl"): 2,
+    ("cbj", "tb"): 3,
+    ("cbj", "tor"): 3,
+    ("cbj", "van"): 2,
+    ("cbj", "vgk"): 2,
+    ("cbj", "wsh"): 3,
+    ("cbj", "wpg"): 2,
+    ("dal", "det"): 2,
+    ("dal", "edm"): 3,
+    ("dal", "fla"): 2,
+    ("dal", "la"): 3,
+    ("dal", "min"): 3,
+    ("dal", "mtl"): 2,
+    ("dal", "nsh"): 4,
+    ("dal", "nj"): 2,
+    ("dal", "nyi"): 2,
+    ("dal", "nyr"): 2,
+    ("dal", "ott"): 2,
+    ("dal", "phi"): 2,
+    ("dal", "pit"): 2,
+    ("dal", "sj"): 3,
+    ("dal", "sea"): 3,
+    ("dal", "stl"): 4,
+    ("dal", "tb"): 2,
+    ("dal", "tor"): 2,
+    ("dal", "van"): 3,
+    ("dal", "vgk"): 3,
+    ("dal", "wsh"): 2,
+    ("dal", "wpg"): 4,
+    ("det", "edm"): 2,
+    ("det", "fla"): 4,
+    ("det", "la"): 2,
+    ("det", "min"): 2,
+    ("det", "mtl"): 4,
+    ("det", "nsh"): 2,
+    ("det", "nj"): 3,
+    ("det", "nyi"): 3,
+    ("det", "nyr"): 3,
+    ("det", "ott"): 4,
+    ("det", "phi"): 3,
+    ("det", "pit"): 3,
+    ("det", "sj"): 2,
+    ("det", "sea"): 2,
+    ("det", "stl"): 2,
+    ("det", "tb"): 3,
+    ("det", "tor"): 3,
+    ("det", "van"): 2,
+    ("det", "vgk"): 2,
+    ("det", "wsh"): 3,
+    ("det", "wpg"): 2,
+    ("edm", "fla"): 2,
+    ("edm", "la"): 4,
+    ("edm", "min"): 3,
+    ("edm", "mtl"): 2,
+    ("edm", "nsh"): 3,
+    ("edm", "nj"): 2,
+    ("edm", "nyi"): 2,
+    ("edm", "nyr"): 2,
+    ("edm", "ott"): 2,
+    ("edm", "phi"): 2,
+    ("edm", "pit"): 2,
+    ("edm", "sj"): 3,
+    ("edm", "sea"): 4,
+    ("edm", "stl"): 3,
+    ("edm", "tb"): 2,
+    ("edm", "tor"): 2,
+    ("edm", "van"): 4,
+    ("edm", "vgk"): 3,
+    ("edm", "wsh"): 2,
+    ("edm", "wpg"): 3,
+    ("fla", "la"): 2,
+    ("fla", "min"): 2,
+    ("fla", "mtl"): 4,
+    ("fla", "nsh"): 2,
+    ("fla", "nj"): 3,
+    ("fla", "nyi"): 3,
+    ("fla", "nyr"): 3,
+    ("fla", "ott"): 4,
+    ("fla", "phi"): 3,
+    ("fla", "pit"): 3,
+    ("fla", "sj"): 2,
+    ("fla", "sea"): 2,
+    ("fla", "stl"): 2,
+    ("fla", "tb"): 3,
+    ("fla", "tor"): 4,
+    ("fla", "van"): 2,
+    ("fla", "vgk"): 2,
+    ("fla", "wsh"): 3,
+    ("fla", "wpg"): 2,
+    ("la", "min"): 3,
+    ("la", "mtl"): 2,
+    ("la", "nsh"): 3,
+    ("la", "nj"): 2,
+    ("la", "nyi"): 2,
+    ("la", "nyr"): 2,
+    ("la", "ott"): 2,
+    ("la", "phi"): 2,
+    ("la", "pit"): 2,
+    ("la", "sj"): 4,
+    ("la", "sea"): 3,
+    ("la", "stl"): 3,
+    ("la", "tb"): 2,
+    ("la", "tor"): 2,
+    ("la", "van"): 4,
+    ("la", "vgk"): 3,
+    ("la", "wsh"): 2,
+    ("la", "wpg"): 3,
+    ("min", "mtl"): 2,
+    ("min", "nsh"): 4,
+    ("min", "nj"): 2,
+    ("min", "nyi"): 2,
+    ("min", "nyr"): 2,
+    ("min", "ott"): 2,
+    ("min", "phi"): 2,
+    ("min", "pit"): 2,
+    ("min", "sj"): 3,
+    ("min", "sea"): 3,
+    ("min", "stl"): 4,
+    ("min", "tb"): 2,
+    ("min", "tor"): 2,
+    ("min", "van"): 3,
+    ("min", "vgk"): 3,
+    ("min", "wsh"): 2,
+    ("min", "wpg"): 4,
+    ("mtl", "nj"): 3,
+    ("mtl", "nsh"): 2,
+    ("mtl", "nyi"): 3,
+    ("mtl", "nyr"): 3,
+    ("mtl", "ott"): 3,
+    ("mtl", "phi"): 3,
+    ("mtl", "pit"): 3,
+    ("mtl", "sj"): 2,
+    ("mtl", "sea"): 2,
+    ("mtl", "stl"): 2,
+    ("mtl", "tb"): 4,
+    ("mtl", "tor"): 3,
+    ("mtl", "van"): 2,
+    ("mtl", "vgk"): 2,
+    ("mtl", "wsh"): 3,
+    ("mtl", "wpg"): 2,
+    ("nsh", "nj"): 2,
+    ("nsh", "nyi"): 2,
+    ("nsh", "nyr"): 2,
+    ("nsh", "ott"): 2,
+    ("nsh", "phi"): 2,
+    ("nsh", "pit"): 2,
+    ("nsh", "sj"): 3,
+    ("nsh", "sea"): 3,
+    ("nsh", "stl"): 3,
+    ("nsh", "tb"): 2,
+    ("nsh", "tor"): 2,
+    ("nsh", "van"): 3,
+    ("nsh", "vgk"): 3,
+    ("nsh", "wsh"): 2,
+    ("nsh", "wpg"): 4,
+    ("nj", "nyi"): 4,
+    ("nj", "nyr"): 4,
+    ("nj", "ott"): 3,
+    ("nj", "phi"): 4,
+    ("nj", "pit"): 3,
+    ("nj", "sj"): 2,
+    ("nj", "sea"): 2,
+    ("nj", "stl"): 2,
+    ("nj", "tb"): 3,
+    ("nj", "tor"): 3,
+    ("nj", "van"): 2,
+    ("nj", "vgk"): 2,
+    ("nj", "wsh"): 4,
+    ("nj", "wpg"): 2,
+    ("nyi", "nyr"): 4,
+    ("nyi", "ott"): 3,
+    ("nyi", "phi"): 3,
+    ("nyi", "pit"): 4,
+    ("nyi", "sj"): 2,
+    ("nyi", "sea"): 2,
+    ("nyi", "stl"): 2,
+    ("nyi", "tb"): 3,
+    ("nyi", "tor"): 3,
+    ("nyi", "van"): 2,
+    ("nyi", "vgk"): 2,
+    ("nyi", "wsh"): 4,
+    ("nyi", "wpg"): 2,
+    ("nyr", "ott"): 3,
+    ("nyr", "phi"): 4,
+    ("nyr", "pit"): 3,
+    ("nyr", "sj"): 2,
+    ("nyr", "sea"): 2,
+    ("nyr", "stl"): 2,
+    ("nyr", "tb"): 3,
+    ("nyr", "tor"): 3,
+    ("nyr", "van"): 2,
+    ("nyr", "vgk"): 2,
+    ("nyr", "wsh"): 4,
+    ("nyr", "wpg"): 2,
+    ("ott", "phi"): 3,
+    ("ott", "pit"): 3,
+    ("ott", "sj"): 2,
+    ("ott", "sea"): 2,
+    ("ott", "stl"): 2,
+    ("ott", "tb"): 4,
+    ("ott", "tor"): 4,
+    ("ott", "van"): 2,
+    ("ott", "vgk"): 2,
+    ("ott", "wsh"): 3,
+    ("ott", "wpg"): 2,
+    ("phi", "pit"): 4,
+    ("phi", "sj"): 2,
+    ("phi", "sea"): 2,
+    ("phi", "stl"): 2,
+    ("phi", "tb"): 3,
+    ("phi", "tor"): 3,
+    ("phi", "van"): 2,
+    ("phi", "vgk"): 2,
+    ("phi", "wsh"): 3,
+    ("phi", "wpg"): 2,
+    ("pit", "sj"): 2,
+    ("pit", "sea"): 2,
+    ("pit", "stl"): 2,
+    ("pit", "tb"): 3,
+    ("pit", "tor"): 3,
+    ("pit", "van"): 2,
+    ("pit", "vgk"): 2,
+    ("pit", "wsh"): 4,
+    ("pit", "wpg"): 2,
+    ("sj", "sea"): 4,
+    ("sj", "stl"): 3,
+    ("sj", "tb"): 2,
+    ("sj", "tor"): 2,
+    ("sj", "van"): 4,
+    ("sj", "vgk"): 4,
+    ("sj", "wsh"): 2,
+    ("sj", "wpg"): 3,
+    ("sea", "stl"): 3,
+    ("sea", "tb"): 2,
+    ("sea", "tor"): 2,
+    ("sea", "van"): 3,
+    ("sea", "vgk"): 4,
+    ("sea", "wsh"): 2,
+    ("sea", "wpg"): 3,
+    ("stl", "tb"): 2,
+    ("stl", "tor"): 2,
+    ("stl", "van"): 3,
+    ("stl", "vgk"): 3,
+    ("stl", "wsh"): 2,
+    ("stl", "wpg"): 3,
+    ("tb", "tor"): 4,
+    ("tb", "van"): 2,
+    ("tb", "vgk"): 2,
+    ("tb", "wsh"): 3,
+    ("tb", "wpg"): 2,
+    ("tor", "van"): 2,
+    ("tor", "vgk"): 2,
+    ("tor", "wsh"): 3,
+    ("tor", "wpg"): 2,
+    ("van", "vgk"): 4,
+    ("van", "wsh"): 2,
+    ("van", "wpg"): 3,
+    ("vgk", "wsh"): 2,
+    ("vgk", "wpg"): 3,
+    ("wsh", "wpg"): 2,
+}
