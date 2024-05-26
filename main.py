@@ -33,6 +33,11 @@ from team import vgk
 from team import wsh
 from team import wpg
 
+league = [ana, ari, bos, buf, car, cgy, chi, col, cbj, dal, det, fla, edm, la, min, mtl, nsh, nj, nyi, nyr, ott, phi, pit, sj, sea, stl, tb, tor, van, vgk, wsh, wpg]
+metropolitan_division = [nj, nyi, nyr, phi, pit, car, cbj, wsh]
+atlantic_division = [bos, buf, det, fla, mtl, ott, tb, tor]
+central_division = [ari, chi, col, dal, min, nsh, stl,  wpg]
+pacific_division = [ana,  cgy, edm, la, sj, sea, van, vgk,]
 class Sim(object):
     def __init__(self, name, offense, defense, goalie, sog, goals, goals_against, wins, losses, otl, points):
         self.name = name
@@ -378,42 +383,42 @@ def get_goals1(team1, team2, team1_sog):
     team2_saves = 0
     for i in range(team1_sog):
         if team2.goalie <= 20:
-            if random.random() <= 0.125:
+            if random.random() <= 0.115:
                 team1_goals += 1
                 team1.goals += 1
                 team2.goals_against += 1
             else:
                 team2_saves += 1
         elif team2.goalie <= 30 & team2.goalie > 20:
-            if random.random() <= 0.120:
-                team1_goals += 1
-                team1.goals += 1
-                team2.goals_against += 1
-            else:
-                team2_saves += 1
-        elif team2.goalie <= 40 & team2.goalie > 30:
             if random.random() <= 0.110:
                 team1_goals += 1
                 team1.goals += 1
                 team2.goals_against += 1
             else:
                 team2_saves += 1
+        elif team2.goalie <= 40 & team2.goalie > 30:
+            if random.random() <= 0.105:
+                team1_goals += 1
+                team1.goals += 1
+                team2.goals_against += 1
+            else:
+                team2_saves += 1
         elif team2.goalie <= 50 & team2.goalie > 40:
-            if random.random() <= 0.100:
+            if random.random() <= 0.102:
                 team1_goals += 1
                 team1.goals += 1
                 team2.goals_against += 1
             else:
                 team2_saves += 1
         elif team2.goalie <= 60 & team2.goalie > 50:
-            if random.random() <= 0.098:
+            if random.random() <= 0.100:
                 team1_goals += 1
                 team1.goals += 1
                 team2.goals_against += 1
             else:
                 team2_saves += 1
         elif team2.goalie <= 70 & team2.goalie > 60:
-            if random.random() <= 0.092:
+            if random.random() <= 0.090:
                 team1_goals += 1
                 team1.goals += 1
                 team2.goals_against += 1
@@ -433,42 +438,42 @@ def get_goals2(team1,team2, team2_sog):
     team1_saves = 0
     for i in range(team2_sog):
         if team1.goalie <= 20:
-            if random.random() <= 0.125:
+            if random.random() <= 0.115:
                 team2_goals += 1
                 team2.goals += 1
                 team1.goals_against += 1
             else:
                 team1_saves += 1
         elif team1.goalie <= 30 & team1.goalie > 20:
-            if random.random() <= 0.120:
-                team2_goals += 1
-                team2.goals += 1
-                team1.goals_against += 1
-            else:
-                team1_saves += 1
-        elif team1.goalie <= 40 & team1.goalie > 30:
             if random.random() <= 0.110:
                 team2_goals += 1
                 team2.goals += 1
                 team1.goals_against += 1
             else:
                 team1_saves += 1
+        elif team1.goalie <= 40 & team1.goalie > 30:
+            if random.random() <= 0.105:
+                team2_goals += 1
+                team2.goals += 1
+                team1.goals_against += 1
+            else:
+                team1_saves += 1
         elif team1.goalie <= 50 & team1.goalie > 40:
-            if random.random() <= 0.100:
+            if random.random() <= 0.102:
                 team2_goals += 1
                 team2.goals += 1
                 team1.goals_against += 1
             else:
                 team1_saves += 1
         elif team1.goalie <= 60 & team1.goalie > 50:
-            if random.random() <= 0.098:
+            if random.random() <= 0.100:
                 team2_goals += 1
                 team2.goals += 1
                 team1.goals_against += 1
             else:
                 team1_saves += 1
         elif team1.goalie <= 70 & team1.goalie > 60:
-            if random.random() <= 0.092:
+            if random.random() <= 0.090:
                 team2_goals += 1
                 team2.goals += 1
                 team1.goals_against += 1
@@ -518,6 +523,19 @@ def get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog):
             team1.otl += 1
             team2.wins += 1
 
+def sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division):
+    def sort_and_print(division_name, division_teams):
+        sorted_standings = sorted(division_teams, key=lambda x: x.points, reverse=True)
+        print(f"{division_name} Division Standings:")
+        for i, team in enumerate(sorted_standings, start=1):
+            print(f"{i}. {team.name} - W: {team.wins} L: {team.losses} OTL: {team.otl} PTS: {team.points} GF: {team.goals} GA: {team.goals_against}")
+
+    sort_and_print("Metropolitan", metropolitan_division)
+    sort_and_print("Atlantic", atlantic_division)
+    sort_and_print("Central", central_division)
+    sort_and_print("Pacific", pacific_division)
+
+# Season Sim occurs here:
 for (team1_name, team2_name), num_games in matchups.items():
     team1 = globals()[team1_name]
     team2 = globals()[team2_name]
@@ -527,36 +545,5 @@ for (team1_name, team2_name), num_games in matchups.items():
         team1_goals, team2_saves = get_goals1(team1, team2, team1_sog)
         team2_goals, team1_saves = get_goals2(team1, team2, team2_sog)
         get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog)
-
-print(ana.name, "W:", ana.wins, "L:", ana.losses, "OTL:", ana.otl, "PTS:", ana.points, "G:", ana.goals, "GA:", ana.goals_against)
-print(ari.name, "W:", ari.wins, "L:", ari.losses, "OTL:", ari.otl, "PTS:", ari.points, "G:", ari.goals, "GA:", ari.goals_against)
-print(bos.name, "W:", bos.wins,"L:", bos.losses,"OTL:", bos.otl, "PTS:", bos.points, "G:", bos.goals, "GA:", bos.goals_against)
-print(buf.name, "W:", buf.wins,"L:", buf.losses,"OTL:", buf.otl, "PTS:", buf.points, "G:", buf.goals, "GA:", buf.goals_against)
-print(cgy.name, "W:", cgy.wins,"L:", cgy.losses,"OTL:", cgy.otl, "PTS:", cgy.points, "G:", cgy.goals, "GA:", cgy.goals_against)
-print(car.name, "W:", car.wins, "L:", car.losses, "OTL:", car.otl, "PTS:", car.points, "G:", car.goals, "GA:", car.goals_against)
-print(chi.name, "W:", chi.wins, "L:", chi.losses, "OTL:", chi.otl, "PTS:", chi.points, "G:", chi.goals, "GA:", chi.goals_against)
-print(col.name, "W:", col.wins, "L:", col.losses, "OTL:", col.otl, "PTS:", col.points, "G:", col.goals, "GA:", col.goals_against)
-print(cbj.name, "W:", cbj.wins, "L:", cbj.losses, "OTL:", cbj.otl, "PTS:", cbj.points, "G:", cbj.goals, "GA:", cbj.goals_against)
-print(dal.name, "W:", dal.wins, "L:", dal.losses, "OTL:", dal.otl, "PTS:", dal.points, "G:", dal.goals, "GA:", dal.goals_against)
-print(det.name, "W:", det.wins, "L:", det.losses, "OTL:", det.otl, "PTS:", det.points, "G:", det.goals, "GA:", det.goals_against)
-print(edm.name, "W:", edm.wins, "L:", edm.losses, "OTL:", edm.otl, "PTS:", edm.points, "G:", edm.goals, "GA:", edm.goals_against)
-print(fla.name, "W:", fla.wins, "L:", fla.losses, "OTL:", fla.otl, "PTS:", fla.points, "G:", fla.goals, "GA:", fla.goals_against)
-print(la.name, "W:", la.wins, "L:", la.losses, "OTL:", la.otl, "PTS:", la.points, "G:", la.goals, "GA:", la.goals_against)
-print(min.name, "W:", min.wins, "L:", min.losses, "OTL:", min.otl, "PTS:", min.points, "G:", min.goals, "GA:", min.goals_against)
-print(mtl.name, "W:", mtl.wins, "L:", mtl.losses, "OTL:", mtl.otl, "PTS:", mtl.points, "G:", mtl.goals, "GA:", mtl.goals_against)
-print(nsh.name, "W:", nsh.wins, "L:", nsh.losses, "OTL:", nsh.otl, "PTS:", nsh.points, "G:", nsh.goals, "GA:", nsh.goals_against)
-print(nj.name, "W:", nj.wins, "L:", nj.losses, "OTL:", nj.otl, "PTS:", nj.points, "G:", nj.goals, "GA:", nj.goals_against)
-print(nyi.name, "W:", nyi.wins, "L:", nyi.losses, "OTL:", nyi.otl, "PTS:", nyi.points, "G:", nyi.goals, "GA:", nyi.goals_against)
-print(nyr.name, "W:", nyr.wins, "L:", nyr.losses, "OTL:", nyr.otl, "PTS:", nyr.points, "G:", nyr.goals, "GA:", nyr.goals_against)
-print(ott.name, "W:", ott.wins, "L:", ott.losses, "OTL:", ott.otl, "PTS:", ott.points, "G:", ott.goals, "GA:", ott.goals_against)
-print(phi.name, "W:", phi.wins, "L:", phi.losses, "OTL:", phi.otl, "PTS:", phi.points, "G:", phi.goals, "GA:", phi.goals_against)
-print(pit.name, "W:", pit.wins, "L:", pit.losses, "OTL:", pit.otl, "PTS:", pit.points, "G:", pit.goals, "GA:", pit.goals_against)
-print(sj.name, "W:", sj.wins, "L:", sj.losses, "OTL:", sj.otl, "PTS:", sj.points, "G:", sj.goals, "GA:", sj.goals_against)
-print(sea.name, "W:", sea.wins, "L:", sea.losses, "OTL:", sea.otl, "PTS:", sea.points, "G:", sea.goals, "GA:", sea.goals_against)
-print(stl.name, "W:", stl.wins, "L:", stl.losses, "OTL:", stl.otl, "PTS:", stl.points, "G:", stl.goals, "GA:", stl.goals_against)
-print(tb.name, "W:", tb.wins, "L:", tb.losses, "OTL:", tb.otl, "PTS:", tb.points, "G:", tb.goals, "GA:", tb.goals_against)
-print(tor.name, "W:", tor.wins, "L:", tor.losses, "OTL:", tor.otl, "PTS:", tor.points, "G:", tor.goals, "GA:", tor.goals_against)
-print(van.name, "W:", van.wins, "L:", van.losses, "OTL:", van.otl, "PTS:", van.points, "G:", van.goals, "GA:", van.goals_against)
-print(vgk.name, "W:", vgk.wins, "L:", vgk.losses, "OTL:", vgk.otl, "PTS:", vgk.points, "G:", vgk.goals, "GA:", vgk.goals_against)
-print(wsh.name, "W:", wsh.wins, "L:", wsh.losses, "OTL:", wsh.otl, "PTS:", wsh.points, "G:", wsh.goals, "GA:", wsh.goals_against)
-print(wpg.name, "W:", wpg.wins, "L:", wpg.losses, "OTL:", wpg.otl, "PTS:", wpg.points, "G:", wpg.goals, "GA:", wpg.goals_against)
+# Final call
+sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division)
