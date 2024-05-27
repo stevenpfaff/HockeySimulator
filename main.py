@@ -32,12 +32,15 @@ from team import van
 from team import vgk
 from team import wsh
 from team import wpg
+import csv
 
 league = [ana, ari, bos, buf, car, cgy, chi, col, cbj, dal, det, fla, edm, la, min, mtl, nsh, nj, nyi, nyr, ott, phi, pit, sj, sea, stl, tb, tor, van, vgk, wsh, wpg]
+eastern_conference = [bos, buf, det, fla, mtl, ott, tb, tor, nj, nyi, nyr, phi, pit, car, cbj, wsh]
+western_conference = [ari, chi, col, dal, min, nsh, stl,  wpg, ana, cgy, edm, la, sj, sea, van, vgk,]
 metropolitan_division = [nj, nyi, nyr, phi, pit, car, cbj, wsh]
 atlantic_division = [bos, buf, det, fla, mtl, ott, tb, tor]
 central_division = [ari, chi, col, dal, min, nsh, stl,  wpg]
-pacific_division = [ana,  cgy, edm, la, sj, sea, van, vgk,]
+pacific_division = [ana, cgy, edm, la, sj, sea, van, vgk,]
 class Sim(object):
     def __init__(self, name, offense, defense, goalie, sog, goals, goals_against, wins, losses, otl, points):
         self.name = name
@@ -523,17 +526,42 @@ def get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog):
             team1.otl += 1
             team2.wins += 1
 
-def sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division):
-    def sort_and_print(division_name, division_teams):
-        sorted_standings = sorted(division_teams, key=lambda x: x.points, reverse=True)
-        print(f"{division_name} Division Standings:")
-        for i, team in enumerate(sorted_standings, start=1):
-            print(f"{i}. {team.name} - W: {team.wins} L: {team.losses} OTL: {team.otl} PTS: {team.points} GF: {team.goals} GA: {team.goals_against}")
 
-    sort_and_print("Metropolitan", metropolitan_division)
-    sort_and_print("Atlantic", atlantic_division)
-    sort_and_print("Central", central_division)
-    sort_and_print("Pacific", pacific_division)
+def sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division, eastern_conference, western_conference):
+    def sort_and_print(division_name, division_teams):
+        return sorted(division_teams, key=lambda x: x.points, reverse=True)
+
+    metropolitan_standings = sort_and_print("Metropolitan", metropolitan_division)
+    atlantic_standings = sort_and_print("Atlantic", atlantic_division)
+    central_standings = sort_and_print("Central", central_division)
+    pacific_standings = sort_and_print("Pacific", pacific_division)
+
+    eastern_conference_standings = sort_and_print("Eastern", eastern_conference)
+    western_conference_standings = sort_and_print("Western", western_conference)
+
+    return metropolitan_standings, atlantic_standings, central_standings, pacific_standings, \
+           eastern_conference_standings, western_conference_standings
+def generate_playoff_matchups(eastern_conference_standings, western_conference_standings):
+
+    eastern_teams = eastern_conference_standings[:8]
+    western_teams = western_conference_standings[:8]
+
+
+    playoff_matchups = []
+
+    # Eastern Conference matchups
+    playoff_matchups.append((eastern_teams[0], eastern_teams[7]))
+    playoff_matchups.append((eastern_teams[1], eastern_teams[6]))
+    playoff_matchups.append((eastern_teams[2], eastern_teams[5]))
+    playoff_matchups.append((eastern_teams[3], eastern_teams[4]))
+
+    # Western Conference matchups
+    playoff_matchups.append((western_teams[0], western_teams[7]))
+    playoff_matchups.append((western_teams[1], western_teams[6]))
+    playoff_matchups.append((western_teams[2], western_teams[5]))
+    playoff_matchups.append((western_teams[3], western_teams[4]))
+
+    return playoff_matchups
 
 # Season Sim occurs here:
 for (team1_name, team2_name), num_games in matchups.items():
@@ -545,5 +573,25 @@ for (team1_name, team2_name), num_games in matchups.items():
         team1_goals, team2_saves = get_goals1(team1, team2, team1_sog)
         team2_goals, team1_saves = get_goals2(team1, team2, team2_sog)
         get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog)
-# Final call
-sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division)
+
+# Final calls for season standings and playoff matchups.
+metropolitan_standings, atlantic_standings, central_standings, pacific_standings, eastern_conference_standings, western_conference_standings = sort_division_standings(
+    metropolitan_division, atlantic_division, central_division, pacific_division, western_conference, eastern_conference
+)
+playoff_matchups = generate_playoff_matchups(eastern_conference_standings, western_conference_standings
+                                             )
+
+# Print playoff matchups in console.
+for i, matchup in enumerate(playoff_matchups, start=1):
+    print(f"Matchup {i}: {matchup[0].name} vs. {matchup[1].name}")
+
+# Combine all standings for .csv
+all_standings = metropolitan_standings + atlantic_standings + central_standings + pacific_standings
+
+# Write the standings to a CSV file
+with open('standings.csv', mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Team", "Wins", "Losses", "OTL", "Points","Goals", "Goals Against"])
+    for team in all_standings:
+        writer.writerow([team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against])
+
