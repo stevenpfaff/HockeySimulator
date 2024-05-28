@@ -2,6 +2,7 @@ import random
 from team import matchups
 from team import ana, ari, bos, buf, car, cgy, chi, col, cbj, dal, det, fla, edm, la, min, mtl, nsh, nj, nyi, nyr, ott, phi, pit, sj, sea, stl, tb, tor, van, vgk, wsh, wpg
 from team import league, eastern_conference, western_conference, metropolitan_division, atlantic_division, central_division, pacific_division
+from game import Game
 import csv
 
 class Sim(object):
@@ -234,15 +235,7 @@ def get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog):
     else:
         return "team2", in_reg
 
-def sim_game(team1, team2):
-    team1_sog = get_sog(team1, team2)
-    team2_sog = get_sog(team2, team1)
-    team1_goals = get_goals(team2, team1_sog)
-    team2_goals = get_goals(team1, team2_sog)
-    winner, in_reg = get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog)
-    update_stats(team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, in_reg)
-
-def update_stats(team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, in_reg):
+def update_stats(team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation):
     # Team 1 stats
     team1.sog += team1_sog
     team1.sog_ag += team2_sog
@@ -258,7 +251,7 @@ def update_stats(team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, w
     team2.goals_against += team1_goals
 
     if winner == "team1" :
-        if in_reg :
+        if regulation :
             team1.wins += 1
             team1.points += 2
             team2.losses += 1
@@ -268,7 +261,7 @@ def update_stats(team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, w
             team2.otl += 1
             team2.points += 1
     else:
-        if in_reg :
+        if regulation :
             team2.wins += 1
             team2.points += 2
             team1.losses += 1
@@ -307,7 +300,8 @@ for (team1_name, team2_name), num_games in matchups.items():
     team1 = globals()[team1_name]
     team2 = globals()[team2_name]
     for _ in range(num_games):
-        sim_game(team1, team2)
+        game = Game(team1, team2)
+        update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals, game.visitor_goals, game.winner, game.regulation)
 
 # Final calls for season standings and playoff matchups.
 sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division, eastern_conference, western_conference, league)
