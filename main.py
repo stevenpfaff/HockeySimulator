@@ -65,7 +65,7 @@ def sort_and_print(division_name, division_teams, filename):
         writer.writerow([f"{division_name} Standings:"])
         writer.writerow(["Rank", "Team", "Wins", "Losses", "OTL", "Points", "Goals For", "Goals Against", "Shooting%," "Save%"])
         for i, team in enumerate(sorted_standings, start=1):
-            writer.writerow([i, team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against, team.goals/team.sog, team.saves/team.sog_ag])
+            writer.writerow([i, team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against, "{:.2f}".format((team.goals/team.sog)*100)+ "%", "{:.3f}".format(team.saves/team.sog_ag)])
 
 def sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division, eastern_conference, western_conference, league):
     with open("standings.csv", mode='w', newline='') as file:
