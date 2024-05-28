@@ -1,15 +1,8 @@
 import random
 from team import matchups
 from team import ana, ari, bos, buf, car, cgy, chi, col, cbj, dal, det, fla, edm, la, min, mtl, nsh, nj, nyi, nyr, ott, phi, pit, sj, sea, stl, tb, tor, van, vgk, wsh, wpg
+from team import league, eastern_conference, western_conference, metropolitan_division, atlantic_division, central_division, pacific_division
 import csv
-
-league = [ana, ari, bos, buf, car, cgy, chi, col, cbj, dal, det, fla, edm, la, min, mtl, nsh, nj, nyi, nyr, ott, phi, pit, sj, sea, stl, tb, tor, van, vgk, wsh, wpg]
-eastern_conference = [bos, buf, det, fla, mtl, ott, tb, tor, nj, nyi, nyr, phi, pit, car, cbj, wsh]
-western_conference = [ari, chi, col, dal, min, nsh, stl,  wpg, ana, cgy, edm, la, sj, sea, van, vgk,]
-metropolitan_division = [nj, nyi, nyr, phi, pit, car, cbj, wsh]
-atlantic_division = [bos, buf, det, fla, mtl, ott, tb, tor]
-central_division = [ari, chi, col, dal, min, nsh, stl,  wpg]
-pacific_division = [ana, cgy, edm, la, sj, sea, van, vgk,]
 
 class Sim(object):
     def __init__(self, name, offense, defense, goalie, sog, sog_ag, saves, goals, goals_against, wins, losses, otl, points):
@@ -27,687 +20,263 @@ class Sim(object):
         self.otl = otl
         self.points = points
 
-def get_sog1(team1, team2):
-    team1_sog = 0
+def get_sog(team1, team2):
     if team1.offense <= 20 and team2.defense <= 20:
-        sog = random.randint(18, 35)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(18, 35)
+
     elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 20:
-        sog = random.randint(20, 35)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(20, 35)
+
     elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 20:
-        sog = random.randint(22, 38)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(22, 38)
+
     elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 20:
-        sog = random.randint(25, 40)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(25, 40)
+
     elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 20:
-        sog = random.randint(28, 42)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(28, 42)
+
     elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 20:
-        sog = random.randint(28, 45)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(28, 45)
+
     elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 20:
-        sog = random.randint(30, 50)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(30, 50)
 
     # 30-21 Defense Team 2
     elif team1.offense <= 20 and team2.defense <= 30 & team2.defense > 20:
-        sog = random.randint(15, 32)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(15, 32)
+
     elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 30 & team2.defense > 20:
-        sog = random.randint(18, 32)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(18, 32)
+
     elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 30 & team2.defense > 20:
-        sog = random.randint(18, 35)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(18, 35)
+
     elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 30 & team2.defense > 20:
-        sog = random.randint(20, 35)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(20, 35)
+
     elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 30 & team2.defense > 20:
-        sog = random.randint(25, 38)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(25, 38)
+
     elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 30 & team2.defense > 20:
-        sog = random.randint(28, 42)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(28, 42)
+
     elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 30 & team2.defense > 20:
-        sog = random.randint(30, 50)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(30, 50)
 
     # 40-31 Defense Team 2
     elif team1.offense <= 20 and team2.defense <= 40 & team2.defense > 30:
-        sog = random.randint(13, 28)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(13, 28)
+
     elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 40 & team2.defense > 30:
-        sog = random.randint(15, 30)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(15, 30)
+
     elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 40 & team2.defense > 30:
-        sog = random.randint(15, 32)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(15, 32)
+
     elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 40 & team2.defense > 30:
-        sog = random.randint(18, 35)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(18, 35)
+
     elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 40 & team2.defense > 30:
-        sog = random.randint(22, 38)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(22, 38)
+
     elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 40 & team2.defense > 30:
-        sog = random.randint(25, 40)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(25, 40)
+
     elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 40 & team2.defense > 30:
-        sog = random.randint(28, 48)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(28, 48)
+
 
     # 50-41 Defense Team 2
     elif team1.offense <= 20 and team2.defense <= 50 & team2.defense > 40:
-        sog = random.randint(13, 25)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(13, 25)
+
     elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 50 & team2.defense > 40:
-        sog = random.randint(13, 28)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(13, 28)
+
     elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 50 & team2.defense > 40:
-        sog = random.randint(15, 30)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(15, 30)
+
     elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 50 & team2.defense > 40:
-        sog = random.randint(18, 32)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(18, 32)
+
     elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 50 & team2.defense > 40:
-        sog = random.randint(22, 35)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(22, 35)
+
     elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 50 & team2.defense > 40:
-        sog = random.randint(25, 40)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(25, 40)
+
     elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 50 & team2.defense > 40:
-        sog = random.randint(25, 40)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(25, 40)
+
 
     # 60-51 Defense Team 2
     elif team1.offense <= 20 and team2.defense <= 60 & team2.defense > 50:
-        sog = random.randint(13, 22)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(13, 22)
+
     elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 60 & team2.defense > 50:
-        sog = random.randint(13, 25)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(13, 25)
+
     elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 60 & team2.defense > 50:
-        sog = random.randint(15, 28)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(15, 28)
+
     elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 60 & team2.defense > 50:
-        sog = random.randint(18, 30)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(18, 30)
+
     elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 60 & team2.defense > 50:
-        sog = random.randint(22, 32)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(22, 32)
+
     elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 60 & team2.defense > 50:
-        sog = random.randint(25, 35)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(25, 35)
+
     elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 60 & team2.defense > 50:
-        sog = random.randint(25, 45)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(25, 45)
+
 
     # 70-61 Defense Team 2
     elif team1.offense <= 20 and team2.defense <= 70 & team2.defense > 60:
-        sog = random.randint(13, 20)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(13, 20)
+
     elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 70 & team2.defense > 60:
-        sog = random.randint(13, 22)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(13, 22)
+
     elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 70 & team2.defense > 60:
-        sog = random.randint(15, 25)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(15, 25)
+
     elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 70 & team2.defense > 60:
-        sog = random.randint(17, 30)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(17, 30)
+
     elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 70 & team2.defense > 60:
-        sog = random.randint(20, 32)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(20, 32)
+
     elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 70 & team2.defense > 60:
-        sog = random.randint(22, 35)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(22, 35)
+
     elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 70 & team2.defense > 60:
-        sog = random.randint(25, 40)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(25, 40)
+
 
     # 80-71 Defense
     elif team1.offense <= 20 and team2.defense <= 80 & team2.defense > 70:
-        sog = random.randint(10, 20)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(10, 20)
+
     elif team1.offense <= 30 & team1.offense > 20 and team2.defense <= 80 & team2.defense > 70:
-        sog = random.randint(13, 22)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(13, 22)
+
     elif team1.offense <= 40 & team1.offense > 30 and team2.defense <= 80 & team2.defense > 70:
-        sog = random.randint(15, 22)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(15, 22)
+
     elif team1.offense <= 50 & team1.offense > 40 and team2.defense <= 80 & team2.defense > 70:
-        sog = random.randint(17, 25)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(17, 25)
+
     elif team1.offense <= 60 & team1.offense > 50 and team2.defense <= 80 & team2.defense > 70:
-        sog = random.randint(20, 28)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(20, 28)
+
     elif team1.offense <= 70 & team1.offense > 60 and team2.defense <= 80 & team2.defense > 70:
-        sog = random.randint(22, 30)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
+        return random.randint(22, 30)
+
     elif team1.offense <= 80 & team1.offense > 70 and team2.defense <= 80 & team2.defense > 70:
-        sog = random.randint(22, 30)
-        team1_sog += sog
-        team1.sog += team1_sog
-        team2.sog_ag += team1_sog
-    return team1_sog
+        return random.randint(22, 30)
 
-def get_sog2(team1, team2):
-    team2_sog = 0
-    if team2.offense <= 20 and team1.defense <= 20:
-            sog = random.randint(18, 35)
-            team2_sog += sog
-            team2.sog += team2_sog
-            team1.sog_ag += team2_sog
-    elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 20:
-        sog = random.randint(20, 35)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 20:
-        sog = random.randint(22, 38)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 20:
-        sog = random.randint(25, 40)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 20:
-        sog = random.randint(28, 42)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 20:
-        sog = random.randint(28, 45)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 20:
-        sog = random.randint(30, 50)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
+    return 0
 
-
-    # 30-21 Defense Team 2
-    elif team2.offense <= 20 and team1.defense <= 30 & team1.defense > 20:
-        sog = random.randint(15, 32)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 30 & team1.defense > 20:
-        sog = random.randint(18, 32)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 30 & team1.defense > 20:
-        sog = random.randint(18, 35)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 30 & team1.defense > 20:
-        sog = random.randint(20, 35)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 30 & team1.defense > 20:
-        sog = random.randint(25, 38)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 30 & team1.defense > 20:
-        sog = random.randint(28, 42)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 30 & team1.defense > 20:
-        sog = random.randint(30, 50)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-
-    # 40-31 Defense Team 2
-    elif team2.offense <= 20 and team1.defense <= 40 & team1.defense > 30:
-        sog = random.randint(13, 28)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 40 & team1.defense > 30:
-        sog = random.randint(15, 30)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 40 & team1.defense > 30:
-        sog = random.randint(15, 32)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 40 & team1.defense > 30:
-        sog = random.randint(18, 35)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 40 & team1.defense > 30:
-        sog = random.randint(22, 38)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 40 & team1.defense > 30:
-        sog = random.randint(25, 40)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 40 & team1.defense > 30:
-        sog = random.randint(28, 48)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-
-    # 50-41 Defense Team 2
-    elif team2.offense <= 20 and team1.defense <= 50 & team1.defense > 40:
-        sog = random.randint(13, 25)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 50 & team1.defense > 40:
-        sog = random.randint(13, 28)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 50 & team1.defense > 40:
-        sog = random.randint(15, 30)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 50 & team1.defense > 40:
-        sog = random.randint(18, 32)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 50 & team1.defense > 40:
-        sog = random.randint(22, 35)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 50 & team1.defense > 40:
-        sog = random.randint(25, 40)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 50 & team1.defense > 40:
-        sog = random.randint(25, 40)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-
-    # 60-51 Defense Team 2
-    elif team2.offense <= 20 and team1.defense <= 60 & team1.defense > 50:
-        sog = random.randint(13, 22)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 60 & team1.defense > 50:
-        sog = random.randint(13, 25)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 60 & team1.defense > 50:
-        sog = random.randint(15, 28)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 60 & team1.defense > 50:
-        sog = random.randint(18, 30)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 60 & team1.defense > 50:
-        sog = random.randint(22, 32)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 60 & team1.defense > 50:
-        sog = random.randint(25, 35)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 60 & team1.defense > 50:
-        sog = random.randint(25, 45)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-
-    # 70-61 Defense Team 2
-    elif team2.offense <= 20 and team1.defense <= 70 & team1.defense > 60:
-        sog = random.randint(13, 20)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 70 & team1.defense > 60:
-        sog = random.randint(13, 22)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 70 & team1.defense > 60:
-        sog = random.randint(15, 25)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 70 & team1.defense > 60:
-        sog = random.randint(17, 30)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 70 & team1.defense > 60:
-        sog = random.randint(20, 32)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 70 & team1.defense > 60:
-        sog = random.randint(22, 35)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 70 & team1.defense > 60:
-        sog = random.randint(25, 40)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-
-    # 80-71 Defense
-    elif team2.offense <= 20 and team1.defense <= 80 & team1.defense > 70:
-        sog = random.randint(10, 20)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 30 & team2.offense > 20 and team1.defense <= 80 & team1.defense > 70:
-        sog = random.randint(13, 22)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 40 & team2.offense > 30 and team1.defense <= 80 & team1.defense > 70:
-        sog = random.randint(15, 22)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 50 & team2.offense > 40 and team1.defense <= 80 & team1.defense > 70:
-        sog = random.randint(17, 25)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 60 & team2.offense > 50 and team1.defense <= 80 & team1.defense > 70:
-        sog = random.randint(20, 28)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 70 & team2.offense > 60 and team1.defense <= 80 & team1.defense > 70:
-        sog = random.randint(22, 30)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    elif team2.offense <= 80 & team2.offense > 70 and team1.defense <= 80 & team1.defense > 70:
-        sog = random.randint(22, 30)
-        team2_sog += sog
-        team2.sog += team2_sog
-        team1.sog_ag += team2_sog
-    return team2_sog
-
-def get_goals1(team1, team2, team1_sog):
-    team1_goals = 0
-    team2_saves = 0
-    for i in range(team1_sog):
-        if team2.goalie <= 20:
+def get_goals(defense, sog):
+    goals = 0
+    for i in range(sog):
+        if defense.goalie <= 20:
             if random.random() <= 0.115:
-                team1_goals += 1
-                team1.goals += 1
-                team2.goals_against += 1
-            else:
-                team2_saves += 1
-                team2.saves += 1
-        elif team2.goalie <= 30 & team2.goalie > 20:
-            if random.random() <= 0.110:
-                team1_goals += 1
-                team1.goals += 1
-                team2.goals_against += 1
-            else:
-                team2_saves += 1
-                team2.saves += 1
-        elif team2.goalie <= 40 & team2.goalie > 30:
-            if random.random() <= 0.105:
-                team1_goals += 1
-                team1.goals += 1
-                team2.goals_against += 1
-            else:
-                team2_saves += 1
-                team2.saves += 1
-        elif team2.goalie <= 50 & team2.goalie > 40:
-            if random.random() <= 0.102:
-                team1_goals += 1
-                team1.goals += 1
-                team2.goals_against += 1
-            else:
-                team2_saves += 1
-                team2.saves += 1
-        elif team2.goalie <= 60 & team2.goalie > 50:
-            if random.random() <= 0.100:
-                team1_goals += 1
-                team1.goals += 1
-                team2.goals_against += 1
-            else:
-                team2_saves += 1
-                team2.saves += 1
-        elif team2.goalie <= 70 & team2.goalie > 60:
-            if random.random() <= 0.090:
-                team1_goals += 1
-                team1.goals += 1
-                team2.goals_against += 1
-            else:
-                team2_saves += 1
-                team2.saves += 1
-        elif team2.goalie <= 80 & team2.goalie > 70:
-            if random.random() <= 0.085:
-                team1_goals += 1
-                team1.goals += 1
-                team2.goals_against += 1
-            else:
-                team2_saves += 1
-                team2.saves += 1
-    return team1_goals, team2_saves
+                goals += 1
 
-def get_goals2(team1,team2, team2_sog):
-    team2_goals = 0
-    team1_saves = 0
-    for i in range(team2_sog):
-        if team1.goalie <= 20:
-            if random.random() <= 0.115:
-                team2_goals += 1
-                team2.goals += 1
-                team1.goals_against += 1
-            else:
-                team1_saves += 1
-                team1.saves += 1
-        elif team1.goalie <= 30 & team1.goalie > 20:
+        elif defense.goalie <= 30 & defense.goalie > 20:
             if random.random() <= 0.110:
-                team2_goals += 1
-                team2.goals += 1
-                team1.goals_against += 1
-            else:
-                team1_saves += 1
-                team1.saves += 1
-        elif team1.goalie <= 40 & team1.goalie > 30:
+                goals += 1
+
+        elif defense.goalie <= 40 & defense.goalie > 30:
             if random.random() <= 0.105:
-                team2_goals += 1
-                team2.goals += 1
-                team1.goals_against += 1
-            else:
-                team1_saves += 1
-                team1.saves += 1
-        elif team1.goalie <= 50 & team1.goalie > 40:
+                goals += 1
+
+        elif defense.goalie <= 50 & defense.goalie > 40:
             if random.random() <= 0.102:
-                team2_goals += 1
-                team2.goals += 1
-                team1.goals_against += 1
-            else:
-                team1_saves += 1
-                team1.saves += 1
-        elif team1.goalie <= 60 & team1.goalie > 50:
+                goals += 1
+
+        elif defense.goalie <= 60 & defense.goalie > 50:
             if random.random() <= 0.100:
-                team2_goals += 1
-                team2.goals += 1
-                team1.goals_against += 1
-            else:
-                team1_saves += 1
-                team1.saves += 1
-        elif team1.goalie <= 70 & team1.goalie > 60:
+                goals += 1
+
+        elif defense.goalie <= 70 & defense.goalie > 60:
             if random.random() <= 0.090:
-                team2_goals += 1
-                team2.goals += 1
-                team1.goals_against += 1
-            else:
-                team1_saves += 1
-                team1.saves += 1
-        elif team1.goalie <= 80 & team1.goalie > 70:
+                goals += 1
+
+        elif defense.goalie <= 80 & defense.goalie > 70:
             if random.random() <= 0.085:
-                team2_goals += 1
-                team2.goals += 1
-                team1.goals_against += 1
-            else:
-                team1_saves += 1
-                team1.saves += 1
-    return team2_goals, team1_saves
+                goals += 1
+
+    return goals
 
 def get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog):
+    in_reg = True
+
+    # Simulate overtime until a winner is determined
+    while team1_goals == team2_goals:
+        in_reg = False
+        # Simulate additional goals
+        goal1 = random.random()
+        goal2 = random.random()
+        if goal1 > goal2:
+            team1_goals += 1
+            team1_sog += 1
+        elif goal2 > goal1:
+            team2_goals += 1
+            team2_sog += 1
+
     if team1_goals > team2_goals:
-        team1.points += 2
-        team1.wins += 1
-        team2.losses += 1
-    elif team2_goals > team1_goals:
-        team2.points += 2
-        team2.wins += 1
-        team1.losses += 1
-    else:  # If it's a tie
-        team1.points += 1
-        team2.points += 1
+        return "team1", in_reg
+    else:
+        return "team2", in_reg
 
-        # Simulate overtime until a winner is determined
-        while team1_goals == team2_goals:
-            # Simulate additional goals
-            goal1 = random.random()
-            goal2 = random.random()
-            if goal1 > goal2:
-                team1_goals += 1
-                team1_sog += 1
-            elif goal2 > goal1:
-                team2_goals += 1
-                team2_sog += 1
+def sim_game(team1, team2):
+    team1_sog = get_sog(team1, team2)
+    team2_sog = get_sog(team2, team1)
+    team1_goals = get_goals(team2, team1_sog)
+    team2_goals = get_goals(team1, team2_sog)
+    winner, in_reg = get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog)
+    update_stats(team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, in_reg)
 
-        # Determine the winner after overtime
-        if team1_goals > team2_goals:
-            team1.points += 1
-            team2.otl += 1
+def update_stats(team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, in_reg):
+    # Team 1 stats
+    team1.sog += team1_sog
+    team1.sog_ag += team2_sog
+    team1.saves += (team2_sog - team2_goals)
+    team1.goals += team1_goals
+    team1.goals_against += team2_goals
+
+    # Team 2 stats
+    team2.sog += team2_sog
+    team2.sog_ag += team1_sog
+    team2.saves += (team1_sog - team1_goals)
+    team2.goals += team2_goals
+    team2.goals_against += team1_goals
+
+    if winner == "team1" :
+        if in_reg :
             team1.wins += 1
-        elif team2_goals > team1_goals:
+            team1.points += 2
+            team2.losses += 1
+        else:
+            team1.wins += 1
+            team1.points += 2
+            team2.otl += 1
             team2.points += 1
-            team1.otl += 1
+    else:
+        if in_reg :
             team2.wins += 1
+            team2.points += 2
+            team1.losses += 1
+        else:
+            team2.wins += 1
+            team2.points += 2
+            team1.otl += 1
+            team1.points += 1
 
 def sort_and_print(division_name, division_teams, filename):
     sorted_standings = sorted(division_teams, key=lambda x: x.points, reverse=True)
@@ -738,11 +307,7 @@ for (team1_name, team2_name), num_games in matchups.items():
     team1 = globals()[team1_name]
     team2 = globals()[team2_name]
     for _ in range(num_games):
-        team1_sog = get_sog1(team1, team2)
-        team2_sog = get_sog2(team1, team2)
-        team1_goals, team2_saves = get_goals1(team1, team2, team1_sog)
-        team2_goals, team1_saves = get_goals2(team1, team2, team2_sog)
-        get_winner(team1, team2, team1_goals, team2_goals, team1_sog, team2_sog)
+        sim_game(team1, team2)
 
 # Final calls for season standings and playoff matchups.
 sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division, eastern_conference, western_conference, league)

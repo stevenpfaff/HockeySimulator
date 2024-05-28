@@ -51,6 +51,14 @@ vgk = Team("Vegas Golden Knights", 50, 60, 60,0,0,0,0,0,0,0,0,0)
 wsh = Team("Washington Capitals", 40, 50, 50,0,0,0,0,0,0,0,0,0)
 wpg = Team("Winnipeg Jets", 50, 60, 80,0,0,0,0,0,0,0,0,0)
 
+league = [ana, ari, bos, buf, car, cgy, chi, col, cbj, dal, det, fla, edm, la, min, mtl, nsh, nj, nyi, nyr, ott, phi, pit, sj, sea, stl, tb, tor, van, vgk, wsh, wpg]
+eastern_conference = [bos, buf, det, fla, mtl, ott, tb, tor, nj, nyi, nyr, phi, pit, car, cbj, wsh]
+western_conference = [ari, chi, col, dal, min, nsh, stl,  wpg, ana, cgy, edm, la, sj, sea, van, vgk,]
+metropolitan_division = [nj, nyi, nyr, phi, pit, car, cbj, wsh]
+atlantic_division = [bos, buf, det, fla, mtl, ott, tb, tor]
+central_division = [ari, chi, col, dal, min, nsh, stl,  wpg]
+pacific_division = [ana, cgy, edm, la, sj, sea, van, vgk,]
+
 teams = [
     "ana", "ari", "bos", "buf", "cgy", "car", "chi", "col", "cbj", "dal",
     "det", "edm", "fla", "la", "min", "mtl", "nsh", "nj", "nyi", "nyr",
