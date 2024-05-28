@@ -5,23 +5,6 @@ from team import league, eastern_conference, western_conference, metropolitan_di
 from game import Game
 import csv
 
-class Sim(object):
-    def __init__(self, name, offense, defense, goalie, sog, sog_ag, saves, goals, goals_against, wins, losses, otl, points):
-        self.name = name
-        self.offense = offense
-        self.defense = defense
-        self.goalie = goalie
-        self.sog = sog
-        self.sog_ag = sog_ag
-        self.sog = saves
-        self.goals = goals
-        self.goals_against = goals_against
-        self.wins = wins
-        self.losses = losses
-        self.otl = otl
-        self.points = points
-
-
 def update_stats(team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation):
     # Team 1 stats
     team1.sog += team1_sog
@@ -66,6 +49,7 @@ def sort_and_print(division_name, division_teams, filename):
         writer.writerow(["Rank", "Team", "Wins", "Losses", "OTL", "Points", "Goals For", "Goals Against", "Shooting%," "Save%"])
         for i, team in enumerate(sorted_standings, start=1):
             writer.writerow([i, team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against, "{:.2f}".format((team.goals/team.sog)*100)+ "%", "{:.3f}".format(team.saves/team.sog_ag)])
+        writer.writerow("")
 
 def sort_division_standings(metropolitan_division, atlantic_division, central_division, pacific_division, eastern_conference, western_conference, league):
     with open("standings.csv", mode='w', newline='') as file:
