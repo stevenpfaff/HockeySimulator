@@ -11,162 +11,162 @@ class Game(object):
         self.winner, self.regulation = self.__get_winner(self.home_goals, self.visitor_goals, self.home_sog, self.visitor_sog)
 
     @classmethod
-    def __get_sog(self,home, visitor):
-        if home.offense <= 20 and visitor.defense <= 20:
+    def __get_sog(self, offense, defense):
+        if offense.offense <= 20 and defense.defense <= 20:
             return random.randint(18, 35)
 
-        elif home.offense <= 30 & home.offense > 20 and visitor.defense <= 20:
+        elif offense.offense <= 30 & offense.offense > 20 and defense.defense <= 20:
             return random.randint(20, 35)
 
-        elif home.offense <= 40 & home.offense > 30 and visitor.defense <= 20:
+        elif offense.offense <= 40 & offense.offense > 30 and defense.defense <= 20:
             return random.randint(22, 38)
 
-        elif home.offense <= 50 & home.offense > 40 and visitor.defense <= 20:
+        elif offense.offense <= 50 & offense.offense > 40 and defense.defense <= 20:
             return random.randint(25, 40)
 
-        elif home.offense <= 60 & home.offense > 50 and visitor.defense <= 20:
+        elif offense.offense <= 60 & offense.offense > 50 and defense.defense <= 20:
             return random.randint(28, 42)
 
-        elif home.offense <= 70 & home.offense > 60 and visitor.defense <= 20:
+        elif offense.offense <= 70 & offense.offense > 60 and defense.defense <= 20:
             return random.randint(28, 45)
 
-        elif home.offense <= 80 & home.offense > 70 and visitor.defense <= 20:
+        elif offense.offense <= 80 & offense.offense > 70 and defense.defense <= 20:
             return random.randint(30, 50)
 
         # 30-21 Defense Team 2
-        elif home.offense <= 20 and visitor.defense <= 30 & visitor.defense > 20:
+        elif offense.offense <= 20 and defense.defense <= 30 & defense.defense > 20:
             return random.randint(15, 32)
 
-        elif home.offense <= 30 & home.offense > 20 and visitor.defense <= 30 & visitor.defense > 20:
+        elif offense.offense <= 30 & offense.offense > 20 and defense.defense <= 30 & defense.defense > 20:
             return random.randint(18, 32)
 
-        elif home.offense <= 40 & home.offense > 30 and visitor.defense <= 30 & visitor.defense > 20:
+        elif offense.offense <= 40 & offense.offense > 30 and defense.defense <= 30 & defense.defense > 20:
             return random.randint(18, 35)
 
-        elif home.offense <= 50 & home.offense > 40 and visitor.defense <= 30 & visitor.defense > 20:
+        elif offense.offense <= 50 & offense.offense > 40 and defense.defense <= 30 & defense.defense > 20:
             return random.randint(20, 35)
 
-        elif home.offense <= 60 & home.offense > 50 and visitor.defense <= 30 & visitor.defense > 20:
+        elif offense.offense <= 60 & offense.offense > 50 and defense.defense <= 30 & defense.defense > 20:
             return random.randint(25, 38)
 
-        elif home.offense <= 70 & home.offense > 60 and visitor.defense <= 30 & visitor.defense > 20:
+        elif offense.offense <= 70 & offense.offense > 60 and defense.defense <= 30 & defense.defense > 20:
             return random.randint(28, 42)
 
-        elif home.offense <= 80 & home.offense > 70 and visitor.defense <= 30 & visitor.defense > 20:
+        elif offense.offense <= 80 & offense.offense > 70 and defense.defense <= 30 & defense.defense > 20:
             return random.randint(30, 50)
 
         # 40-31 Defense Team 2
-        elif home.offense <= 20 and visitor.defense <= 40 & visitor.defense > 30:
+        elif offense.offense <= 20 and defense.defense <= 40 & defense.defense > 30:
             return random.randint(13, 28)
 
-        elif home.offense <= 30 & home.offense > 20 and visitor.defense <= 40 & visitor.defense > 30:
+        elif offense.offense <= 30 & offense.offense > 20 and defense.defense <= 40 & defense.defense > 30:
             return random.randint(15, 30)
 
-        elif home.offense <= 40 & home.offense > 30 and visitor.defense <= 40 & visitor.defense > 30:
+        elif offense.offense <= 40 & offense.offense > 30 and defense.defense <= 40 & defense.defense > 30:
             return random.randint(15, 32)
 
-        elif home.offense <= 50 & home.offense > 40 and visitor.defense <= 40 & visitor.defense > 30:
+        elif offense.offense <= 50 & offense.offense > 40 and defense.defense <= 40 & defense.defense > 30:
             return random.randint(18, 35)
 
-        elif home.offense <= 60 & home.offense > 50 and visitor.defense <= 40 & visitor.defense > 30:
+        elif offense.offense <= 60 & offense.offense > 50 and defense.defense <= 40 & defense.defense > 30:
             return random.randint(22, 38)
 
-        elif home.offense <= 70 & home.offense > 60 and visitor.defense <= 40 & visitor.defense > 30:
+        elif offense.offense <= 70 & offense.offense > 60 and defense.defense <= 40 & defense.defense > 30:
             return random.randint(25, 40)
 
-        elif home.offense <= 80 & home.offense > 70 and visitor.defense <= 40 & visitor.defense > 30:
+        elif offense.offense <= 80 & offense.offense > 70 and defense.defense <= 40 & defense.defense > 30:
             return random.randint(28, 48)
 
 
         # 50-41 Defense Team 2
-        elif home.offense <= 20 and visitor.defense <= 50 & visitor.defense > 40:
+        elif offense.offense <= 20 and defense.defense <= 50 & defense.defense > 40:
             return random.randint(13, 25)
 
-        elif home.offense <= 30 & home.offense > 20 and visitor.defense <= 50 & visitor.defense > 40:
+        elif offense.offense <= 30 & offense.offense > 20 and defense.defense <= 50 & defense.defense > 40:
             return random.randint(13, 28)
 
-        elif home.offense <= 40 & home.offense > 30 and visitor.defense <= 50 & visitor.defense > 40:
+        elif offense.offense <= 40 & offense.offense > 30 and defense.defense <= 50 & defense.defense > 40:
             return random.randint(15, 30)
 
-        elif home.offense <= 50 & home.offense > 40 and visitor.defense <= 50 & visitor.defense > 40:
+        elif offense.offense <= 50 & offense.offense > 40 and defense.defense <= 50 & defense.defense > 40:
             return random.randint(18, 32)
 
-        elif home.offense <= 60 & home.offense > 50 and visitor.defense <= 50 & visitor.defense > 40:
+        elif offense.offense <= 60 & offense.offense > 50 and defense.defense <= 50 & defense.defense > 40:
             return random.randint(22, 35)
 
-        elif home.offense <= 70 & home.offense > 60 and visitor.defense <= 50 & visitor.defense > 40:
+        elif offense.offense <= 70 & offense.offense > 60 and defense.defense <= 50 & defense.defense > 40:
             return random.randint(25, 40)
 
-        elif home.offense <= 80 & home.offense > 70 and visitor.defense <= 50 & visitor.defense > 40:
+        elif offense.offense <= 80 & offense.offense > 70 and defense.defense <= 50 & defense.defense > 40:
             return random.randint(25, 40)
 
 
         # 60-51 Defense Team 2
-        elif home.offense <= 20 and visitor.defense <= 60 & visitor.defense > 50:
+        elif offense.offense <= 20 and defense.defense <= 60 & defense.defense > 50:
             return random.randint(13, 22)
 
-        elif home.offense <= 30 & home.offense > 20 and visitor.defense <= 60 & visitor.defense > 50:
+        elif offense.offense <= 30 & offense.offense > 20 and defense.defense <= 60 & defense.defense > 50:
             return random.randint(13, 25)
 
-        elif home.offense <= 40 & home.offense > 30 and visitor.defense <= 60 & visitor.defense > 50:
+        elif offense.offense <= 40 & offense.offense > 30 and defense.defense <= 60 & defense.defense > 50:
             return random.randint(15, 28)
 
-        elif home.offense <= 50 & home.offense > 40 and visitor.defense <= 60 & visitor.defense > 50:
+        elif offense.offense <= 50 & offense.offense > 40 and defense.defense <= 60 & defense.defense > 50:
             return random.randint(18, 30)
 
-        elif home.offense <= 60 & home.offense > 50 and visitor.defense <= 60 & visitor.defense > 50:
+        elif offense.offense <= 60 & offense.offense > 50 and defense.defense <= 60 & defense.defense > 50:
             return random.randint(22, 32)
 
-        elif home.offense <= 70 & home.offense > 60 and visitor.defense <= 60 & visitor.defense > 50:
+        elif offense.offense <= 70 & offense.offense > 60 and defense.defense <= 60 & defense.defense > 50:
             return random.randint(25, 35)
 
-        elif home.offense <= 80 & home.offense > 70 and visitor.defense <= 60 & visitor.defense > 50:
+        elif offense.offense <= 80 & offense.offense > 70 and defense.defense <= 60 & defense.defense > 50:
             return random.randint(25, 45)
 
 
         # 70-61 Defense Team 2
-        elif home.offense <= 20 and visitor.defense <= 70 & visitor.defense > 60:
+        elif offense.offense <= 20 and defense.defense <= 70 & defense.defense > 60:
             return random.randint(13, 20)
 
-        elif home.offense <= 30 & home.offense > 20 and visitor.defense <= 70 & visitor.defense > 60:
+        elif offense.offense <= 30 & offense.offense > 20 and defense.defense <= 70 & defense.defense > 60:
             return random.randint(13, 22)
 
-        elif home.offense <= 40 & home.offense > 30 and visitor.defense <= 70 & visitor.defense > 60:
+        elif offense.offense <= 40 & offense.offense > 30 and defense.defense <= 70 & defense.defense > 60:
             return random.randint(15, 25)
 
-        elif home.offense <= 50 & home.offense > 40 and visitor.defense <= 70 & visitor.defense > 60:
+        elif offense.offense <= 50 & offense.offense > 40 and defense.defense <= 70 & defense.defense > 60:
             return random.randint(17, 30)
 
-        elif home.offense <= 60 & home.offense > 50 and visitor.defense <= 70 & visitor.defense > 60:
+        elif offense.offense <= 60 & offense.offense > 50 and defense.defense <= 70 & defense.defense > 60:
             return random.randint(20, 32)
 
-        elif home.offense <= 70 & home.offense > 60 and visitor.defense <= 70 & visitor.defense > 60:
+        elif offense.offense <= 70 & offense.offense > 60 and defense.defense <= 70 & defense.defense > 60:
             return random.randint(22, 35)
 
-        elif home.offense <= 80 & home.offense > 70 and visitor.defense <= 70 & visitor.defense > 60:
+        elif offense.offense <= 80 & offense.offense > 70 and defense.defense <= 70 & defense.defense > 60:
             return random.randint(25, 40)
 
 
         # 80-71 Defense
-        elif home.offense <= 20 and visitor.defense <= 80 & visitor.defense > 70:
+        elif offense.offense <= 20 and defense.defense <= 80 & defense.defense > 70:
             return random.randint(10, 20)
 
-        elif home.offense <= 30 & home.offense > 20 and visitor.defense <= 80 & visitor.defense > 70:
+        elif offense.offense <= 30 & offense.offense > 20 and defense.defense <= 80 & defense.defense > 70:
             return random.randint(13, 22)
 
-        elif home.offense <= 40 & home.offense > 30 and visitor.defense <= 80 & visitor.defense > 70:
+        elif offense.offense <= 40 & offense.offense > 30 and defense.defense <= 80 & defense.defense > 70:
             return random.randint(15, 22)
 
-        elif home.offense <= 50 & home.offense > 40 and visitor.defense <= 80 & visitor.defense > 70:
+        elif offense.offense <= 50 & offense.offense > 40 and defense.defense <= 80 & defense.defense > 70:
             return random.randint(17, 25)
 
-        elif home.offense <= 60 & home.offense > 50 and visitor.defense <= 80 & visitor.defense > 70:
+        elif offense.offense <= 60 & offense.offense > 50 and defense.defense <= 80 & defense.defense > 70:
             return random.randint(20, 28)
 
-        elif home.offense <= 70 & home.offense > 60 and visitor.defense <= 80 & visitor.defense > 70:
+        elif offense.offense <= 70 & offense.offense > 60 and defense.defense <= 80 & defense.defense > 70:
             return random.randint(22, 30)
 
-        elif home.offense <= 80 & home.offense > 70 and visitor.defense <= 80 & visitor.defense > 70:
+        elif offense.offense <= 80 & offense.offense > 70 and defense.defense <= 80 & defense.defense > 70:
             return random.randint(22, 30)
 
         return 0
