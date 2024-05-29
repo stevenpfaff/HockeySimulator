@@ -1,0 +1,118 @@
+NHL Standings:
+Metropolitan Standings:
+Rank,Team,Wins,Losses,OTL,Points,Goals For,Goals Against,"Shooting%,Save%"
+1,New York Rangers,53,21,8,114,233,159,9.96%,0.917
+2,Carolina Hurricanes,53,23,6,112,242,173,10.39%,0.897
+3,New York Islanders,50,27,5,105,207,188,10.98%,0.908
+4,Washington Capitals,44,29,9,97,219,210,11.86%,0.897
+5,Pittsburgh Penguins,42,29,11,95,209,201,10.04%,0.903
+6,Philadelphia Flyers,35,39,8,78,186,212,10.02%,0.888
+7,New Jersey Devils,34,40,8,76,198,242,9.48%,0.884
+8,Columbus Blue Jackets,18,55,9,45,154,250,9.49%,0.904
+
+Atlantic Standings:
+Rank,Team,Wins,Losses,OTL,Points,Goals For,Goals Against,"Shooting%,Save%"
+1,Florida Panthers,59,16,7,125,266,156,10.46%,0.912
+2,Toronto Maple Leafs,48,28,6,102,254,219,10.06%,0.892
+3,Boston Bruins,46,31,5,97,218,176,10.54%,0.914
+4,Buffalo Sabres,44,30,8,96,229,202,10.47%,0.905
+5,Tampa Bay Lightning,41,37,4,86,200,231,9.71%,0.888
+6,Detroit Red Wings,32,45,5,69,176,232,9.59%,0.892
+7,Ottawa Senators,29,48,5,63,168,232,8.94%,0.880
+8,Montreal Canadiens,26,51,5,57,169,254,9.66%,0.891
+
+Central Standings:
+Rank,Team,Wins,Losses,OTL,Points,Goals For,Goals Against,"Shooting%,Save%"
+1,Dallas Stars,55,24,3,113,257,181,10.58%,0.899
+2,Winnipeg Jets,50,26,6,106,224,180,10.84%,0.911
+3,Colorado Avalanche,49,26,7,105,255,209,10.24%,0.902
+4,Nashville Predators,48,28,6,102,224,171,10.56%,0.911
+5,Minnesota Wild,35,33,14,84,209,233,9.83%,0.883
+6,St. Louis Blues,26,42,14,66,173,251,9.72%,0.885
+7,Arizona Coyotes,29,46,7,65,188,241,10.11%,0.897
+8,Chicago Blackhawks,26,47,9,61,164,238,10.27%,0.898
+
+Pacific Standings:
+Rank,Team,Wins,Losses,OTL,Points,Goals For,Goals Against,"Shooting%,Save%"
+1,Edmonton Oilers,61,17,4,126,310,186,10.59%,0.901
+2,Los Angeles Kings,51,28,3,105,222,183,9.60%,0.902
+3,Vegas Golden Knights,46,26,10,102,221,180,10.28%,0.905
+4,Vancouver Canucks,44,32,6,94,227,196,9.91%,0.899
+5,Calgary Flames,44,35,3,91,186,201,10.19%,0.902
+6,Seattle Kraken,39,38,5,83,193,201,10.87%,0.891
+7,Anaheim Ducks,31,46,5,67,195,247,11.51%,0.894
+8,San Jose Sharks,24,54,4,52,172,313,10.64%,0.881
+
+Eastern Conference Standings:
+Rank,Team,Wins,Losses,OTL,Points,Goals For,Goals Against,"Shooting%,Save%"
+1,Florida Panthers,59,16,7,125,266,156,10.46%,0.912
+2,New York Rangers,53,21,8,114,233,159,9.96%,0.917
+3,Carolina Hurricanes,53,23,6,112,242,173,10.39%,0.897
+4,New York Islanders,50,27,5,105,207,188,10.98%,0.908
+5,Toronto Maple Leafs,48,28,6,102,254,219,10.06%,0.892
+6,Boston Bruins,46,31,5,97,218,176,10.54%,0.914
+7,Washington Capitals,44,29,9,97,219,210,11.86%,0.897
+8,Buffalo Sabres,44,30,8,96,229,202,10.47%,0.905
+9,Pittsburgh Penguins,42,29,11,95,209,201,10.04%,0.903
+10,Tampa Bay Lightning,41,37,4,86,200,231,9.71%,0.888
+11,Philadelphia Flyers,35,39,8,78,186,212,10.02%,0.888
+12,New Jersey Devils,34,40,8,76,198,242,9.48%,0.884
+13,Detroit Red Wings,32,45,5,69,176,232,9.59%,0.892
+14,Ottawa Senators,29,48,5,63,168,232,8.94%,0.880
+15,Montreal Canadiens,26,51,5,57,169,254,9.66%,0.891
+16,Columbus Blue Jackets,18,55,9,45,154,250,9.49%,0.904
+
+Western Conference Standings:
+Rank,Team,Wins,Losses,OTL,Points,Goals For,Goals Against,"Shooting%,Save%"
+1,Edmonton Oilers,61,17,4,126,310,186,10.59%,0.901
+2,Dallas Stars,55,24,3,113,257,181,10.58%,0.899
+3,Winnipeg Jets,50,26,6,106,224,180,10.84%,0.911
+4,Colorado Avalanche,49,26,7,105,255,209,10.24%,0.902
+5,Los Angeles Kings,51,28,3,105,222,183,9.60%,0.902
+6,Nashville Predators,48,28,6,102,224,171,10.56%,0.911
+7,Vegas Golden Knights,46,26,10,102,221,180,10.28%,0.905
+8,Vancouver Canucks,44,32,6,94,227,196,9.91%,0.899
+9,Calgary Flames,44,35,3,91,186,201,10.19%,0.902
+10,Minnesota Wild,35,33,14,84,209,233,9.83%,0.883
+11,Seattle Kraken,39,38,5,83,193,201,10.87%,0.891
+12,Anaheim Ducks,31,46,5,67,195,247,11.51%,0.894
+13,St. Louis Blues,26,42,14,66,173,251,9.72%,0.885
+14,Arizona Coyotes,29,46,7,65,188,241,10.11%,0.897
+15,Chicago Blackhawks,26,47,9,61,164,238,10.27%,0.898
+16,San Jose Sharks,24,54,4,52,172,313,10.64%,0.881
+
+NHL Standings:
+Rank,Team,Wins,Losses,OTL,Points,Goals For,Goals Against,"Shooting%,Save%"
+1,Edmonton Oilers,61,17,4,126,310,186,10.59%,0.901
+2,Florida Panthers,59,16,7,125,266,156,10.46%,0.912
+3,New York Rangers,53,21,8,114,233,159,9.96%,0.917
+4,Dallas Stars,55,24,3,113,257,181,10.58%,0.899
+5,Carolina Hurricanes,53,23,6,112,242,173,10.39%,0.897
+6,Winnipeg Jets,50,26,6,106,224,180,10.84%,0.911
+7,Colorado Avalanche,49,26,7,105,255,209,10.24%,0.902
+8,Los Angeles Kings,51,28,3,105,222,183,9.60%,0.902
+9,New York Islanders,50,27,5,105,207,188,10.98%,0.908
+10,Nashville Predators,48,28,6,102,224,171,10.56%,0.911
+11,Toronto Maple Leafs,48,28,6,102,254,219,10.06%,0.892
+12,Vegas Golden Knights,46,26,10,102,221,180,10.28%,0.905
+13,Boston Bruins,46,31,5,97,218,176,10.54%,0.914
+14,Washington Capitals,44,29,9,97,219,210,11.86%,0.897
+15,Buffalo Sabres,44,30,8,96,229,202,10.47%,0.905
+16,Pittsburgh Penguins,42,29,11,95,209,201,10.04%,0.903
+17,Vancouver Canucks,44,32,6,94,227,196,9.91%,0.899
+18,Calgary Flames,44,35,3,91,186,201,10.19%,0.902
+19,Tampa Bay Lightning,41,37,4,86,200,231,9.71%,0.888
+20,Minnesota Wild,35,33,14,84,209,233,9.83%,0.883
+21,Seattle Kraken,39,38,5,83,193,201,10.87%,0.891
+22,Philadelphia Flyers,35,39,8,78,186,212,10.02%,0.888
+23,New Jersey Devils,34,40,8,76,198,242,9.48%,0.884
+24,Detroit Red Wings,32,45,5,69,176,232,9.59%,0.892
+25,Anaheim Ducks,31,46,5,67,195,247,11.51%,0.894
+26,St. Louis Blues,26,42,14,66,173,251,9.72%,0.885
+27,Arizona Coyotes,29,46,7,65,188,241,10.11%,0.897
+28,Ottawa Senators,29,48,5,63,168,232,8.94%,0.880
+29,Chicago Blackhawks,26,47,9,61,164,238,10.27%,0.898
+30,Montreal Canadiens,26,51,5,57,169,254,9.66%,0.891
+31,San Jose Sharks,24,54,4,52,172,313,10.64%,0.881
+32,Columbus Blue Jackets,18,55,9,45,154,250,9.49%,0.904
+
