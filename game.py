@@ -8,7 +8,8 @@ class Game(object):
         self.visitor_sog = self.__get_sog(visitor, home)
         self.home_goals = self.__get_goals(visitor, self.home_sog)
         self.visitor_goals = self.__get_goals(home, self.visitor_sog)
-        self.winner, self.regulation = self.__get_winner(self.home_goals, self.visitor_goals, self.home_sog, self.visitor_sog)
+        self.winner, self.regulation = self.__get_winner(self.home, self.visitor, self.home_goals, self.visitor_goals,
+                                                         self.home_sog, self.visitor_sog)
 
     @classmethod
     def __get_sog(self, offense, defense):
@@ -206,7 +207,7 @@ class Game(object):
         return goals
 
     @classmethod
-    def __get_winner(self, team1_goals, team2_goals, team1_sog, team2_sog):
+    def __get_winner(self, team1, team2, team1_goals, team2_goals, team1_sog, team2_sog):
         regulation = True
 
         # Simulate overtime until a winner is determined
@@ -223,6 +224,6 @@ class Game(object):
                 team2_sog += 1
 
         if team1_goals > team2_goals:
-            return "team1", regulation
+            return team1, regulation
         else:
-            return "team2", regulation
+            return team2, regulation
