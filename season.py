@@ -55,7 +55,7 @@ class SeasonSimulator:
         with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([f"{division_name} Standings:"])
-            writer.writerow(["Rank", "Team", "Wins", "Losses", "OTL", "Points", "Goals For", "Goals Against", "Shooting%", "Save%"])
+            writer.writerow(["Rank", "Team", "W", "L", "OTL", "PTS", "GF", "GA", "SH%", "SV%"])
             for i, team in enumerate(sorted_standings, start=1):
                 writer.writerow([i, team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against, "{:.2f}".format((team.goals/team.sog)*100)+ "%", "{:.3f}".format(team.saves/team.sog_ag)])
             writer.writerow("")
@@ -110,21 +110,19 @@ class SeasonSimulator:
         pacific_non_top3 = sorted(pacific_division, key=lambda x: x.points, reverse=True)[3:]
         atlantic_non_top3 = sorted(atlantic_division, key=lambda x: x.points, reverse=True)[3:]
         metro_non_top3 = sorted(metropolitan_division, key=lambda x: x.points, reverse=True)[3:]
-        west_wildcard1 = sorted(central_non_top3, key=lambda x: x.points, reverse=True)[:1]
-        west_wildcard2 = sorted(pacific_non_top3, key=lambda x: x.points, reverse=True)[:1]
-        east_wildcard1 = sorted(atlantic_non_top3, key=lambda x: x.points, reverse=True)[:1]
-        east_wildcard2 = sorted(metro_non_top3, key=lambda x: x.points, reverse=True)[:1]
+        west_wildcard = sorted(central_non_top3 + pacific_non_top3, key=lambda x: x.points, reverse=True)[:2]
+        east_wildcard = sorted(atlantic_non_top3 + metro_non_top3, key=lambda x: x.points, reverse=True)[:2]
 
         # Round 1 Begins
         round1_east_matchups = [
-            (east_winner[0], east_wildcard2[0]),
+            (east_winner[0], east_wildcard[1]),
             (atlantic_div_teams[1], atlantic_div_teams[2]),
             (metro_div_teams[1], metro_div_teams[2])
         ]
         if east_winner != atlantic_winner:
-            round1_east_matchups.append((atlantic_winner[0], east_wildcard1[0]))
+            round1_east_matchups.append((atlantic_winner[0], east_wildcard[0]))
         elif east_winner != metro_winner:
-            round1_east_matchups.append((metro_winner[0], east_wildcard1[0]))
+            round1_east_matchups.append((metro_winner[0], east_wildcard[0]))
 
         east_first_round_results = []
         for matchup in round1_east_matchups:
@@ -132,14 +130,14 @@ class SeasonSimulator:
             east_first_round_results.append((series_winner, total_games))
 
         round1_west_matchups = [
-            (west_winner[0], west_wildcard2[0]),
+            (west_winner[0], west_wildcard[1]),
             (central_div_teams[1], central_div_teams[2]),
             (pacific_div_teams[1], pacific_div_teams[2])
         ]
         if west_winner != central_winner:
-            round1_west_matchups.append((central_winner[0], west_wildcard1[0]))
+            round1_west_matchups.append((central_winner[0], west_wildcard[0]))
         elif east_winner != pacific_winner:
-            round1_west_matchups.append((pacific_winner[0], west_wildcard1[0]))
+            round1_west_matchups.append((pacific_winner[0], west_wildcard[0]))
 
         west_first_round_results = []
         for matchup in round1_west_matchups:
@@ -227,7 +225,6 @@ class SeasonSimulator:
                 writer.writerow(["Cup Final", matchup[0].name, matchup[1].name, result[0], result[1]])
 
         return cup_final_results
-
 
     def playoffs(self, output_file):
         playoff_results = self.playoff_bracket(output_file)
