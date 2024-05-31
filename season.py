@@ -3,6 +3,7 @@ from team import matchups
 from team import ana, ari, bos, buf, car, cgy, chi, col, cbj, dal, det, fla, edm, la, min, mtl, nsh, nj, nyi, nyr, ott, phi, pit, sj, sea, stl, tb, tor, van, vgk, wsh, wpg
 from team import league, eastern_conference, western_conference, metropolitan_division, atlantic_division, central_division, pacific_division
 from game import Game
+from team import Team
 import csv
 
 class SeasonSimulator:
@@ -72,6 +73,84 @@ class SeasonSimulator:
         self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
         self.sort_and_print("NHL", self.league, "standings.csv")
 
+    def playoff_bracket(self, output_file):
+        def simulate_series(matchup):
+            team1, team2 = matchup
+            team1_wins = 0
+            team2_wins = 0
+            total_games = 0
+
+            while total_games < 7:
+                game = Game(team1, team2)
+                print(f"Game {total_games + 1}: {team1.name} vs {team2.name}, Winner: {game.winner}")
+                if game.winner == team1:
+                    team1_wins += 1
+                elif game.winner == team2:
+                    team2_wins += 1
+                total_games += 1
+                print(f"Team 1 wins: {team1_wins}, Team 2 wins: {team2_wins}")
+
+            if team1_wins > team2_wins:
+                series_winner = team1
+            else:
+                series_winner = team2
+            print(f"Series Winner: {series_winner.name}")
+
+            # Update overall win counts
+            team1.wins += team1_wins
+            team2.wins += team2_wins
+
+            return series_winner
+
+        # Define the matchups
+        west_winner = sorted(western_conference, key=lambda x: x.points, reverse=True)[:1]
+        central_winner = sorted(central_division, key=lambda x: x.points, reverse=True)[:1]
+        pacific_winner = sorted(pacific_division, key=lambda x: x.points, reverse=True)[:1]
+        west_wildcard1 = sorted(western_conference, key=lambda x: x.points, reverse=True)[:7]
+        west_wildcard2 = sorted(western_conference, key=lambda x: x.points, reverse=True)[:8]
+        central_div_teams = sorted(central_division, key=lambda x: x.points, reverse=True)[:3]
+        pacific_div_teams = sorted(pacific_division, key=lambda x: x.points, reverse=True)[:3]
+        east_winner = sorted(eastern_conference, key=lambda x: x.points, reverse=True)[:1]
+        atlantic_winner = sorted(atlantic_division, key=lambda x: x.points, reverse=True)[:1]
+        metro_winner = sorted(metropolitan_division, key=lambda x: x.points, reverse=True)[:1]
+        atlantic_div_teams = sorted(atlantic_division, key=lambda x: x.points, reverse=True)[:3]
+        metro_div_teams = sorted(metropolitan_division, key=lambda x: x.points, reverse=True)[:3]
+        east_wildcard1 = sorted(eastern_conference, key=lambda x: x.points, reverse=True)[:7]
+        east_wildcard2 = sorted(eastern_conference, key=lambda x: x.points, reverse=True)[:8]
+
+        matchups = [
+            (west_winner[0], west_wildcard2[7]),
+            (central_div_teams[1], central_div_teams[2]),
+            (pacific_div_teams[1], pacific_div_teams[2]),
+            (east_winner[0], east_wildcard2[7]),
+            (atlantic_div_teams[1], atlantic_div_teams[2]),
+            (metro_div_teams[1], metro_div_teams[2])
+        ]
+        if west_winner != central_winner:
+            matchups.append((central_winner[0], west_wildcard1[0]))
+        elif west_winner != pacific_winner:
+            matchups.append((pacific_winner[0], west_wildcard1[0]))
+        if east_winner != atlantic_winner:
+            matchups.append((atlantic_winner[0], east_wildcard1[0]))
+        elif east_winner != metro_winner:
+            matchups.append((metro_winner[0], east_wildcard1[0]))
+
+        playoff_results = []
+
+        for matchup in matchups:
+            series_winner = simulate_series(matchup)
+            playoff_results.append((matchup[0].name, matchup[1].name, series_winner))
+
+        # Write playoff results to CSV
+        with open(output_file, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Team 1", "Team 2", "Series Winner"])
+            for i, matchup in enumerate(matchups):
+                team1, team2 = matchup
+                writer.writerow([playoff_results[i][0], playoff_results[i][1], playoff_results[i][2]])
+
+        return playoff_results
+
     def simulate_season(self):
         for (team1_name, team2_name), num_games in matchups.items():
             team1 = globals()[team1_name]
@@ -82,5 +161,8 @@ class SeasonSimulator:
 
         self.sort_division_standings()
 
+
 simulator = SeasonSimulator()
 simulator.simulate_season()
+output_file = "playoffs.csv"
+playoff_results = simulator.playoff_bracket(output_file)
