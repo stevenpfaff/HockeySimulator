@@ -115,34 +115,119 @@ class SeasonSimulator:
         east_wildcard1 = sorted(atlantic_non_top3, key=lambda x: x.points, reverse=True)[:1]
         east_wildcard2 = sorted(metro_non_top3, key=lambda x: x.points, reverse=True)[:1]
 
-        matchups = [
-            (west_winner[0], west_wildcard2[0]),
-            (central_div_teams[1], central_div_teams[2]),
-            (pacific_div_teams[1], pacific_div_teams[2]),
+        # Round 1 Begins
+        round1_east_matchups = [
             (east_winner[0], east_wildcard2[0]),
             (atlantic_div_teams[1], atlantic_div_teams[2]),
             (metro_div_teams[1], metro_div_teams[2])
         ]
-        if west_winner != central_winner:
-            matchups.append((central_winner[0], west_wildcard1[0]))
-        elif west_winner != pacific_winner:
-            matchups.append((pacific_winner[0], west_wildcard1[0]))
         if east_winner != atlantic_winner:
-            matchups.append((atlantic_winner[0], east_wildcard1[0]))
+            round1_east_matchups.append((atlantic_winner[0], east_wildcard1[0]))
         elif east_winner != metro_winner:
-            matchups.append((metro_winner[0], east_wildcard1[0]))
+            round1_east_matchups.append((metro_winner[0], east_wildcard1[0]))
 
-        playoff_results = []
+        east_first_round_results = []
+        for matchup in round1_east_matchups:
+            series_winner, total_games = simulate_series(matchup)
+            east_first_round_results.append((series_winner, total_games))
+
+        round1_west_matchups = [
+            (west_winner[0], west_wildcard2[0]),
+            (central_div_teams[1], central_div_teams[2]),
+            (pacific_div_teams[1], pacific_div_teams[2])
+        ]
+        if west_winner != central_winner:
+            round1_west_matchups.append((central_winner[0], west_wildcard1[0]))
+        elif east_winner != pacific_winner:
+            round1_west_matchups.append((pacific_winner[0], west_wildcard1[0]))
+
+        west_first_round_results = []
+        for matchup in round1_west_matchups:
+            series_winner, total_games = simulate_series(matchup)
+            west_first_round_results.append((series_winner, total_games))
+
+        # Simulate second round
+        round2_east_matchups = [
+            (east_first_round_results[0][0], east_first_round_results[1][0]),
+            (east_first_round_results[2][0], east_first_round_results[3][0]),
+        ]
+
+        east_second_round_results = []
+        for matchup in round2_east_matchups:
+            series_winner, total_games = simulate_series(matchup)
+            east_second_round_results.append((series_winner, total_games))
+
+        round2_west_matchups = [
+            (west_first_round_results[0][0], west_first_round_results[1][0]),
+            (west_first_round_results[2][0], west_first_round_results[3][0]),
+        ]
+
+        west_second_round_results = []
+        for matchup in round2_west_matchups:
+            series_winner, total_games = simulate_series(matchup)
+            west_second_round_results.append((series_winner, total_games))
+
+        # Conference Final
+        eastern_final = [
+            (east_second_round_results[0][0], east_second_round_results[1][0])
+        ]
+
+        ecf_results = []
+        for matchup in eastern_final:
+            series_winner, total_games = simulate_series(matchup)
+            ecf_results.append((series_winner, total_games))
+
+        western_final = [
+            (west_second_round_results[0][0], west_second_round_results[1][0])
+        ]
+
+        wcf_results = []
+        for matchup in western_final:
+            series_winner, total_games = simulate_series(matchup)
+            wcf_results.append((series_winner, total_games))
+
+        # Cup Final
+        cup_final = [
+            (ecf_results[0][0], wcf_results[0][0])
+        ]
+
+        cup_final_results = []
+        for matchup in cup_final:
+            series_winner, total_games = simulate_series(matchup)
+            cup_final_results.append((series_winner, total_games))
 
         with open(output_file, mode='w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Team 1", "Team 2", "Series Winner", "Total Games"])
-            for matchup in matchups:
-                series_winner, total_games = simulate_series(matchup)
-                playoff_results.append((matchup[0].name, matchup[1].name, series_winner, total_games))
-                writer.writerow([matchup[0].name, matchup[1].name, series_winner.name, total_games])
+            writer.writerow(["Playoff Round", "Team 1", "Team 2", "Series Winner", "Total Games"])
 
-        return playoff_results
+            # Round 1
+            writer.writerow(["Round 1"])
+            # Write round 1 matchups...
+            for matchup, result in zip(round1_east_matchups + round1_west_matchups,
+                                       east_first_round_results + west_first_round_results):
+                writer.writerow(["Round 1", matchup[0].name, matchup[1].name, result[0].name, result[1]])
+
+            # Round 2
+            writer.writerow(["Round 2"])
+            # Write round 2 matchups...
+            for matchup, result in zip(round2_east_matchups + round2_west_matchups,
+                                       east_second_round_results + west_second_round_results):
+                writer.writerow(["Round 2", matchup[0].name, matchup[1].name, result[0].name, result[1]])
+
+            # Conference Finals
+            writer.writerow(["Conference Finals"])
+            # Write conference final matchups...
+            for matchup, result in zip(eastern_final + western_final, ecf_results + wcf_results):
+                writer.writerow(["Conference Finals", matchup[0].name, matchup[1].name, result[0].name, result[1]])
+
+            # Cup Final
+            writer.writerow(["Cup Final"])
+            # Write cup final matchup...
+            for matchup, result in zip(cup_final, cup_final_results):
+                writer.writerow(["Cup Final", matchup[0].name, matchup[1].name, result[0], result[1]])
+
+        return cup_final_results
+
 
     def playoffs(self, output_file):
         playoff_results = self.playoff_bracket(output_file)
