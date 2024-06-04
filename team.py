@@ -1,7 +1,7 @@
 import random
 
 class Team(object):
-    def __init__(self, name, offense, defense, goalie, sog, sog_ag, saves, goals, goals_against, wins, losses, otl, points):
+    def __init__(self, name, offense, defense, goalie, sog, sog_ag, saves, goals, goals_against, wins, losses, otl, points, playoffs, second_round, conf_final, cup_final, cup_win):
         self.name = name
         self.offense = offense
         self.defense = defense
@@ -15,41 +15,46 @@ class Team(object):
         self.losses = losses
         self.otl = otl
         self.points = points
+        self.playoffs = playoffs
+        self.second_round = second_round
+        self.conf_final = conf_final
+        self.cup_final = cup_final
+        self.cup_win = cup_win
     def __str__(self):
         return f'Team: {self.name}'
 
-ana = Team("Anaheim Ducks", 30, 30, 30,0,0,0,0,0,0,0,0,0)
-ari = Team("Arizona Coyotes", 40, 30, 40,0,0,0,0,0,0,0,0,0)
-bos = Team("Boston Bruins", 50, 50, 70,0,0,0,0,0,0,0,0,0)
-buf = Team("Buffalo Sabres", 50, 40, 50,0,0,0,0,0,0, 0,0,0)
-cgy = Team("Calgary Flames", 40, 50, 40,0,0,0,0,0,0,0,0,0)
-car = Team("Carolina Hurricanes", 60, 80, 50,0,0,0,0,0,0,0,0,0)
-chi = Team("Chicago Blackhawks", 20, 30, 40,0,0,0,0,0,0,0,0,0)
-col = Team("Colorado Avalanche", 70, 40, 40,0,0,0,0,0,0,0,0,0)
-cbj = Team("Columbus Blue Jackets", 30, 20, 40,0,0,0,0,0,0,0,0,0)
-dal = Team("Dallas Stars", 60, 70, 60,0,0,0,0,0,0,0,0,0)
-det = Team("Detroit Red Wings", 40, 40, 50,0,0,0,0,0,0,0,0,0)
-edm = Team("Edmonton Oilers", 80, 70, 50,0,0,0,0,0,0,0,0,0)
-fla = Team("Florida Panthers", 70, 70, 70,0,0,0,0,0,0,0,0,0)
-la = Team("Los Angeles Kings", 60, 70, 60,0,0,0,0,0,0,0,0,0)
-min = Team("Minnesota Wild", 50, 60, 40,0,0,0,0,0,0,0,0,0)
-mtl = Team("Montreal Canadiens", 30, 30, 40,0,0,0,0,0,0,0,0,0)
-nsh = Team("Nashville Predators", 50, 60, 60,0,0,0,0,0,0,0,0,0)
-nj = Team("New Jersey Devils", 50, 40, 20,0,0,0,0,0,0,0,0,0)
-nyi = Team("New York Islanders", 40, 50, 60,0,0,0,0,0,0,0,0,0)
-nyr = Team("New York Rangers", 60, 60, 70,0,0,0,0,0,0,0,0,0)
-ott = Team("Ottawa Senators", 40, 60, 20,0,0,0,0,0,0,0,0,0)
-phi = Team("Philadelphia Flyers", 40, 70, 20,0,0,0,0,0,0,0,0,0)
-pit = Team("Pittsburgh Penguins", 50, 50, 50,0,0,0,0,0,0,0,0,0)
-sj = Team("San Jose Sharks", 20, 20, 20,0,0,0,0,0,0,0,0,0)
-sea = Team("Seattle Kraken", 30, 70, 60,0,0,0,0,0,0,0,0,0)
-stl = Team("St. Louis Blues", 40, 40, 60,0,0,0,0,0,0,0,0,0)
-tb = Team("Tampa Bay Lightning", 50, 50, 50,0,0,0,0,0,0,0,0,0)
-tor = Team("Toronto Maple Leafs", 70, 50, 40,0,0,0,0,0,0,0,0,0)
-van = Team("Vancouver Canucks", 60, 60, 60,0,0,0,0,0,0,0,0,0)
-vgk = Team("Vegas Golden Knights", 50, 60, 60,0,0,0,0,0,0,0,0,0)
-wsh = Team("Washington Capitals", 40, 50, 50,0,0,0,0,0,0,0,0,0)
-wpg = Team("Winnipeg Jets", 50, 60, 80,0,0,0,0,0,0,0,0,0)
+ana = Team("Anaheim Ducks", 30, 30, 30,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+ari = Team("Arizona Coyotes", 40, 30, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+bos = Team("Boston Bruins", 50, 50, 70,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+buf = Team("Buffalo Sabres", 50, 40, 50,0,0,0,0,0,0, 0,0,0,0,0,0,0,0)
+cgy = Team("Calgary Flames", 40, 50, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+car = Team("Carolina Hurricanes", 60, 80, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+chi = Team("Chicago Blackhawks", 20, 30, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+col = Team("Colorado Avalanche", 70, 40, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+cbj = Team("Columbus Blue Jackets", 30, 20, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+dal = Team("Dallas Stars", 70, 70, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+det = Team("Detroit Red Wings", 40, 40, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+edm = Team("Edmonton Oilers", 80, 70, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+fla = Team("Florida Panthers", 70, 70, 70,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+la = Team("Los Angeles Kings", 60, 70, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+min = Team("Minnesota Wild", 50, 60, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+mtl = Team("Montreal Canadiens", 30, 30, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+nsh = Team("Nashville Predators", 50, 60, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+nj = Team("New Jersey Devils", 50, 40, 20,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+nyi = Team("New York Islanders", 40, 50, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+nyr = Team("New York Rangers", 50, 60, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+ott = Team("Ottawa Senators", 40, 60, 20,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+phi = Team("Philadelphia Flyers", 40, 70, 20,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+pit = Team("Pittsburgh Penguins", 50, 50, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+sj = Team("San Jose Sharks", 20, 20, 20,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+sea = Team("Seattle Kraken", 30, 70, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+stl = Team("St. Louis Blues", 40, 40, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+tb = Team("Tampa Bay Lightning", 50, 50, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+tor = Team("Toronto Maple Leafs", 60, 50, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+van = Team("Vancouver Canucks", 60, 60, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+vgk = Team("Vegas Golden Knights", 50, 60, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+wsh = Team("Washington Capitals", 40, 50, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+wpg = Team("Winnipeg Jets", 50, 60, 80,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 
 
 metropolitan_division = [nj, nyi, nyr, phi, pit, car, cbj, wsh]
