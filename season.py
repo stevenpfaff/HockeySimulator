@@ -50,6 +50,13 @@ class SeasonSimulator:
                 team1.otl += 1
                 team1.points += 1
 
+    def log_game_result(self, game):
+        with open('game_results.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+            # writer.writerow(["Team 1", "Team 1 Score", "Team 1 Shots", "Team 2", "Team 2 Score", "Team 2 Shots", "Overtime?"])
+            writer.writerow([game.home.name, game.home_goals, game.home_sog, game.visitor.name, game.visitor_goals, game.visitor_sog,
+                            game.regulation])
+
     def sort_and_print(self, division_name, division_teams, filename):
         sorted_standings = sorted(division_teams, key=lambda x: x.points, reverse=True)
         with open(filename, mode='a', newline='') as file:
@@ -74,6 +81,10 @@ class SeasonSimulator:
         self.sort_and_print("NHL", self.league, "standings.csv")
 
     def playoff_bracket(self, output_file):
+        def add_playoff_appearance(matchups):
+            for team1, team2 in matchups:
+                team1.playoffs += 1
+                team2.playoffs += 1
         def simulate_series(matchup):
             team1, team2 = matchup
             team1_wins = 0
@@ -96,20 +107,20 @@ class SeasonSimulator:
             return series_winner, total_games
 
         # Define the matchups
-        west_winner = sorted(western_conference, key=lambda x: x.points, reverse=True)[:1]
-        central_winner = sorted(central_division, key=lambda x: x.points, reverse=True)[:1]
-        pacific_winner = sorted(pacific_division, key=lambda x: x.points, reverse=True)[:1]
-        central_div_teams = sorted(central_division, key=lambda x: x.points, reverse=True)[:3]
-        pacific_div_teams = sorted(pacific_division, key=lambda x: x.points, reverse=True)[:3]
-        east_winner = sorted(eastern_conference, key=lambda x: x.points, reverse=True)[:1]
-        atlantic_winner = sorted(atlantic_division, key=lambda x: x.points, reverse=True)[:1]
-        metro_winner = sorted(metropolitan_division, key=lambda x: x.points, reverse=True)[:1]
-        atlantic_div_teams = sorted(atlantic_division, key=lambda x: x.points, reverse=True)[:3]
-        metro_div_teams = sorted(metropolitan_division, key=lambda x: x.points, reverse=True)[:3]
-        central_non_top3 = sorted(central_division, key=lambda x: x.points, reverse=True)[3:]
-        pacific_non_top3 = sorted(pacific_division, key=lambda x: x.points, reverse=True)[3:]
-        atlantic_non_top3 = sorted(atlantic_division, key=lambda x: x.points, reverse=True)[3:]
-        metro_non_top3 = sorted(metropolitan_division, key=lambda x: x.points, reverse=True)[3:]
+        west_winner = sorted(self.western_conference, key=lambda x: x.points, reverse=True)[:1]
+        central_winner = sorted(self.central_division, key=lambda x: x.points, reverse=True)[:1]
+        pacific_winner = sorted(self.pacific_division, key=lambda x: x.points, reverse=True)[:1]
+        central_div_teams = sorted(self.central_division, key=lambda x: x.points, reverse=True)[:3]
+        pacific_div_teams = sorted(self.pacific_division, key=lambda x: x.points, reverse=True)[:3]
+        east_winner = sorted(self.eastern_conference, key=lambda x: x.points, reverse=True)[:1]
+        atlantic_winner = sorted(self.atlantic_division, key=lambda x: x.points, reverse=True)[:1]
+        metro_winner = sorted(self.metropolitan_division, key=lambda x: x.points, reverse=True)[:1]
+        atlantic_div_teams = sorted(self.atlantic_division, key=lambda x: x.points, reverse=True)[:3]
+        metro_div_teams = sorted(self.metropolitan_division, key=lambda x: x.points, reverse=True)[:3]
+        central_non_top3 = sorted(self.central_division, key=lambda x: x.points, reverse=True)[3:]
+        pacific_non_top3 = sorted(self.pacific_division, key=lambda x: x.points, reverse=True)[3:]
+        atlantic_non_top3 = sorted(self.atlantic_division, key=lambda x: x.points, reverse=True)[3:]
+        metro_non_top3 = sorted(self.metropolitan_division, key=lambda x: x.points, reverse=True)[3:]
         west_wildcard = sorted(central_non_top3 + pacific_non_top3, key=lambda x: x.points, reverse=True)[:2]
         east_wildcard = sorted(atlantic_non_top3 + metro_non_top3, key=lambda x: x.points, reverse=True)[:2]
 
@@ -127,6 +138,7 @@ class SeasonSimulator:
         east_first_round_results = []
         for matchup in round1_east_matchups:
             series_winner, total_games = simulate_series(matchup)
+            series_winner.second_round += 1
             east_first_round_results.append((series_winner, total_games))
 
         round1_west_matchups = [
@@ -142,9 +154,13 @@ class SeasonSimulator:
         west_first_round_results = []
         for matchup in round1_west_matchups:
             series_winner, total_games = simulate_series(matchup)
+            series_winner.second_round += 1
             west_first_round_results.append((series_winner, total_games))
 
-        # Simulate second round
+        # Round 2 Begins
+        add_playoff_appearance(round1_east_matchups)
+        add_playoff_appearance(round1_west_matchups)
+
         round2_east_matchups = [
             (east_first_round_results[0][0], east_first_round_results[1][0]),
             (east_first_round_results[2][0], east_first_round_results[3][0]),
@@ -153,6 +169,7 @@ class SeasonSimulator:
         east_second_round_results = []
         for matchup in round2_east_matchups:
             series_winner, total_games = simulate_series(matchup)
+            series_winner.conf_final += 1
             east_second_round_results.append((series_winner, total_games))
 
         round2_west_matchups = [
@@ -163,6 +180,7 @@ class SeasonSimulator:
         west_second_round_results = []
         for matchup in round2_west_matchups:
             series_winner, total_games = simulate_series(matchup)
+            series_winner.conf_final += 1
             west_second_round_results.append((series_winner, total_games))
 
         # Conference Final
@@ -173,6 +191,7 @@ class SeasonSimulator:
         ecf_results = []
         for matchup in eastern_final:
             series_winner, total_games = simulate_series(matchup)
+            series_winner.cup_final += 1
             ecf_results.append((series_winner, total_games))
 
         western_final = [
@@ -182,6 +201,7 @@ class SeasonSimulator:
         wcf_results = []
         for matchup in western_final:
             series_winner, total_games = simulate_series(matchup)
+            series_winner.cup_final += 1
             wcf_results.append((series_winner, total_games))
 
         # Cup Final
@@ -192,6 +212,7 @@ class SeasonSimulator:
         cup_final_results = []
         for matchup in cup_final:
             series_winner, total_games = simulate_series(matchup)
+            series_winner.cup_win += 1
             cup_final_results.append((series_winner, total_games))
 
         with open(output_file, mode='w', newline='') as file:
@@ -229,6 +250,17 @@ class SeasonSimulator:
     def playoffs(self, output_file):
         playoff_results = self.playoff_bracket(output_file)
         return playoff_results
+
+    def print_playoff_statistics(self, teams):
+        print("Playoff Statistics:")
+        for team in teams:
+            print(f"{team.name}:")
+            print(f"  Playoff Appearances: {team.playoffs}")
+            print(f"  Second Round Appearances: {team.second_round}")
+            print(f"  Third Round Appearances: {team.conf_final}")
+            print(f"  Cup Final Appearances: {team.cup_final}")
+            print(f"  Cup Wins: {team.cup_win}")
+
     def simulate_season(self):
         for (team1_name, team2_name), num_games in matchups.items():
             team1 = globals()[team1_name]
@@ -236,5 +268,12 @@ class SeasonSimulator:
             for _ in range(num_games):
                 game = Game(team1, team2)
                 self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals, game.visitor_goals, game.winner, game.regulation)
+                self.log_game_result(game)
 
         self.sort_division_standings()
+        self.playoffs("playoff_results.csv")
+        self.print_playoff_statistics(self.league)
+
+
+
+
