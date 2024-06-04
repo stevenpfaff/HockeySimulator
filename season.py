@@ -50,8 +50,19 @@ class SeasonSimulator:
                 team1.otl += 1
                 team1.points += 1
 
+    def reset_standings(self):
+        for team in self.league:
+            team.wins = 0
+            team.losses = 0
+            team.otl = 0
+            team.points = 0
+            team.goals = 0
+            team.goals_against = 0
+            team.sog = 0
+            team.sog_ag = 0
+            team.saves = 0
     def log_game_result(self, game):
-        with open('game_results.csv', mode='a', newline='') as file:
+        with open('output/game_results.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
             # writer.writerow(["Team 1", "Team 1 Score", "Team 1 Shots", "Team 2", "Team 2 Score", "Team 2 Shots", "Overtime?"])
             writer.writerow([game.home.name, game.home_goals, game.home_sog, game.visitor.name, game.visitor_goals, game.visitor_sog,
@@ -68,7 +79,7 @@ class SeasonSimulator:
             writer.writerow("")
 
     def sort_division_standings(self):
-        with open("standings.csv", mode='w', newline='') as file:
+        with open("output/standings.csv", mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(["NHL Standings:"])
 
@@ -76,9 +87,9 @@ class SeasonSimulator:
         self.sort_and_print("Atlantic", self.atlantic_division, "standings.csv")
         self.sort_and_print("Central", self.central_division, "standings.csv")
         self.sort_and_print("Pacific", self.pacific_division, "standings.csv")
-        self.sort_and_print("Eastern Conference", self.eastern_conference, "standings.csv")
-        self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
-        self.sort_and_print("NHL", self.league, "standings.csv")
+        # self.sort_and_print("Eastern Conference", self.eastern_conference, "standings.csv")
+        # self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
+        # self.sort_and_print("NHL", self.league, "standings.csv")
 
     def playoff_bracket(self, output_file):
         def add_playoff_appearance(matchups):
@@ -213,7 +224,7 @@ class SeasonSimulator:
         for matchup in cup_final:
             series_winner, total_games = simulate_series(matchup)
             series_winner.cup_win += 1
-            cup_final_results.append((series_winner, total_games))
+            cup_final_results.append(series_winner)
 
         with open(output_file, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -243,7 +254,7 @@ class SeasonSimulator:
             writer.writerow(["Cup Final"])
             # Write cup final matchup...
             for matchup, result in zip(cup_final, cup_final_results):
-                writer.writerow(["Cup Final", matchup[0].name, matchup[1].name, result[0], result[1]])
+                writer.writerow(["Cup Final", matchup[0].name, matchup[1].name, result.name, total_games])
 
         return cup_final_results
 
@@ -251,29 +262,22 @@ class SeasonSimulator:
         playoff_results = self.playoff_bracket(output_file)
         return playoff_results
 
-    def print_playoff_statistics(self, teams):
-        print("Playoff Statistics:")
-        for team in teams:
-            print(f"{team.name}:")
-            print(f"  Playoff Appearances: {team.playoffs}")
-            print(f"  Second Round Appearances: {team.second_round}")
-            print(f"  Third Round Appearances: {team.conf_final}")
-            print(f"  Cup Final Appearances: {team.cup_final}")
-            print(f"  Cup Wins: {team.cup_win}")
+    def write_cup_winners(self):
+        with open('output/playoff_data.csv', mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(
+                ["Team", "Playoff Appearances", "2nd Round Appearances", "Conference Finals", "Stanley Cup Finals",
+                 "Stanley Cups"])
+            for team in league:
+                writer.writerow(
+                    [team.name, team.playoffs, team.second_round, team.conf_final, team.cup_final, team.cup_win])
 
     def simulate_season(self):
+        self.reset_standings()
         for (team1_name, team2_name), num_games in matchups.items():
             team1 = globals()[team1_name]
             team2 = globals()[team2_name]
             for _ in range(num_games):
                 game = Game(team1, team2)
                 self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals, game.visitor_goals, game.winner, game.regulation)
-                self.log_game_result(game)
-
-        self.sort_division_standings()
-        self.playoffs("playoff_results.csv")
-        self.print_playoff_statistics(self.league)
-
-
-
-
+                # self.log_game_result(game)
