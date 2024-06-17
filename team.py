@@ -1,11 +1,16 @@
-import random
+class Goalie:
+    def __init__(self, name, rating):
+        self.name = name
+        self.rating = rating
+
 
 class Team(object):
-    def __init__(self, name, offense, defense, goalie, sog, sog_ag, saves, goals, goals_against, wins, losses, otl, points, playoffs, second_round, conf_final, cup_final, cup_win):
+    def __init__(self, name, offense, defense, starting_goalie, backup_goalie, sog, sog_ag, saves, goals, goals_against, wins, losses, otl, points, playoffs, second_round, conf_final, cup_final, cup_win):
         self.name = name
         self.offense = offense
         self.defense = defense
-        self.goalie = goalie
+        self.starting_goalie = starting_goalie
+        self.backup_goalie = backup_goalie
         self.sog = sog
         self.sog_ag = sog_ag
         self.saves = saves
@@ -20,59 +25,127 @@ class Team(object):
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-    def __str__(self):
-        return f'Team: {self.name}'
 
-ana = Team("Anaheim Ducks", 30, 30, 30,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-ari = Team("Arizona Coyotes", 40, 30, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-bos = Team("Boston Bruins", 50, 50, 70,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-buf = Team("Buffalo Sabres", 50, 40, 50,0,0,0,0,0,0, 0,0,0,0,0,0,0,0)
-cgy = Team("Calgary Flames", 40, 50, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-car = Team("Carolina Hurricanes", 60, 80, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-chi = Team("Chicago Blackhawks", 20, 30, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-col = Team("Colorado Avalanche", 70, 40, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-cbj = Team("Columbus Blue Jackets", 30, 20, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-dal = Team("Dallas Stars", 70, 70, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-det = Team("Detroit Red Wings", 40, 40, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-edm = Team("Edmonton Oilers", 80, 70, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-fla = Team("Florida Panthers", 70, 70, 70,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-la = Team("Los Angeles Kings", 60, 70, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-min = Team("Minnesota Wild", 50, 60, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-mtl = Team("Montreal Canadiens", 30, 30, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-nsh = Team("Nashville Predators", 50, 60, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-nj = Team("New Jersey Devils", 50, 40, 20,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-nyi = Team("New York Islanders", 40, 50, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-nyr = Team("New York Rangers", 50, 60, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-ott = Team("Ottawa Senators", 40, 60, 20,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-phi = Team("Philadelphia Flyers", 40, 70, 20,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-pit = Team("Pittsburgh Penguins", 50, 50, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-sj = Team("San Jose Sharks", 20, 20, 20,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-sea = Team("Seattle Kraken", 30, 70, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-stl = Team("St. Louis Blues", 40, 40, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-tb = Team("Tampa Bay Lightning", 50, 50, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-tor = Team("Toronto Maple Leafs", 60, 50, 40,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-van = Team("Vancouver Canucks", 60, 60, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-vgk = Team("Vegas Golden Knights", 50, 60, 60,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-wsh = Team("Washington Capitals", 40, 50, 50,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-wpg = Team("Winnipeg Jets", 50, 60, 80,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+goalies = {
+    "gibson": Goalie("John Gibson", 30),
+    "dostal": Goalie("Lukas Dostal", 30),
+    "stolarz": Goalie("Anthony Stolarz", 50),
+    "ullmark": Goalie("Linus Ullmark", 70),
+    "swayman": Goalie("Jeremy Swayman", 70),
+    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 50),
+    "comrie": Goalie("Eric Comrie", 40),
+    "markstrom": Goalie("Jacob Markstrom", 50),
+    "vladar": Goalie("Dan Vladar", 30),
+    "andersen": Goalie("Freddy Andersen", 60),
+    "kochetkov": Goalie("Pyotr Kochetkov", 50),
+    "mrazek": Goalie("Petr Mrazek", 40),
+    "soderblom": Goalie("Arvid Soderblom", 20),
+    "georgiev": Goalie("Alexandar Georgiev", 50),
+    "annunen": Goalie("Justus Annunen", 50),
+    "merzlikins": Goalie("Elvis Merzlikins", 40),
+    "tarasov": Goalie("Daniil Tarasov", 30),
+    "oettinger": Goalie("Jake Oettinger", 60),
+    "wedgewood": Goalie("Scott Wedgewood", 40),
+    "husso": Goalie("Ville Husso", 50),
+    "lyon": Goalie("Alex Lyon", 40),
+    "skinner": Goalie("Stuart Skinner", 50),
+    "campbell": Goalie("Jack Campbell", 40),
+    "bobrovsky": Goalie("Sergei Bobrovsky", 70),
+    "knight": Goalie("Spencer Knight", 50),
+    "talbot": Goalie("Cam Talbot", 60),
+    "copley": Goalie("Phoenix Copley", 40),
+    "gustavsson": Goalie("Filip Gustavsson", 40),
+    "fleury": Goalie("Marc-Andre Fleury", 40),
+    "allen": Goalie("Jake Allen", 40),
+    "primeau": Goalie("Caiden Primeau", 30),
+    "montembeault": Goalie("Sam Montembeault", 30),
+    "saros": Goalie("Juuse Saros", 60),
+    "askarov": Goalie("Yaroslav Askarov", 50),
+    "lankinen": Goalie("Kevin Lankinen", 40),
+    "vanacek": Goalie("Vitek Vanecek", 30),
+    "schmid": Goalie("Akira Schmid", 20),
+    "sorokin": Goalie("Ilya Sorokin", 60),
+    "varlamov": Goalie("Semyon Varlamov", 50),
+    "shesterkin": Goalie("Igor Shesterkin", 70),
+    "halak": Goalie("Jaroslav Halak", 50),
+    "korp": Goalie("Joonas Korpisalo", 30),
+    "forsberg": Goalie("Anton Forsberg", 30),
+    "hart": Goalie("Carter Hart", 50),
+    "ersson": Goalie("Samuel Ersson", 20),
+    "fedotov": Goalie("Ivan Fedotov", 30),
+    "jarry": Goalie("Tristan Jarry", 50),
+    "ned": Goalie("Alex Nedelkovich", 30),
+    "kahkonen": Goalie("Kaapo Kahkonen", 20),
+    "blackwood": Goalie("Mackenzie Blackwood", 30),
+    "grubauer": Goalie("Philipp Grubauer", 40),
+    "daccord": Goalie("Joey Daccord", 50),
+    "binner": Goalie("Jordan Binnington", 60),
+    "hofer": Goalie("Joel Hofer", 30),
+    "vasy": Goalie("Andrei Vasilevskiy", 60),
+    "elliott": Goalie("Brian Elliott", 30),
+    "samsonov": Goalie("Ilya Samsonov", 30),
+    "woll": Goalie("Joeseph Woll", 50),
+    "vemelka": Goalie("Karel Vejmelka", 50),
+    "ingram": Goalie("Connor Ingram", 40),
+    "demko": Goalie("Thatcher Demko", 60),
+    "delia": Goalie("Collin Delia", 40),
+    "thompson": Goalie("Logan Thompson", 50),
+    "hill": Goalie("Adin Hill", 60),
+    "kuemper": Goalie("Darcy Kuemper", 40),
+    "lindgren": Goalie("Charlie Lindgren", 50),
+    "hellebuyck": Goalie("Connor Hellebuyck", 80),
+    "rittich": Goalie("David Rittich", 40),
+    "quick": Goalie("Jonathan Quick", 40),
+    "cooley": Goalie("Devin Cooley", 30),
+    "johansson": Goalie("Jonas Johansson", 30),
+    "jones": Goalie("Martin Jones", 40),
+    "silvos": Goalie("Arturs Silovs", 0)
+}
 
+teams = {
+    "ana": Team("Anaheim Ducks", 30, 30, goalies["gibson"].rating, goalies["dostal"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "bos": Team("Boston Bruins", 50, 50, goalies["swayman"].rating, goalies["ullmark"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "buf": Team("Buffalo Sabres", 50, 40, goalies["luukkonen"].rating, goalies["comrie"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "cgy": Team("Calgary Flames", 40, 50, goalies["markstrom"].rating, goalies["vladar"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "car": Team("Carolina Hurricanes", 60, 80, goalies["andersen"].rating, goalies["kochetkov"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "chi": Team("Chicago Blackhawks", 20, 30, goalies["mrazek"].rating, goalies["soderblom"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "col": Team("Colorado Avalanche", 70, 50, goalies["georgiev"].rating, goalies["annunen"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "cbj": Team("Columbus Blue Jackets", 30, 20, goalies["merzlikins"].rating, goalies["tarasov"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "dal": Team("Dallas Stars", 70, 70, goalies["oettinger"].rating, goalies["wedgewood"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "det": Team("Detroit Red Wings", 40, 40, goalies["husso"].rating, goalies["lyon"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "edm": Team("Edmonton Oilers", 80, 60, goalies["skinner"].rating, goalies["campbell"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "fla": Team("Florida Panthers", 70, 70, goalies["bobrovsky"].rating, goalies["stolarz"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "la": Team("Los Angeles Kings", 60, 70, goalies["talbot"].rating, goalies["rittich"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "min": Team("Minnesota Wild", 50, 60, goalies["gustavsson"].rating, goalies["fleury"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "mtl": Team("Montreal Canadiens", 20, 30, goalies["montembeault"].rating, goalies["primeau"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "nsh": Team("Nashville Predators", 50, 60, goalies["saros"].rating, goalies["askarov"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "nj": Team("New Jersey Devils", 60, 40, goalies["allen"].rating, goalies["kahkonen"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "nyi": Team("New York Islanders", 40, 50, goalies["sorokin"].rating, goalies["varlamov"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "nyr": Team("New York Rangers", 50, 60, goalies["shesterkin"].rating, goalies["quick"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "ott": Team("Ottawa Senators", 40, 60, goalies["korp"].rating, goalies["forsberg"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "phi": Team("Philadelphia Flyers", 40, 70, goalies["fedotov"].rating, goalies["ersson"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "pit": Team("Pittsburgh Penguins", 50, 50, goalies["jarry"].rating, goalies["ned"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "sj": Team("San Jose Sharks", 20, 20, goalies["blackwood"].rating, goalies["cooley"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "sea": Team("Seattle Kraken", 30, 70, goalies["daccord"].rating, goalies["grubauer"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "stl": Team("St. Louis Blues", 40, 40, goalies["binner"].rating, goalies["hofer"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "tb": Team("Tampa Bay Lightning", 50, 50, goalies["vasy"].rating, goalies["johansson"].rating, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    "tor": Team("Toronto Maple Leafs", 60, 50, goalies["woll"].rating, goalies["jones"].rating, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0),
+    "ari": Team("Utah Mammoth", 40,30, goalies["vemelka"].rating, goalies["ingram"].rating,0,0,0,0,0,0,0,0,0,0,0,0,0,0),
+    "van": Team("Vancouver Canucks", 60, 60, goalies["demko"].rating, goalies["silvos"].rating,0,0,0,0,0,0,0,0,0,0,0,0,0,0),
+    "vgk": Team("Vegas Golden Knights", 50, 60, goalies["hill"].rating, goalies["thompson"].rating,0,0,0,0,0,0,0,0,0,0,0,0,0,0),
+    "wsh": Team("Washington Capitals", 40, 50, goalies["lindgren"].rating, goalies["kuemper"].rating,0,0,0,0,0,0,0,0,0,0,0,0,0,0),
+    "wpg": Team("Winnipeg Jets", 50, 60, goalies["hellebuyck"].rating, goalies["delia"].rating,0,0,0,0,0,0,0,0,0,0,0,0,0,0),
 
-metropolitan_division = [nj, nyi, nyr, phi, pit, car, cbj, wsh]
-atlantic_division = [bos, buf, det, fla, mtl, ott, tb, tor]
-central_division = [ari, chi, col, dal, min, nsh, stl, wpg]
-pacific_division = [ana, cgy, edm, la, sj, sea, van, vgk,]
+}
+metropolitan_division = [teams["car"],teams["cbj"],teams["phi"],teams["pit"],teams["nj"], teams["nyi"], teams["nyr"],teams["wsh"]]
+atlantic_division = [teams["bos"], teams["buf"], teams["det"], teams["fla"], teams["mtl"], teams["ott"], teams["tb"], teams["tor"]]
+central_division = [teams["ari"], teams["chi"], teams["col"], teams["dal"], teams["min"], teams["nsh"], teams["stl"], teams["wpg"]]
+pacific_division = [teams["ana"], teams["cgy"], teams["edm"], teams["la"], teams["sj"], teams["sea"], teams["van"], teams["vgk"]]
 
 eastern_conference = atlantic_division + metropolitan_division
 western_conference = central_division + pacific_division
 
 league = eastern_conference + western_conference
-
-teams = [
-    "ana", "ari", "bos", "buf", "cgy", "car", "chi", "col", "cbj", "dal",
-    "det", "edm", "fla", "la", "min", "mtl", "nsh", "nj", "nyi", "nyr",
-    "ott", "phi", "pit", "sj", "sea", "stl", "tb", "tor", "van", "vgk", "wsh", "wpg"
-]
-
 
 matchups = {
     ("ana", "ari"): 3,
