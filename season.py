@@ -1,9 +1,6 @@
 import random
-from team import matchups
-from team import ana, ari, bos, buf, car, cgy, chi, col, cbj, dal, det, fla, edm, la, min, mtl, nsh, nj, nyi, nyr, ott, phi, pit, sj, sea, stl, tb, tor, van, vgk, wsh, wpg
 from team import league, eastern_conference, western_conference, metropolitan_division, atlantic_division, central_division, pacific_division
 from game import Game
-from team import Team
 import csv
 
 class SeasonSimulator:
@@ -15,8 +12,9 @@ class SeasonSimulator:
         self.atlantic_division = atlantic_division
         self.central_division = central_division
         self.pacific_division = pacific_division
+        self.goalie_games = {}
 
-    def update_stats(self, team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation):
+    def update_stats(self, team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation, team1_goalie, team2_goalie):
         team1.sog += team1_sog
         team1.sog_ag += team2_sog
         team1.saves += (team2_sog - team2_goals)
@@ -28,6 +26,16 @@ class SeasonSimulator:
         team2.saves += (team1_sog - team1_goals)
         team2.goals += team2_goals
         team2.goals_against += team1_goals
+
+        if team1_goalie not in self.goalie_games:
+            self.goalie_games[team1_goalie] = []
+        self.goalie_games[team1_goalie].append(
+            (team1.name, team2.name, team1_goals, team2_goals, winner == team1, regulation))
+
+        if team2_goalie not in self.goalie_games:
+            self.goalie_games[team2_goalie] = []
+        self.goalie_games[team2_goalie].append(
+            (team2.name, team1.name, team2_goals, team1_goals, winner == team2, regulation))
 
         if winner == team1:
             if regulation:
@@ -64,7 +72,7 @@ class SeasonSimulator:
     def log_game_result(self, game):
         with open('output/game_results.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
-            # writer.writerow(["Team 1", "Team 1 Score", "Team 1 Shots", "Team 2", "Team 2 Score", "Team 2 Shots", "Overtime?"])
+            writer.writerow(["Team 1", "Team 1 Score", "Team 1 Shots", "Team 2", "Team 2 Score", "Team 2 Shots", "Overtime?"])
             writer.writerow([game.home.name, game.home_goals, game.home_sog, game.visitor.name, game.visitor_goals, game.visitor_sog,
                             game.regulation])
 
@@ -79,7 +87,7 @@ class SeasonSimulator:
             writer.writerow("")
 
     def sort_division_standings(self):
-        with open("output/standings.csv", mode='w', newline='') as file:
+        with open("standings.csv", mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(["NHL Standings:"])
 
@@ -272,12 +280,16 @@ class SeasonSimulator:
                 writer.writerow(
                     [team.name, team.playoffs, team.second_round, team.conf_final, team.cup_final, team.cup_win])
 
-    def simulate_season(self):
+    def simulate_season(self, teams, matchups):
         self.reset_standings()
         for (team1_name, team2_name), num_games in matchups.items():
-            team1 = globals()[team1_name]
-            team2 = globals()[team2_name]
+            team1 = teams[team1_name]
+            team2 = teams[team2_name]
             for _ in range(num_games):
-                game = Game(team1, team2)
-                self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals, game.visitor_goals, game.winner, game.regulation)
+                weights = [0.7, 0.3]
+                team1_goalie = random.choices([team1.starting_goalie, team1.backup_goalie], weights=weights)[0]
+                team2_goalie = random.choices([team2.starting_goalie, team2.backup_goalie], weights=weights)[0]
+                game = Game(team1, team2, team1_goalie, team2_goalie)
+                self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals,
+                                  game.visitor_goals, game.winner, game.regulation, team1_goalie, team2_goalie)
                 # self.log_game_result(game)
