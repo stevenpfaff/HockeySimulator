@@ -53,7 +53,7 @@ class Game:
 
     @staticmethod
     def get_goal_probability(goalie_rating):
-        threshold = 20  # Example threshold, adjust as needed
+        threshold = 20
         if goalie_rating <= threshold:
             return 0.120
         elif goalie_rating > threshold and goalie_rating <= 30:
