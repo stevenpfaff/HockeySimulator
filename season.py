@@ -128,7 +128,7 @@ class SeasonSimulator:
                         save_percentage = goalie.saves / goalie.shots_against
                     else:
                         save_percentage = 0
-                    writer.writerow([goalie.name, team.name, goalie.games, goalie.wins, goalie.losses, goalie.shutouts, goalie.goals_allowed,
+                    writer.writerow([goalie.name, team.abrv, goalie.games, goalie.wins, goalie.losses, goalie.shutouts, goalie.goals_allowed,
                                      "{:.3f}%".format(save_percentage)])
 
     def sort_and_print(self, division_name, division_teams, filename):
@@ -144,7 +144,7 @@ class SeasonSimulator:
                 else:
                     save_percentage = 0
                 writer.writerow(
-                    [i, team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against,
+                    [i, team.abrv, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against,
                      "{:.2f}".format((team.goals / team.sog) * 100) + "%",
                      "{:.3f}".format(save_percentage)])
             writer.writerow("")
@@ -327,26 +327,26 @@ class SeasonSimulator:
             # Write round 1 matchups...
             for matchup, result in zip(round1_east_matchups + round1_west_matchups,
                                        east_first_round_results + west_first_round_results):
-                writer.writerow(["Round 1", matchup[0].name, matchup[1].name, result[0].name, result[1]])
+                writer.writerow(["Round 1", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
 
             # Round 2
             writer.writerow(["Round 2"])
             # Write round 2 matchups...
             for matchup, result in zip(round2_east_matchups + round2_west_matchups,
                                        east_second_round_results + west_second_round_results):
-                writer.writerow(["Round 2", matchup[0].name, matchup[1].name, result[0].name, result[1]])
+                writer.writerow(["Round 2", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
 
             # Conference Finals
             writer.writerow(["Conference Finals"])
             # Write conference final matchups...
             for matchup, result in zip(eastern_final + western_final, ecf_results + wcf_results):
-                writer.writerow(["Conference Finals", matchup[0].name, matchup[1].name, result[0].name, result[1]])
+                writer.writerow(["Conference Finals", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
 
             # Cup Final
             writer.writerow(["Cup Final"])
             # Write cup final matchup...
             for matchup, result in zip(cup_final, cup_final_results):
-                writer.writerow(["Cup Final", matchup[0].name, matchup[1].name, result.name, total_games])
+                writer.writerow(["Cup Final", matchup[0].abrv, matchup[1].abrv, result.abrv, total_games])
 
         return cup_final_results
 
@@ -379,35 +379,3 @@ class SeasonSimulator:
                                   game.visitor_goalie)
                 # self.log_game_result(game)
         self.log_goalie_stats()
-
-    def merge_csv_files(output_file, *input_files):
-        headers = []
-        rows = []
-
-        # Read all input files and collect their headers and rows
-        for input_file in input_files:
-            with open(input_file, mode='r', newline='') as file:
-                reader = csv.reader(file)
-                file_headers = next(reader)  # Read the header row
-                headers.extend(file_headers)  # Add the headers to the list
-                file_rows = list(reader)  # Read the remaining rows
-                rows.extend(file_rows)  # Add the rows to the list
-
-        # Remove duplicate headers
-        headers = list(dict.fromkeys(headers))
-
-        # Write the combined data to the output file
-        with open(output_file, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(headers)  # Write the header row
-            for row in rows:
-                writer.writerow(row)  # Write the data rows
-
-    # Define the input and output file paths
-    standings_file = 'standings.csv'
-    playoffs_file = 'output/playoffs.csv'
-    goalie_stats_file = 'output/goalie_stats.csv'
-    combined_file = 'output/combined_stats.csv'
-
-    # Merge the CSV files
-    merge_csv_files(combined_file, standings_file, playoffs_file, goalie_stats_file)
