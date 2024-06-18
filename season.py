@@ -12,9 +12,21 @@ class SeasonSimulator:
         self.atlantic_division = atlantic_division
         self.central_division = central_division
         self.pacific_division = pacific_division
-        self.goalie_games = {}
 
-    def update_stats(self, team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation, team1_goalie, team2_goalie):
+    def update_stats(self, team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation,
+                     team1_goalie, team2_goalie):
+        # Update goalie stats
+        team1_goalie.games += 1
+        team1_goalie.shots_against += team2_sog
+        team1_goalie.saves += (team2_sog - team2_goals)
+        team1_goalie.goals_allowed += team2_goals
+
+        team2_goalie.games += 1
+        team2_goalie.shots_against += team1_sog
+        team2_goalie.saves += (team1_sog - team1_goals)
+        team2_goalie.goals_allowed += team1_goals
+
+        # Update team stats
         team1.sog += team1_sog
         team1.sog_ag += team2_sog
         team1.saves += (team2_sog - team2_goals)
@@ -27,36 +39,49 @@ class SeasonSimulator:
         team2.goals += team2_goals
         team2.goals_against += team1_goals
 
-        if team1_goalie not in self.goalie_games:
-            self.goalie_games[team1_goalie] = []
-        self.goalie_games[team1_goalie].append(
-            (team1.name, team2.name, team1_goals, team2_goals, winner == team1, regulation))
-
-        if team2_goalie not in self.goalie_games:
-            self.goalie_games[team2_goalie] = []
-        self.goalie_games[team2_goalie].append(
-            (team2.name, team1.name, team2_goals, team1_goals, winner == team2, regulation))
-
+        # Update standings based on game result
         if winner == team1:
             if regulation:
                 team1.wins += 1
                 team1.points += 2
                 team2.losses += 1
+                team1_goalie.wins += 1
+                team2_goalie.losses += 1
             else:
                 team1.wins += 1
                 team1.points += 2
                 team2.otl += 1
                 team2.points += 1
+                team1.goals += team1_goals
+                team1.goals_against += team2_goals
+                team2.goals += team2_goals
+                team2.goals_against += team1_goals
+                team2_goalie.losses += 1
+                team1_goalie.wins += 1
         else:
             if regulation:
                 team2.wins += 1
                 team2.points += 2
                 team1.losses += 1
+                team2_goalie.wins += 1
+                team1_goalie.losses += 1
             else:
                 team2.wins += 1
                 team2.points += 2
                 team1.otl += 1
                 team1.points += 1
+                team1.goals += team1_goals
+                team1.goals_against += team2_goals
+                team2.goals += team2_goals
+                team2.goals_against += team1_goals
+                team1_goalie.losses += 1
+                team2_goalie.wins += 1
+
+        # Update shutouts for goalies
+        if team1_goals == 0:
+            team2_goalie.shutouts += 1
+        elif team2_goals == 0:
+            team1_goalie.shutouts += 1
 
     def reset_standings(self):
         for team in self.league:
@@ -69,21 +94,59 @@ class SeasonSimulator:
             team.sog = 0
             team.sog_ag = 0
             team.saves = 0
+
     def log_game_result(self, game):
         with open('output/game_results.csv', mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Team 1", "Team 1 Score", "Team 1 Shots", "Team 2", "Team 2 Score", "Team 2 Shots", "Overtime?"])
-            writer.writerow([game.home.name, game.home_goals, game.home_sog, game.visitor.name, game.visitor_goals, game.visitor_sog,
-                            game.regulation])
+            # Check if file is empty to add headers
+            if file.tell() == 0:
+                writer.writerow(["Team 1", "Team 1 Goalie", "Team 1 Score", "Team 1 Shots",
+                                 "Team 2", "Team 2 Goalie", "Team 2 Score", "Team 2 Shots",
+                                 "Overtime?"])
+            writer.writerow([game.home.name, game.home_goalie.name, game.home_goals, game.home_sog,
+                             game.visitor.name, game.visitor_goalie.name, game.visitor_goals, game.visitor_sog,
+                             game.regulation])
+
+    def reset_goalie_stats(self):
+        for team in self.league:
+            team.starting_goalie.games = 0
+            team.starting_goalie.shots_against = 0
+            team.starting_goalie.saves = 0
+            team.starting_goalie.goals_allowed = 0
+            team.backup_goalie.games = 0
+            team.backup_goalie.shots_against = 0
+            team.backup_goalie.saves = 0
+            team.backup_goalie.goals_allowed = 0
+
+    def log_goalie_stats(self):
+        with open('output/goalie_stats.csv', mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Goalie", "Team", "GP", "W", "L", "SO", "GA", "SV%"])
+            for team in self.league:
+                for goalie in [team.starting_goalie, team.backup_goalie]:
+                    if goalie.shots_against > 0:
+                        save_percentage = goalie.saves / goalie.shots_against
+                    else:
+                        save_percentage = 0
+                    writer.writerow([goalie.name, team.name, goalie.games, goalie.wins, goalie.losses, goalie.shutouts, goalie.goals_allowed,
+                                     "{:.3f}%".format(save_percentage)])
 
     def sort_and_print(self, division_name, division_teams, filename):
-        sorted_standings = sorted(division_teams, key=lambda x: x.points, reverse=True)
+        sorted_standings = sorted(division_teams, key=lambda x: (x.points, x.wins, x.goals - x.goals_against),
+                                  reverse=True)
         with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([f"{division_name} Standings:"])
             writer.writerow(["Rank", "Team", "W", "L", "OTL", "PTS", "GF", "GA", "SH%", "SV%"])
             for i, team in enumerate(sorted_standings, start=1):
-                writer.writerow([i, team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against, "{:.2f}".format((team.goals/team.sog)*100)+ "%", "{:.3f}".format(team.saves/team.sog_ag)])
+                if team.sog_ag > 0:
+                    save_percentage = team.saves / team.sog_ag
+                else:
+                    save_percentage = 0
+                writer.writerow(
+                    [i, team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against,
+                     "{:.2f}".format((team.goals / team.sog) * 100) + "%",
+                     "{:.3f}".format(save_percentage)])
             writer.writerow("")
 
     def sort_division_standings(self):
@@ -104,14 +167,14 @@ class SeasonSimulator:
             for team1, team2 in matchups:
                 team1.playoffs += 1
                 team2.playoffs += 1
-        def simulate_series(matchup):
+        def simulate_series(matchup, home_goalie, away_goalie):
             team1, team2 = matchup
             team1_wins = 0
             team2_wins = 0
             total_games = 0
 
             while team1_wins < 4 and team2_wins < 4 and total_games < 7:
-                game = Game(team1, team2)
+                game = Game(team1, team2, home_goalie, away_goalie)
                 if game.winner == team1:
                     team1_wins += 1
                 elif game.winner == team2:
@@ -156,7 +219,10 @@ class SeasonSimulator:
 
         east_first_round_results = []
         for matchup in round1_east_matchups:
-            series_winner, total_games = simulate_series(matchup)
+            home_team, away_team = matchup
+            home_goalie = home_team.starting_goalie
+            away_goalie = away_team.starting_goalie
+            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
             series_winner.second_round += 1
             east_first_round_results.append((series_winner, total_games))
 
@@ -172,7 +238,10 @@ class SeasonSimulator:
 
         west_first_round_results = []
         for matchup in round1_west_matchups:
-            series_winner, total_games = simulate_series(matchup)
+            home_team, away_team = matchup
+            home_goalie = home_team.starting_goalie
+            away_goalie = away_team.starting_goalie
+            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
             series_winner.second_round += 1
             west_first_round_results.append((series_winner, total_games))
 
@@ -187,7 +256,10 @@ class SeasonSimulator:
 
         east_second_round_results = []
         for matchup in round2_east_matchups:
-            series_winner, total_games = simulate_series(matchup)
+            home_team, away_team = matchup
+            home_goalie = home_team.starting_goalie
+            away_goalie = away_team.starting_goalie
+            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
             series_winner.conf_final += 1
             east_second_round_results.append((series_winner, total_games))
 
@@ -198,7 +270,10 @@ class SeasonSimulator:
 
         west_second_round_results = []
         for matchup in round2_west_matchups:
-            series_winner, total_games = simulate_series(matchup)
+            home_team, away_team = matchup
+            home_goalie = home_team.starting_goalie
+            away_goalie = away_team.starting_goalie
+            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
             series_winner.conf_final += 1
             west_second_round_results.append((series_winner, total_games))
 
@@ -209,7 +284,10 @@ class SeasonSimulator:
 
         ecf_results = []
         for matchup in eastern_final:
-            series_winner, total_games = simulate_series(matchup)
+            home_team, away_team = matchup
+            home_goalie = home_team.starting_goalie
+            away_goalie = away_team.starting_goalie
+            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
             series_winner.cup_final += 1
             ecf_results.append((series_winner, total_games))
 
@@ -219,7 +297,10 @@ class SeasonSimulator:
 
         wcf_results = []
         for matchup in western_final:
-            series_winner, total_games = simulate_series(matchup)
+            home_team, away_team = matchup
+            home_goalie = home_team.starting_goalie
+            away_goalie = away_team.starting_goalie
+            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
             series_winner.cup_final += 1
             wcf_results.append((series_winner, total_games))
 
@@ -230,7 +311,10 @@ class SeasonSimulator:
 
         cup_final_results = []
         for matchup in cup_final:
-            series_winner, total_games = simulate_series(matchup)
+            home_team, away_team = matchup
+            home_goalie = home_team.starting_goalie
+            away_goalie = away_team.starting_goalie
+            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
             series_winner.cup_win += 1
             cup_final_results.append(series_winner)
 
@@ -274,22 +358,56 @@ class SeasonSimulator:
         with open('output/playoff_data.csv', mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(
-                ["Team", "Playoff Appearances", "2nd Round Appearances", "Conference Finals", "Stanley Cup Finals",
-                 "Stanley Cups"])
+                ["Team", "Playoffs", "2nd Round", "Conference Final", "Cup Final",
+                 "Stanley Cup"])
             for team in league:
                 writer.writerow(
                     [team.name, team.playoffs, team.second_round, team.conf_final, team.cup_final, team.cup_win])
 
     def simulate_season(self, teams, matchups):
         self.reset_standings()
+        self.reset_goalie_stats()
         for (team1_name, team2_name), num_games in matchups.items():
             team1 = teams[team1_name]
             team2 = teams[team2_name]
             for _ in range(num_games):
-                weights = [0.7, 0.3]
-                team1_goalie = random.choices([team1.starting_goalie, team1.backup_goalie], weights=weights)[0]
-                team2_goalie = random.choices([team2.starting_goalie, team2.backup_goalie], weights=weights)[0]
+                team1_goalie = team1.select_goalie()
+                team2_goalie = team2.select_goalie()
                 game = Game(team1, team2, team1_goalie, team2_goalie)
                 self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals,
-                                  game.visitor_goals, game.winner, game.regulation, team1_goalie, team2_goalie)
+                                  game.visitor_goals, game.winner, game.regulation, game.home_goalie,
+                                  game.visitor_goalie)
                 # self.log_game_result(game)
+        self.log_goalie_stats()
+
+    def merge_csv_files(output_file, *input_files):
+        headers = []
+        rows = []
+
+        # Read all input files and collect their headers and rows
+        for input_file in input_files:
+            with open(input_file, mode='r', newline='') as file:
+                reader = csv.reader(file)
+                file_headers = next(reader)  # Read the header row
+                headers.extend(file_headers)  # Add the headers to the list
+                file_rows = list(reader)  # Read the remaining rows
+                rows.extend(file_rows)  # Add the rows to the list
+
+        # Remove duplicate headers
+        headers = list(dict.fromkeys(headers))
+
+        # Write the combined data to the output file
+        with open(output_file, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(headers)  # Write the header row
+            for row in rows:
+                writer.writerow(row)  # Write the data rows
+
+    # Define the input and output file paths
+    standings_file = 'standings.csv'
+    playoffs_file = 'output/playoffs.csv'
+    goalie_stats_file = 'output/goalie_stats.csv'
+    combined_file = 'output/combined_stats.csv'
+
+    # Merge the CSV files
+    merge_csv_files(combined_file, standings_file, playoffs_file, goalie_stats_file)
