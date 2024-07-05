@@ -82,7 +82,6 @@ class SeasonSimulator:
             team2_goalie.shutouts += 1
         elif team2_goals == 0:
             team1_goalie.shutouts += 1
-
     def reset_standings(self):
         for team in self.league:
             team.wins = 0
@@ -136,7 +135,7 @@ class SeasonSimulator:
                                   reverse=True)
         with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([f"{division_name} Standings:"])
+            writer.writerow([f"{division_name}:"])
             writer.writerow(["Rank", "Team", "W", "L", "OTL", "PTS", "GF", "GA", "SH%", "SV%"])
             for i, team in enumerate(sorted_standings, start=1):
                 if team.sog_ag > 0:
@@ -149,18 +148,18 @@ class SeasonSimulator:
                      "{:.3f}".format(save_percentage)])
             writer.writerow("")
 
-    def sort_division_standings(self):
-        with open("standings.csv", mode='w', newline='') as file:
+    def sort_division_standings(self, filename, sim_number):
+        with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["NHL Standings:"])
+            writer.writerow([f"Simulation {sim_number} Standings:"])
 
-        self.sort_and_print("Metropolitan", self.metropolitan_division, "standings.csv")
-        self.sort_and_print("Atlantic", self.atlantic_division, "standings.csv")
-        self.sort_and_print("Central", self.central_division, "standings.csv")
-        self.sort_and_print("Pacific", self.pacific_division, "standings.csv")
+        # self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
+        # self.sort_and_print("Atlantic", self.atlantic_division, filename)
+        # self.sort_and_print("Central", self.central_division, filename)
+        # self.sort_and_print("Pacific", self.pacific_division, filename)
         # self.sort_and_print("Eastern Conference", self.eastern_conference, "standings.csv")
         # self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
-        # self.sort_and_print("NHL", self.league, "standings.csv")
+        self.sort_and_print("NHL", self.league, filename)
 
     def playoff_bracket(self, output_file):
         def add_playoff_appearance(matchups):
@@ -320,30 +319,36 @@ class SeasonSimulator:
 
         with open(output_file, mode='w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Playoff Round", "Team 1", "Team 2", "Series Winner", "Total Games"])
+            writer.writerow(["Round", "Home", "Visitor", "Winner", "Games"])
 
             # Round 1
-            writer.writerow(["Round 1"])
             # Write round 1 matchups...
-            for matchup, result in zip(round1_east_matchups + round1_west_matchups,
-                                       east_first_round_results + west_first_round_results):
-                writer.writerow(["Round 1", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
+            for matchup, result in zip(round1_east_matchups, east_first_round_results):
+                writer.writerow(["East Round 1", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
+
+            # Write round 1 matchups...
+            for matchup, result in zip(round1_west_matchups, west_first_round_results):
+                writer.writerow(["West Round 1", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
 
             # Round 2
-            writer.writerow(["Round 2"])
             # Write round 2 matchups...
-            for matchup, result in zip(round2_east_matchups + round2_west_matchups,
-                                       east_second_round_results + west_second_round_results):
-                writer.writerow(["Round 2", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
+            for matchup, result in zip(round2_east_matchups,east_second_round_results):
+                writer.writerow(["East Round 2", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
+
+            # Write round 2 matchups...
+            for matchup, result in zip(round2_west_matchups, west_second_round_results):
+                writer.writerow(["West Round 2", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
 
             # Conference Finals
-            writer.writerow(["Conference Finals"])
             # Write conference final matchups...
-            for matchup, result in zip(eastern_final + western_final, ecf_results + wcf_results):
-                writer.writerow(["Conference Finals", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
+            for matchup, result in zip(eastern_final, ecf_results):
+                writer.writerow(["East Conference Finals", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
+
+            # Write conference final matchups...
+            for matchup, result in zip(western_final, wcf_results):
+                writer.writerow(["West Conference Finals", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
 
             # Cup Final
-            writer.writerow(["Cup Final"])
             # Write cup final matchup...
             for matchup, result in zip(cup_final, cup_final_results):
                 writer.writerow(["Cup Final", matchup[0].abrv, matchup[1].abrv, result.abrv, total_games])

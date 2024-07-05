@@ -12,6 +12,9 @@ class Goalie:
 
 goalies = {
     "gibson": Goalie("John Gibson", 40),
+    "pickard": Goalie("Calvin Pickard", 30),
+    "brossoit": Goalie("Laurent Brossoit", 50),
+    "desmith": Goalie("Casey DeSmith", 50),
     "dostal": Goalie("Lukas Dostal", 30),
     "stolarz": Goalie("Anthony Stolarz", 40),
     "ullmark": Goalie("Linus Ullmark", 60),
@@ -20,7 +23,7 @@ goalies = {
     "comrie": Goalie("Eric Comrie", 40),
     "markstrom": Goalie("Jacob Markstrom", 50),
     "vladar": Goalie("Dan Vladar", 30),
-    "andersen": Goalie("Freddy Andersen", 60),
+    "andersen": Goalie("Frederik Andersen", 60),
     "kochetkov": Goalie("Pyotr Kochetkov", 50),
     "mrazek": Goalie("Petr Mrazek", 40),
     "soderblom": Goalie("Arvid Soderblom", 20),
@@ -50,7 +53,7 @@ goalies = {
     "schmid": Goalie("Akira Schmid", 20),
     "sorokin": Goalie("Ilya Sorokin", 60),
     "varlamov": Goalie("Semyon Varlamov", 50),
-    "shesterkin": Goalie("Igor Shesterkin", 70),
+    "shesterkin": Goalie("Igor Shesterkin", 80),
     "halak": Goalie("Jaroslav Halak", 50),
     "korp": Goalie("Joonas Korpisalo", 30),
     "forsberg": Goalie("Anton Forsberg", 30),
@@ -84,5 +87,6 @@ goalies = {
     "johansson": Goalie("Jonas Johansson", 30),
     "jones": Goalie("Martin Jones", 40),
     "silvos": Goalie("Arturs Silovs", 40),
-    "levi": Goalie("Devon Levi", 50)
+    "levi": Goalie("Devon Levi", 50),
+    "wolf": Goalie("Dustin Wolf", 40)
 }
