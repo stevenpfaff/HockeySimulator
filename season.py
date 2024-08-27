@@ -106,16 +106,6 @@ class SeasonSimulator:
                              game.visitor.name, game.visitor_goalie.name, game.visitor_goals, game.visitor_sog,
                              game.regulation])
 
-    def reset_goalie_stats(self):
-        for team in self.league:
-            team.starting_goalie.games = 0
-            team.starting_goalie.shots_against = 0
-            team.starting_goalie.saves = 0
-            team.starting_goalie.goals_allowed = 0
-            team.backup_goalie.games = 0
-            team.backup_goalie.shots_against = 0
-            team.backup_goalie.saves = 0
-            team.backup_goalie.goals_allowed = 0
 
     def log_goalie_stats(self):
         with open('output/goalie_stats.csv', mode='w', newline='') as file:
@@ -371,7 +361,6 @@ class SeasonSimulator:
 
     def simulate_season(self, teams, matchups):
         self.reset_standings()
-        self.reset_goalie_stats()
         for (team1_name, team2_name), num_games in matchups.items():
             team1 = teams[team1_name]
             team2 = teams[team2_name]

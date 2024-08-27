@@ -3,12 +3,13 @@ class Goalie:
         self.name = name
         self.rating = rating
         self.games = games
-        self.shots = shots_against
+        self.shots_against = shots_against
         self.saves = saves
-        self.goals = goals_allowed
+        self.goals_allowed = goals_allowed
         self.wins = wins
         self.losses = losses
         self.shutouts = shutouts
+
 
 goalies = {
     "gibson": Goalie("John Gibson", 40),
