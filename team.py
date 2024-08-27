@@ -21,6 +21,11 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
+        self.max_selections = 65
+
+    def reset_selections(self):
+        self.starting_goalie_selections = 0
+        self.backup_goalie_selections = 0
 
     def select_goalie(self):
         total_rating = self.starting_goalie.rating + self.backup_goalie.rating
@@ -31,7 +36,7 @@ class Team:
 
         # Adjust probabilities to reflect a larger difference if there's a big gap in ratings
         rating_difference = abs(self.starting_goalie.rating - self.backup_goalie.rating)
-        if rating_difference > 10:
+        if (rating_difference > 10):
             adjustment_factor = rating_difference / 100
             starting_goalie_probability += adjustment_factor * starting_goalie_probability
             backup_goalie_probability -= adjustment_factor * backup_goalie_probability
@@ -41,8 +46,34 @@ class Team:
         starting_goalie_probability /= total_probability
         backup_goalie_probability /= total_probability
 
+        # Adjust probabilities based on the number of times goalies have been selected
+        if self.starting_goalie_selections >= self.max_selections:
+            starting_goalie_probability = 0
+            backup_goalie_probability = 1
+        elif self.backup_goalie_selections >= self.max_selections:
+            starting_goalie_probability = 1
+            backup_goalie_probability = 0
+        else:
+            total_selections = self.starting_goalie_selections + self.backup_goalie_selections
+            if total_selections > 0:
+                starting_goalie_probability *= (
+                                                           self.max_selections - self.starting_goalie_selections) / self.max_selections
+                backup_goalie_probability *= (self.max_selections - self.backup_goalie_selections) / self.max_selections
+
+            # Re-normalize probabilities to sum to 1
+            total_probability = starting_goalie_probability + backup_goalie_probability
+            starting_goalie_probability /= total_probability
+            backup_goalie_probability /= total_probability
+
         probabilities = [starting_goalie_probability, backup_goalie_probability]
         selected_goalie = random.choices([self.starting_goalie, self.backup_goalie], weights=probabilities)[0]
+
+        # Update selection counts
+        if selected_goalie == self.starting_goalie:
+            self.starting_goalie_selections += 1
+        else:
+            self.backup_goalie_selections += 1
+
         return selected_goalie
 
 

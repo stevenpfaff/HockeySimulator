@@ -2,6 +2,7 @@ import random
 from team import league, eastern_conference, western_conference, metropolitan_division, atlantic_division, central_division, pacific_division
 from game import Game
 import csv
+import os
 
 class SeasonSimulator:
     def __init__(self):
@@ -106,18 +107,36 @@ class SeasonSimulator:
                              game.visitor.name, game.visitor_goalie.name, game.visitor_goals, game.visitor_sog,
                              game.regulation])
 
+    def reset_goalie_stats(self):
+        for team in self.league:
+            team.starting_goalie.games = 0
+            team.starting_goalie.shots_against = 0
+            team.starting_goalie.saves = 0
+            team.starting_goalie.goals_allowed = 0
+            team.backup_goalie.games = 0
+            team.backup_goalie.shots_against = 0
+            team.backup_goalie.saves = 0
+            team.backup_goalie.goals_allowed = 0
+            team.starting_goalie_selections = 0
+            team.backup_goalie_selections = 0
+    def log_goalie_stats(self, sim_number):
+        output_file = "output/goalie_stats.csv"
+        file_exists = os.path.isfile(output_file)
 
-    def log_goalie_stats(self):
-        with open('output/goalie_stats.csv', mode='w', newline='') as file:
+        # Append to the CSV file
+        with open(output_file, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(["Goalie", "Team", "GP", "W", "L", "SO", "GA", "SV%"])
+            writer.writerow([f"Simulation {sim_number} Goalie Stats:"])
+            # Write header only if the file is new
+            if not file_exists:
+                writer.writerow(["Goalie", "Team", "GP", "W", "L", "SO", "SV%"])
             for team in self.league:
                 for goalie in [team.starting_goalie, team.backup_goalie]:
                     if goalie.shots_against > 0:
                         save_percentage = goalie.saves / goalie.shots_against
                     else:
                         save_percentage = 0
-                    writer.writerow([goalie.name, team.abrv, goalie.games, goalie.wins, goalie.losses, goalie.shutouts, goalie.goals_allowed,
+                    writer.writerow([goalie.name, team.abrv, goalie.games, goalie.wins, goalie.losses, goalie.shutouts,
                                      "{:.3f}%".format(save_percentage)])
 
     def sort_and_print(self, division_name, division_teams, filename):
@@ -349,18 +368,30 @@ class SeasonSimulator:
         playoff_results = self.playoff_bracket(output_file)
         return playoff_results
 
-    def write_cup_winners(self):
+    import csv
+
+    def write_cup_winners(self, num_simulations):
         with open('output/playoff_data.csv', mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(
-                ["Team", "Playoffs", "2nd Round", "Conference Final", "Cup Final",
-                 "Stanley Cup"])
-            for team in league:
+                ["Team", "Playoff%", "Round 2%", "Conf Final%",
+                 "Cup Final%", "Win Cup%"])
+
+            for team in league:  # Assuming `league` is a list of team objects
+                playoff_percentage = (team.playoffs / num_simulations) * 100
+                second_round_percentage = (team.second_round / num_simulations) * 100
+                conf_final_percentage = (team.conf_final / num_simulations) * 100
+                cup_final_percentage = (team.cup_final / num_simulations) * 100
+                cup_win_percentage = (team.cup_win / num_simulations) * 100
+
                 writer.writerow(
-                    [team.name, team.playoffs, team.second_round, team.conf_final, team.cup_final, team.cup_win])
+                    [team.name, f"{playoff_percentage:.2f}%", f"{second_round_percentage:.2f}%",
+                     f"{conf_final_percentage:.2f}%", f"{cup_final_percentage:.2f}%",
+                     f"{cup_win_percentage:.2f}%"])
 
     def simulate_season(self, teams, matchups):
         self.reset_standings()
+        self.reset_goalie_stats()
         for (team1_name, team2_name), num_games in matchups.items():
             team1 = teams[team1_name]
             team2 = teams[team2_name]
@@ -372,4 +403,4 @@ class SeasonSimulator:
                                   game.visitor_goals, game.winner, game.regulation, game.home_goalie,
                                   game.visitor_goalie)
                 # self.log_game_result(game)
-        self.log_goalie_stats()
+        # self.log_goalie_stats(sim_number)
