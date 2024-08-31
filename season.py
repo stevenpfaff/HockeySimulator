@@ -162,13 +162,13 @@ class SeasonSimulator:
             writer = csv.writer(file)
             writer.writerow([f"Simulation {sim_number} Standings:"])
 
-        # self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
-        # self.sort_and_print("Atlantic", self.atlantic_division, filename)
-        # self.sort_and_print("Central", self.central_division, filename)
-        # self.sort_and_print("Pacific", self.pacific_division, filename)
+        self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
+        self.sort_and_print("Atlantic", self.atlantic_division, filename)
+        self.sort_and_print("Central", self.central_division, filename)
+        self.sort_and_print("Pacific", self.pacific_division, filename)
         # self.sort_and_print("Eastern Conference", self.eastern_conference, "standings.csv")
         # self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
-        self.sort_and_print("NHL", self.league, filename)
+        # self.sort_and_print("NHL", self.league, filename)
 
     def playoff_bracket(self, output_file):
         def add_playoff_appearance(matchups):
