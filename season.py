@@ -151,10 +151,16 @@ class SeasonSimulator:
                     save_percentage = team.saves / team.sog_ag
                 else:
                     save_percentage = 0
+
+                # Check if team.sog is greater than zero before calculating shooting percentage
+                if team.sog > 0:
+                    shooting_percentage = "{:.2f}".format((team.goals / team.sog) * 100) + "%"
+                else:
+                    shooting_percentage = "0.00%"
+
                 writer.writerow(
                     [i, team.abrv, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against,
-                     "{:.2f}".format((team.goals / team.sog) * 100) + "%",
-                     "{:.3f}".format(save_percentage)])
+                     shooting_percentage, "{:.3f}".format(save_percentage)])
             writer.writerow("")
 
     def sort_division_standings(self, filename, sim_number):
