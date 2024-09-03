@@ -1,16 +1,16 @@
 Round,Home,Visitor,Winner,Games
-East Round 1,CAR,NYR,NYR,5
-East Round 1,TOR,TB,TOR,7
-East Round 1,WSH,PIT,PIT,6
-East Round 1,FLA,BUF,BUF,7
-West Round 1,SEA,LA,SEA,4
-West Round 1,WPG,DAL,DAL,6
-West Round 1,VAN,VGK,VGK,5
-West Round 1,COL,EDM,COL,7
-East Round 2,NYR,TOR,NYR,6
-East Round 2,PIT,BUF,BUF,7
-West Round 2,SEA,DAL,DAL,6
-West Round 2,VGK,COL,COL,4
-East Conference Finals,NYR,BUF,NYR,7
-West Conference Finals,DAL,COL,COL,6
-Cup Final,NYR,COL,COL,7
+East Round 1,CAR,WSH,CAR,5
+East Round 1,FLA,BOS,BOS,4
+East Round 1,NYR,NJ,NJ,5
+East Round 1,TOR,TB,TB,4
+West Round 1,WPG,VAN,WPG,5
+West Round 1,DAL,COL,DAL,6
+West Round 1,EDM,VGK,VGK,7
+West Round 1,CGY,SEA,SEA,4
+East Round 2,CAR,BOS,BOS,5
+East Round 2,NJ,TB,NJ,5
+West Round 2,WPG,DAL,WPG,7
+West Round 2,VGK,SEA,VGK,5
+East Conference Finals,BOS,NJ,BOS,6
+West Conference Finals,WPG,VGK,VGK,6
+Cup Final,BOS,VGK,BOS,7

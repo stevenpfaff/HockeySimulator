@@ -139,20 +139,31 @@ class SeasonSimulator:
                     writer.writerow([goalie.name, team.abrv, goalie.games, goalie.wins, goalie.losses, goalie.shutouts,
                                      "{:.3f}%".format(save_percentage)])
 
+    import csv
+    import os
+
     def sort_and_print(self, division_name, division_teams, filename):
         sorted_standings = sorted(division_teams, key=lambda x: (x.points, x.wins, x.goals - x.goals_against),
                                   reverse=True)
+
+        # Check if the file exists and if it's empty
+        file_exists = os.path.exists(filename)
+        file_is_empty = os.path.getsize(filename) == 0 if file_exists else True
+
         with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([f"{division_name}:"])
-            writer.writerow(["Rank", "Team", "W", "L", "OTL", "PTS", "GF", "GA", "SH%", "SV%"])
+
+            # Only write the header if the file is empty
+            if file_is_empty:
+                writer.writerow(["Rank", "Team", "W", "L", "OTL", "PTS", "GF", "GA", "SH%", "SV%"])
+
+            # Write the sorted standings
             for i, team in enumerate(sorted_standings, start=1):
                 if team.sog_ag > 0:
                     save_percentage = team.saves / team.sog_ag
                 else:
                     save_percentage = 0
 
-                # Check if team.sog is greater than zero before calculating shooting percentage
                 if team.sog > 0:
                     shooting_percentage = "{:.2f}".format((team.goals / team.sog) * 100) + "%"
                 else:
@@ -161,20 +172,22 @@ class SeasonSimulator:
                 writer.writerow(
                     [i, team.abrv, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against,
                      shooting_percentage, "{:.3f}".format(save_percentage)])
+
+            # Optional: Add an empty row to separate simulations
             writer.writerow("")
 
     def sort_division_standings(self, filename, sim_number):
         with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([f"Simulation {sim_number} Standings:"])
-
-        self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
-        self.sort_and_print("Atlantic", self.atlantic_division, filename)
-        self.sort_and_print("Central", self.central_division, filename)
-        self.sort_and_print("Pacific", self.pacific_division, filename)
+        #     writer.writerow([f"Simulation {sim_number} Standings:"])
+        #
+        # self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
+        # self.sort_and_print("Atlantic", self.atlantic_division, filename)
+        # self.sort_and_print("Central", self.central_division, filename)
+        # self.sort_and_print("Pacific", self.pacific_division, filename)
         # self.sort_and_print("Eastern Conference", self.eastern_conference, "standings.csv")
         # self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
-        # self.sort_and_print("NHL", self.league, filename)
+        self.sort_and_print("NHL", self.league, filename)
 
     def playoff_bracket(self, output_file):
         def add_playoff_appearance(matchups):
