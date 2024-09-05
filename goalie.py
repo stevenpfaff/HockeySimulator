@@ -26,7 +26,7 @@ goalies = {
     "vladar": Goalie("Dan Vladar", 30),
     "cooley": Goalie("Devin Cooley", 30),
     # Hurricanes
-    "andersen": Goalie("Frederik Andersen", 60),
+    "andersen": Goalie("Frederik Andersen", 65),
     "kochetkov": Goalie("Pyotr Kochetkov", 50),
     # Blackhawks
     "mrazek": Goalie("Petr Mrazek", 40),
@@ -39,7 +39,7 @@ goalies = {
     "merzlikins": Goalie("Elvis Merzlikins", 40),
     "tarasov": Goalie("Daniil Tarasov", 30),
     # Stars
-    "oettinger": Goalie("Jake Oettinger", 60),
+    "oettinger": Goalie("Jake Oettinger", 65),
     "desmith": Goalie("Casey DeSmith", 50),
     # Red Wings
     "talbot": Goalie("Cam Talbot", 55),
@@ -51,7 +51,7 @@ goalies = {
     "pickard": Goalie("Calvin Pickard", 40),
     "delia": Goalie("Collin Delia", 40),
     # Panthers
-    "bobrovsky": Goalie("Sergei Bobrovsky", 60),
+    "bobrovsky": Goalie("Sergei Bobrovsky", 65),
     "knight": Goalie("Spencer Knight", 50),
     # Kings
     "kuemper": Goalie("Darcy Kuemper", 60),
@@ -65,7 +65,7 @@ goalies = {
     "montembeault": Goalie("Sam Montembeault", 50),
     # Predators
     "saros": Goalie("Juuse Saros", 70),
-    "wedgewood": Goalie("Scott Wedgewood", 40),
+    "wedgewood": Goalie("Scott Wedgewood", 35),
     # Devils
     "markstrom": Goalie("Jacob Markstrom", 60),
     "allen": Goalie("Jake Allen", 50),
@@ -77,7 +77,7 @@ goalies = {
     "quick": Goalie("Jonathan Quick", 50),
     # Senators
     "ullmark": Goalie("Linus Ullmark", 70),
-    "forsberg": Goalie("Anton Forsberg", 30),
+    "forsberg": Goalie("Anton Forsberg", 35),
     # Flyers
     "fedotov": Goalie("Ivan Fedotov", 50),
     "ersson": Goalie("Samuel Ersson", 40),
@@ -90,7 +90,7 @@ goalies = {
     "vanacek": Goalie("Vitek Vanecek", 30),
     # Kraken
     "daccord": Goalie("Joey Daccord", 55),
-    "grubauer": Goalie("Philipp Grubauer", 40),
+    "grubauer": Goalie("Philipp Grubauer", 35),
     # Blues
     "binner": Goalie("Jordan Binnington", 60),
     "hofer": Goalie("Joel Hofer", 30),
@@ -99,12 +99,12 @@ goalies = {
     "johansson": Goalie("Jonas Johansson", 20),
     # Leafs
     "stolarz": Goalie("Anthony Stolarz", 55),
-    "woll": Goalie("Joeseph Woll", 40),
+    "woll": Goalie("Joeseph Woll", 45),
     # Utah
     "vemelka": Goalie("Karel Vejmelka", 40),
     "ingram": Goalie("Connor Ingram", 55),
     # Canucks
-    "demko": Goalie("Thatcher Demko", 60),
+    "demko": Goalie("Thatcher Demko", 65),
     "silvos": Goalie("Arturs Silovs", 40),
     # Golden Knights
     "hill": Goalie("Adin Hill", 55),

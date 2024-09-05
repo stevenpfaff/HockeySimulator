@@ -3,7 +3,7 @@ from team import teams
 from matchups import matchups
 
 if __name__ == "__main__":
-    num_simulations = 100000
+    num_simulations = 10000
     playoff_statistics = []
 
     for i in range(1, num_simulations + 1):

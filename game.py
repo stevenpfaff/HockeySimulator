@@ -27,7 +27,7 @@ class Game:
             (100, [(80, (19, 40)), (85, (19, 38)), (90, (19, 36)), (95, (19, 35)), (100, (19, 34)), (105, (19, 32)), (110, (19, 30))]),
             (105, [(80, (20, 42)), (85, (20, 40)), (90, (20, 38)), (95, (20, 36)), (100, (20, 35)), (105, (20, 32)), (110, (20, 30))]),
             (110, [(80, (22, 45)), (85, (22, 42)), (90, (22, 40)), (95, (22, 38)), (100, (22, 35)), (105, (22, 32)), (110, (22, 30))]),
-            (115, [(80, (25, 48)), (85, (25, 45)), (90, (25, 42)), (95, (25, 40)), (100, (25, 38)), (105, (25, 35)),(110, (25, 32))]),
+            (115, [(80, (25, 48)), (85, (25, 45)), (90, (25, 42)), (95, (25, 40)), (100, (25, 38)), (105, (25, 35)), (110, (25, 32))]),
         # , (115, (20, 28)), (115, (19, 28)), (115, (18, 28)), (115, (17, 25)), (115, (16, 23)), (115, (15, 23)),  (115, (13, 20)), (115, (21, 30))
         ]
 
@@ -62,23 +62,27 @@ class Game:
     def get_goal_probability(goalie_rating):
         threshold = 20  # Example threshold, adjust as needed
         if goalie_rating <= threshold:
-            return 0.115
+            return 0.120
         elif goalie_rating > threshold and goalie_rating <= 30:
-            return 0.110
-        elif goalie_rating > 30 and goalie_rating <= 40:
-            return 0.105
+            return 0.115
+        elif goalie_rating > 30 and goalie_rating <= 45:
+            return 0.112
+        elif goalie_rating > 35 and goalie_rating <= 40:
+            return 0.108
         elif goalie_rating > 40 and goalie_rating <= 45:
-            return 0.100
+            return 0.105
         elif goalie_rating > 45 and goalie_rating <= 50:
-            return 0.097
+            return 0.100
         elif goalie_rating > 50 and goalie_rating <= 55:
-            return 0.095
+            return 0.097
         elif goalie_rating > 55 and goalie_rating <= 60:
+            return 0.095
+        elif goalie_rating > 60 and goalie_rating <= 65:
             return 0.092
-        elif goalie_rating > 60 and goalie_rating <= 70:
+        elif goalie_rating > 65 and goalie_rating <= 70:
             return 0.090
         elif goalie_rating > 70 and goalie_rating <= 80:
-            return 0.085
+            return 0.088
 
     def __get_winner(self):
         team1_goals = self.home_goals

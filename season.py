@@ -3,6 +3,7 @@ from team import league, eastern_conference, western_conference, metropolitan_di
 from game import Game
 import csv
 import os
+import functools
 
 class SeasonSimulator:
     def __init__(self):
@@ -43,6 +44,7 @@ class SeasonSimulator:
         # Update standings based on game result
         if winner == team1:
             if regulation:
+                team1.regulation_wins += 1
                 team1.wins += 1
                 team1.points += 2
                 team2.losses += 1
@@ -61,6 +63,7 @@ class SeasonSimulator:
                 team1_goalie.wins += 1
         else:
             if regulation:
+                team2.regulation_wins += 1
                 team2.wins += 1
                 team2.points += 2
                 team1.losses += 1
@@ -86,6 +89,8 @@ class SeasonSimulator:
     def reset_standings(self):
         for team in self.league:
             team.wins = 0
+            team.regulation_wins = 0
+            team.row = 0
             team.losses = 0
             team.otl = 0
             team.points = 0
@@ -143,7 +148,7 @@ class SeasonSimulator:
     import os
 
     def sort_and_print(self, division_name, division_teams, filename):
-        sorted_standings = sorted(division_teams, key=lambda x: (x.points, x.wins, x.goals - x.goals_against),
+        sorted_standings = sorted(division_teams, key=lambda x: (x.points, x.wins, x.regulation_wins, x.row, x.goals - x.goals_against,),
                                   reverse=True)
 
         # Check if the file exists and if it's empty
@@ -155,7 +160,7 @@ class SeasonSimulator:
 
             # Only write the header if the file is empty
             if file_is_empty:
-                writer.writerow(["Rank", "Team", "W", "L", "OTL", "PTS", "GF", "GA", "SH%", "SV%"])
+                writer.writerow(["Rank", "Team", "W", "L", "OTL", "PTS", "GF", "GA", "SH%", "SV%", "Regulation"])
 
             # Write the sorted standings
             for i, team in enumerate(sorted_standings, start=1):
@@ -171,7 +176,7 @@ class SeasonSimulator:
 
                 writer.writerow(
                     [i, team.abrv, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against,
-                     shooting_percentage, "{:.3f}".format(save_percentage)])
+                     shooting_percentage, "{:.3f}".format(save_percentage), team.regulation_wins,])
 
             # Optional: Add an empty row to separate simulations
             writer.writerow("")
@@ -181,19 +186,32 @@ class SeasonSimulator:
             writer = csv.writer(file)
         #     writer.writerow([f"Simulation {sim_number} Standings:"])
         #
-        # self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
-        # self.sort_and_print("Atlantic", self.atlantic_division, filename)
-        # self.sort_and_print("Central", self.central_division, filename)
-        # self.sort_and_print("Pacific", self.pacific_division, filename)
+        self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
+        self.sort_and_print("Atlantic", self.atlantic_division, filename)
+        self.sort_and_print("Central", self.central_division, filename)
+        self.sort_and_print("Pacific", self.pacific_division, filename)
         # self.sort_and_print("Eastern Conference", self.eastern_conference, "standings.csv")
         # self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
-        self.sort_and_print("NHL", self.league, filename)
+        # self.sort_and_print("NHL", self.league, filename)
 
     def playoff_bracket(self, output_file):
+
+        def nhl_tiebreaker(team1, team2):
+            if team1.points > team2.points:
+                return -1
+            elif team1.points < team2.points:
+                return 1
+            if team1.regulation_wins > team2.regulation_wins:
+                return -1
+            elif team1.regulation_wins < team2.regulation_wins:
+                return 1
+            return 0
+
         def add_playoff_appearance(matchups):
             for team1, team2 in matchups:
                 team1.playoffs += 1
                 team2.playoffs += 1
+
         def simulate_series(matchup, home_goalie, away_goalie):
             team1, team2 = matchup
             team1_wins = 0
@@ -208,41 +226,67 @@ class SeasonSimulator:
                     team2_wins += 1
                 total_games += 1
 
-            if team1_wins > team2_wins:
-                series_winner = team1
-            else:
-                series_winner = team2
-
+            series_winner = team1 if team1_wins > team2_wins else team2
             return series_winner, total_games
 
-        # Define the matchups
-        west_winner = sorted(self.western_conference, key=lambda x: x.points, reverse=True)[:1]
-        central_winner = sorted(self.central_division, key=lambda x: x.points, reverse=True)[:1]
-        pacific_winner = sorted(self.pacific_division, key=lambda x: x.points, reverse=True)[:1]
-        central_div_teams = sorted(self.central_division, key=lambda x: x.points, reverse=True)[:3]
-        pacific_div_teams = sorted(self.pacific_division, key=lambda x: x.points, reverse=True)[:3]
-        east_winner = sorted(self.eastern_conference, key=lambda x: x.points, reverse=True)[:1]
-        atlantic_winner = sorted(self.atlantic_division, key=lambda x: x.points, reverse=True)[:1]
-        metro_winner = sorted(self.metropolitan_division, key=lambda x: x.points, reverse=True)[:1]
-        atlantic_div_teams = sorted(self.atlantic_division, key=lambda x: x.points, reverse=True)[:3]
-        metro_div_teams = sorted(self.metropolitan_division, key=lambda x: x.points, reverse=True)[:3]
-        central_non_top3 = sorted(self.central_division, key=lambda x: x.points, reverse=True)[3:]
-        pacific_non_top3 = sorted(self.pacific_division, key=lambda x: x.points, reverse=True)[3:]
-        atlantic_non_top3 = sorted(self.atlantic_division, key=lambda x: x.points, reverse=True)[3:]
-        metro_non_top3 = sorted(self.metropolitan_division, key=lambda x: x.points, reverse=True)[3:]
-        west_wildcard = sorted(central_non_top3 + pacific_non_top3, key=lambda x: x.points, reverse=True)[:2]
-        east_wildcard = sorted(atlantic_non_top3 + metro_non_top3, key=lambda x: x.points, reverse=True)[:2]
+            # Sort divisions and determine wildcards
 
-        # Round 1 Begins
+        central_div_teams = sorted(self.central_division, key=functools.cmp_to_key(nhl_tiebreaker))
+        pacific_div_teams = sorted(self.pacific_division, key=functools.cmp_to_key(nhl_tiebreaker))
+        atlantic_div_teams = sorted(self.atlantic_division, key=functools.cmp_to_key(nhl_tiebreaker))
+        metro_div_teams = sorted(self.metropolitan_division, key=functools.cmp_to_key(nhl_tiebreaker))
+
+        # Top 3 from each division
+        central_top3 = central_div_teams[:3]
+        pacific_top3 = pacific_div_teams[:3]
+        atlantic_top3 = atlantic_div_teams[:3]
+        metro_top3 = metro_div_teams[:3]
+
+        # Remaining teams for wildcards
+        west_remaining = central_div_teams[3:] + pacific_div_teams[3:]
+        east_remaining = atlantic_div_teams[3:] + metro_div_teams[3:]
+
+        west_wildcards = sorted(west_remaining, key=functools.cmp_to_key(nhl_tiebreaker))[:2]
+        east_wildcards = sorted(east_remaining, key=functools.cmp_to_key(nhl_tiebreaker))[:2]
+
+        # Identify division winners
+        central_winner = central_top3[0]
+        pacific_winner = pacific_top3[0]
+        atlantic_winner = atlantic_top3[0]
+        metro_winner = metro_top3[0]
+
+        # Determine top seeds in each conference
+        west_top_teams = [central_winner, pacific_winner]
+        east_top_teams = [atlantic_winner, metro_winner]
+
+        west_top_teams_sorted = sorted(west_top_teams, key=lambda x: x.points, reverse=True)
+        east_top_teams_sorted = sorted(east_top_teams, key=lambda x: x.points, reverse=True)
+
+        west_first_seed = west_top_teams_sorted[0]
+        west_second_seed = west_top_teams_sorted[1]
+
+        east_first_seed = east_top_teams_sorted[0]
+        east_second_seed = east_top_teams_sorted[1]
+
+        # Wildcards matchups
+        west_wildcard1, west_wildcard2 = sorted(west_wildcards, key=lambda x: x.points, reverse=True)
+        east_wildcard1, east_wildcard2 = sorted(east_wildcards, key=lambda x: x.points, reverse=True)
+
+        # First round matchups - Eastern Conference
         round1_east_matchups = [
-            (east_winner[0], east_wildcard[1]),
-            (atlantic_div_teams[1], atlantic_div_teams[2]),
-            (metro_div_teams[1], metro_div_teams[2])
+            (east_first_seed, east_wildcard2),  # 1 vs WC2
+            (east_second_seed, east_wildcard1),  # 2 vs WC1
+            (atlantic_top3[1], atlantic_top3[2]),  # 3 vs 4 in Atlantic
+            (metro_top3[1], metro_top3[2])  # 3 vs 4 in Metro
         ]
-        if east_winner != atlantic_winner:
-            round1_east_matchups.append((atlantic_winner[0], east_wildcard[0]))
-        elif east_winner != metro_winner:
-            round1_east_matchups.append((metro_winner[0], east_wildcard[0]))
+
+        # First round matchups - Western Conference
+        round1_west_matchups = [
+            (west_first_seed, west_wildcard2),  # 1 vs WC2
+            (west_second_seed, west_wildcard1),  # 2 vs WC1
+            (pacific_top3[1], pacific_top3[2]),  # 3 vs 4 in Pacific
+            (central_top3[1], central_top3[2])  # 3 vs 4 in Central
+        ]
 
         east_first_round_results = []
         for matchup in round1_east_matchups:
@@ -253,16 +297,6 @@ class SeasonSimulator:
             series_winner.second_round += 1
             east_first_round_results.append((series_winner, total_games))
 
-        round1_west_matchups = [
-            (west_winner[0], west_wildcard[1]),
-            (central_div_teams[1], central_div_teams[2]),
-            (pacific_div_teams[1], pacific_div_teams[2])
-        ]
-        if west_winner != central_winner:
-            round1_west_matchups.append((central_winner[0], west_wildcard[0]))
-        elif east_winner != pacific_winner:
-            round1_west_matchups.append((pacific_winner[0], west_wildcard[0]))
-
         west_first_round_results = []
         for matchup in round1_west_matchups:
             home_team, away_team = matchup
@@ -272,13 +306,18 @@ class SeasonSimulator:
             series_winner.second_round += 1
             west_first_round_results.append((series_winner, total_games))
 
-        # Round 2 Begins
+        # Second round matchups
         add_playoff_appearance(round1_east_matchups)
         add_playoff_appearance(round1_west_matchups)
 
         round2_east_matchups = [
             (east_first_round_results[0][0], east_first_round_results[1][0]),
-            (east_first_round_results[2][0], east_first_round_results[3][0]),
+            (east_first_round_results[2][0], east_first_round_results[3][0])
+        ]
+
+        round2_west_matchups = [
+            (west_first_round_results[0][0], west_first_round_results[1][0]),
+            (west_first_round_results[2][0], west_first_round_results[3][0])
         ]
 
         east_second_round_results = []
@@ -290,11 +329,6 @@ class SeasonSimulator:
             series_winner.conf_final += 1
             east_second_round_results.append((series_winner, total_games))
 
-        round2_west_matchups = [
-            (west_first_round_results[0][0], west_first_round_results[1][0]),
-            (west_first_round_results[2][0], west_first_round_results[3][0]),
-        ]
-
         west_second_round_results = []
         for matchup in round2_west_matchups:
             home_team, away_team = matchup
@@ -304,7 +338,7 @@ class SeasonSimulator:
             series_winner.conf_final += 1
             west_second_round_results.append((series_winner, total_games))
 
-        # Conference Final
+        # Conference Finals
         eastern_final = [
             (east_second_round_results[0][0], east_second_round_results[1][0])
         ]
@@ -331,7 +365,7 @@ class SeasonSimulator:
             series_winner.cup_final += 1
             wcf_results.append((series_winner, total_games))
 
-        # Cup Final
+        # Stanley Cup Final
         cup_final = [
             (ecf_results[0][0], wcf_results[0][0])
         ]

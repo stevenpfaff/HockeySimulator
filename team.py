@@ -3,7 +3,7 @@ from skater import forwards
 import random
 class Team:
     def __init__(self, name, abrv, offense, defense, starting_goalie, backup_goalie,
-                 wins=0, losses=0, otl=0, points=0, playoffs=0,
+                 wins=0, regulation_wins=0, losses=0, otl=0, points=0, playoffs=0,
                  second_round=0, conf_final=0, cup_final=0,
                  cup_win=0):
         self.name = name
@@ -13,6 +13,7 @@ class Team:
         self.starting_goalie = starting_goalie
         self.backup_goalie = backup_goalie
         self.wins = wins
+        self.regulation_wins = regulation_wins
         self.losses = losses
         self.otl = otl
         self.points = points
