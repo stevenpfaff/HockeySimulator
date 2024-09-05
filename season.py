@@ -124,25 +124,36 @@ class SeasonSimulator:
             team.backup_goalie.goals_allowed = 0
             team.starting_goalie_selections = 0
             team.backup_goalie_selections = 0
+
+    import os
+    import csv
+
     def log_goalie_stats(self, sim_number):
         output_file = "output/goalie_stats.csv"
         file_exists = os.path.isfile(output_file)
+        data = []
+
+        # Collect data first
+        for team in self.league:
+            for goalie in [team.starting_goalie, team.backup_goalie]:
+                if goalie.shots_against > 0:
+                    save_percentage = goalie.saves / goalie.shots_against
+                else:
+                    save_percentage = 0
+                data.append([goalie.name, team.abrv, goalie.games, goalie.wins, goalie.losses, goalie.shutouts,
+                             save_percentage])
+
+        # Sort data by save percentage in descending order
+        data.sort(key=lambda x: x[6], reverse=True)
 
         # Append to the CSV file
         with open(output_file, mode='a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([f"Simulation {sim_number} Goalie Stats:"])
-            # Write header only if the file is new
             if not file_exists:
                 writer.writerow(["Goalie", "Team", "GP", "W", "L", "SO", "SV%"])
-            for team in self.league:
-                for goalie in [team.starting_goalie, team.backup_goalie]:
-                    if goalie.shots_against > 0:
-                        save_percentage = goalie.saves / goalie.shots_against
-                    else:
-                        save_percentage = 0
-                    writer.writerow([goalie.name, team.abrv, goalie.games, goalie.wins, goalie.losses, goalie.shutouts,
-                                     "{:.3f}%".format(save_percentage)])
+            writer.writerow([f"Simulation {sim_number} Goalie Stats:"])
+            for row in data:
+                writer.writerow([row[0], row[1], row[2], row[3], row[4], row[5], "{:.3f}%".format(row[6])])
 
     import csv
     import os
@@ -186,13 +197,13 @@ class SeasonSimulator:
             writer = csv.writer(file)
         #     writer.writerow([f"Simulation {sim_number} Standings:"])
         #
-        self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
-        self.sort_and_print("Atlantic", self.atlantic_division, filename)
-        self.sort_and_print("Central", self.central_division, filename)
-        self.sort_and_print("Pacific", self.pacific_division, filename)
+        # self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
+        # self.sort_and_print("Atlantic", self.atlantic_division, filename)
+        # self.sort_and_print("Central", self.central_division, filename)
+        # self.sort_and_print("Pacific", self.pacific_division, filename)
         # self.sort_and_print("Eastern Conference", self.eastern_conference, "standings.csv")
         # self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
-        # self.sort_and_print("NHL", self.league, filename)
+        self.sort_and_print("NHL", self.league, filename)
 
     def playoff_bracket(self, output_file):
 
