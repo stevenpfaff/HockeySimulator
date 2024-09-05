@@ -67,10 +67,14 @@ class Game:
             return 0.110
         elif goalie_rating > 30 and goalie_rating <= 40:
             return 0.105
-        elif goalie_rating > 40 and goalie_rating <= 50:
+        elif goalie_rating > 40 and goalie_rating <= 45:
             return 0.100
-        elif goalie_rating > 50 and goalie_rating <= 60:
+        elif goalie_rating > 45 and goalie_rating <= 50:
+            return 0.097
+        elif goalie_rating > 50 and goalie_rating <= 55:
             return 0.095
+        elif goalie_rating > 55 and goalie_rating <= 60:
+            return 0.092
         elif goalie_rating > 60 and goalie_rating <= 70:
             return 0.090
         elif goalie_rating > 70 and goalie_rating <= 80:

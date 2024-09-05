@@ -200,7 +200,7 @@ teams = {
     "van": Team("Vancouver Canucks", "VAN", van_offense, van_defense, goalies["demko"], goalies["silvos"]),
     "vgk": Team("Vegas Golden Knights", "VGK", vgk_offense, vgk_defense, goalies["hill"], goalies["samsonov"]),
     "wsh": Team("Washington Capitals", "WSH", wsh_offense, wsh_defense, goalies["lindgren"], goalies["thompson"]),
-    "wpg": Team("Winnipeg Jets", "WPG", wpg_offense, wpg_defense, goalies["hellebuyck"], goalies["comrie"]),
+    "wpg": Team("Winnipeg Jets", "WPG", wpg_offense, wpg_defense, goalies["hellebuyck"], goalies["kahkonen"]),
 }
 
 print(f"ANA {ana_offense:.1f} {ana_defense:.1f}")
