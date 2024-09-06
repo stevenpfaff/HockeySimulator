@@ -223,13 +223,33 @@ class SeasonSimulator:
                 team1.playoffs += 1
                 team2.playoffs += 1
 
-        def simulate_series(matchup, home_goalie, away_goalie):
+        def get_top_rated_goalie(team):
+            # Compare the starting goalie and backup based on save percentage
+            if team.backup_goalie.shots_against > 0:
+                backup_save_percentage = team.backup_goalie.saves / team.backup_goalie.shots_against
+            else:
+                backup_save_percentage = 0
+
+            if team.starting_goalie.shots_against > 0:
+                starting_save_percentage = team.starting_goalie.saves / team.starting_goalie.shots_against
+            else:
+                starting_save_percentage = 0
+
+            # Return the goalie with the higher save percentage
+            if backup_save_percentage > starting_save_percentage:
+                return team.backup_goalie
+            return team.starting_goalie
+
+        def simulate_series(matchup):
             team1, team2 = matchup
             team1_wins = 0
             team2_wins = 0
             total_games = 0
 
             while team1_wins < 4 and team2_wins < 4 and total_games < 7:
+                home_goalie = get_top_rated_goalie(team1)
+                away_goalie = get_top_rated_goalie(team2)
+
                 game = Game(team1, team2, home_goalie, away_goalie)
                 if game.winner == team1:
                     team1_wins += 1
@@ -239,8 +259,6 @@ class SeasonSimulator:
 
             series_winner = team1 if team1_wins > team2_wins else team2
             return series_winner, total_games
-
-            # Sort divisions and determine wildcards
 
         central_div_teams = sorted(self.central_division, key=functools.cmp_to_key(nhl_tiebreaker))
         pacific_div_teams = sorted(self.pacific_division, key=functools.cmp_to_key(nhl_tiebreaker))
@@ -304,16 +322,16 @@ class SeasonSimulator:
             home_team, away_team = matchup
             home_goalie = home_team.starting_goalie
             away_goalie = away_team.starting_goalie
-            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
+            series_winner, total_games = simulate_series(matchup)
             series_winner.second_round += 1
             east_first_round_results.append((series_winner, total_games))
 
         west_first_round_results = []
         for matchup in round1_west_matchups:
             home_team, away_team = matchup
-            home_goalie = home_team.starting_goalie
-            away_goalie = away_team.starting_goalie
-            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
+            home_goalie = get_top_rated_goalie(home_team)
+            away_goalie = get_top_rated_goalie(away_team)
+            series_winner, total_games = simulate_series(matchup)
             series_winner.second_round += 1
             west_first_round_results.append((series_winner, total_games))
 
@@ -334,18 +352,18 @@ class SeasonSimulator:
         east_second_round_results = []
         for matchup in round2_east_matchups:
             home_team, away_team = matchup
-            home_goalie = home_team.starting_goalie
-            away_goalie = away_team.starting_goalie
-            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
+            home_goalie = get_top_rated_goalie(home_team)
+            away_goalie = get_top_rated_goalie(away_team)
+            series_winner, total_games = simulate_series(matchup)
             series_winner.conf_final += 1
             east_second_round_results.append((series_winner, total_games))
 
         west_second_round_results = []
         for matchup in round2_west_matchups:
             home_team, away_team = matchup
-            home_goalie = home_team.starting_goalie
-            away_goalie = away_team.starting_goalie
-            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
+            home_goalie = get_top_rated_goalie(home_team)
+            away_goalie = get_top_rated_goalie(away_team)
+            series_winner, total_games = simulate_series(matchup)
             series_winner.conf_final += 1
             west_second_round_results.append((series_winner, total_games))
 
@@ -357,9 +375,9 @@ class SeasonSimulator:
         ecf_results = []
         for matchup in eastern_final:
             home_team, away_team = matchup
-            home_goalie = home_team.starting_goalie
-            away_goalie = away_team.starting_goalie
-            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
+            home_goalie = get_top_rated_goalie(home_team)
+            away_goalie = get_top_rated_goalie(away_team)
+            series_winner, total_games = simulate_series(matchup)
             series_winner.cup_final += 1
             ecf_results.append((series_winner, total_games))
 
@@ -370,9 +388,9 @@ class SeasonSimulator:
         wcf_results = []
         for matchup in western_final:
             home_team, away_team = matchup
-            home_goalie = home_team.starting_goalie
-            away_goalie = away_team.starting_goalie
-            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
+            home_goalie = get_top_rated_goalie(home_team)
+            away_goalie = get_top_rated_goalie(away_team)
+            series_winner, total_games = simulate_series(matchup)
             series_winner.cup_final += 1
             wcf_results.append((series_winner, total_games))
 
@@ -384,9 +402,9 @@ class SeasonSimulator:
         cup_final_results = []
         for matchup in cup_final:
             home_team, away_team = matchup
-            home_goalie = home_team.starting_goalie
-            away_goalie = away_team.starting_goalie
-            series_winner, total_games = simulate_series(matchup, home_goalie, away_goalie)
+            home_goalie = get_top_rated_goalie(home_team)
+            away_goalie = get_top_rated_goalie(away_team)
+            series_winner, total_games = simulate_series(matchup)
             series_winner.cup_win += 1
             cup_final_results.append(series_winner)
 
