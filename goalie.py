@@ -19,7 +19,7 @@ goalies = {
     "swayman": Goalie("Jeremy Swayman", 70),
     "korp": Goalie("Joonas Korpisalo", 30),
     # Sabres
-    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 50),
+    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55),
     "levi": Goalie("Devon Levi", 40),
     # Flames
     "wolf": Goalie("Dustin Wolf", 30),
@@ -85,9 +85,9 @@ goalies = {
     "jarry": Goalie("Tristan Jarry", 60),
     "ned": Goalie("Alex Nedelkovich", 45),
     # Sharks
-    "askarov": Goalie("Yaroslav Askarov", 45),
-    "blackwood": Goalie("Mackenzie Blackwood", 45),
-    "vanacek": Goalie("Vitek Vanecek", 30),
+    "askarov": Goalie("Yaroslav Askarov", 40),
+    "blackwood": Goalie("Mackenzie Blackwood", 40),
+    "vanacek": Goalie("Vitek Vanecek", 40),
     # Kraken
     "daccord": Goalie("Joey Daccord", 55),
     "grubauer": Goalie("Philipp Grubauer", 40),
@@ -114,7 +114,7 @@ goalies = {
     "thompson": Goalie("Logan Thompson", 55),
     "lindgren": Goalie("Charlie Lindgren", 55),
     # Jets
-    "hellebuyck": Goalie("Connor Hellebuyck", 80),
+    "hellebuyck": Goalie("Connor Hellebuyck", 90),
     "kahkonen": Goalie("Kaapo Kahkonen", 40),
     "comrie": Goalie("Eric Comrie", 40),
 
