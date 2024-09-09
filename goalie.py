@@ -51,7 +51,7 @@ goalies = {
     "pickard": Goalie("Calvin Pickard", 40),
     "delia": Goalie("Collin Delia", 40),
     # Panthers
-    "bobrovsky": Goalie("Sergei Bobrovsky", 60),
+    "bobrovsky": Goalie("Sergei Bobrovsky", 70),
     "knight": Goalie("Spencer Knight", 50),
     # Kings
     "kuemper": Goalie("Darcy Kuemper", 60),

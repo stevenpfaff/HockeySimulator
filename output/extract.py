@@ -32,13 +32,13 @@ def calculate_team_percentiles(file_path, output_file):
         writer = csv.writer(file)
 
         # Write the header row
-        writer.writerow(['Team', 'Stat', '20th Percentile', '50th Percentile', '80th Percentile'])
+        writer.writerow(['Team', 'Stat', '25th Percentile', '50th Percentile', '75th Percentile'])
 
         # Write the data for each team
         for team, stats in team_stats.items():
             for stat, values in stats.items():
                 if values:
-                    percentiles = np.percentile(values, [20, 50, 80])
+                    percentiles = np.percentile(values, [25, 50, 75])
                     writer.writerow([
                         team,
                         stat,
