@@ -4,7 +4,7 @@ from collections import defaultdict
 
 def calculate_team_percentiles(file_path, output_file):
     # Dictionary to hold data for each team
-    team_stats = defaultdict(lambda: {'GF': [], 'GA': [], 'PTS': []})
+    team_stats = defaultdict(lambda: {'GF': [], 'GA': [], 'PTS': [], "Regulation": []})
 
     # Open the input CSV file
     with open(file_path, mode='r') as file:
@@ -21,7 +21,7 @@ def calculate_team_percentiles(file_path, output_file):
                 continue
 
             # Collect data for each statistic
-            for stat in ['GF', 'GA', 'PTS']:
+            for stat in ['GF', 'GA', 'PTS', 'Regulation']:
                 if stat in row and row[stat].isdigit():
                     team_stats[team_name][stat].append(int(row[stat]))
                 else:
