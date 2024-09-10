@@ -105,8 +105,8 @@ class SeasonSimulator:
             writer = csv.writer(file)
             # Check if file is empty to add headers
             if file.tell() == 0:
-                writer.writerow(["Team 1", "Team 1 Goalie", "Team 1 Score", "Team 1 Shots",
-                                 "Team 2", "Team 2 Goalie", "Team 2 Score", "Team 2 Shots",
+                writer.writerow(["Home Team", "Home Goalie", "Home Score", "Home Shots",
+                                 "Away Team", "Away Goalie", "Away Score", "Away Shots",
                                  "Overtime?"])
             writer.writerow([game.home.name, game.home_goalie.name, game.home_goals, game.home_sog,
                              game.visitor.name, game.visitor_goalie.name, game.visitor_goals, game.visitor_sog,
@@ -186,7 +186,7 @@ class SeasonSimulator:
                     shooting_percentage = "0.00%"
 
                 writer.writerow(
-                    [i, team.abrv, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against,
+                    [i, team.name, team.wins, team.losses, team.otl, team.points, team.goals, team.goals_against,
                      shooting_percentage, "{:.3f}".format(save_percentage), team.regulation_wins,])
 
             # Optional: Add an empty row to separate simulations
@@ -477,12 +477,31 @@ class SeasonSimulator:
         for (team1_name, team2_name), num_games in matchups.items():
             team1 = teams[team1_name]
             team2 = teams[team2_name]
-            for _ in range(num_games):
+            for game_num in range(num_games):
                 team1_goalie = team1.select_goalie()
                 team2_goalie = team2.select_goalie()
-                game = Game(team1, team2, team1_goalie, team2_goalie)
+
+                # Alternate home and away between team1 and team2
+                if game_num % 2 == 0:
+                    home_team, away_team = team1, team2
+                    home_goalie, away_goalie = team1_goalie, team2_goalie
+                else:
+                    home_team, away_team = team2, team1
+                    home_goalie, away_goalie = team2_goalie, team1_goalie
+
+                # Create a Game instance and simulate the match
+                game = Game(home_team, away_team, home_goalie, away_goalie)
                 self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals,
                                   game.visitor_goals, game.winner, game.regulation, game.home_goalie,
                                   game.visitor_goalie)
+                # self.log_game_result(game)
+
+            # for _ in range(num_games):
+            #     team1_goalie = team1.select_goalie()
+            #     team2_goalie = team2.select_goalie()
+            #     game = Game(team1, team2, team1_goalie, team2_goalie)
+            #     self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals,
+            #                       game.visitor_goals, game.winner, game.regulation, game.home_goalie,
+            #                       game.visitor_goalie)
                 # self.log_game_result(game)
         # self.log_goalie_stats(sim_number)

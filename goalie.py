@@ -77,7 +77,7 @@ goalies = {
     "quick": Goalie("Jonathan Quick", 50),
     # Senators
     "ullmark": Goalie("Linus Ullmark", 70),
-    "forsberg": Goalie("Anton Forsberg", 30),
+    "forsberg": Goalie("Anton Forsberg", 40),
     # Flyers
     "fedotov": Goalie("Ivan Fedotov", 50),
     "ersson": Goalie("Samuel Ersson", 40),
