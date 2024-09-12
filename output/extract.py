@@ -2,9 +2,13 @@ import csv
 import numpy as np
 from collections import defaultdict
 
-def calculate_team_percentiles(file_path, output_file):
+
+def calculate_team_percentiles_and_average(file_path, output_file):
     # Dictionary to hold data for each team
     team_stats = defaultdict(lambda: {'GF': [], 'GA': [], 'PTS': [], "Regulation": []})
+
+    # Dictionary to store the average points for each team
+    team_average_points = {}
 
     # Open the input CSV file
     with open(file_path, mode='r') as file:
@@ -27,24 +31,34 @@ def calculate_team_percentiles(file_path, output_file):
                 else:
                     print(f"Warning: '{stat}' column not found or invalid in row: {row}")
 
+    # Calculate the average points (PTS) for each team
+    for team, stats in team_stats.items():
+        pts_values = stats['PTS']
+        if pts_values:
+            team_average_points[team] = np.mean(pts_values)
+        else:
+            team_average_points[team] = 'No data'
+
     # Open the output CSV file for writing
     with open(output_file, mode='w', newline='') as file:
         writer = csv.writer(file)
 
         # Write the header row
-        writer.writerow(['Team', 'Stat', '25th Percentile', '50th Percentile', '75th Percentile'])
+        writer.writerow(['Team', 'Stat', '25th Percentile', '50th Percentile', '75th Percentile', 'Average Points'])
 
         # Write the data for each team
         for team, stats in team_stats.items():
             for stat, values in stats.items():
                 if values:
                     percentiles = np.percentile(values, [25, 50, 75])
+                    average_points = team_average_points[team] if stat == 'PTS' else ''
                     writer.writerow([
                         team,
                         stat,
                         percentiles[0],
                         percentiles[1],
-                        percentiles[2]
+                        percentiles[2],
+                        average_points if average_points != '' else ''  # Only show average for PTS stat
                     ])
                 else:
                     writer.writerow([
@@ -52,8 +66,10 @@ def calculate_team_percentiles(file_path, output_file):
                         stat,
                         'No data',
                         'No data',
-                        'No data'
+                        'No data',
+                        ''
                     ])
 
+
 # Call the function with the path to your CSV file and the output file path
-calculate_team_percentiles('standings.csv', 'team_percentiles.csv')
+calculate_team_percentiles_and_average('standings.csv', 'team_percentiles_with_average.csv')

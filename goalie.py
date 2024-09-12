@@ -93,7 +93,7 @@ goalies = {
     "grubauer": Goalie("Philipp Grubauer", 40),
     # Blues
     "binner": Goalie("Jordan Binnington", 60),
-    "hofer": Goalie("Joel Hofer", 30),
+    "hofer": Goalie("Joel Hofer", 50),
     # Lightning
     "vasy": Goalie("Andrei Vasilevskiy", 70),
     "johansson": Goalie("Jonas Johansson", 20),
