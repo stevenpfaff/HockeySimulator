@@ -192,7 +192,7 @@ teams = {
     "ott": Team("Ottawa Senators", "OTT", ott_offense, ott_defense, goalies["ullmark"], goalies["forsberg"]),
     "phi": Team("Philadelphia Flyers", "PHI", phi_offense, phi_defense, goalies["fedotov"], goalies["ersson"]),
     "pit": Team("Pittsburgh Penguins", "PIT", pit_offense, pit_defense, goalies["jarry"], goalies["ned"]),
-    "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, goalies["blackwood"], goalies["askarov"]),
+    "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, goalies["blackwood"], goalies["vanacek"]),
     "sea": Team("Seattle Kraken", "SEA", sea_offense, sea_defense, goalies["daccord"], goalies["grubauer"]),
     "stl": Team("St. Louis Blues", "STL", stl_offense, stl_defense, goalies["binner"], goalies["hofer"]),
     "tb": Team("Tampa Bay Lightning", "TB", tb_offense, tb_defense, goalies["vasy"], goalies["johansson"]),

@@ -19,7 +19,7 @@ class SeasonSimulator:
 
     def update_stats(self, team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation,
                      team1_goalie, team2_goalie):
-        # Update goalie stats for both teams
+        # Update goalie stats
         team1_goalie.games += 1
         team1_goalie.shots_against += team2_sog
         team1_goalie.saves += (team2_sog - team2_goals)
@@ -30,7 +30,7 @@ class SeasonSimulator:
         team2_goalie.saves += (team1_sog - team1_goals)
         team2_goalie.goals_allowed += team1_goals
 
-        # Update team stats for shots, saves, goals
+        # Update team stats
         team1.sog += team1_sog
         team1.sog_ag += team2_sog
         team1.saves += (team2_sog - team2_goals)
@@ -45,33 +45,45 @@ class SeasonSimulator:
 
         # Update standings based on game result
         if winner == team1:
-            team1.wins += 1
-            team1_goalie.wins += 1
-            team2_goalie.losses += 1
-
             if regulation:
                 team1.regulation_wins += 1
+                team1.wins += 1
+                team1.points += 2
                 team2.losses += 1
+                team1_goalie.wins += 1
+                team2_goalie.losses += 1
             else:
+                team1.wins += 1
+                team1.points += 2
                 team2.otl += 1
-                team2.points += 1  # Team 2 gets 1 point for an OT loss
-
-            team1.points += 2  # Team 1 gets 2 points for a win
+                team2.points += 1
+                team1.goals += team1_goals
+                team1.goals_against += team2_goals
+                team2.goals += team2_goals
+                team2.goals_against += team1_goals
+                team2_goalie.losses += 1
+                team1_goalie.wins += 1
         else:
-            team2.wins += 1
-            team2_goalie.wins += 1
-            team1_goalie.losses += 1
-
             if regulation:
                 team2.regulation_wins += 1
+                team2.wins += 1
+                team2.points += 2
                 team1.losses += 1
+                team2_goalie.wins += 1
+                team1_goalie.losses += 1
             else:
+                team2.wins += 1
+                team2.points += 2
                 team1.otl += 1
-                team1.points += 1  # Team 1 gets 1 point for an OT loss
+                team1.points += 1
+                team1.goals += team1_goals
+                team1.goals_against += team2_goals
+                team2.goals += team2_goals
+                team2.goals_against += team1_goals
+                team1_goalie.losses += 1
+                team2_goalie.wins += 1
 
-            team2.points += 2  # Team 2 gets 2 points for a win
-
-        # Update shutouts for goalies if necessary
+        # Update shutouts for goalies
         if team1_goals == 0:
             team2_goalie.shutouts += 1
         elif team2_goals == 0:
