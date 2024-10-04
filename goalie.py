@@ -18,6 +18,7 @@ goalies = {
     # Bruins
     "swayman": Goalie("Jeremy Swayman", 70),
     "korp": Goalie("Joonas Korpisalo", 30),
+    "bussi": Goalie("Brandon Bussi", 30),
     # Sabres
     "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55),
     "levi": Goalie("Devon Levi", 40),

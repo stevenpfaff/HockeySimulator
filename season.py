@@ -4,6 +4,8 @@ from game import Game
 import csv
 import os
 import functools
+import numpy as np
+import pandas as pd
 
 class SeasonSimulator:
     def __init__(self):
@@ -17,7 +19,7 @@ class SeasonSimulator:
 
     def update_stats(self, team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation,
                      team1_goalie, team2_goalie):
-        # Update goalie stats
+        # Update goalie stats for both teams
         team1_goalie.games += 1
         team1_goalie.shots_against += team2_sog
         team1_goalie.saves += (team2_sog - team2_goals)
@@ -28,7 +30,7 @@ class SeasonSimulator:
         team2_goalie.saves += (team1_sog - team1_goals)
         team2_goalie.goals_allowed += team1_goals
 
-        # Update team stats
+        # Update team stats for shots, saves, goals
         team1.sog += team1_sog
         team1.sog_ag += team2_sog
         team1.saves += (team2_sog - team2_goals)
@@ -43,49 +45,38 @@ class SeasonSimulator:
 
         # Update standings based on game result
         if winner == team1:
+            team1.wins += 1
+            team1_goalie.wins += 1
+            team2_goalie.losses += 1
+
             if regulation:
                 team1.regulation_wins += 1
-                team1.wins += 1
-                team1.points += 2
                 team2.losses += 1
-                team1_goalie.wins += 1
-                team2_goalie.losses += 1
             else:
-                team1.wins += 1
-                team1.points += 2
                 team2.otl += 1
-                team2.points += 1
-                team1.goals += team1_goals
-                team1.goals_against += team2_goals
-                team2.goals += team2_goals
-                team2.goals_against += team1_goals
-                team2_goalie.losses += 1
-                team1_goalie.wins += 1
+                team2.points += 1  # Team 2 gets 1 point for an OT loss
+
+            team1.points += 2  # Team 1 gets 2 points for a win
         else:
+            team2.wins += 1
+            team2_goalie.wins += 1
+            team1_goalie.losses += 1
+
             if regulation:
                 team2.regulation_wins += 1
-                team2.wins += 1
-                team2.points += 2
                 team1.losses += 1
-                team2_goalie.wins += 1
-                team1_goalie.losses += 1
             else:
-                team2.wins += 1
-                team2.points += 2
                 team1.otl += 1
-                team1.points += 1
-                team1.goals += team1_goals
-                team1.goals_against += team2_goals
-                team2.goals += team2_goals
-                team2.goals_against += team1_goals
-                team1_goalie.losses += 1
-                team2_goalie.wins += 1
+                team1.points += 1  # Team 1 gets 1 point for an OT loss
 
-        # Update shutouts for goalies
+            team2.points += 2  # Team 2 gets 2 points for a win
+
+        # Update shutouts for goalies if necessary
         if team1_goals == 0:
             team2_goalie.shutouts += 1
         elif team2_goals == 0:
             team1_goalie.shutouts += 1
+
     def reset_standings(self):
         for team in self.league:
             team.wins = 0
@@ -107,10 +98,10 @@ class SeasonSimulator:
             if file.tell() == 0:
                 writer.writerow(["Home Team", "Home Goalie", "Home Score", "Home Shots",
                                  "Away Team", "Away Goalie", "Away Score", "Away Shots",
-                                 "Overtime?"])
-            writer.writerow([game.home.name, game.home_goalie.name, game.home_goals, game.home_sog,
-                             game.visitor.name, game.visitor_goalie.name, game.visitor_goals, game.visitor_sog,
-                             game.regulation])
+                                 "Overtime?", "Winner"])
+            writer.writerow([game.home.abrv, game.home_goalie.name, game.home_goals, game.home_sog,
+                             game.visitor.abrv, game.visitor_goalie.name, game.visitor_goals, game.visitor_sog,
+                             game.regulation, game.winner.abrv])
 
     def reset_goalie_stats(self):
         for team in self.league:
@@ -197,13 +188,13 @@ class SeasonSimulator:
             writer = csv.writer(file)
         #     writer.writerow([f"Simulation {sim_number} Standings:"])
         #
-        # self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
-        # self.sort_and_print("Atlantic", self.atlantic_division, filename)
-        # self.sort_and_print("Central", self.central_division, filename)
-        # self.sort_and_print("Pacific", self.pacific_division, filename)
+        self.sort_and_print("Metropolitan", self.metropolitan_division, filename)
+        self.sort_and_print("Atlantic", self.atlantic_division, filename)
+        self.sort_and_print("Central", self.central_division, filename)
+        self.sort_and_print("Pacific", self.pacific_division, filename)
         # self.sort_and_print("Eastern Conference", self.eastern_conference, "standings.csv")
         # self.sort_and_print("Western Conference", self.western_conference, "standings.csv")
-        self.sort_and_print("NHL", self.league, filename)
+        # self.sort_and_print("NHL", self.league, filename)
 
     def playoff_bracket(self, output_file):
 
@@ -471,37 +462,63 @@ class SeasonSimulator:
                      f"{conf_final_percentage:.2f}%", f"{cup_final_percentage:.2f}%",
                      f"{cup_win_percentage:.2f}%"])
 
+    import numpy as np
+
+    import pandas as pd  # Ensure pandas is imported
+
     def simulate_season(self, teams, matchups):
         self.reset_standings()
         self.reset_goalie_stats()
-        for (team1_name, team2_name), num_games in matchups.items():
-            team1 = teams[team1_name]
-            team2 = teams[team2_name]
-            for game_num in range(num_games):
-                team1_goalie = team1.select_goalie()
-                team2_goalie = team2.select_goalie()
 
-                # Alternate home and away between team1 and team2
-                if game_num % 2 == 0:
-                    home_team, away_team = team1, team2
-                    home_goalie, away_goalie = team1_goalie, team2_goalie
-                else:
-                    home_team, away_team = team2, team1
-                    home_goalie, away_goalie = team2_goalie, team1_goalie
+        for matchup in matchups:  # Assuming matchups is a list of tuples
+            away_team_name, home_team_name, away_team_goals, home_team_goals = matchup
 
-                # Create a Game instance and simulate the match
-                game = Game(home_team, away_team, home_goalie, away_goalie)
-                self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals,
-                                  game.visitor_goals, game.winner, game.regulation, game.home_goalie,
-                                  game.visitor_goalie)
-                # self.log_game_result(game)
+            away_team = teams[away_team_name]
+            home_team = teams[home_team_name]
 
-            # for _ in range(num_games):
-            #     team1_goalie = team1.select_goalie()
-            #     team2_goalie = team2.select_goalie()
-            #     game = Game(team1, team2, team1_goalie, team2_goalie)
-            #     self.update_stats(game.home, game.visitor, game.home_sog, game.visitor_sog, game.home_goals,
-            #                       game.visitor_goals, game.winner, game.regulation, game.home_goalie,
-            #                       game.visitor_goalie)
-                # self.log_game_result(game)
-        # self.log_goalie_stats(sim_number)
+            # Check for NaN values in the goals
+            if pd.isna(away_team_goals) or pd.isna(home_team_goals):
+                # Simulate the game if goals are not provided
+                game = Game(home_team, away_team, home_team.select_goalie(), away_team.select_goalie())
+                # Assuming the game constructor automatically simulates
+                # or ensure that you add a `simulate()` method to the Game class
+                # game.simulate()  # This is not needed if you handle it in __init__
+
+                # Extract the simulated goals from the Game instance
+                home_team_goals = game.home_goals
+                away_team_goals = game.visitor_goals
+            else:
+                # Create the game instance normally, since goals are provided
+                game = Game(home_team, away_team, home_team.select_goalie(), away_team.select_goalie())
+
+            # Update the game details based on either simulated or provided goals
+            game.home_goals = home_team_goals
+            game.visitor_goals = away_team_goals
+
+            # Determine the winner based on the goals
+            if home_team_goals > away_team_goals:
+                game.winner = home_team
+            else:
+                game.winner = away_team
+
+            # Update stats using the final scores
+            self.update_stats(
+                game.home,
+                game.visitor,
+                game.home_sog,
+                game.visitor_sog,
+                home_team_goals,
+                away_team_goals,
+                game.winner,
+                game.regulation,
+                game.home_goalie,
+                game.visitor_goalie
+            )
+
+            # Log the game result
+            self.log_game_result(game)
+
+        # Log final goalie stats after all games have been played
+        self.log_goalie_stats(game)
+
+
