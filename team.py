@@ -77,6 +77,14 @@ class Team:
 
         return selected_goalie
 
+    def get_goalie_by_name(self, goalie_name):
+        # Compare the name to both starting and backup goalie
+        if self.starting_goalie.name == goalie_name:
+            return self.starting_goalie
+        elif self.backup_goalie.name == goalie_name:
+            return self.backup_goalie
+        else:
+            raise ValueError(f"Goalie {goalie_name} not found in team {self.name}")
 
 def compute_team_ratings(forward_list):
     total_weighted_offense = 0
@@ -171,7 +179,7 @@ wpg_offense, wpg_defense = compute_team_ratings(wpg_forwards)
 # Create team objects
 teams = {
     "ana": Team("Anaheim Ducks", "ANA", ana_offense, ana_defense, goalies["gibson"], goalies["dostal"]),
-    "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, goalies["bussi"], goalies["korp"]),
+    "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, goalies["swayman"], goalies["korp"]),
     "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, goalies["luukkonen"], goalies["levi"]),
     "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, goalies["wolf"], goalies["vladar"]),
     "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, goalies["andersen"], goalies["kochetkov"]),

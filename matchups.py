@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv('matchupsv2.csv')
+df = pd.read_csv('matchups-v3.csv')
 
 # Create the matchups dictionary with results
 matchups = []
@@ -10,6 +10,11 @@ for index, row in df.iterrows():
     home_team = row['home_team']
     visitor_goals = row['visitor_goals']
     home_goals = row['home_goals']
+    visitor_sog = row['visitor_sog']
+    home_sog = row['home_sog']
+    regulation = row['regulation']
+    winner = row['winner']
+    visitor_goalie = row['visitor_goalie']
+    home_goalie = row['home_goalie']
 
-    # Append each game as a tuple (away_team, home_team, away_team_goals, home_team_goals)
-    matchups.append((away_team, home_team, visitor_goals, home_goals))
+    matchups.append((away_team, home_team, visitor_goals, home_goals, visitor_sog, home_sog, regulation, winner, visitor_goalie, home_goalie))

@@ -113,7 +113,7 @@ class SeasonSimulator:
                                  "Overtime?", "Winner"])
             writer.writerow([game.home.abrv, game.home_goalie.name, game.home_goals, game.home_sog,
                              game.visitor.abrv, game.visitor_goalie.name, game.visitor_goals, game.visitor_sog,
-                             game.regulation, game.winner.abrv])
+                             game.regulation, game.winner])
 
     def reset_goalie_stats(self):
         for team in self.league:
@@ -474,63 +474,68 @@ class SeasonSimulator:
                      f"{conf_final_percentage:.2f}%", f"{cup_final_percentage:.2f}%",
                      f"{cup_win_percentage:.2f}%"])
 
-    import numpy as np
-
-    import pandas as pd  # Ensure pandas is imported
-
     def simulate_season(self, teams, matchups):
         self.reset_standings()
         self.reset_goalie_stats()
 
-        for matchup in matchups:  # Assuming matchups is a list of tuples
-            away_team_name, home_team_name, away_team_goals, home_team_goals = matchup
+        for matchup in matchups:
+            (away_team_name, home_team_name, away_team_goals, home_team_goals,
+             visitor_sog, home_sog, regulation, winner, visitor_goalie_name, home_goalie_name) = matchup
 
-            away_team = teams[away_team_name]
-            home_team = teams[home_team_name]
+            # Lookup the teams by their names
+            away_team = teams.get(away_team_name)
+            home_team = teams.get(home_team_name)
 
-            # Check for NaN values in the goals
+            # Handle missing goalie names (NaN), fallback to random goalie selection if not provided
+            if pd.isna(visitor_goalie_name):
+                visitor_goalie = away_team.select_goalie()
+                visitor_goalie_name = visitor_goalie.name
+            else:
+                visitor_goalie = away_team.get_goalie_by_name(visitor_goalie_name)
+
+            if pd.isna(home_goalie_name):
+                home_goalie = home_team.select_goalie()
+                home_goalie_name = home_goalie.name
+            else:
+                home_goalie = home_team.get_goalie_by_name(home_goalie_name)
+
+            # Simulate the game if goals are not provided
             if pd.isna(away_team_goals) or pd.isna(home_team_goals):
-                # Simulate the game if goals are not provided
-                game = Game(home_team, away_team, home_team.select_goalie(), away_team.select_goalie())
-                # Assuming the game constructor automatically simulates
-                # or ensure that you add a `simulate()` method to the Game class
-                # game.simulate()  # This is not needed if you handle it in __init__
-
-                # Extract the simulated goals from the Game instance
+                game = Game(home_team, away_team, home_goalie, visitor_goalie)
+                # Get simulated goals from the Game instance
                 home_team_goals = game.home_goals
                 away_team_goals = game.visitor_goals
             else:
-                # Create the game instance normally, since goals are provided
-                game = Game(home_team, away_team, home_team.select_goalie(), away_team.select_goalie())
+                game = Game(home_team, away_team, home_goalie, visitor_goalie)
 
-            # Update the game details based on either simulated or provided goals
+            # Handle missing SOG values by simulating them
+            home_sog = game.home_sog if pd.isna(home_sog) else home_sog
+            visitor_sog = game.visitor_sog if pd.isna(visitor_sog) else visitor_sog
+
+            # Handle missing regulation/overtime result
+            if pd.isna(regulation):
+                regulation = game.regulation  # Use the result from the Game object
+
+            # Determine the winner and store only the abbreviation
+            if pd.isna(winner):
+                winner = home_team.abrv if home_team_goals > away_team_goals else away_team.abrv
+
+            # Update the game details
             game.home_goals = home_team_goals
             game.visitor_goals = away_team_goals
+            game.home_sog = home_sog
+            game.visitor_sog = visitor_sog
+            game.regulation = regulation  # Update with proper regulation/overtime status
+            game.winner = winner  # Store only the abbreviation of the winning team
 
-            # Determine the winner based on the goals
-            if home_team_goals > away_team_goals:
-                game.winner = home_team
-            else:
-                game.winner = away_team
-
-            # Update stats using the final scores
+            # Update the stats based on the results
             self.update_stats(
-                game.home,
-                game.visitor,
-                game.home_sog,
-                game.visitor_sog,
-                home_team_goals,
-                away_team_goals,
-                game.winner,
-                game.regulation,
-                game.home_goalie,
-                game.visitor_goalie
+                home_team, away_team, home_sog, visitor_sog,
+                home_team_goals, away_team_goals, game.winner, regulation, home_goalie, visitor_goalie
             )
 
             # Log the game result
             self.log_game_result(game)
 
-        # Log final goalie stats after all games have been played
+        # Optionally log final goalie stats
         self.log_goalie_stats(game)
-
-
