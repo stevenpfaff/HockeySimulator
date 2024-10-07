@@ -40,7 +40,7 @@ goalies = {
     "merzlikins": Goalie("Elvis Merzlikins", 40),
     "tarasov": Goalie("Daniil Tarasov", 30),
     # Stars
-    "oettinger": Goalie("Jake Oettinger", 60),
+    "oettinger": Goalie("Jake Oettinger", 65),
     "desmith": Goalie("Casey DeSmith", 50),
     # Red Wings
     "talbot": Goalie("Cam Talbot", 55),

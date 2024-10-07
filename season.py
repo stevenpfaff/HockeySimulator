@@ -70,12 +70,10 @@ class SeasonSimulator:
                 home_team.goals_against += 1
                 home_team.otl += 1
                 home_team.points += 1
-        else:  # Tie
-            # When the game is tied, we should not increment wins or losses
-            home_team.ot_losses += 1  # Update OTL for home team
-            away_team.ot_losses += 1  # Update OTL for away team
+        else:
+            home_team.ot_losses += 1
+            away_team.ot_losses += 1
 
-        # Update shutouts for goalies
         if away_goals == 0:
             home_goalie.shutouts += 1
         elif home_goals == 0:
@@ -119,9 +117,6 @@ class SeasonSimulator:
             team.backup_goalie.goals_allowed = 0
             team.starting_goalie_selections = 0
             team.backup_goalie_selections = 0
-
-    import os
-    import csv
 
     def log_goalie_stats(self, sim_number):
         output_file = "output/goalie_stats.csv"
@@ -532,8 +527,8 @@ class SeasonSimulator:
                 home_team_goals, away_team_goals, game.winner, regulation, home_goalie, visitor_goalie
             )
 
-        #     # Log the game result
-        #     self.log_game_result(game)
-        # #
-        # # Optionally log final goalie stats
-        # self.log_goalie_stats(game)
+            # Log the game result
+            self.log_game_result(game)
+
+        # Optionally log final goalie stats
+        self.log_goalie_stats(game)
