@@ -102,23 +102,30 @@ class Game:
             return 0.090
         elif goalie_rating > 80:
             return 0.085
+
     def __get_winner(self):
         team1_goals = self.home_goals
         team2_goals = self.visitor_goals
-        regulation = True
+        regulation = True  # By default, assume regulation unless overtime is triggered
 
+        # Check for a tie to enter overtime
         if team1_goals == team2_goals:
-            regulation = False
-            # Simulate overtime until a winner is determined
+            regulation = False  # Game went to overtime
+            # Simulate overtime/shootout until a winner is determined
             while team1_goals == team2_goals:
-                goal1 = random.random()
-                goal2 = random.random()
+                goal1 = random.random()  # Randomize goal for home team
+                goal2 = random.random()  # Randomize goal for away team
                 if goal1 > goal2:
-                    team1_goals += 1
-                elif goal2 > goal1:
-                    team2_goals += 1
+                    team1_goals += 1  # Home team scores in OT
+                else:
+                    team2_goals += 1  # Away team scores in OT
 
+        # Determine winner based on final goals
         if team1_goals > team2_goals:
-            return self.home, regulation
+            self.home_goals = team1_goals  # Update final home team goals
+            self.visitor_goals = team2_goals  # Update final away team goals
+            return self.home, regulation  # Home team wins, return regulation status
         else:
-            return self.visitor, regulation
+            self.home_goals = team1_goals  # Update final home team goals
+            self.visitor_goals = team2_goals  # Update final away team goals
+            return self.visitor, regulation  # Away team wins, return regulation status

@@ -17,77 +17,69 @@ class SeasonSimulator:
         self.central_division = central_division
         self.pacific_division = pacific_division
 
-    def update_stats(self, team1, team2, team1_sog, team2_sog, team1_goals, team2_goals, winner, regulation,
-                     team1_goalie, team2_goalie):
+    def update_stats(self, home_team, away_team, home_sog, visitor_sog,
+                     home_goals, away_goals, winner, regulation, home_goalie, visitor_goalie):
+        # Update shots on goal
+        home_team.sog += home_sog
+        away_team.sog += visitor_sog
+        home_team.sog_ag += visitor_sog
+        away_team.sog_ag += home_sog
+
         # Update goalie stats
-        team1_goalie.games += 1
-        team1_goalie.shots_against += team2_sog
-        team1_goalie.saves += (team2_sog - team2_goals)
-        team1_goalie.goals_allowed += team2_goals
+        home_goalie.games += 1
+        home_goalie.shots_against += visitor_sog
+        home_goalie.saves += (visitor_sog - away_goals)
+        home_goalie.goals_allowed += away_goals
 
-        team2_goalie.games += 1
-        team2_goalie.shots_against += team1_sog
-        team2_goalie.saves += (team1_sog - team1_goals)
-        team2_goalie.goals_allowed += team1_goals
+        visitor_goalie.games += 1
+        visitor_goalie.shots_against += home_sog
+        visitor_goalie.saves += (home_sog - home_goals)
+        visitor_goalie.goals_allowed += home_goals
 
-        # Update team stats
-        team1.sog += team1_sog
-        team1.sog_ag += team2_sog
-        team1.saves += (team2_sog - team2_goals)
-        team1.goals += team1_goals
-        team1.goals_against += team2_goals
-
-        team2.sog += team2_sog
-        team2.sog_ag += team1_sog
-        team2.saves += (team1_sog - team1_goals)
-        team2.goals += team2_goals
-        team2.goals_against += team1_goals
+        # Update goals for and against
+        home_team.goals += home_goals
+        home_team.goals_against += away_goals
+        away_team.goals += away_goals
+        away_team.goals_against += home_goals
 
         # Update standings based on game result
-        if winner == team1:
+        if home_goals > away_goals:
+            home_team.wins += 1
+            home_team.points += 2
+            home_goalie.wins += 1
+            visitor_goalie.losses += 1
             if regulation:
-                team1.regulation_wins += 1
-                team1.wins += 1
-                team1.points += 2
-                team2.losses += 1
-                team1_goalie.wins += 1
-                team2_goalie.losses += 1
+                home_team.regulation_wins += 1
+                away_team.losses += 1
             else:
-                team1.wins += 1
-                team1.points += 2
-                team2.otl += 1
-                team2.points += 1
-                team1.goals += team1_goals
-                team1.goals_against += team2_goals
-                team2.goals += team2_goals
-                team2.goals_against += team1_goals
-                team2_goalie.losses += 1
-                team1_goalie.wins += 1
-        else:
+                home_team.goals += 1
+                away_team.goals_against += 1
+                away_team.otl += 1
+                away_team.points += 1
+
+        elif away_goals > home_goals:
+            away_team.wins += 1
+            away_team.points += 2
+            visitor_goalie.wins += 1
+            home_goalie.losses += 1  # Increment regular losses for home goalie
             if regulation:
-                team2.regulation_wins += 1
-                team2.wins += 1
-                team2.points += 2
-                team1.losses += 1
-                team2_goalie.wins += 1
-                team1_goalie.losses += 1
+                away_team.regulation_wins += 1
+                home_team.losses += 1
             else:
-                team2.wins += 1
-                team2.points += 2
-                team1.otl += 1
-                team1.points += 1
-                team1.goals += team1_goals
-                team1.goals_against += team2_goals
-                team2.goals += team2_goals
-                team2.goals_against += team1_goals
-                team1_goalie.losses += 1
-                team2_goalie.wins += 1
+                away_team.goals += 1
+                home_team.goals_against += 1
+                home_team.otl += 1
+                home_team.points += 1
+        else:  # Tie
+            # When the game is tied, we should not increment wins or losses
+            home_team.ot_losses += 1  # Update OTL for home team
+            away_team.ot_losses += 1  # Update OTL for away team
 
         # Update shutouts for goalies
-        if team1_goals == 0:
-            team2_goalie.shutouts += 1
-        elif team2_goals == 0:
-            team1_goalie.shutouts += 1
+        if away_goals == 0:
+            home_goalie.shutouts += 1
+        elif home_goals == 0:
+            visitor_goalie.shutouts += 1
 
     def reset_standings(self):
         for team in self.league:
@@ -157,9 +149,6 @@ class SeasonSimulator:
             writer.writerow([f"Simulation {sim_number} Goalie Stats:"])
             for row in data:
                 writer.writerow([row[0], row[1], row[2], row[3], row[4], row[5], "{:.3f}%".format(row[6])])
-
-    import csv
-    import os
 
     def sort_and_print(self, division_name, division_teams, filename):
         sorted_standings = sorted(division_teams, key=lambda x: (x.points, x.wins, x.regulation_wins, x.row, x.goals - x.goals_against,),
@@ -516,8 +505,17 @@ class SeasonSimulator:
             if pd.isna(regulation):
                 regulation = game.regulation  # Use the result from the Game object
 
-            # Determine the winner and store only the abbreviation
-            if pd.isna(winner):
+            # Check if the game is tied after regulation to determine if overtime/happens
+            if home_team_goals == away_team_goals:
+                if pd.isna(regulation):
+                    regulation = "True"  # Default to overtime if no result is specified
+                # Handle overtime or shootout scenarios
+                if regulation == "False":
+                    # Assuming game determines an overtime winner (randomize or logic)
+                    if pd.isna(winner):
+                        winner = random.choice([home_team.abrv, away_team.abrv])
+            else:
+                # Game was decided in regulation time
                 winner = home_team.abrv if home_team_goals > away_team_goals else away_team.abrv
 
             # Update the game details
@@ -534,8 +532,8 @@ class SeasonSimulator:
                 home_team_goals, away_team_goals, game.winner, regulation, home_goalie, visitor_goalie
             )
 
-            # Log the game result
-            self.log_game_result(game)
-
-        # Optionally log final goalie stats
-        self.log_goalie_stats(game)
+        #     # Log the game result
+        #     self.log_game_result(game)
+        # #
+        # # Optionally log final goalie stats
+        # self.log_goalie_stats(game)
