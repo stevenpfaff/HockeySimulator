@@ -1,5 +1,6 @@
 import random
-from skater import forwards
+from skater import Skater
+import csv
 
 class Game:
     def __init__(self, home_team, away_team, home_goalie, away_goalie):
@@ -12,6 +13,7 @@ class Game:
         self.home_goals = self.__get_goals(self.home_sog, self.visitor_goalie.rating)
         self.visitor_goals = self.__get_goals(self.visitor_sog, self.home_goalie.rating)
         self.winner, self.regulation = self.__get_winner()
+        self.goal_assist_data = []
 
     @staticmethod
     def find_closest_value(value, keys):
@@ -129,3 +131,71 @@ class Game:
             self.home_goals = team1_goals  # Update final home team goals
             self.visitor_goals = team2_goals  # Update final away team goals
             return self.visitor, regulation  # Away team wins, return regulation status
+
+    def assign_goals_and_assists(self):
+        # Assign goals to the home team players
+        self.assign_team_goals_and_assists(self.home, self.home_goals)
+
+        # Assign goals to the visitor team players
+        self.assign_team_goals_and_assists(self.visitor, self.visitor_goals)
+
+        # Debugging: Print all collected goal and assist data after processing all skaters
+        print("Final Goal and Assist Data:", self.goal_assist_data)
+
+    def assign_team_goals_and_assists(self, team, goals):
+        """ Assign goals and assists to the players on the team """
+        goals = int(goals)  # Ensure goals is an integer
+
+        if goals == 0:
+            print(f"No goals to assign for {team.name}.")
+            return  # No goals to assign
+
+        players = team.players
+        if not players:
+            print(f"No players available for {team.name}.")
+            return  # No players to assign goals or assists to
+
+        print(f"Assigning {goals} goals for {team.name}.")
+
+        # Ensure valid role weights for each player
+        role_weights = [
+            Skater.role_weights.get(skater.role, 0.2)  # Default to a low weight if role is missing
+            for skater in players
+        ]
+
+        for _ in range(goals):  # Iterate through each goal to be assigned
+            # Randomly choose a goal scorer based on role weights
+            goal_scorer = random.choices(players, weights=role_weights, k=1)[0]
+            goal_scorer.update_stats(goals=1)
+            print(f"Goal scored by {goal_scorer.name} for {team.name}.")
+
+            # Now assign 1 or 2 assists (if possible) from the remaining players
+            possible_assist_players = [p for p in players if p != goal_scorer]
+            if possible_assist_players:
+                assist_weights = [Skater.role_weights.get(skater.role, 0.2) * skater.passing for skater in
+                                  possible_assist_players]
+
+                # Select up to two players for assists
+                assists_given = random.choices(possible_assist_players, weights=assist_weights,
+                                               k=min(2, len(possible_assist_players)))
+
+                # Update assist stats for the chosen players
+                for assist_player in assists_given:
+                    assist_player.update_stats(assists=1)
+
+                # Save the goal and assist data for each event
+                self.goal_assist_data.append({
+                    'goal_scorer': goal_scorer.name,
+                    'assists': [player.name for player in assists_given]
+                })
+                print(f"Assists for goal by {goal_scorer.name}: {[player.name for player in assists_given]}")
+
+    def save_to_csv(self, filename='game_stats.csv'):
+        if not self.goal_assist_data:
+            print("No goal assist data to save.")
+            return
+
+        with open(filename, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Skater", "Goals", "Assists"])
+            writer.writerows(self.goal_assist_data)

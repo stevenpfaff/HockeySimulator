@@ -4,7 +4,6 @@ from game import Game
 import csv
 import os
 import functools
-import numpy as np
 import pandas as pd
 
 class SeasonSimulator:
@@ -500,7 +499,7 @@ class SeasonSimulator:
             if pd.isna(regulation):
                 regulation = game.regulation  # Use the result from the Game object
 
-            # Check if the game is tied after regulation to determine if overtime/happens
+            # Check if the game is tied after regulation to determine if overtime happens
             if home_team_goals == away_team_goals:
                 if pd.isna(regulation):
                     regulation = "True"  # Default to overtime if no result is specified
@@ -521,11 +520,17 @@ class SeasonSimulator:
             game.regulation = regulation  # Update with proper regulation/overtime status
             game.winner = winner  # Store only the abbreviation of the winning team
 
+            # # Assign goals and assists to players
+            # game.assign_goals_and_assists()
+
             # Update the stats based on the results
             self.update_stats(
                 home_team, away_team, home_sog, visitor_sog,
                 home_team_goals, away_team_goals, game.winner, regulation, home_goalie, visitor_goalie
             )
+
+            # # Save the game stats to a CSV file
+            # game.save_to_csv('game_stats.csv')
 
             # Log the game result
             self.log_game_result(game)

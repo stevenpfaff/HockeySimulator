@@ -35,7 +35,7 @@ goalies = {
     "soderblom": Goalie("Arvid Soderblom", 20),
     # Avalanche
     "georgiev": Goalie("Alexandar Georgiev", 55),
-    "annunen": Goalie("Justus Annunen", 50),
+    "annunen": Goalie("Justus Annunen", 45),
     # Blue Jackets
     "merzlikins": Goalie("Elvis Merzlikins", 40),
     "tarasov": Goalie("Daniil Tarasov", 30),
