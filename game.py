@@ -91,9 +91,9 @@ class Game:
             "3rd Line": 1.0,
             "4th Line": 0.8,
             "Number 1": 1.0,
-            "Top Pair": 0.5,
-            "2nd Pair": 0.2,
-            "3rd Pair": 0.1,
+            "Top Pair": 0.6,
+            "2nd Pair": 0.4,
+            "3rd Pair": 0.2,
             "bench": 0.1
         }
 

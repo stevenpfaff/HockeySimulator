@@ -336,8 +336,8 @@ kings_players = [
 ]
 
 wild_players = [
-    Skater("Kirill Kaprizov", 85, 65, 80, 60, role="1st Line"),
-    Skater("Matthew Boldy", 60, 55, 70, 70, role="1st Line"),
+    Skater("Kirill Kaprizov", 85, 70, 80, 60, role="1st Line"),
+    Skater("Matthew Boldy", 70, 55, 70, 70, role="1st Line"),
     Skater("Joel Eriksson-Ek", 30, 60, 60, 65, role="1st Line"),
     Skater("Mats Zuccarello", 60, 80, 55, 40, role="2nd Line"),
     Skater("Marcus Foligno", 55, 50, 60, 70, role="2nd Line"),
