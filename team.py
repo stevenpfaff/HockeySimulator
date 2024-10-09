@@ -179,38 +179,70 @@ teams = {
     "wpg": Team("Winnipeg Jets", "WPG", wpg_offense, wpg_defense, goalies["hellebuyck"], goalies["kahkonen"]),
 }
 
-print(f"ANA {ana_offense:.1f} {ana_defense:.1f}")
-print(f"BOS {bos_offense:.1f} {bos_defense:.1f}")
-print(f"BUF {buf_offense:.1f} {buf_defense:.1f}")
-print(f"CGY {cgy_offense:.1f} {cgy_defense:.1f}")
-print(f"CAR {car_offense:.1f} {car_defense:.1f}")
-print(f"CHI {chi_offense:.1f} {chi_defense:.1f}")
-print(f"COL {col_offense:.1f} {col_defense:.1f}")
-print(f"CBJ {cbj_offense:.1f} {cbj_defense:.1f}")
-print(f"DAL {dal_offense:.1f} {dal_defense:.1f}")
-print(f"DET {det_offense:.1f} {det_defense:.1f}")
-print(f"EDM {edm_offense:.1f} {edm_defense:.1f}")
-print(f"FLA {fla_offense:.1f} {fla_defense:.1f}")
-print(f"LA {la_offense:.1f} {la_defense:.1f}")
-print(f"MIN {min_offense:.1f} {min_defense:.1f}")
-print(f"MTL {mtl_offense:.1f} {mtl_defense:.1f}")
-print(f"NSH {nsh_offense:.1f} {nsh_defense:.1f}")
-print(f"NJ {nj_offense:.1f} {nj_defense:.1f}")
-print(f"NYI {nyi_offense:.1f} {nyi_defense:.1f}")
-print(f"NYR {nyr_offense:.1f} {nyr_defense:.1f}")
-print(f"OTT {ott_offense:.1f} {ott_defense:.1f}")
-print(f"PHI {phi_offense:.1f} {phi_defense:.1f}")
-print(f"PIT {pit_offense:.1f} {pit_defense:.1f}")
-print(f"SJ {sj_offense:.1f} {sj_defense:.1f}")
-print(f"SEA {sea_offense:.1f} {sea_defense:.1f}")
-print(f"STL {stl_offense:.1f} {stl_defense:.1f}")
-print(f"TB {tb_offense:.1f} {tb_defense:.1f}")
-print(f"TOR {tor_offense:.1f} {tor_defense:.1f}")
-print(f"UT {ut_offense:.1f} {ut_defense:.1f}")
-print(f"VAN {van_offense:.1f} {van_defense:.1f}")
-print(f"VGK {vgk_offense:.1f} {vgk_defense:.1f}")
-print(f"WSH {wsh_offense:.1f} {wsh_defense:.1f}")
-print(f"WPG {wpg_offense:.1f} {wpg_defense:.1f}")
+teams["ana"].players = ducks_players
+teams["bos"].players = bruins_players
+teams["buf"].players = sabres_players
+teams["cgy"].players = flames_players
+teams["car"].players = hurricanes_players
+teams["chi"].players = blackhawks_players
+teams["col"].players = avalanche_players
+teams["cbj"].players = bluejackets_players
+teams["dal"].players = stars_players
+teams["det"].players = redwings_players
+teams["edm"].players = oilers_players
+teams["fla"].players = panthers_players
+teams["la"].players = kings_players
+teams["min"].players = wild_players
+teams["mtl"].players = canadiens_players
+teams["nsh"].players = predators_players
+teams["nj"].players = devils_players
+teams["nyi"].players = islanders_players
+teams["nyr"].players = rangers_players
+teams["ott"].players = senators_players
+teams["phi"].players = flyers_players
+teams["pit"].players = penguins_players
+teams["sj"].players = sharks_players
+teams["sea"].players = kraken_players
+teams["stl"].players = blues_players
+teams["tb"].players = lightning_players
+teams["tor"].players = leafs_players
+teams["ari"].players = utah_players
+teams["van"].players = canucks_players
+teams["vgk"].players = knights_players
+teams["wsh"].players = capitals_players
+teams["wpg"].players = jets_players
+# print(f"ANA {ana_offense:.1f} {ana_defense:.1f}")
+# print(f"BOS {bos_offense:.1f} {bos_defense:.1f}")
+# print(f"BUF {buf_offense:.1f} {buf_defense:.1f}")
+# print(f"CGY {cgy_offense:.1f} {cgy_defense:.1f}")
+# print(f"CAR {car_offense:.1f} {car_defense:.1f}")
+# print(f"CHI {chi_offense:.1f} {chi_defense:.1f}")
+# print(f"COL {col_offense:.1f} {col_defense:.1f}")
+# print(f"CBJ {cbj_offense:.1f} {cbj_defense:.1f}")
+# print(f"DAL {dal_offense:.1f} {dal_defense:.1f}")
+# print(f"DET {det_offense:.1f} {det_defense:.1f}")
+# print(f"EDM {edm_offense:.1f} {edm_defense:.1f}")
+# print(f"FLA {fla_offense:.1f} {fla_defense:.1f}")
+# print(f"LA {la_offense:.1f} {la_defense:.1f}")
+# print(f"MIN {min_offense:.1f} {min_defense:.1f}")
+# print(f"MTL {mtl_offense:.1f} {mtl_defense:.1f}")
+# print(f"NSH {nsh_offense:.1f} {nsh_defense:.1f}")
+# print(f"NJ {nj_offense:.1f} {nj_defense:.1f}")
+# print(f"NYI {nyi_offense:.1f} {nyi_defense:.1f}")
+# print(f"NYR {nyr_offense:.1f} {nyr_defense:.1f}")
+# print(f"OTT {ott_offense:.1f} {ott_defense:.1f}")
+# print(f"PHI {phi_offense:.1f} {phi_defense:.1f}")
+# print(f"PIT {pit_offense:.1f} {pit_defense:.1f}")
+# print(f"SJ {sj_offense:.1f} {sj_defense:.1f}")
+# print(f"SEA {sea_offense:.1f} {sea_defense:.1f}")
+# print(f"STL {stl_offense:.1f} {stl_defense:.1f}")
+# print(f"TB {tb_offense:.1f} {tb_defense:.1f}")
+# print(f"TOR {tor_offense:.1f} {tor_defense:.1f}")
+# print(f"UT {ut_offense:.1f} {ut_defense:.1f}")
+# print(f"VAN {van_offense:.1f} {van_defense:.1f}")
+# print(f"VGK {vgk_offense:.1f} {vgk_defense:.1f}")
+# print(f"WSH {wsh_offense:.1f} {wsh_defense:.1f}")
+# print(f"WPG {wpg_offense:.1f} {wpg_defense:.1f}")
 
 # Define divisions
 metropolitan_division = [teams["car"], teams["cbj"], teams["phi"], teams["pit"], teams["nj"], teams["nyi"], teams["nyr"], teams["wsh"]]

@@ -144,6 +144,18 @@ class SeasonSimulator:
             for row in data:
                 writer.writerow([row[0], row[1], row[2], row[3], row[4], row[5], "{:.3f}%".format(row[6])])
 
+    def log_skater_stats(self, filename="output/skater_stats.csv"):
+        file_exists = os.path.isfile(filename)
+
+        with open(filename, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            if not file_exists:
+                writer.writerow(["Name", "Goals", "Assists", "Points"])
+
+            for team in self.league:
+                for skater in team.players:
+                    writer.writerow([skater.name, skater.goals, skater.assists, skater.points])
+
     def sort_and_print(self, division_name, division_teams, filename):
         sorted_standings = sorted(division_teams, key=lambda x: (x.points, x.wins, x.regulation_wins, x.row, x.goals - x.goals_against,),
                                   reverse=True)
@@ -533,3 +545,4 @@ class SeasonSimulator:
 
         # Optionally log final goalie stats
         self.log_goalie_stats(game)
+        self.log_skater_stats()

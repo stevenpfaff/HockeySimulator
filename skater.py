@@ -30,7 +30,7 @@ class Skater:
     def update_stats(self, goals=0, assists=0):
         self.goals += goals
         self.assists += assists
-        self.points += goals + assists  # Update points as well
+        self.points += goals + assists
 
 ducks_players = [
     Skater("Troy Terry", 60, 60, 55, 50, role="1st Line"),

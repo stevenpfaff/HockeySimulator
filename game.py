@@ -10,8 +10,8 @@ class Game:
         self.visitor_goalie = away_goalie
         self.home_sog = self.__get_sog(self.home.offense, self.visitor.defense)
         self.visitor_sog = self.__get_sog(self.visitor.offense, self.home.defense)
-        self.home_goals = self.__get_goals(self.home_sog, self.visitor_goalie.rating)
-        self.visitor_goals = self.__get_goals(self.visitor_sog, self.home_goalie.rating)
+        self.home_goals = self.__get_goals(self.home_sog, self.visitor_goalie.rating, self.home)
+        self.visitor_goals = self.__get_goals(self.visitor_sog, self.home_goalie.rating, self.visitor)
         self.winner, self.regulation = self.__get_winner()
 
     @staticmethod
@@ -71,13 +71,55 @@ class Game:
 
         return get_random_value(offense, defense)
 
-    def __get_goals(self, sog, goalie_rating):
+    def __get_goals(self, sog, goalie_rating, team):
         goals = 0
         for _ in range(sog):
             probability = self.get_goal_probability(goalie_rating)
             if random.random() <= probability:
+                self.assign_goal(team)
                 goals += 1
         return goals
+
+    def assign_goal(self, team):
+        """Assigns a goal to one player, with the possibility of unassisted or single-assist goals."""
+
+        # Create a weighted list based on shooting for the goal scorer
+        shooters = [player for player in team.players]
+        shooter_weights = [player.shooting * 5 for player in shooters]  # Weigh by shooting attribute
+
+        # Randomly select the goal scorer based on weighted shooting
+        scorer = random.choices(shooters, weights=shooter_weights, k=1)[0]
+
+        # Determine how many assists (0, 1, or 2)
+        assist_count = random.choices([0, 1, 2], weights=[0.1, 0.3, 0.6], k=1)[0]  # Adjust these weights as needed
+
+        if assist_count == 0:
+            # Unassisted goal
+            scorer.update_stats(goals=1)  # Increment only the scorer's goals
+        elif assist_count == 1:
+            # Single-assist goal
+            passers = [player for player in team.players if player != scorer]
+            passer_weights = [player.passing * 1.3 for player in passers]
+            assist1 = random.choices(passers, weights=passer_weights, k=1)[0]
+
+            # Update stats
+            scorer.update_stats(goals=1)
+            assist1.update_stats(assists=1)
+        else:
+            # Two-assist goal
+            passers = [player for player in team.players if player != scorer]
+            passer_weights = [player.passing * 1.3 for player in passers]
+
+            assist1 = random.choices(passers, weights=passer_weights, k=1)[0]
+            passers.remove(assist1)  # Remove assist1 to avoid duplication
+            passer_weights = [player.passing for player in passers]  # Recalculate weights
+
+            assist2 = random.choices(passers, weights=passer_weights, k=1)[0]
+
+            # Update stats
+            scorer.update_stats(goals=1)
+            assist1.update_stats(assists=1)
+            assist2.update_stats(assists=1)
 
 
     @staticmethod
