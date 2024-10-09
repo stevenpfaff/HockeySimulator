@@ -100,7 +100,7 @@ goalies = {
     "johansson": Goalie("Jonas Johansson", 20),
     # Leafs
     "stolarz": Goalie("Anthony Stolarz", 55),
-    "woll": Goalie("Joeseph Woll", 40),
+    "woll": Goalie("Joeseph Woll", 50),
     # Utah
     "vemelka": Goalie("Karel Vejmelka", 40),
     "ingram": Goalie("Connor Ingram", 55),

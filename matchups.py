@@ -6,8 +6,6 @@ df = pd.read_csv('matchups-v3.csv')
 # Strip whitespace from column names
 df.columns = df.columns.str.strip()
 
-# Print the columns for debugging
-print("Columns in the DataFrame:", df.columns.tolist())
 
 # Create the matchups dictionary with results
 matchups = []

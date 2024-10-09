@@ -517,11 +517,9 @@ class SeasonSimulator:
             game.visitor_goals = away_team_goals
             game.home_sog = home_sog
             game.visitor_sog = visitor_sog
-            game.regulation = regulation  # Update with proper regulation/overtime status
-            game.winner = winner  # Store only the abbreviation of the winning team
+            game.regulation = regulation
+            game.winner = winner
 
-            # # Assign goals and assists to players
-            # game.assign_goals_and_assists()
 
             # Update the stats based on the results
             self.update_stats(
@@ -529,8 +527,6 @@ class SeasonSimulator:
                 home_team_goals, away_team_goals, game.winner, regulation, home_goalie, visitor_goalie
             )
 
-            # # Save the game stats to a CSV file
-            # game.save_to_csv('game_stats.csv')
 
             # Log the game result
             self.log_game_result(game)
