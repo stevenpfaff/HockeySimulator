@@ -81,17 +81,44 @@ class Game:
         return goals
 
     def assign_goal(self, team):
-        """Assigns a goal to one player, with the possibility of unassisted or single-assist goals."""
-
-        # Create a weighted list based on shooting for the goal scorer
+        # Create a weighted list based on shooting and offense for the goal scorer
         shooters = [player for player in team.players]
-        shooter_weights = [player.shooting * 5 for player in shooters]  # Weigh by shooting attribute
 
-        # Randomly select the goal scorer based on weighted shooting
+        # Define separate role weights for goals and assists
+        goal_role_weights = {
+            "1st Line": 2.0,
+            "2nd Line": 1.5,
+            "3rd Line": 1.0,
+            "4th Line": 0.8,
+            "Number 1": 1.0,
+            "Top Pair": 0.5,
+            "2nd Pair": 0.2,
+            "3rd Pair": 0.1,
+            "bench": 0.1
+        }
+
+        assist_role_weights = {
+            "1st Line": 2.5,  # High for forwards
+            "2nd Line": 2.0,
+            "3rd Line": 1.5,
+            "4th Line": 1.0,
+            "Number 1": 2,
+            "Top Pair": 1.5,  # Allowing some contribution for assists
+            "2nd Pair": 1.2,
+            "3rd Pair": 0.8,
+            "bench": 0.2
+        }
+
+        # Shooter weights for goal scoring
+        shooter_weights = [(player.shooting * 1 + player.offense * 0.3) * 10 * goal_role_weights.get(player.role, 1.0)
+                           for player in shooters]
+
+        # Randomly select the goal scorer based on weighted shooting and offense
         scorer = random.choices(shooters, weights=shooter_weights, k=1)[0]
 
         # Determine how many assists (0, 1, or 2)
-        assist_count = random.choices([0, 1, 2], weights=[0.1, 0.3, 0.6], k=1)[0]  # Adjust these weights as needed
+        assist_count = random.choices([0, 1, 2], weights=[0.05, 0.25, 0.7], k=1)[
+            0]  # Adjusted weights for more realistic distribution
 
         if assist_count == 0:
             # Unassisted goal
@@ -99,7 +126,8 @@ class Game:
         elif assist_count == 1:
             # Single-assist goal
             passers = [player for player in team.players if player != scorer]
-            passer_weights = [player.passing * 1.3 for player in passers]
+            passer_weights = [(player.passing * 5 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
+                              for player in passers]
             assist1 = random.choices(passers, weights=passer_weights, k=1)[0]
 
             # Update stats
@@ -108,11 +136,13 @@ class Game:
         else:
             # Two-assist goal
             passers = [player for player in team.players if player != scorer]
-            passer_weights = [player.passing * 1.3 for player in passers]
+            passer_weights = [(player.passing * 5 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
+                              for player in passers]
 
             assist1 = random.choices(passers, weights=passer_weights, k=1)[0]
             passers.remove(assist1)  # Remove assist1 to avoid duplication
-            passer_weights = [player.passing for player in passers]  # Recalculate weights
+            passer_weights = [(player.passing * 5 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
+                              for player in passers]
 
             assist2 = random.choices(passers, weights=passer_weights, k=1)[0]
 
@@ -120,7 +150,6 @@ class Game:
             scorer.update_stats(goals=1)
             assist1.update_stats(assists=1)
             assist2.update_stats(assists=1)
-
 
     @staticmethod
     def get_goal_probability(goalie_rating):

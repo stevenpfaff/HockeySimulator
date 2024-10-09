@@ -90,18 +90,18 @@ class Team:
         else:
             raise ValueError(f"Goalie {goalie_name} not found in team {self.name}")
 
-def compute_team_ratings(forward_list):
+def compute_team_ratings(players):
     total_weighted_offense = 0
     total_weighted_defense = 0
     total_offense_weights = 0
     total_defense_weights = 0
 
-    for skater in forward_list:
+    for skater in players:
         role_weight = skater.role_weights.get(skater.role, 1.0)
         total_weighted_offense += (skater.shooting * 0.3 + skater.passing * 0.1 + skater.offense * 0.6) * role_weight
         total_weighted_defense += (skater.defense * 2) * role_weight
 
-        total_offense_weights += (0.15 + 0.05 + 0.32) * role_weight
+        total_offense_weights += (0.15 + 0.05 + 0.3) * role_weight
         total_defense_weights += .97 * role_weight
 
     weighted_avg_offense = total_weighted_offense / total_offense_weights
@@ -211,38 +211,39 @@ teams["van"].players = canucks_players
 teams["vgk"].players = knights_players
 teams["wsh"].players = capitals_players
 teams["wpg"].players = jets_players
-# print(f"ANA {ana_offense:.1f} {ana_defense:.1f}")
-# print(f"BOS {bos_offense:.1f} {bos_defense:.1f}")
-# print(f"BUF {buf_offense:.1f} {buf_defense:.1f}")
-# print(f"CGY {cgy_offense:.1f} {cgy_defense:.1f}")
-# print(f"CAR {car_offense:.1f} {car_defense:.1f}")
-# print(f"CHI {chi_offense:.1f} {chi_defense:.1f}")
-# print(f"COL {col_offense:.1f} {col_defense:.1f}")
-# print(f"CBJ {cbj_offense:.1f} {cbj_defense:.1f}")
-# print(f"DAL {dal_offense:.1f} {dal_defense:.1f}")
-# print(f"DET {det_offense:.1f} {det_defense:.1f}")
-# print(f"EDM {edm_offense:.1f} {edm_defense:.1f}")
-# print(f"FLA {fla_offense:.1f} {fla_defense:.1f}")
-# print(f"LA {la_offense:.1f} {la_defense:.1f}")
-# print(f"MIN {min_offense:.1f} {min_defense:.1f}")
-# print(f"MTL {mtl_offense:.1f} {mtl_defense:.1f}")
-# print(f"NSH {nsh_offense:.1f} {nsh_defense:.1f}")
-# print(f"NJ {nj_offense:.1f} {nj_defense:.1f}")
-# print(f"NYI {nyi_offense:.1f} {nyi_defense:.1f}")
-# print(f"NYR {nyr_offense:.1f} {nyr_defense:.1f}")
-# print(f"OTT {ott_offense:.1f} {ott_defense:.1f}")
-# print(f"PHI {phi_offense:.1f} {phi_defense:.1f}")
-# print(f"PIT {pit_offense:.1f} {pit_defense:.1f}")
-# print(f"SJ {sj_offense:.1f} {sj_defense:.1f}")
-# print(f"SEA {sea_offense:.1f} {sea_defense:.1f}")
-# print(f"STL {stl_offense:.1f} {stl_defense:.1f}")
-# print(f"TB {tb_offense:.1f} {tb_defense:.1f}")
-# print(f"TOR {tor_offense:.1f} {tor_defense:.1f}")
-# print(f"UT {ut_offense:.1f} {ut_defense:.1f}")
-# print(f"VAN {van_offense:.1f} {van_defense:.1f}")
-# print(f"VGK {vgk_offense:.1f} {vgk_defense:.1f}")
-# print(f"WSH {wsh_offense:.1f} {wsh_defense:.1f}")
-# print(f"WPG {wpg_offense:.1f} {wpg_defense:.1f}")
+
+print(f"ANA {ana_offense:.1f} {ana_defense:.1f}")
+print(f"BOS {bos_offense:.1f} {bos_defense:.1f}")
+print(f"BUF {buf_offense:.1f} {buf_defense:.1f}")
+print(f"CGY {cgy_offense:.1f} {cgy_defense:.1f}")
+print(f"CAR {car_offense:.1f} {car_defense:.1f}")
+print(f"CHI {chi_offense:.1f} {chi_defense:.1f}")
+print(f"COL {col_offense:.1f} {col_defense:.1f}")
+print(f"CBJ {cbj_offense:.1f} {cbj_defense:.1f}")
+print(f"DAL {dal_offense:.1f} {dal_defense:.1f}")
+print(f"DET {det_offense:.1f} {det_defense:.1f}")
+print(f"EDM {edm_offense:.1f} {edm_defense:.1f}")
+print(f"FLA {fla_offense:.1f} {fla_defense:.1f}")
+print(f"LA {la_offense:.1f} {la_defense:.1f}")
+print(f"MIN {min_offense:.1f} {min_defense:.1f}")
+print(f"MTL {mtl_offense:.1f} {mtl_defense:.1f}")
+print(f"NSH {nsh_offense:.1f} {nsh_defense:.1f}")
+print(f"NJ {nj_offense:.1f} {nj_defense:.1f}")
+print(f"NYI {nyi_offense:.1f} {nyi_defense:.1f}")
+print(f"NYR {nyr_offense:.1f} {nyr_defense:.1f}")
+print(f"OTT {ott_offense:.1f} {ott_defense:.1f}")
+print(f"PHI {phi_offense:.1f} {phi_defense:.1f}")
+print(f"PIT {pit_offense:.1f} {pit_defense:.1f}")
+print(f"SJ {sj_offense:.1f} {sj_defense:.1f}")
+print(f"SEA {sea_offense:.1f} {sea_defense:.1f}")
+print(f"STL {stl_offense:.1f} {stl_defense:.1f}")
+print(f"TB {tb_offense:.1f} {tb_defense:.1f}")
+print(f"TOR {tor_offense:.1f} {tor_defense:.1f}")
+print(f"UT {ut_offense:.1f} {ut_defense:.1f}")
+print(f"VAN {van_offense:.1f} {van_defense:.1f}")
+print(f"VGK {vgk_offense:.1f} {vgk_defense:.1f}")
+print(f"WSH {wsh_offense:.1f} {wsh_defense:.1f}")
+print(f"WPG {wpg_offense:.1f} {wpg_defense:.1f}")
 
 # Define divisions
 metropolitan_division = [teams["car"], teams["cbj"], teams["phi"], teams["pit"], teams["nj"], teams["nyi"], teams["nyr"], teams["wsh"]]

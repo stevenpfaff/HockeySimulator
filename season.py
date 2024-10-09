@@ -150,11 +150,11 @@ class SeasonSimulator:
         with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
             if not file_exists:
-                writer.writerow(["Name", "Goals", "Assists", "Points"])
+                writer.writerow(["Name", "Team", "Goals", "Assists", "Points"])
 
             for team in self.league:
                 for skater in team.players:
-                    writer.writerow([skater.name, skater.goals, skater.assists, skater.points])
+                    writer.writerow([skater.name, team.abrv, skater.goals, skater.assists, skater.points])
 
     def sort_and_print(self, division_name, division_teams, filename):
         sorted_standings = sorted(division_teams, key=lambda x: (x.points, x.wins, x.regulation_wins, x.row, x.goals - x.goals_against,),

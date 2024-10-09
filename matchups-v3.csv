@@ -2,8 +2,8 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 10/4/2024,nj,buf,4,1,22,31,Jacob Markstrom,Ukko-Pekka Luukkonen,TRUE,nj
 10/5/2024,buf,nj,1,3,18,37,Devon Levi,Jake Allen,TRUE,nj
 10/8/2024,stl,sea,3,2,25,32,Jordan Binnington,Philipp Grubauer,TRUE,stl
-10/8/2024,bos,fla,,,,,,,,
-10/8/2024,chi,ari,,,,,,,,
+10/8/2024,bos,fla,4,6,28,35,Joonas Korpisalo,Sergei Bobrovsky,TRUE,fla
+10/8/2024,chi,ari,2,5,26,25,Petr Mrazek,Connor Ingram,TRUE,ari
 10/9/2024,tor,mtl,,,,,,,,
 10/9/2024,nyr,pit,,,,,,,,
 10/9/2024,wpg,edm,,,,,,,,
