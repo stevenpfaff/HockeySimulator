@@ -110,7 +110,7 @@ class Game:
         }
 
         # Shooter weights for goal scoring
-        shooter_weights = [(player.shooting * 1 + player.offense * 0.3) * 10 * goal_role_weights.get(player.role, 1.0)
+        shooter_weights = [(player.shooting * 10 + player.offense * 0.3) * 10 * goal_role_weights.get(player.role, 1.0)
                            for player in shooters]
 
         # Randomly select the goal scorer based on weighted shooting and offense
@@ -126,7 +126,7 @@ class Game:
         elif assist_count == 1:
             # Single-assist goal
             passers = [player for player in team.players if player != scorer]
-            passer_weights = [(player.passing * 5 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
+            passer_weights = [(player.passing * 10 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
                               for player in passers]
             assist1 = random.choices(passers, weights=passer_weights, k=1)[0]
 
@@ -136,12 +136,12 @@ class Game:
         else:
             # Two-assist goal
             passers = [player for player in team.players if player != scorer]
-            passer_weights = [(player.passing * 5 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
+            passer_weights = [(player.passing * 10 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
                               for player in passers]
 
             assist1 = random.choices(passers, weights=passer_weights, k=1)[0]
             passers.remove(assist1)  # Remove assist1 to avoid duplication
-            passer_weights = [(player.passing * 5 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
+            passer_weights = [(player.passing * 10 + player.offense * 1.5) * assist_role_weights.get(player.role, 1.0)
                               for player in passers]
 
             assist2 = random.choices(passers, weights=passer_weights, k=1)[0]
@@ -185,12 +185,27 @@ class Game:
             regulation = False  # Game went to overtime
             # Simulate overtime/shootout until a winner is determined
             while team1_goals == team2_goals:
-                goal1 = random.random()  # Randomize goal for home team
-                goal2 = random.random()  # Randomize goal for away team
-                if goal1 > goal2:
-                    team1_goals += 1  # Home team scores in OT
-                else:
-                    team2_goals += 1  # Away team scores in OT
+                # Simulate overtime shot on goal for both teams
+                home_sog = 1  # Assuming 1 shot per team in each OT loop
+                visitor_sog = 1
+
+                # Home team attempt in OT
+                home_goals = self.__get_goals(home_sog, self.visitor_goalie.rating,
+                                              self.home)  # Updated goalie rating access
+                if home_goals > 0:
+                    team1_goals += home_goals
+                    # Assigning the goal and assists properly
+                    self.assign_goal(self.home)
+                    break  # Home team wins, end OT
+
+                # Away team attempt in OT
+                visitor_goals = self.__get_goals(visitor_sog, self.home_goalie.rating,
+                                                 self.visitor)  # Updated goalie rating access
+                if visitor_goals > 0:
+                    team2_goals += visitor_goals
+                    # Assigning the goal and assists properly
+                    self.assign_goal(self.visitor)
+                    break  # Away team wins, end OT
 
         # Determine winner based on final goals
         if team1_goals > team2_goals:

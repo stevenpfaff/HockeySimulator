@@ -73,3 +73,43 @@ def calculate_team_percentiles_and_average(file_path, output_file):
 
 # Call the function with the path to your CSV file and the output file path
 calculate_team_percentiles_and_average('standings.csv', 'team_percentiles_with_average.csv')
+
+def calculate_simulation_percentiles(file_path, output_file):
+    # Dictionary to hold simulation data for each player
+    player_simulations = defaultdict(lambda: {'Goals': [], 'Assists': [], 'Points': []})
+
+    # Open the input CSV file
+    with open(file_path, mode='r') as file:
+        reader = csv.DictReader(file)
+
+        # Read the rows for player simulation outcomes
+        for row in reader:
+            player_name = row.get('Name')  # Adjust the key if your CSV has a different player name column
+            if not player_name:
+                continue
+
+            # Collect data for each statistic
+            for stat in ['Goals', 'Assists', 'Points']:
+                if stat in row and row[stat].isdigit():
+                    player_simulations[player_name][stat].append(int(row[stat]))
+                else:
+                    print(f"Warning: '{stat}' column not found or invalid in row: {row}")
+
+    # Open the output CSV file for writing
+    with open(output_file, mode='w', newline='') as file:
+        writer = csv.writer(file)
+
+        # Write the header row
+        writer.writerow(['Player', 'Stat', '25th Percentile', '50th Percentile (Median)', '75th Percentile'])
+
+        # Write the percentile data for each player
+        for player, stats in player_simulations.items():
+            for stat, values in stats.items():
+                if values:
+                    percentiles = np.percentile(values, [25, 50, 75])  # Calculate 25th, 50th (median), and 75th percentiles
+                    writer.writerow([player, stat, percentiles[0], percentiles[1], percentiles[2]])
+                else:
+                    writer.writerow([player, stat, 'No data', 'No data', 'No data'])
+
+# Call the function with the path to your CSV file and the output file path
+calculate_simulation_percentiles('skater_stats.csv', 'skater_percentiles.csv')

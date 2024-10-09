@@ -117,6 +117,13 @@ class SeasonSimulator:
             team.starting_goalie_selections = 0
             team.backup_goalie_selections = 0
 
+    def reset_skater_stats(self):
+        for team in self.league:
+            for player in team.players:
+                player.goals = 0
+                player.assists = 0
+                player.points = 0
+
     def log_goalie_stats(self, sim_number):
         output_file = "output/goalie_stats.csv"
         file_exists = os.path.isfile(output_file)
@@ -472,6 +479,7 @@ class SeasonSimulator:
     def simulate_season(self, teams, matchups):
         self.reset_standings()
         self.reset_goalie_stats()
+        self.reset_skater_stats()
 
         for matchup in matchups:
             (away_team_name, home_team_name, away_team_goals, home_team_goals,

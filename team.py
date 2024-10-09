@@ -101,7 +101,7 @@ def compute_team_ratings(players):
         total_weighted_offense += (skater.shooting * 0.3 + skater.passing * 0.1 + skater.offense * 0.6) * role_weight
         total_weighted_defense += (skater.defense * 2) * role_weight
 
-        total_offense_weights += (0.15 + 0.05 + 0.3) * role_weight
+        total_offense_weights += (0.15 + 0.05 + 0.30) * role_weight
         total_defense_weights += .97 * role_weight
 
     weighted_avg_offense = total_weighted_offense / total_offense_weights

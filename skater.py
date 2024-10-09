@@ -265,7 +265,7 @@ redwings_players = [
 ]
 
 oilers_players = [
-    Skater("Connor McDavid", 80, 90, 90, 60, role="1st Line"),
+    Skater("Connor McDavid", 80, 100, 100, 60, role="1st Line"),
     Skater("Leon Draisaitl", 90, 85, 80,20, role="1st Line"),
     Skater("Ryan Nugent-Hopkins", 40, 60, 60, 60, role="1st Line"),
     Skater("Zach Hyman", 70, 60, 85, 40, role="2nd Line"),
@@ -458,7 +458,7 @@ rangers_players = [
     Skater("Vincent Trocheck", 50, 80, 70, 50, role="1st Line"),
     Skater("Chris Kreider", 70, 35, 70, 55, role="2nd Line"),
     Skater("Filip Chytil", 55, 50, 60, 45, role="2nd Line"),
-    Skater("Alexis Lafreniere", 60, 50, 50, 30, role="2nd Line"),
+    Skater("Alexis Lafreniere", 60, 50, 60, 30, role="2nd Line"),
     Skater("Kaapo Kakko", 60, 40, 45, 50, role="3rd Line"),
     Skater("Reilly Smith", 50, 65, 55, 50, role="3rd Line"),
     Skater("Will Cuylle", 50, 20, 40, 60, role="3rd Line"),
@@ -631,7 +631,7 @@ lightning_players = [
 ]
 
 leafs_players = [
-    Skater("Auston Matthews", 90, 70, 90, 60, role="1st Line"),
+    Skater("Auston Matthews", 100, 70, 90, 60, role="1st Line"),
     Skater("William Nylander", 70, 65, 80,20, role="1st Line"),
     Skater("Mitch Marner", 70, 90, 60, 60, role="1st Line"),
     Skater("John Tavares", 55, 55, 70, 55, role="2nd Line"),
