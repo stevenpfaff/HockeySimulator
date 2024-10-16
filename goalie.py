@@ -13,17 +13,18 @@ class Goalie:
 
 goalies = {
     # Ducks
-    "gibson": Goalie("John Gibson", 45),
-    "dostal": Goalie("Lukas Dostal", 40),
+    "gibson": Goalie("John Gibson", 40),
+    "dostal": Goalie("Lukas Dostal", 50),
+    "reimer": Goalie("James Reimer", 45),
     # Bruins
     "swayman": Goalie("Jeremy Swayman", 70),
     "korp": Goalie("Joonas Korpisalo", 30),
     "bussi": Goalie("Brandon Bussi", 30),
     # Sabres
     "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55),
-    "levi": Goalie("Devon Levi", 40),
+    "levi": Goalie("Devon Levi", 45),
     # Flames
-    "wolf": Goalie("Dustin Wolf", 30),
+    "wolf": Goalie("Dustin Wolf", 40),
     "vladar": Goalie("Dan Vladar", 30),
     "cooley": Goalie("Devin Cooley", 30),
     # Hurricanes
@@ -43,9 +44,9 @@ goalies = {
     "oettinger": Goalie("Jake Oettinger", 65),
     "desmith": Goalie("Casey DeSmith", 50),
     # Red Wings
-    "talbot": Goalie("Cam Talbot", 55),
-    "husso": Goalie("Ville Husso", 45),
-    "lyon": Goalie("Alex Lyon", 40),
+    "talbot": Goalie("Cam Talbot", 60),
+    "husso": Goalie("Ville Husso", 40),
+    "lyon": Goalie("Alex Lyon", 50),
     "campbell": Goalie("Jack Campbell", 40),
     # Oilers
     "skinner": Goalie("Stuart Skinner", 60),
@@ -60,10 +61,10 @@ goalies = {
     "copley": Goalie("Phoenix Copley", 40),
     # Wild
     "fleury": Goalie("Marc-Andre Fleury", 50),
-    "gustavsson": Goalie("Filip Gustavsson", 50),
+    "gustavsson": Goalie("Filip Gustavsson", 55),
     # Canadiens
     "primeau": Goalie("Caiden Primeau", 50),
-    "montembeault": Goalie("Sam Montembeault", 50),
+    "montembeault": Goalie("Sam Montembeault", 55),
     # Predators
     "saros": Goalie("Juuse Saros", 70),
     "wedgewood": Goalie("Scott Wedgewood", 40),
@@ -79,12 +80,14 @@ goalies = {
     # Senators
     "ullmark": Goalie("Linus Ullmark", 70),
     "forsberg": Goalie("Anton Forsberg", 40),
+    "sogaard": Goalie("Mads Sogaard", 30),
     # Flyers
     "fedotov": Goalie("Ivan Fedotov", 50),
     "ersson": Goalie("Samuel Ersson", 40),
     # Penguins
     "jarry": Goalie("Tristan Jarry", 60),
     "ned": Goalie("Alex Nedelkovich", 45),
+    "blomqvist": Goalie("Joel Blomqvist", 40),
     # Sharks
     "askarov": Goalie("Yaroslav Askarov", 40),
     "blackwood": Goalie("Mackenzie Blackwood", 40),
@@ -100,13 +103,15 @@ goalies = {
     "johansson": Goalie("Jonas Johansson", 20),
     # Leafs
     "stolarz": Goalie("Anthony Stolarz", 55),
-    "woll": Goalie("Joeseph Woll", 50),
+    "woll": Goalie("Joeseph Woll", 55),
+    "hildeby": Goalie("Dennis Hildeby", 35),
     # Utah
     "vemelka": Goalie("Karel Vejmelka", 40),
     "ingram": Goalie("Connor Ingram", 55),
     # Canucks
     "demko": Goalie("Thatcher Demko", 60),
-    "silvos": Goalie("Arturs Silovs", 40),
+    "silvos": Goalie("Arturs Silovs", 30),
+    "lankinen": Goalie("Kevin Lankinen", 50),
     # Golden Knights
     "hill": Goalie("Adin Hill", 55),
     "samsonov": Goalie("Ilya Samsonov", 45),
@@ -120,7 +125,6 @@ goalies = {
     "comrie": Goalie("Eric Comrie", 40),
 
     # Free Agents
-    "lankinen": Goalie("Kevin Lankinen", 40),
     "halak": Goalie("Jaroslav Halak", 50),
     "hart": Goalie("Carter Hart", 50),
     "elliott": Goalie("Brian Elliott", 30),

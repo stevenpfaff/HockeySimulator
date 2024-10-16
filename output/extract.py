@@ -25,7 +25,7 @@ def calculate_team_percentiles_and_average(file_path, output_file):
                 continue
 
             # Collect data for each statistic
-            for stat in ['GF', 'GA', 'PTS', 'Regulation']:
+            for stat in ['PTS']:
                 if stat in row and row[stat].isdigit():
                     team_stats[team_name][stat].append(int(row[stat]))
                 else:
@@ -44,7 +44,7 @@ def calculate_team_percentiles_and_average(file_path, output_file):
         writer = csv.writer(file)
 
         # Write the header row
-        writer.writerow(['Team', 'Stat', '25th Percentile', '50th Percentile', '75th Percentile', 'Average Points'])
+        writer.writerow(['Team', 'Average Points'])
 
         # Write the data for each team
         for team, stats in team_stats.items():
@@ -100,13 +100,13 @@ def calculate_simulation_percentiles(file_path, output_file):
         writer = csv.writer(file)
 
         # Write the header row
-        writer.writerow(['Player', 'Stat', '25th Percentile', '50th Percentile (Median)', '75th Percentile'])
+        writer.writerow(['Player', 'Stat', '1st Percentile', '50th Percentile (Median)', '100th Percentile'])
 
         # Write the percentile data for each player
         for player, stats in player_simulations.items():
             for stat, values in stats.items():
                 if values:
-                    percentiles = np.percentile(values, [25, 50, 75])  # Calculate 25th, 50th (median), and 75th percentiles
+                    percentiles = np.percentile(values, [1, 50, 100])  # Calculate 25th, 50th (median), and 75th percentiles
                     writer.writerow([player, stat, percentiles[0], percentiles[1], percentiles[2]])
                 else:
                     writer.writerow([player, stat, 'No data', 'No data', 'No data'])

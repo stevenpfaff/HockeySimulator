@@ -116,6 +116,12 @@ class SeasonSimulator:
             team.backup_goalie.goals_allowed = 0
             team.starting_goalie_selections = 0
             team.backup_goalie_selections = 0
+            if team.third_goalie is not None:
+                team.third_goalie.games = 0
+                team.third_goalie.shots_against = 0
+                team.third_goalie.saves = 0
+                team.third_goalie.goals_allowed = 0
+                team.third_goalie_selections = 0
 
     def reset_skater_stats(self):
         for team in self.league:
@@ -124,19 +130,20 @@ class SeasonSimulator:
                 player.assists = 0
                 player.points = 0
 
-    def log_goalie_stats(self, sim_number):
+    def log_goalie_stats(self):
         output_file = "output/goalie_stats.csv"
         file_exists = os.path.isfile(output_file)
         data = []
 
         # Collect data first
         for team in self.league:
-            for goalie in [team.starting_goalie, team.backup_goalie]:
-                if goalie.shots_against > 0:
+            for goalie in [team.starting_goalie, team.backup_goalie, team.third_goalie]:
+                if goalie is not None and goalie.shots_against > 0:
                     save_percentage = goalie.saves / goalie.shots_against
                 else:
                     save_percentage = 0
-                data.append([goalie.name, team.abrv, goalie.games, goalie.wins, goalie.losses, goalie.shutouts,
+                if goalie is not None:
+                    data.append([goalie.name, team.abrv, goalie.games, goalie.wins, goalie.losses, goalie.shutouts,
                              save_percentage])
 
         # Sort data by save percentage in descending order
@@ -147,7 +154,7 @@ class SeasonSimulator:
             writer = csv.writer(file)
             if not file_exists:
                 writer.writerow(["Goalie", "Team", "GP", "W", "L", "SO", "SV%"])
-            writer.writerow([f"Simulation {sim_number} Goalie Stats:"])
+            # writer.writerow([f"Simulation {sim_number} Goalie Stats:"])
             for row in data:
                 writer.writerow([row[0], row[1], row[2], row[3], row[4], row[5], "{:.3f}%".format(row[6])])
 
@@ -157,11 +164,11 @@ class SeasonSimulator:
         with open(filename, mode='a', newline='') as file:
             writer = csv.writer(file)
             if not file_exists:
-                writer.writerow(["Name", "Team", "Goals", "Assists", "Points"])
+                writer.writerow(["Name", "Team", "Goals", "Assists", "Points", "Shots"])
 
             for team in self.league:
                 for skater in team.players:
-                    writer.writerow([skater.name, team.abrv, skater.goals, skater.assists, skater.points])
+                    writer.writerow([skater.name, team.abrv, skater.goals, skater.assists, skater.points, skater.sog])
 
     def sort_and_print(self, division_name, division_teams, filename):
         sorted_standings = sorted(division_teams, key=lambda x: (x.points, x.wins, x.regulation_wins, x.row, x.goals - x.goals_against,),
@@ -548,9 +555,9 @@ class SeasonSimulator:
             )
 
 
-            # Log the game result
-            self.log_game_result(game)
-
-        # Optionally log final goalie stats
-        self.log_goalie_stats(game)
-        self.log_skater_stats()
+        #     # Log the game result
+        #     self.log_game_result(game)
+        #
+        # # Optionally log final goalie stats
+        # self.log_goalie_stats()
+        # self.log_skater_stats()

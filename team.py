@@ -2,16 +2,16 @@ from goalie import goalies
 from skater import ducks_players,bruins_players,sabres_players,flames_players,hurricanes_players, blackhawks_players,avalanche_players,bluejackets_players,stars_players,redwings_players,oilers_players,panthers_players,kings_players,wild_players,canadiens_players,predators_players,devils_players,islanders_players,rangers_players,senators_players,flyers_players,penguins_players,sharks_players,kraken_players,blues_players,lightning_players,leafs_players,utah_players,canucks_players,knights_players,capitals_players,jets_players
 import random
 class Team:
-    def __init__(self, name, abrv, offense, defense, starting_goalie, backup_goalie,
+    def __init__(self, name, abrv, offense, defense, starting_goalie, backup_goalie, third_goalie=None,
                  wins=0, regulation_wins=0, losses=0, otl=0, points=0, playoffs=0,
-                 second_round=0, conf_final=0, cup_final=0,
-                 cup_win=0):
+                 second_round=0, conf_final=0, cup_final=0, cup_win=0):
         self.name = name
         self.abrv = abrv
         self.offense = offense
         self.defense = defense
         self.starting_goalie = starting_goalie
         self.backup_goalie = backup_goalie
+        self.third_goalie = third_goalie
         self.wins = wins
         self.regulation_wins = regulation_wins
         self.losses = losses
@@ -22,8 +22,9 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 65
+        self.max_selections = 60
         self.players = []
+        self.reset_selections()
 
     def add_player(self, player):
         self.players.append(player)
@@ -31,64 +32,76 @@ class Team:
     def reset_selections(self):
         self.starting_goalie_selections = 0
         self.backup_goalie_selections = 0
+        self.third_goalie_selections = 0  # For tracking third goalie
 
     def select_goalie(self):
-        total_rating = self.starting_goalie.rating + self.backup_goalie.rating
+        # Only calculate total rating based on goalies that exist
+        goalies = [self.starting_goalie, self.backup_goalie]
+        if self.third_goalie:
+            goalies.append(self.third_goalie)
 
-        # Calculate the probability for each goalie based on their ratings
-        starting_goalie_probability = self.starting_goalie.rating / total_rating
-        backup_goalie_probability = self.backup_goalie.rating / total_rating
+        total_rating = sum([goalie.rating for goalie in goalies])
 
-        # Adjust probabilities to reflect a larger difference if there's a big gap in ratings
-        rating_difference = abs(self.starting_goalie.rating - self.backup_goalie.rating)
-        if (rating_difference > 10):
-            adjustment_factor = rating_difference / 100
-            starting_goalie_probability += adjustment_factor * starting_goalie_probability
-            backup_goalie_probability -= adjustment_factor * backup_goalie_probability
+        # Calculate probability for each goalie based on their rating
+        goalie_probabilities = [goalie.rating / total_rating for goalie in goalies]
 
-        # Ensure the probabilities still sum to 1
-        total_probability = starting_goalie_probability + backup_goalie_probability
-        starting_goalie_probability /= total_probability
-        backup_goalie_probability /= total_probability
+        # Adjust probabilities based on large rating differences
+        for i, goalie in enumerate(goalies):
+            for j in range(i + 1, len(goalies)):
+                rating_difference = abs(goalies[i].rating - goalies[j].rating)
+                if rating_difference > 10:
+                    adjustment_factor = rating_difference / 100
+                    if goalies[i].rating > goalies[j].rating:
+                        goalie_probabilities[i] += adjustment_factor * goalie_probabilities[i]
+                        goalie_probabilities[j] -= adjustment_factor * goalie_probabilities[j]
+                    else:
+                        goalie_probabilities[j] += adjustment_factor * goalie_probabilities[j]
+                        goalie_probabilities[i] -= adjustment_factor * goalie_probabilities[i]
 
-        # Adjust probabilities based on the number of times goalies have been selected
+        # Re-normalize probabilities to sum to 1
+        total_probability = sum(goalie_probabilities)
+        goalie_probabilities = [prob / total_probability for prob in goalie_probabilities]
+
+        # Adjust probabilities based on the number of selections
+        total_selections = self.starting_goalie_selections + self.backup_goalie_selections
+        if self.third_goalie:
+            total_selections += self.third_goalie_selections
+
         if self.starting_goalie_selections >= self.max_selections:
-            starting_goalie_probability = 0
-            backup_goalie_probability = 1
-        elif self.backup_goalie_selections >= self.max_selections:
-            starting_goalie_probability = 1
-            backup_goalie_probability = 0
-        else:
-            total_selections = self.starting_goalie_selections + self.backup_goalie_selections
-            if total_selections > 0:
-                starting_goalie_probability *= (
-                                                           self.max_selections - self.starting_goalie_selections) / self.max_selections
-                backup_goalie_probability *= (self.max_selections - self.backup_goalie_selections) / self.max_selections
+            goalie_probabilities[0] = 0
+        if self.backup_goalie_selections >= self.max_selections:
+            goalie_probabilities[1] = 0
+        if self.third_goalie and self.third_goalie_selections >= self.max_selections:
+            goalie_probabilities[2] = 0
 
-            # Re-normalize probabilities to sum to 1
-            total_probability = starting_goalie_probability + backup_goalie_probability
-            starting_goalie_probability /= total_probability
-            backup_goalie_probability /= total_probability
+        # Re-normalize probabilities again
+        total_probability = sum(goalie_probabilities)
+        if total_probability > 0:
+            goalie_probabilities = [prob / total_probability for prob in goalie_probabilities]
 
-        probabilities = [starting_goalie_probability, backup_goalie_probability]
-        selected_goalie = random.choices([self.starting_goalie, self.backup_goalie], weights=probabilities)[0]
+        # Select a goalie based on the probabilities
+        selected_goalie = random.choices(goalies, weights=goalie_probabilities)[0]
 
         # Update selection counts
         if selected_goalie == self.starting_goalie:
             self.starting_goalie_selections += 1
-        else:
+        elif selected_goalie == self.backup_goalie:
             self.backup_goalie_selections += 1
+        else:
+            self.third_goalie_selections += 1
 
         return selected_goalie
 
     def get_goalie_by_name(self, goalie_name):
-        # Compare the name to both starting and backup goalie
         if self.starting_goalie.name == goalie_name:
             return self.starting_goalie
         elif self.backup_goalie.name == goalie_name:
             return self.backup_goalie
+        elif self.third_goalie and self.third_goalie.name == goalie_name:
+            return self.third_goalie
         else:
             raise ValueError(f"Goalie {goalie_name} not found in team {self.name}")
+
 
 def compute_team_ratings(players):
     total_weighted_offense = 0
@@ -101,7 +114,7 @@ def compute_team_ratings(players):
         total_weighted_offense += (skater.shooting * 0.3 + skater.passing * 0.1 + skater.offense * 0.6) * role_weight
         total_weighted_defense += (skater.defense * 2) * role_weight
 
-        total_offense_weights += (0.15 + 0.05 + 0.30) * role_weight
+        total_offense_weights += (0.15 + 0.05 + 0.32) * role_weight
         total_defense_weights += .97 * role_weight
 
     weighted_avg_offense = total_weighted_offense / total_offense_weights
@@ -145,16 +158,16 @@ wpg_offense, wpg_defense = compute_team_ratings(jets_players)
 
 # Create team objects
 teams = {
-    "ana": Team("Anaheim Ducks", "ANA", ana_offense, ana_defense, goalies["gibson"], goalies["dostal"]),
+    "ana": Team("Anaheim Ducks", "ANA", ana_offense, ana_defense, goalies["gibson"], goalies["dostal"], goalies["reimer"]),
     "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, goalies["swayman"], goalies["korp"]),
     "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, goalies["luukkonen"], goalies["levi"]),
     "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, goalies["wolf"], goalies["vladar"]),
     "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, goalies["andersen"], goalies["kochetkov"]),
-    "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, goalies["mrazek"], goalies["brossoit"]),
+    "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),
     "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, goalies["georgiev"], goalies["annunen"]),
     "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, goalies["merzlikins"], goalies["tarasov"]),
     "dal": Team("Dallas Stars", "DAL", dal_offense, dal_defense, goalies["oettinger"], goalies["desmith"]),
-    "det": Team("Detroit Red Wings", "DET", det_offense, det_defense, goalies["husso"], goalies["talbot"]),
+    "det": Team("Detroit Red Wings", "DET", det_offense, det_defense, goalies["talbot"], goalies["lyon"], goalies["husso"],),
     "edm": Team("Edmonton Oilers", "EDM", edm_offense, edm_defense, goalies["skinner"], goalies["pickard"]),
     "fla": Team("Florida Panthers", "FLA", fla_offense, fla_defense, goalies["bobrovsky"], goalies["knight"]),
     "la": Team("Los Angeles Kings", "LA", la_offense, la_defense, goalies["kuemper"], goalies["rittich"]),
@@ -164,19 +177,19 @@ teams = {
     "nj": Team("New Jersey Devils", "NJ", nj_offense, nj_defense, goalies["markstrom"], goalies["allen"]),
     "nyi": Team("New York Islanders", "NYI", nyi_offense, nyi_defense, goalies["sorokin"], goalies["varlamov"]),
     "nyr": Team("New York Rangers", "NYR", nyr_offense, nyr_defense, goalies["shesterkin"], goalies["quick"]),
-    "ott": Team("Ottawa Senators", "OTT", ott_offense, ott_defense, goalies["ullmark"], goalies["forsberg"]),
+    "ott": Team("Ottawa Senators", "OTT", ott_offense, ott_defense, goalies["ullmark"], goalies["forsberg"], goalies["sogaard"]),
     "phi": Team("Philadelphia Flyers", "PHI", phi_offense, phi_defense, goalies["fedotov"], goalies["ersson"]),
-    "pit": Team("Pittsburgh Penguins", "PIT", pit_offense, pit_defense, goalies["jarry"], goalies["ned"]),
+    "pit": Team("Pittsburgh Penguins", "PIT", pit_offense, pit_defense, goalies["jarry"], goalies["ned"], goalies["blomqvist"]),
     "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, goalies["blackwood"], goalies["vanacek"]),
     "sea": Team("Seattle Kraken", "SEA", sea_offense, sea_defense, goalies["daccord"], goalies["grubauer"]),
     "stl": Team("St. Louis Blues", "STL", stl_offense, stl_defense, goalies["binner"], goalies["hofer"]),
     "tb": Team("Tampa Bay Lightning", "TB", tb_offense, tb_defense, goalies["vasy"], goalies["johansson"]),
-    "tor": Team("Toronto Maple Leafs", "TOR", tor_offense, tor_defense, goalies["woll"], goalies["stolarz"]),
-    "ari": Team("Utah Hockey Club", "UT", ut_offense, ut_defense, goalies["vemelka"], goalies["ingram"]),
-    "van": Team("Vancouver Canucks", "VAN", van_offense, van_defense, goalies["demko"], goalies["silvos"]),
+    "tor": Team("Toronto Maple Leafs", "TOR", tor_offense, tor_defense, goalies["stolarz"], goalies["woll"], goalies["hildeby"]),
+    "ari": Team("Utah Hockey Club", "UT", ut_offense, ut_defense, goalies["ingram"], goalies["vemelka"]),
+    "van": Team("Vancouver Canucks", "VAN", van_offense, van_defense, goalies["demko"], goalies["lankinen"], goalies["silvos"]),
     "vgk": Team("Vegas Golden Knights", "VGK", vgk_offense, vgk_defense, goalies["hill"], goalies["samsonov"]),
     "wsh": Team("Washington Capitals", "WSH", wsh_offense, wsh_defense, goalies["lindgren"], goalies["thompson"]),
-    "wpg": Team("Winnipeg Jets", "WPG", wpg_offense, wpg_defense, goalies["hellebuyck"], goalies["kahkonen"]),
+    "wpg": Team("Winnipeg Jets", "WPG", wpg_offense, wpg_defense, goalies["hellebuyck"], goalies["comrie"]),
 }
 
 teams["ana"].players = ducks_players
