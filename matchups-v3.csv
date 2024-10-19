@@ -55,24 +55,24 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 10/15/2024,sj,dal,2,3,27,38,Mackenzie Blackwood,Jake Oettinger,FALSE,dal
 10/15/2024,chi,cgy,1,3,32,26,Petr Mrazek,Dustin Wolf,TRUE,cgy
 10/15/2024,phi,edm,3,4,30,33,Samuel Ersson,Stuart Skinner,FALSE,edm
-10/16/2024,buf,pit,,,,,,,,
-10/16/2024,la,tor,,,,,,,,
-10/16/2024,bos,col,,,,,,,,
-10/16/2024,ari,ana,,,,,,,,
-10/17/2024,la,mtl,,,,,,,,
-10/17/2024,nj,ott,,,,,,,,
-10/17/2024,nyr,det,,,,,,,,
-10/17/2024,vgk,tb,,,,,,,,
-10/17/2024,van,fla,,,,,,,,
-10/17/2024,dal,wsh,,,,,,,,
-10/17/2024,buf,cbj,,,,,,,,
-10/17/2024,nyi,stl,,,,,,,,
-10/17/2024,edm,nsh,,,,,,,,
-10/17/2024,sj,chi,,,,,,,,
-10/17/2024,phi,sea,,,,,,,,
-10/18/2024,car,pit,,,,,,,,
-10/18/2024,sj,wpg,,,,,,,,
-10/18/2024,ana,col,,,,,,,,
+10/16/2024,buf,pit,5,6,33,43,Ukko-Pekka Luukkonen,Joel Blomqvist,FALSE,pit
+10/16/2024,la,tor,2,6,34,26,David Rittich,Anthony Stolarz,TRUE,tor
+10/16/2024,bos,col,5,3,25,25,Joonas Korpisalo,Alexandar Georgiev,TRUE,bos
+10/16/2024,ari,ana,4,5,30,34,Connor Ingram,Lukas Dostal,FALSE,ana
+10/17/2024,la,mtl,4,1,32,27,David Rittich,Sam Montembeault,TRUE,la
+10/17/2024,nj,ott,3,1,36,31,Jacob Markstrom,Anton Forsberg,TRUE,nj
+10/17/2024,nyr,det,5,2,34,31,Jonathan Quick,Cam Talbot,TRUE,nyr
+10/17/2024,vgk,tb,3,4,25,25,Adin Hill,Andrei Vasilevskiy,TRUE,tb
+10/17/2024,van,fla,3,2,33,28,Kevin Lankinen,Sergei Bobrovsky,FALSE,van
+10/17/2024,dal,wsh,2,3,24,27,Casey DeSmith,Charlie Lindgren,TRUE,wsh
+10/17/2024,buf,cbj,4,6,24,25,Devon Levi,Daniil Tarasov,TRUE,cbj
+10/17/2024,nyi,stl,0,1,34,30,Ilya Sorokin,Joel Hofer,FALSE,stl
+10/17/2024,edm,nsh,4,2,36,27,Calvin Pickard,Juuse Saros,TRUE,edm
+10/17/2024,sj,chi,2,4,22,27,Vitek Vanecek,Petr Mrazek,TRUE,chi
+10/17/2024,phi,sea,4,6,25,29,Ivan Fedotov,Philipp Grubauer,TRUE,sea
+10/18/2024,car,pit,4,1,39,26,Frederik Andersen,Joel Blomqvist,TRUE,car
+10/18/2024,sj,wpg,3,8,22,36,Vitek Vanecek,Connor Hellebuyck,TRUE,wpg
+10/18/2024,ana,col,3,4,20,49,Lukas Dostal,Alexandar Georgiev,FALSE,col
 10/19/2024,tb,ott,,,,,,,,
 10/19/2024,det,nsh,,,,,,,,
 10/19/2024,edm,dal,,,,,,,,

@@ -89,7 +89,7 @@ goalies = {
     "ned": Goalie("Alex Nedelkovich", 45),
     "blomqvist": Goalie("Joel Blomqvist", 40),
     # Sharks
-    "askarov": Goalie("Yaroslav Askarov", 40),
+    "askarov": Goalie("Yaroslav Askarov", 30),
     "blackwood": Goalie("Mackenzie Blackwood", 40),
     "vanacek": Goalie("Vitek Vanecek", 40),
     # Kraken
