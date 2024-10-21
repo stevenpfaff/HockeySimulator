@@ -1,6 +1,8 @@
 from goalie import goalies
 from skater import ducks_players,bruins_players,sabres_players,flames_players,hurricanes_players, blackhawks_players,avalanche_players,bluejackets_players,stars_players,redwings_players,oilers_players,panthers_players,kings_players,wild_players,canadiens_players,predators_players,devils_players,islanders_players,rangers_players,senators_players,flyers_players,penguins_players,sharks_players,kraken_players,blues_players,lightning_players,leafs_players,utah_players,canucks_players,knights_players,capitals_players,jets_players
 import random
+import random
+
 class Team:
     def __init__(self, name, abrv, offense, defense, starting_goalie, backup_goalie, third_goalie=None,
                  wins=0, regulation_wins=0, losses=0, otl=0, points=0, playoffs=0,
@@ -32,37 +34,30 @@ class Team:
     def reset_selections(self):
         self.starting_goalie_selections = 0
         self.backup_goalie_selections = 0
-        self.third_goalie_selections = 0  # For tracking third goalie
+        self.third_goalie_selections = 0
 
     def select_goalie(self):
-        # Only calculate total rating based on goalies that exist
+        # Define a base priority based on role
+        goalie_priority = {
+            "Starter": 3,
+            "1A": 2.5,
+            "1B": 2,
+            "Backup": 1.5,
+            "Third": .33
+        }
+
+        # Gather available goalies
         goalies = [self.starting_goalie, self.backup_goalie]
         if self.third_goalie:
             goalies.append(self.third_goalie)
 
-        total_rating = sum([goalie.rating for goalie in goalies])
+        # Calculate total rating with role adjustments
+        total_priority = sum([goalie.rating * goalie_priority[goalie.role] for goalie in goalies])
 
-        # Calculate probability for each goalie based on their rating
-        goalie_probabilities = [goalie.rating / total_rating for goalie in goalies]
+        # Calculate probabilities based on adjusted ratings
+        goalie_probabilities = [(goalie.rating * goalie_priority[goalie.role]) / total_priority for goalie in goalies]
 
-        # Adjust probabilities based on large rating differences
-        for i, goalie in enumerate(goalies):
-            for j in range(i + 1, len(goalies)):
-                rating_difference = abs(goalies[i].rating - goalies[j].rating)
-                if rating_difference > 10:
-                    adjustment_factor = rating_difference / 100
-                    if goalies[i].rating > goalies[j].rating:
-                        goalie_probabilities[i] += adjustment_factor * goalie_probabilities[i]
-                        goalie_probabilities[j] -= adjustment_factor * goalie_probabilities[j]
-                    else:
-                        goalie_probabilities[j] += adjustment_factor * goalie_probabilities[j]
-                        goalie_probabilities[i] -= adjustment_factor * goalie_probabilities[i]
-
-        # Re-normalize probabilities to sum to 1
-        total_probability = sum(goalie_probabilities)
-        goalie_probabilities = [prob / total_probability for prob in goalie_probabilities]
-
-        # Adjust probabilities based on the number of selections
+        # Adjust probabilities based on the number of starts each goalie has already had
         total_selections = self.starting_goalie_selections + self.backup_goalie_selections
         if self.third_goalie:
             total_selections += self.third_goalie_selections
@@ -74,15 +69,15 @@ class Team:
         if self.third_goalie and self.third_goalie_selections >= self.max_selections:
             goalie_probabilities[2] = 0
 
-        # Re-normalize probabilities again
+        # Re-normalize probabilities after adjustment
         total_probability = sum(goalie_probabilities)
         if total_probability > 0:
             goalie_probabilities = [prob / total_probability for prob in goalie_probabilities]
 
-        # Select a goalie based on the probabilities
+        # Select a goalie based on the adjusted probabilities
         selected_goalie = random.choices(goalies, weights=goalie_probabilities)[0]
 
-        # Update selection counts
+        # Update selection counts based on the chosen goalie
         if selected_goalie == self.starting_goalie:
             self.starting_goalie_selections += 1
         elif selected_goalie == self.backup_goalie:
@@ -101,6 +96,7 @@ class Team:
             return self.third_goalie
         else:
             raise ValueError(f"Goalie {goalie_name} not found in team {self.name}")
+
 
 
 def compute_team_ratings(players):

@@ -73,22 +73,22 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 10/18/2024,car,pit,4,1,39,26,Frederik Andersen,Joel Blomqvist,TRUE,car
 10/18/2024,sj,wpg,3,8,22,36,Vitek Vanecek,Connor Hellebuyck,TRUE,wpg
 10/18/2024,ana,col,3,4,20,49,Lukas Dostal,Alexandar Georgiev,FALSE,col
-10/19/2024,tb,ott,,,,,,,,
-10/19/2024,det,nsh,,,,,,,,
-10/19/2024,edm,dal,,,,,,,,
-10/19/2024,vgk,fla,,,,,,,,
-10/19/2024,nyr,tor,,,,,,,,
-10/19/2024,wsh,nj,,,,,,,,
-10/19/2024,mtl,nyi,,,,,,,,
-10/19/2024,van,phi,,,,,,,,
-10/19/2024,min,cbj,,,,,,,,
-10/19/2024,car,stl,,,,,,,,
-10/19/2024,buf,chi,,,,,,,,
-10/19/2024,bos,ari,,,,,,,,
-10/19/2024,cgy,sea,,,,,,,,
-10/20/2024,pit,wpg,,,,,,,,
-10/20/2024,col,sj,,,,,,,,
-10/20/2024,la,ana,,,,,,,,
+10/19/2024,tb,ott,4,5,29,28,Andrei Vasilevskiy,Anton Forsberg,TRUE,ott
+10/19/2024,det,nsh,5,2,24,39,Alex Lyon,Juuse Saros,TRUE,det
+10/19/2024,edm,dal,1,4,31,24,Stuart Skinner,Jake Oettinger,TRUE,dal
+10/19/2024,vgk,fla,3,4,26,49,Ilya Samsonov,Sergei Bobrovsky,FALSE,fla
+10/19/2024,nyr,tor,4,1,29,35,Igor Shesterkin,Anthony Stolarz,TRUE,nyr
+10/19/2024,wsh,nj,6,5,37,31,Logan Thompson,Jacob Markstrom,FALSE,wsh
+10/19/2024,mtl,nyi,3,4,24,36,Caiden Primeau,Semyon Varlamov,FALSE,nyi
+10/19/2024,van,phi,3,0,32,26,Kevin Lankinen,Samuel Ersson,TRUE,van
+10/19/2024,min,cbj,3,1,35,24,Filip Gustavsson,Daniil Tarasov,TRUE,min
+10/19/2024,car,stl,3,4,40,19,Pyotr Kochetkov,Joel Hofer,TRUE,stl
+10/19/2024,buf,chi,4,2,22,37,Ukko-Pekka Luukkonen,Arvid Soderblom,TRUE,buf
+10/19/2024,bos,ari,1,2,23,32,Jeremy Swayman,Connor Ingram,FALSE,ari
+10/19/2024,cgy,sea,1,2,22,23,Dan Vladar,Joey Daccord,FALSE,sea
+10/20/2024,pit,wpg,3,6,42,37,Alex Nedeljkovic,Eric Comrie,TRUE,wpg
+10/20/2024,col,sj,4,1,22,26,Justus Annunen,Vitek Vanecek,TRUE,col
+10/20/2024,la,ana,4,1,37,15,David Rittich,Lukas Dostal,TRUE,la
 10/21/2024,tb,tor,,,,,,,,
 10/22/2024,wsh,phi,,,,,,,,
 10/22/2024,min,fla,,,,,,,,

@@ -1,7 +1,8 @@
 class Goalie:
-    def __init__(self, name, rating, games=0, shots_against=0, saves=0, goals_allowed=0, wins=0, losses=0, shutouts=0):
+    def __init__(self, name, rating, role=None, games=0, shots_against=0, saves=0, goals_allowed=0, wins=0, losses=0, shutouts=0):
         self.name = name
         self.rating = rating
+        self.role = role or "Third"
         self.games = games
         self.shots_against = shots_against
         self.saves = saves
@@ -13,120 +14,112 @@ class Goalie:
 
 goalies = {
     # Ducks
-    "gibson": Goalie("John Gibson", 40),
-    "dostal": Goalie("Lukas Dostal", 50),
-    "reimer": Goalie("James Reimer", 45),
+    "gibson": Goalie("John Gibson", 40, "Third"),
+    "dostal": Goalie("Lukas Dostal", 50, "1A"),
+    "reimer": Goalie("James Reimer", 45, "Backup"),
     # Bruins
-    "swayman": Goalie("Jeremy Swayman", 70),
-    "korp": Goalie("Joonas Korpisalo", 30),
-    "bussi": Goalie("Brandon Bussi", 30),
+    "swayman": Goalie("Jeremy Swayman", 70, "Starter"),
+    "korp": Goalie("Joonas Korpisalo", 30, "Backup"),
     # Sabres
-    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55),
-    "levi": Goalie("Devon Levi", 45),
+    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55, "1A"),
+    "levi": Goalie("Devon Levi", 45, "1B"),
     # Flames
-    "wolf": Goalie("Dustin Wolf", 40),
-    "vladar": Goalie("Dan Vladar", 30),
-    "cooley": Goalie("Devin Cooley", 30),
+    "wolf": Goalie("Dustin Wolf", 40, "1B"),
+    "vladar": Goalie("Dan Vladar", 30, "1A"),
+    "cooley": Goalie("Devin Cooley", 30, "Third"),
     # Hurricanes
-    "andersen": Goalie("Frederik Andersen", 60),
-    "kochetkov": Goalie("Pyotr Kochetkov", 50),
+    "andersen": Goalie("Frederik Andersen", 60, "1A"),
+    "kochetkov": Goalie("Pyotr Kochetkov", 50, "1B"),
     # Blackhawks
-    "mrazek": Goalie("Petr Mrazek", 40),
-    "brossoit": Goalie("Laurent Brossoit", 55),
-    "soderblom": Goalie("Arvid Soderblom", 20),
+    "mrazek": Goalie("Petr Mrazek", 40, "1B"),
+    "brossoit": Goalie("Laurent Brossoit", 55, "1A"),
+    "soderblom": Goalie("Arvid Soderblom", 20, "Backup"),
     # Avalanche
-    "georgiev": Goalie("Alexandar Georgiev", 55),
-    "annunen": Goalie("Justus Annunen", 45),
+    "georgiev": Goalie("Alexandar Georgiev", 55, "Starter"),
+    "annunen": Goalie("Justus Annunen", 45, "Backup"),
     # Blue Jackets
-    "merzlikins": Goalie("Elvis Merzlikins", 40),
-    "tarasov": Goalie("Daniil Tarasov", 30),
+    "merzlikins": Goalie("Elvis Merzlikins", 40, "1A"),
+    "tarasov": Goalie("Daniil Tarasov", 30, "1B"),
     # Stars
-    "oettinger": Goalie("Jake Oettinger", 65),
-    "desmith": Goalie("Casey DeSmith", 50),
+    "oettinger": Goalie("Jake Oettinger", 65, "Starter"),
+    "desmith": Goalie("Casey DeSmith", 50, "Backup"),
     # Red Wings
-    "talbot": Goalie("Cam Talbot", 60),
-    "husso": Goalie("Ville Husso", 40),
-    "lyon": Goalie("Alex Lyon", 50),
+    "talbot": Goalie("Cam Talbot", 60, "1A"),
+    "husso": Goalie("Ville Husso", 40, "Third"),
+    "lyon": Goalie("Alex Lyon", 50, "1B"),
     "campbell": Goalie("Jack Campbell", 40),
     # Oilers
-    "skinner": Goalie("Stuart Skinner", 60),
-    "pickard": Goalie("Calvin Pickard", 40),
-    "delia": Goalie("Collin Delia", 40),
+    "skinner": Goalie("Stuart Skinner", 60, "Starter"),
+    "pickard": Goalie("Calvin Pickard", 40, "Backup"),
     # Panthers
-    "bobrovsky": Goalie("Sergei Bobrovsky", 70),
-    "knight": Goalie("Spencer Knight", 50),
+    "bobrovsky": Goalie("Sergei Bobrovsky", 70, "Starter"),
+    "knight": Goalie("Spencer Knight", 50, "1B"),
     # Kings
-    "kuemper": Goalie("Darcy Kuemper", 60),
-    "rittich": Goalie("David Rittich", 40),
-    "copley": Goalie("Phoenix Copley", 40),
+    "kuemper": Goalie("Darcy Kuemper", 60, "Starter"),
+    "rittich": Goalie("David Rittich", 40, "Backup"),
+    "copley": Goalie("Phoenix Copley", 40, "Backup"),
     # Wild
-    "fleury": Goalie("Marc-Andre Fleury", 50),
-    "gustavsson": Goalie("Filip Gustavsson", 55),
+    "fleury": Goalie("Marc-Andre Fleury", 50, "1B"),
+    "gustavsson": Goalie("Filip Gustavsson", 55, "1A"),
     # Canadiens
-    "primeau": Goalie("Caiden Primeau", 50),
-    "montembeault": Goalie("Sam Montembeault", 55),
+    "primeau": Goalie("Caiden Primeau", 50, "1B"),
+    "montembeault": Goalie("Sam Montembeault", 55, "1A"),
     # Predators
-    "saros": Goalie("Juuse Saros", 70),
-    "wedgewood": Goalie("Scott Wedgewood", 40),
+    "saros": Goalie("Juuse Saros", 70, "Starter"),
+    "wedgewood": Goalie("Scott Wedgewood", 40, "Backup"),
     # Devils
-    "markstrom": Goalie("Jacob Markstrom", 60),
-    "allen": Goalie("Jake Allen", 50),
+    "markstrom": Goalie("Jacob Markstrom", 60, "Starter"),
+    "allen": Goalie("Jake Allen", 50, "1B"),
     # Islanders
-    "sorokin": Goalie("Ilya Sorokin", 70),
-    "varlamov": Goalie("Semyon Varlamov", 60),
+    "sorokin": Goalie("Ilya Sorokin", 70, "Starter"),
+    "varlamov": Goalie("Semyon Varlamov", 60, "1A"),
     # Rangers
-    "shesterkin": Goalie("Igor Shesterkin", 80),
-    "quick": Goalie("Jonathan Quick", 50),
+    "shesterkin": Goalie("Igor Shesterkin", 80, "Starter"),
+    "quick": Goalie("Jonathan Quick", 50, "Backup"),
     # Senators
-    "ullmark": Goalie("Linus Ullmark", 70),
-    "forsberg": Goalie("Anton Forsberg", 40),
-    "sogaard": Goalie("Mads Sogaard", 30),
+    "ullmark": Goalie("Linus Ullmark", 70, "Starter"),
+    "forsberg": Goalie("Anton Forsberg", 40, "Backup"),
+    "sogaard": Goalie("Mads Sogaard", 30, "Third"),
     # Flyers
-    "fedotov": Goalie("Ivan Fedotov", 50),
-    "ersson": Goalie("Samuel Ersson", 40),
+    "fedotov": Goalie("Ivan Fedotov", 50, "1B"),
+    "ersson": Goalie("Samuel Ersson", 40, "1A"),
     # Penguins
-    "jarry": Goalie("Tristan Jarry", 60),
-    "ned": Goalie("Alex Nedelkovich", 45),
-    "blomqvist": Goalie("Joel Blomqvist", 40),
+    "jarry": Goalie("Tristan Jarry", 60, "Starter"),
+    "ned": Goalie("Alex Nedeljkovic", 45, "Backup"),
+    "blomqvist": Goalie("Joel Blomqvist", 40, "Backup"),
     # Sharks
-    "askarov": Goalie("Yaroslav Askarov", 30),
-    "blackwood": Goalie("Mackenzie Blackwood", 40),
-    "vanacek": Goalie("Vitek Vanecek", 40),
+    "askarov": Goalie("Yaroslav Askarov", 30, "Third"),
+    "blackwood": Goalie("Mackenzie Blackwood", 40, "1A"),
+    "vanacek": Goalie("Vitek Vanecek", 40, "1B"),
     # Kraken
-    "daccord": Goalie("Joey Daccord", 55),
-    "grubauer": Goalie("Philipp Grubauer", 40),
+    "daccord": Goalie("Joey Daccord", 55, "Starter"),
+    "grubauer": Goalie("Philipp Grubauer", 40, "1B"),
     # Blues
-    "binner": Goalie("Jordan Binnington", 60),
-    "hofer": Goalie("Joel Hofer", 50),
+    "binner": Goalie("Jordan Binnington", 60, "Starter"),
+    "hofer": Goalie("Joel Hofer", 50, "Backup"),
     # Lightning
-    "vasy": Goalie("Andrei Vasilevskiy", 70),
-    "johansson": Goalie("Jonas Johansson", 20),
+    "vasy": Goalie("Andrei Vasilevskiy", 70, "Starter"),
+    "johansson": Goalie("Jonas Johansson", 20, "Backup"),
     # Leafs
-    "stolarz": Goalie("Anthony Stolarz", 55),
-    "woll": Goalie("Joeseph Woll", 55),
-    "hildeby": Goalie("Dennis Hildeby", 35),
+    "stolarz": Goalie("Anthony Stolarz", 55, "1A"),
+    "woll": Goalie("Joeseph Woll", 55, "1B"),
+    "hildeby": Goalie("Dennis Hildeby", 35, "Third"),
     # Utah
-    "vemelka": Goalie("Karel Vejmelka", 40),
-    "ingram": Goalie("Connor Ingram", 55),
+    "vemelka": Goalie("Karel Vejmelka", 40, "1B"),
+    "ingram": Goalie("Connor Ingram", 55, "1A"),
     # Canucks
-    "demko": Goalie("Thatcher Demko", 60),
-    "silvos": Goalie("Arturs Silovs", 30),
-    "lankinen": Goalie("Kevin Lankinen", 50),
+    "demko": Goalie("Thatcher Demko", 60, "Starter"),
+    "silvos": Goalie("Arturs Silovs", 30, "Third"),
+    "lankinen": Goalie("Kevin Lankinen", 50, "Backup"),
     # Golden Knights
-    "hill": Goalie("Adin Hill", 55),
-    "samsonov": Goalie("Ilya Samsonov", 45),
-    "schmid": Goalie("Akira Schmid", 20),
+    "hill": Goalie("Adin Hill", 55, "1A"),
+    "samsonov": Goalie("Ilya Samsonov", 45, "1B"),
+    "schmid": Goalie("Akira Schmid", 20, "Third"),
     # Capitals
-    "thompson": Goalie("Logan Thompson", 55),
-    "lindgren": Goalie("Charlie Lindgren", 55),
+    "thompson": Goalie("Logan Thompson", 55, "1B"),
+    "lindgren": Goalie("Charlie Lindgren", 55, "1A"),
     # Jets
-    "hellebuyck": Goalie("Connor Hellebuyck", 90),
-    "kahkonen": Goalie("Kaapo Kahkonen", 40),
-    "comrie": Goalie("Eric Comrie", 40),
-
-    # Free Agents
-    "halak": Goalie("Jaroslav Halak", 50),
-    "hart": Goalie("Carter Hart", 50),
-    "elliott": Goalie("Brian Elliott", 30),
-    "jones": Goalie("Martin Jones", 40)
+    "hellebuyck": Goalie("Connor Hellebuyck", 90, "Starter"),
+    "kahkonen": Goalie("Kaapo Kahkonen", 40, "Backup"),
+    "comrie": Goalie("Eric Comrie", 40, "Backup")
 }
