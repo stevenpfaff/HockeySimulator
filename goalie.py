@@ -16,7 +16,7 @@ goalies = {
     # Ducks
     "gibson": Goalie("John Gibson", 40, "1B"),
     "dostal": Goalie("Lukas Dostal", 50, "1A"),
-    "reimer": Goalie("James Reimer", 45, "Backup"),
+    "reimer": Goalie("James Reimer", 45, "Third"),
     # Bruins
     "swayman": Goalie("Jeremy Swayman", 70, "Starter"),
     "korp": Goalie("Joonas Korpisalo", 30, "Backup"),

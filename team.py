@@ -41,7 +41,7 @@ class Team:
         goalie_priority = {
             "Starter": 3,
             "1A": 2.5,
-            "1B": 2,
+            "1B": 2.4,
             "Backup": 1.5,
             "Third": .33
         }
