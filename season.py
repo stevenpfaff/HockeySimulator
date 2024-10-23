@@ -236,22 +236,10 @@ class SeasonSimulator:
                 team2.playoffs += 1
 
         def get_top_rated_goalie(team):
-            # Compare the starting goalie and backup based on save percentage
-            if team.backup_goalie.shots_against > 0:
-                backup_save_percentage = team.backup_goalie.saves / team.backup_goalie.shots_against
-            else:
-                backup_save_percentage = 0
-
-            if team.starting_goalie.shots_against > 0:
-                starting_save_percentage = team.starting_goalie.saves / team.starting_goalie.shots_against
-            else:
-                starting_save_percentage = 0
-
-            # Return the goalie with the higher save percentage
-            if backup_save_percentage > starting_save_percentage:
+            # Compare goalies based on a predefined rating or role attribute
+            if team.backup_goalie.rating > team.starting_goalie.rating:
                 return team.backup_goalie
             return team.starting_goalie
-
         def simulate_series(matchup):
             team1, team2 = matchup
             team1_wins = 0
@@ -559,5 +547,5 @@ class SeasonSimulator:
         #     self.log_game_result(game)
         #
         # Optionally log final goalie stats
-        self.log_goalie_stats()
+        # self.log_goalie_stats()
         # self.log_skater_stats()

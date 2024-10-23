@@ -53,8 +53,8 @@ class Game:
 
         # Apply home-ice advantage: If home team, increase SOG range slightly
         if home_team:
-            sog_min += 1  # Slight boost for the home team
-            sog_max += 1  # Slight boost for the home team
+            sog_min += 2  # Slight boost for the home team
+            sog_max += 2  # Slight boost for the home team
 
         # Generate the random SOG value within the adjusted range
         sog = random.randint(sog_min, sog_max)
@@ -155,13 +155,13 @@ class Game:
     def get_goal_probability(goalie_rating):
         threshold = 20  # Example threshold, adjust as needed
         if goalie_rating <= threshold:
-            return 0.115
+            return 0.120
         elif goalie_rating > threshold and goalie_rating <= 30:
-            return 0.110
+            return 0.115
         elif goalie_rating > 30 and goalie_rating <= 40:
-            return 0.105
+            return 0.110
         elif goalie_rating > 40 and goalie_rating <= 45:
-            return 0.102
+            return 0.105
         elif goalie_rating > 45 and goalie_rating <= 50:
             return 0.100
         elif goalie_rating > 50 and goalie_rating <= 55:
