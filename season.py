@@ -440,7 +440,6 @@ class SeasonSimulator:
                 writer.writerow(["West Conference Finals", matchup[0].abrv, matchup[1].abrv, result[0].abrv, result[1]])
 
             # Cup Final
-            # Write cup final matchup...
             for matchup, result in zip(cup_final, cup_final_results):
                 writer.writerow(["Cup Final", matchup[0].abrv, matchup[1].abrv, result.abrv, total_games])
 
@@ -456,10 +455,10 @@ class SeasonSimulator:
         with open('output/playoff_data.csv', mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(
-                ["Team", "Playoff%", "Round 2%", "Conf Final%",
+                ["Team", "Playoff Appearances", "Playoff%", "Round 2%", "Conf Final%",
                  "Cup Final%", "Win Cup%"])
 
-            for team in league:  # Assuming `league` is a list of team objects
+            for team in league:
                 playoff_percentage = (team.playoffs / num_simulations) * 100
                 second_round_percentage = (team.second_round / num_simulations) * 100
                 conf_final_percentage = (team.conf_final / num_simulations) * 100
@@ -467,7 +466,7 @@ class SeasonSimulator:
                 cup_win_percentage = (team.cup_win / num_simulations) * 100
 
                 writer.writerow(
-                    [team.name, f"{playoff_percentage:.2f}%", f"{second_round_percentage:.2f}%",
+                    [team.name, team.playoffs, f"{playoff_percentage:.2f}%", f"{second_round_percentage:.2f}%",
                      f"{conf_final_percentage:.2f}%", f"{cup_final_percentage:.2f}%",
                      f"{cup_win_percentage:.2f}%"])
 

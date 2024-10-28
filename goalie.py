@@ -33,7 +33,7 @@ goalies = {
     # Blackhawks
     "mrazek": Goalie("Petr Mrazek", 40, "1B"),
     "brossoit": Goalie("Laurent Brossoit", 55, "1A"),
-    "soderblom": Goalie("Arvid Soderblom", 20, "Backup"),
+    "soderblom": Goalie("Arvid Soderblom", 20, "Third"),
     # Avalanche
     "georgiev": Goalie("Alexandar Georgiev", 55, "Starter"),
     "annunen": Goalie("Justus Annunen", 45, "Backup"),
@@ -83,6 +83,7 @@ goalies = {
     # Flyers
     "fedotov": Goalie("Ivan Fedotov", 40, "1B"),
     "ersson": Goalie("Samuel Ersson", 45, "1A"),
+    "kolosov": Goalie("Aleksei Kolosov", 30, "Third"),
     # Penguins
     "jarry": Goalie("Tristan Jarry", 60, "Starter"),
     "ned": Goalie("Alex Nedeljkovic", 45, "Backup"),
@@ -102,7 +103,7 @@ goalies = {
     "johansson": Goalie("Jonas Johansson", 20, "Backup"),
     # Leafs
     "stolarz": Goalie("Anthony Stolarz", 60, "1A"),
-    "woll": Goalie("Joeseph Woll", 55, "1B"),
+    "woll": Goalie("Joseph Woll", 55, "1B"),
     "hildeby": Goalie("Dennis Hildeby", 30, "Third"),
     # Utah
     "vemelka": Goalie("Karel Vejmelka", 40, "1B"),
