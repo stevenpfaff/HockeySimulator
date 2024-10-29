@@ -155,24 +155,22 @@ class Game:
     def get_goal_probability(goalie_rating):
         threshold = 20  # Example threshold, adjust as needed
         if goalie_rating <= threshold:
-            return 0.120
+            return 0.140
         elif goalie_rating > threshold and goalie_rating <= 30:
-            return 0.115
+            return 0.130
         elif goalie_rating > 30 and goalie_rating <= 40:
-            return 0.110
+            return 0.120
         elif goalie_rating > 40 and goalie_rating <= 45:
-            return 0.105
+            return 0.110
         elif goalie_rating > 45 and goalie_rating <= 50:
-            return 0.100
+            return 0.105
         elif goalie_rating > 50 and goalie_rating <= 55:
-            return 0.097
+            return 0.100
         elif goalie_rating > 55 and goalie_rating <= 60:
             return 0.095
         elif goalie_rating > 60 and goalie_rating <= 70:
-            return 0.092
-        elif goalie_rating > 70 and goalie_rating <= 80:
             return 0.090
-        elif goalie_rating > 80:
+        elif goalie_rating > 70 and goalie_rating <= 80:
             return 0.085
 
     def __get_winner(self):

@@ -138,14 +138,14 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 10/27/2024,ana,nj,2,6,26,34,James Reimer,Jacob Markstrom,TRUE,nj
 10/27/2024,mtl,phi,4,3,24,26,Cayden Primeau,Aleksei Kolosov,TRUE,mtl
 10/27/2024,ott,col,4,5,30,32,Anton Forsberg,Justus Annunen,TRUE,col
-10/28/2024,fla,buf,,,,,,,,
-10/28/2024,nsh,tb,,,,,,,,
-10/28/2024,edm,cbj,,,,,,,,
-10/28/2024,tor,wpg,,,,,,,,
-10/28/2024,chi,col,,,,,,,,
-10/28/2024,sj,ari,,,,,,,,
-10/28/2024,car,van,,,,,,,,
-10/28/2024,cgy,vgk,,,,,,,,
+10/28/2024,fla,buf,5,2,31,28,Sergei Bobrovsky,Ukko-Pekka Luukkonen,TRUE,fla
+10/28/2024,nsh,tb,2,3,37,27,Juuse Saros,Andrei Vasilevskiy,FALSE,tb
+10/28/2024,edm,cbj,1,6,32,25,Stuart Skinner,Elvis Merzlikins,TRUE,cbj
+10/28/2024,tor,wpg,6,4,36,23,Anthony Stolarz,Connor Hellebuyck,TRUE,tor
+10/28/2024,chi,col,5,2,26,26,Petr Mrazek,Alexandar Georgiev,TRUE,chi
+10/28/2024,sj,ari,5,4,45,23,Mackenzie Blackwood,Connor Ingram,FALSE,sj
+10/28/2024,car,van,4,3,32,27,Pyotr Kochetkov,Kevin Lankinen,FALSE,car
+10/28/2024,cgy,vgk,0,5,16,38,Dan Vladar,Adin Hill,TRUE,vgk
 10/29/2024,phi,bos,,,,,,,,
 10/29/2024,sea,mtl,,,,,,,,
 10/29/2024,stl,ott,,,,,,,,

@@ -51,8 +51,8 @@ class SeasonSimulator:
                 home_team.regulation_wins += 1
                 away_team.losses += 1
             else:
-                home_team.goals += 1
-                away_team.goals_against += 1
+                # home_team.goals += 1
+                # away_team.goals_against += 1
                 away_team.otl += 1
                 away_team.points += 1
 
@@ -65,8 +65,6 @@ class SeasonSimulator:
                 away_team.regulation_wins += 1
                 home_team.losses += 1
             else:
-                away_team.goals += 1
-                home_team.goals_against += 1
                 home_team.otl += 1
                 home_team.points += 1
         else:
@@ -455,7 +453,7 @@ class SeasonSimulator:
         with open('output/playoff_data.csv', mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(
-                ["Team", "Playoff Appearances", "Playoff%", "Round 2%", "Conf Final%",
+                ["Team", "Playoff%", "Round 2%", "Conf Final%",
                  "Cup Final%", "Win Cup%"])
 
             for team in league:
@@ -466,7 +464,7 @@ class SeasonSimulator:
                 cup_win_percentage = (team.cup_win / num_simulations) * 100
 
                 writer.writerow(
-                    [team.name, team.playoffs, f"{playoff_percentage:.2f}%", f"{second_round_percentage:.2f}%",
+                    [team.name, f"{playoff_percentage:.2f}%", f"{second_round_percentage:.2f}%",
                      f"{conf_final_percentage:.2f}%", f"{cup_final_percentage:.2f}%",
                      f"{cup_win_percentage:.2f}%"])
 
@@ -542,9 +540,9 @@ class SeasonSimulator:
             )
 
 
-            # Log the game result
-        #     self.log_game_result(game)
+             # Log the game result
+            # self.log_game_result(game)
 
-        # Optionally log final goalie stats
+        # log final goalie stats
         self.log_goalie_stats()
         # self.log_skater_stats()
