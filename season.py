@@ -23,6 +23,8 @@ class SeasonSimulator:
         away_team.sog += visitor_sog
         home_team.sog_ag += visitor_sog
         away_team.sog_ag += home_sog
+        home_team.saves += (visitor_sog - away_goals)
+        away_team.saves += (home_sog - home_goals)
 
         # Update goalie stats
         home_goalie.games += 1
@@ -544,5 +546,5 @@ class SeasonSimulator:
             # self.log_game_result(game)
 
         # log final goalie stats
-        self.log_goalie_stats()
+        # self.log_goalie_stats()
         # self.log_skater_stats()
