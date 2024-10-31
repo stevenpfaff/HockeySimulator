@@ -37,6 +37,7 @@ goalies = {
     # Avalanche
     "georgiev": Goalie("Alexandar Georgiev", 50, "Starter"),
     "annunen": Goalie("Justus Annunen", 45, "Backup"),
+    "kahkonen": Goalie("Kaapo Kahkonen", 40, "Third"),
     # Blue Jackets
     "merzlikins": Goalie("Elvis Merzlikins", 40, "1B"),
     "tarasov": Goalie("Daniil Tarasov", 45, "1A"),
@@ -121,6 +122,5 @@ goalies = {
     "lindgren": Goalie("Charlie Lindgren", 55, "1A"),
     # Jets
     "hellebuyck": Goalie("Connor Hellebuyck", 80, "Starter"),
-    "kahkonen": Goalie("Kaapo Kahkonen", 40, "Backup"),
     "comrie": Goalie("Eric Comrie", 40, "Backup")
 }

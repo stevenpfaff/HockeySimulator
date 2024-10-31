@@ -56,8 +56,15 @@ class Game:
             sog_min += 2  # Slight boost for the home team
             sog_max += 2  # Slight boost for the home team
 
-        # Generate the random SOG value within the adjusted range
-        sog = random.randint(sog_min, sog_max)
+        jitter_min = sog_min + random.randint(-2, 2)  # Adjust these jitter ranges as needed
+        jitter_max = sog_max + random.randint(-2, 2)
+
+        # Make sure jitter doesn't push values outside reasonable limits
+        jitter_min = max(10, jitter_min)
+        jitter_max = max(jitter_min, jitter_max)
+
+        # Generate the SOG with the adjusted random range
+        sog = random.randint(jitter_min, jitter_max)
 
         return sog
 
