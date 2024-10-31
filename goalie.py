@@ -15,7 +15,7 @@ class Goalie:
 goalies = {
     # Ducks
     "gibson": Goalie("John Gibson", 40, "1B"),
-    "dostal": Goalie("Lukas Dostal", 50, "1A"),
+    "dostal": Goalie("Lukas Dostal", 55, "1A"),
     "reimer": Goalie("James Reimer", 45, "Third"),
     # Bruins
     "swayman": Goalie("Jeremy Swayman", 70, "Starter"),

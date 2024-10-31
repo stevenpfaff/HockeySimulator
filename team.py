@@ -107,7 +107,7 @@ def compute_team_ratings(players):
 
     for skater in players:
         role_weight = skater.role_weights.get(skater.role, 1.0)
-        total_weighted_offense += (skater.shooting * 0.3 + skater.passing * 0.1 + skater.offense * 0.6) * role_weight
+        total_weighted_offense += (skater.shooting * 0.25 + skater.passing * 0.1 + skater.offense * 0.65) * role_weight
         total_weighted_defense += (skater.defense * 2) * role_weight
 
         total_offense_weights += (0.15 + 0.05 + 0.32) * role_weight

@@ -39,13 +39,13 @@ class Skater:
 ducks_players = [
     Skater("Leo Carlsson", 50, 30, 60, 60, role="1st Line"),
     Skater("Trevor Zegras", 55, 60, 60, 30, role="2nd Line"),
-    Skater("Robby Fabbri", 60, 20, 40, 30, role="2nd Line"),
+    Skater("Robby Fabbri", 60, 30, 40, 30, role="2nd Line"),
     Skater("Alex Killorn", 60, 55, 50, 45, role="2nd Line"),
     Skater("Troy Terry", 60, 60, 60, 50, role="2nd Line"),
     Skater("Mason McTavish", 55, 60, 60, 30, role="2nd Line"),
-    Skater("Frank Vatrano", 70, 40, 30, 20, role="3rd Line"),
+    Skater("Frank Vatrano", 70, 40, 30, 30, role="3rd Line"),
     Skater("Cutter Gauthier", role="3rd Line"),
-    Skater("Ryan Strome", 45, 50, 50, 20, role="3rd Line"),
+    Skater("Ryan Strome", 55, 50, 50, 20, role="3rd Line"),
     Skater("Isac Lundestrom", 30, 30, 20, 60, role="4th Line"),
     Skater("Brett Leason", 50, 30, 20, 30, role="4th Line"),
     Skater("Brock McGinn", 30, 20, 30, 50, role="4th Line"),
@@ -584,37 +584,37 @@ sharks_players = [
     Skater("Jake Walman", 65, 30, 60, 60, role="Top Pair"),
     Skater("Mario Ferraro", 20, 35, 40, 35, role="2nd Pair"),
     Skater("Jan Rutta", 45, 20, 20, 50, role="2nd Pair"),
-    Skater("Matt Benning", 20, 60, 30, 45, role="3rd Pair"),
+    Skater("Timothy Liljgren", 60, 35, 60, 60, role="3rd Pair"),
     Skater("Henry Thrun", 50, 30, 30, 30, role="3rd Pair"),
     Skater("Marc-Eduoard Vlassic", 50, 30, 55, 40, role="3rd Pair")
 ]
 
 kraken_players = [
     Skater("Chandler Stephenson", 55, 70, 35, 30, role="1st Line"),
-    Skater("Jordan Eberle", 50, 70, 80, 45, role="2nd Line"),
+    Skater("Jordan Eberle", 60, 70, 80, 45, role="2nd Line"),
     Skater("Matty Beniers", 60, 55, 20, 85, role="2nd Line"),
     Skater("Andre Burakovsky", 60, 60, 50, 20, role="2nd Line"),
-    Skater("Jared McCann", 80, 60, 60, 55, role="2nd Line"),
+    Skater("Jared McCann", 80, 65, 60, 55, role="2nd Line"),
     Skater("Jaden Schwartz", 30, 50, 50, 65, role="2nd Line"),
     Skater("Oliver Bjorkstrand", 55, 55, 60, 50, role="2nd Line"),
     Skater("Yanni Gourde", 35, 60, 60, 55, role="3rd Line"),
-    Skater("Eeli Tolvanen", 55, 45, 30, 60, role="3rd Line"),
+    Skater("Eeli Tolvanen", 60, 45, 30, 60, role="3rd Line"),
     Skater("Brandon Tanev", 35, 40, 30, 60, role="3rd Line"),
-    Skater("Shane Wright", 80, 20, 65, 40, role="4th Line"),
+    Skater("Shane Wright", 80, 20, 65, 50, role="4th Line"),
     Skater("Tye Kartye", 50, 30, 45, 40, role="4th Line"),
     Skater("Vince Dunn", 80, 65, 80, 40, role="Top Pair"),
     Skater("Brandon Montour", 65, 50, 60, 40, role="Top Pair"),
     Skater("Adam Larsson", 55, 50, 20, 45, role="2nd Pair"),
     Skater("Jamie Oleksiak", 40, 45, 70, 55, role="2nd Pair"),
     Skater("William Borgen", 40, 65, 40, 45, role="3rd Pair"),
-    Skater("Ryker Evans", 35, 55, 30, 80, role="3rd Pair"),
+    Skater("Ryker Evans", 50, 55, 30, 80, role="3rd Pair"),
     Skater("Josh Mahura", 40, 60, 35, 50, role="3rd Pair")
 ]
 
 blues_players = [
     Skater("Robert Thomas", 65, 85, 70, 30, role="1st Line"),
-    Skater("Jordan Kyrou", 80, 65, 60, 50, role="1st Line"),
-    Skater("Pavel Buchnevich", 70, 60, 70, 65, role="1st Line"),
+    Skater("Jordan Kyrou", 80, 70, 60, 50, role="1st Line"),
+    Skater("Pavel Buchnevich", 70, 65, 70, 65, role="1st Line"),
     Skater("Brayden Schenn", 60, 60, 35, 30, role="2nd Line"),
     Skater("Jake Neighbours", 70, 20, 35, 30, role="2nd Line"),
     Skater("Brandon Saad", 65, 50, 60, 30, role="2nd Line"),
@@ -630,7 +630,7 @@ blues_players = [
     Skater("Colton Parayko", 60, 35, 20, 70, role="Top Pair"),
     Skater("Justin Faulk", 60, 70, 50, 35, role="Top Pair"),
     Skater("Nick Leddy", 35, 60, 60, 35, role="2nd Pair"),
-    Skater("Philip Broberg", 40, 55, 55, 45, role="2nd Pair"),
+    Skater("Philip Broberg", 50, 50, 55, 45, role="2nd Pair"),
     Skater("Ryan Suter", 35, 40, 45, 60, role="3rd Pair"),
     Skater("Scott Perunovich", 20, 60, 50, 35, role="3rd Pair"),
     Skater("Matthew Kessel", 40, 30, 30, 55, role="3rd Pair"),
@@ -661,10 +661,10 @@ lightning_players = [
 ]
 
 leafs_players = [
-    Skater("Auston Matthews", 100, 70, 90, 60, role="1st Line"),
-    Skater("William Nylander", 70, 65, 80,20,  role="1st Line"),
+    Skater("Auston Matthews", 90, 70, 90, 65, role="1st Line"),
+    Skater("William Nylander", 80, 65, 80,20,  role="1st Line"),
     Skater("Mitch Marner", 60, 90, 65, 60,  role="1st Line"),
-    Skater("John Tavares", 60, 60, 70, 55,  role="2nd Line"),
+    Skater("John Tavares", 60, 60, 70, 60,  role="2nd Line"),
     Skater("Matthew Knies", 60, 55, 55, 45, role="2nd Line"),
     Skater("Max Domi", 35, 90, 65, 20, role="3rd Line"),
     Skater("Nicholas Robertson", 70, 50, 40, 50, role="3rd Line"),
@@ -682,7 +682,7 @@ leafs_players = [
     Skater("Jake McCabe", 50, 60, 60, 60, role="2nd Pair"),
     Skater("Simon Benoit", 30, 20, 20, 50, role="3rd Pair"),
     Skater("Conor Timmins", 55, 70, 60, 50, role="3rd Pair"),
-    Skater("Timothy Liljgren", 60, 35, 60, 60, role="3rd Pair"),
+    Skater("Matt Benning", 20, 60, 45, 40, role="bench")
 ]
 
 utah_players = [
