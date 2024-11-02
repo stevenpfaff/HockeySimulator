@@ -62,11 +62,11 @@ ducks_players = [
 
 bruins_players = [
     Skater("Brad Marchand", 60, 65, 65, 50, role="1st Line"),
-    Skater("David Pastrnak", 80, 80, 80, 45, role="1st Line"),
+    Skater("David Pastrnak", 80, 80, 80, 40, role="1st Line"),
     Skater("Elias Lindholm", 55, 60, 50, 40, role="1st Line"),
-    Skater("Charlie Coyle", 65, 55, 45, 40, role="2nd Line"),
-    Skater("Pavel Zacha", 60, 60, 45, 40, role="2nd Line"),
-    Skater("Trent Frederic", 60, 55, 60, 55, role="2nd Line"),
+    Skater("Charlie Coyle", 65, 55, 45, 35, role="2nd Line"),
+    Skater("Pavel Zacha", 60, 60, 45, 35, role="2nd Line"),
+    Skater("Trent Frederic", 60, 55, 60, 50, role="2nd Line"),
     Skater("Morgan Geekie", 55, 60, 50, 30, role="3rd Line"),
     Skater("John Beecher", 60, 50, 20, 50, role="3rd Line"),
     Skater("Mark Kastelic", 40, 30, 45, 60, role="3rd Line"),

@@ -24,9 +24,9 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 58
+        self.max_selections = 65
         self.players = []
-        self.reset_selections()
+        # self.reset_selections()
 
     def add_player(self, player):
         self.players.append(player)
