@@ -1,0 +1,129 @@
+Team,Stat,25th Percentile,50th Percentile (Median),75th Percentile,Average Points
+New Jersey Devils,GF,254.0,264.0,273.0,
+New Jersey Devils,GA,223.0,232.0,241.0,
+New Jersey Devils,PTS,92.0,97.0,102.0,97.21503
+New Jersey Devils,Regulation,No data,No data,No data,
+New York Islanders,GF,210.0,220.0,229.0,
+New York Islanders,GA,211.0,220.0,229.0,
+New York Islanders,PTS,84.0,89.0,95.0,89.34198
+New York Islanders,Regulation,No data,No data,No data,
+Washington Capitals,GF,235.0,244.0,253.0,
+Washington Capitals,GA,218.0,228.0,237.0,
+Washington Capitals,PTS,89.0,95.0,100.0,94.677
+Washington Capitals,Regulation,No data,No data,No data,
+Philadelphia Flyers,GF,212.0,221.0,230.0,
+Philadelphia Flyers,GA,251.0,261.0,271.0,
+Philadelphia Flyers,PTS,71.0,76.0,81.0,76.10831
+Philadelphia Flyers,Regulation,No data,No data,No data,
+Columbus Blue Jackets,GF,215.0,224.0,233.0,
+Columbus Blue Jackets,GA,251.0,261.0,271.0,
+Columbus Blue Jackets,PTS,70.0,76.0,81.0,75.67923
+Columbus Blue Jackets,Regulation,No data,No data,No data,
+Pittsburgh Penguins,GF,224.0,233.0,243.0,
+Pittsburgh Penguins,GA,249.0,258.0,268.0,
+Pittsburgh Penguins,PTS,76.0,82.0,87.0,81.79781
+Pittsburgh Penguins,Regulation,No data,No data,No data,
+Tampa Bay Lightning,GF,236.0,245.0,255.0,
+Tampa Bay Lightning,GA,209.0,218.0,228.0,
+Tampa Bay Lightning,PTS,92.0,97.0,103.0,97.41178
+Tampa Bay Lightning,Regulation,No data,No data,No data,
+Buffalo Sabres,GF,217.0,226.0,236.0,
+Buffalo Sabres,GA,241.0,251.0,261.0,
+Buffalo Sabres,PTS,73.0,79.0,84.0,78.80609
+Buffalo Sabres,Regulation,No data,No data,No data,
+Florida Panthers,GF,233.0,242.0,252.0,
+Florida Panthers,GA,199.0,208.0,217.0,
+Florida Panthers,PTS,98.0,104.0,109.0,103.48509
+Florida Panthers,Regulation,No data,No data,No data,
+Toronto Maple Leafs,GF,236.0,245.0,255.0,
+Toronto Maple Leafs,GA,217.0,226.0,236.0,
+Toronto Maple Leafs,PTS,90.0,95.0,100.0,94.82278
+Toronto Maple Leafs,Regulation,No data,No data,No data,
+Boston Bruins,GF,214.0,223.0,232.0,
+Boston Bruins,GA,217.0,226.0,235.0,
+Boston Bruins,PTS,84.0,90.0,95.0,89.76485
+Boston Bruins,Regulation,No data,No data,No data,
+Ottawa Senators,GF,227.0,236.0,246.0,
+Ottawa Senators,GA,217.0,226.0,236.0,
+Ottawa Senators,PTS,84.0,90.0,95.0,89.68874
+Ottawa Senators,Regulation,No data,No data,No data,
+Montreal Canadiens,GF,206.0,215.0,224.0,
+Montreal Canadiens,GA,262.0,272.0,282.0,
+Montreal Canadiens,PTS,67.0,72.0,77.0,71.93771
+Montreal Canadiens,Regulation,No data,No data,No data,
+Detroit Red Wings,GF,207.0,216.0,225.0,
+Detroit Red Wings,GA,219.0,229.0,238.0,
+Detroit Red Wings,PTS,81.0,86.0,91.0,85.93792
+Detroit Red Wings,Regulation,No data,No data,No data,
+Winnipeg Jets,GF,229.0,238.0,247.0,
+Winnipeg Jets,GA,195.0,204.0,213.0,
+Winnipeg Jets,PTS,95.0,100.0,106.0,100.28828
+Winnipeg Jets,Regulation,No data,No data,No data,
+Colorado Avalanche,GF,249.0,258.0,268.0,
+Colorado Avalanche,GA,232.0,241.0,250.0,
+Colorado Avalanche,PTS,90.0,95.0,100.0,94.79135
+Colorado Avalanche,Regulation,No data,No data,No data,
+Minnesota Wild,GF,227.0,236.0,245.0,
+Minnesota Wild,GA,201.0,210.0,219.0,
+Minnesota Wild,PTS,94.0,99.0,104.0,99.07174
+Minnesota Wild,Regulation,No data,No data,No data,
+Dallas Stars,GF,248.0,258.0,268.0,
+Dallas Stars,GA,206.0,215.0,225.0,
+Dallas Stars,PTS,97.0,102.0,107.0,102.03625
+Dallas Stars,Regulation,No data,No data,No data,
+Nashville Predators,GF,222.0,231.0,241.0,
+Nashville Predators,GA,220.0,229.0,238.0,
+Nashville Predators,PTS,85.0,90.0,95.0,90.04347
+Nashville Predators,Regulation,No data,No data,No data,
+Utah Hockey Club,GF,218.0,227.0,236.0,
+Utah Hockey Club,GA,225.0,235.0,244.0,
+Utah Hockey Club,PTS,83.0,88.0,93.0,88.09508
+Utah Hockey Club,Regulation,No data,No data,No data,
+Chicago Blackhawks,GF,196.0,205.0,214.0,
+Chicago Blackhawks,GA,233.0,243.0,252.0,
+Chicago Blackhawks,PTS,69.0,74.0,79.0,74.08268
+Chicago Blackhawks,Regulation,No data,No data,No data,
+St. Louis Blues,GF,206.0,215.0,224.0,
+St. Louis Blues,GA,223.0,233.0,242.0,
+St. Louis Blues,PTS,79.0,84.0,89.0,84.0916
+St. Louis Blues,Regulation,No data,No data,No data,
+Edmonton Oilers,GF,240.0,250.0,260.0,
+Edmonton Oilers,GA,226.0,235.0,245.0,
+Edmonton Oilers,PTS,90.0,95.0,101.0,95.42243
+Edmonton Oilers,Regulation,No data,No data,No data,
+Seattle Kraken,GF,219.0,228.0,238.0,
+Seattle Kraken,GA,219.0,228.0,237.0,
+Seattle Kraken,PTS,82.0,87.0,92.0,87.03313
+Seattle Kraken,Regulation,No data,No data,No data,
+Vegas Golden Knights,GF,251.0,261.0,270.0,
+Vegas Golden Knights,GA,225.0,234.0,243.0,
+Vegas Golden Knights,PTS,91.0,96.0,101.0,96.02342
+Vegas Golden Knights,Regulation,No data,No data,No data,
+Vancouver Canucks,GF,218.0,228.0,237.0,
+Vancouver Canucks,GA,201.0,210.0,219.0,
+Vancouver Canucks,PTS,93.0,99.0,104.0,98.55043
+Vancouver Canucks,Regulation,No data,No data,No data,
+Los Angeles Kings,GF,220.0,229.0,239.0,
+Los Angeles Kings,GA,213.0,222.0,231.0,
+Los Angeles Kings,PTS,89.0,94.0,99.0,94.03811
+Los Angeles Kings,Regulation,No data,No data,No data,
+Calgary Flames,GF,210.0,219.0,228.0,
+Calgary Flames,GA,231.0,240.0,250.0,
+Calgary Flames,PTS,78.0,83.0,89.0,83.32113
+Calgary Flames,Regulation,No data,No data,No data,
+Anaheim Ducks,GF,189.0,198.0,207.0,
+Anaheim Ducks,GA,237.0,247.0,257.0,
+Anaheim Ducks,PTS,68.0,73.0,79.0,73.42508
+Anaheim Ducks,Regulation,No data,No data,No data,
+San Jose Sharks,GF,188.0,196.0,205.0,
+San Jose Sharks,GA,272.0,282.0,292.0,
+San Jose Sharks,PTS,56.0,61.0,66.0,60.97682
+San Jose Sharks,Regulation,No data,No data,No data,
+Carolina Hurricanes,GF,243.0,253.0,263.0,
+Carolina Hurricanes,GA,192.0,201.0,210.0,
+Carolina Hurricanes,PTS,101.0,106.0,111.0,105.89860898608985
+Carolina Hurricanes,Regulation,No data,No data,No data,
+New York Rangers,GF,231.0,241.0,250.0,
+New York Rangers,GA,192.0,200.0,209.0,
+New York Rangers,PTS,96.0,101.0,107.0,101.4460144601446
+New York Rangers,Regulation,No data,No data,No data,

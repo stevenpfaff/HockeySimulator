@@ -356,26 +356,26 @@ kings_players = [
 ]
 
 wild_players = [
-    Skater("Kirill Kaprizov", 80, 70, 80, 60, role="1st Line"),
+    Skater("Kirill Kaprizov", 80, 80, 80, 60, role="1st Line"),
     Skater("Matthew Boldy", 70, 55, 70, 70, role="1st Line"),
-    Skater("Mats Zuccarello", 60, 80, 55, 40, role="1st Line"),
-    Skater("Marco Rossi", 55, 35, 45, 40, role="2nd Line"),
-    Skater("Joel Eriksson-Ek", 30, 60, 60, 65, role="2nd Line"),
-    Skater("Marcus Johansson", 45, 35, 55, 60, role="2nd Line"),
-    Skater("Ryan Hartman", 60, 60, 60, 30, role="3rd Line"),
-    Skater("Marcus Foligno", 55, 50, 60, 70, role="3rd Line"),
-    Skater("Frederick Gaudreau", 40, 30, 20, 35, role="4th Line"),
+    Skater("Mats Zuccarello", 60, 80, 60, 45, role="1st Line"),
+    Skater("Marco Rossi", 50, 40, 45, 40, role="2nd Line"),
+    Skater("Joel Eriksson-Ek", 35, 60, 60, 65, role="2nd Line"),
+    Skater("Marcus Johansson", 45, 45, 55, 55, role="2nd Line"),
+    Skater("Ryan Hartman", 60, 60, 60, 35, role="3rd Line"),
+    Skater("Marcus Foligno", 60, 50, 60, 80, role="3rd Line"),
+    Skater("Frederick Gaudreau", 50, 35, 30, 45, role="4th Line"),
     Skater("Marat Kushnutdinov", 30, 20, 30, 50, role="4th Line"),
-    Skater("Yakov Trenin", 30, 20, 50, 70, role="4th Line"),
-    Skater("Jakub Lauko", 20, 50, 30, 55, role="4th Line"),
+    Skater("Yakov Trenin", 35, 20, 50, 70, role="4th Line"),
+    Skater("Jakub Lauko", 35, 45, 34, 60, role="4th Line"),
     Skater("Liam Ohgren", role="4th Line"),
-    Skater("Brock Faber", 45, 70, 40, 50, role="Number 1"),
-    Skater("Jonas Brodin", 55, 30, 50, 70, role="Top Pair"),
+    Skater("Brock Faber", 60, 65, 50, 60, role="Number 1"),
+    Skater("Jonas Brodin", 40, 30, 40, 80, role="Top Pair"),
     Skater("Jared Spurgeon", 60, 50, 65, 80, role="2nd Pair"),
-    Skater("Jake Middleton", 40, 40, 20, 40, role="2nd Pair"),
+    Skater("Jake Middleton", 50, 45, 20, 45, role="2nd Pair"),
     Skater("Zach Bogosian", 30, 45, 45,45, role="3rd Pair"),
-    Skater("Declan Chisholm", 60, 40, 60, 60, role="3rd Pair"),
-    Skater("Jon Merrill", 45, 40, 20, 50, role="3rd Pair")
+    Skater("Declan Chisholm", 60, 55, 60, 60, role="3rd Pair"),
+    Skater("Jon Merrill", 50, 50, 20, 55, role="3rd Pair")
 ]
 
 canadiens_players = [
