@@ -30,6 +30,7 @@ goalies = {
     # Hurricanes
     "andersen": Goalie("Frederik Andersen", 60, "1A"),
     "kochetkov": Goalie("Pyotr Kochetkov", 50, "1B"),
+    "martin": Goalie("Spencer Martin", 30, "Third"),
     # Blackhawks
     "mrazek": Goalie("Petr Mrazek", 40, "1B"),
     "brossoit": Goalie("Laurent Brossoit", 55, "1A"),

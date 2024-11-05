@@ -24,7 +24,7 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 65
+        self.max_selections = 57
         self.players = []
         # self.reset_selections()
 
@@ -106,17 +106,50 @@ def compute_team_ratings(players):
     total_defense_weights = 0
 
     for skater in players:
-        role_weight = skater.role_weights.get(skater.role, 1.0)
-        total_weighted_offense += (skater.shooting * 0.25 + skater.passing * 0.1 + skater.offense * 0.65) * role_weight
-        total_weighted_defense += (skater.defense * 2) * role_weight
+        role_weight = skater.get_role_weight()  # Use the role weight from the skater's position
 
-        total_offense_weights += (0.15 + 0.05 + 0.32) * role_weight
-        total_defense_weights += .97 * role_weight
+        # Set position-specific weights
+        if skater.position == "forward":
+            offense_weights = {'shooting': 0.25, 'passing': 0.05, 'offense': 0.6, 'penalties': 0.1}
+            defense_weight = 1  # Defense isn't primary for forwards
+        elif skater.position == "defense":
+            offense_weights = {'shooting': 0.025, 'passing': 0.025, 'offense': 0.85, 'penalties': 0.1}
+            defense_weight = 2  # More emphasis on defense
 
-    weighted_avg_offense = total_weighted_offense / total_offense_weights
-    weighted_avg_defense = total_weighted_defense / total_defense_weights
+        # Calculate weighted offense for each skater
+        weighted_offense = (
+            skater.shooting * offense_weights['shooting'] +
+            skater.passing * offense_weights['passing'] +
+            skater.offense * offense_weights['offense']
+        ) * role_weight
+
+        # Add power play rating if available
+        if skater.powerplay is not None:
+            pp_weight = 0.15  # Set desired weight for power play
+            weighted_offense += skater.powerplay * pp_weight * role_weight
+            total_offense_weights += pp_weight * role_weight
+
+        # Calculate weighted defense for each skater
+        weighted_defense = skater.defense * defense_weight * role_weight
+
+        # Add penalty kill rating if available
+        if skater.penaltykill is not None:
+            pk_weight = 0.2  # Set desired weight for penalty kill
+            weighted_defense += skater.penaltykill * pk_weight * role_weight
+            total_defense_weights += pk_weight * role_weight
+
+        # Sum up weighted stats and total weights
+        total_weighted_offense += weighted_offense * 2
+        total_weighted_defense += weighted_defense * 2
+        total_offense_weights += sum(offense_weights.values()) * role_weight
+        total_defense_weights += defense_weight * role_weight
+
+    # Compute team weighted averages
+    weighted_avg_offense = total_weighted_offense / total_offense_weights if total_offense_weights else 0
+    weighted_avg_defense = total_weighted_defense / total_defense_weights if total_defense_weights else 0
 
     return weighted_avg_offense, weighted_avg_defense
+
 
 # Compute team ratings
 ana_offense, ana_defense = compute_team_ratings(ducks_players)
@@ -158,7 +191,7 @@ teams = {
     "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, goalies["swayman"], goalies["korp"]),
     "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, goalies["luukkonen"], goalies["levi"]),
     "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, goalies["wolf"], goalies["vladar"]),
-    "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, goalies["andersen"], goalies["kochetkov"]),
+    "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
     "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),
     "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, goalies["georgiev"], goalies["annunen"], goalies["kahkonen"]),
     "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, goalies["merzlikins"], goalies["tarasov"]),

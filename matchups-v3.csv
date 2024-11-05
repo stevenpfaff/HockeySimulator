@@ -182,15 +182,15 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 11/2/2024,col,nsh,2,5,30,25,Justus Annunen,Juuse Saros,TRUE,nsh
 11/2/2024,ari,vgk,3,4,19,35,Connor Ingram,Adin Hill,FALSE,vgk
 11/2/2024,van,sj,3,2,27,23,Kevin Lankinen,Mackenzie Blackwood,TRUE,van
-11/3/2024,nyi,nyr,,,,,,,,
-11/3/2024,tb,wpg,,,,,,,,
-11/3/2024,sea,bos,,,,,,,,
-11/3/2024,wsh,car,,,,,,,,
-11/3/2024,tor,min,,,,,,,,
-11/3/2024,edm,cgy,,,,,,,,
-11/3/2024,chi,ana,,,,,,,,
-11/4/2024,la,nsh,,,,,,,,
-11/4/2024,nj,edm,,,,,,,,
+11/3/2024,nyi,nyr,2,5,37,40,Ilya Sorokin,Igor Shesterkin,TRUE,nyr
+11/3/2024,tb,wpg,4,7,30,34,Jonas Johansson,Connor Hellebuyck,TRUE,wpg
+11/3/2024,sea,bos,0,2,23,33,Joey Daccord,Jeremy Swayman,TRUE,bos
+11/3/2024,wsh,car,2,4,21,45,Charlie Lindgren,Pyotr Kochetkov,TRUE,car
+11/3/2024,tor,min,1,2,28,33,Anthony Stolarz,Filip Gustavsson,FALSE,min
+11/3/2024,edm,cgy,4,2,31,31,Stuart Skinner,Dan Vladar,TRUE,edm
+11/3/2024,chi,ana,4,2,29,39,Arvid Soderblom,Lukas Dostal,TRUE,chi
+11/4/2024,la,nsh,3,0,27,16,Darcy Kuemper,Juuse Saros,TRUE,la
+11/4/2024,nj,edm,3,0,16,31,Jake Allen,Calvin Pickard,TRUE,nj
 11/5/2024,ott,buf,,,,,,,,
 11/5/2024,bos,tor,,,,,,,,
 11/5/2024,cgy,mtl,,,,,,,,
