@@ -45,23 +45,49 @@ class Game:
 
     def __get_powerplay_goals(self, team, opponent):
         """Calculate powerplay goals based on powerplay stat and opponent penaltykill."""
-        powerplay_effectiveness = team.powerplay / 100
-        penaltykill_effectiveness = opponent.penaltykill / 100
+        # Number of powerplays = number of penalties by the opponent
+        num_powerplays = self.__get_penalties(opponent)
+        goals = 0
 
-        base_chance = 0.20
+        # Lookup scoring chance based on team powerplay and opponent penalty kill
+        scoring_chance = Game.__lookup_scoring_chance(team.powerplay, opponent.penaltykill)
 
-        effectiveness_ratio = (powerplay_effectiveness - penaltykill_effectiveness)
+        # Simulate each powerplay opportunity
+        for _ in range(num_powerplays):
+            if random.random() <= scoring_chance:
+                goals += 1
+        return goals
 
-        adjusted_chance = base_chance + (effectiveness_ratio * 0.15)
+    @classmethod
+    def __lookup_scoring_chance(cls, powerplay, penaltykill):
+        """Lookup scoring chance from the powerplay and penaltykill rating ranges."""
+        # Dictionary mapping powerplay ratings to penalty kill ratings with corresponding scoring chances
+        ranges = [
+            (40,
+             [(40, 0.20), (42.5, 0.18), (45, 0.16), (47.5, 0.14), (50, 0.12), (52.5, 0.10), (55, 0.08), (57.5, 0.06)]),
+            (42.5,
+             [(40, 0.22), (42.5, 0.20), (45, 0.18), (47.5, 0.16), (50, 0.14), (52.5, 0.12), (55, 0.10), (57.5, 0.08)]),
+            (45,
+             [(40, 0.24), (42.5, 0.22), (45, 0.20), (47.5, 0.18), (50, 0.16), (52.5, 0.14), (55, 0.12), (57.5, 0.10)]),
+            (47.5,
+             [(40, 0.26), (42.5, 0.24), (45, 0.22), (47.5, 0.20), (50, 0.18), (52.5, 0.16), (55, 0.14), (57.5, 0.12)]),
+            (50,
+             [(40, 0.28), (42.5, 0.26), (45, 0.24), (47.5, 0.22), (50, 0.20), (52.5, 0.18), (55, 0.16), (57.5, 0.14)]),
+            (52.5,
+             [(40, 0.30), (42.5, 0.28), (45, 0.26), (47.5, 0.24), (50, 0.22), (52.5, 0.20), (55, 0.18), (57.5, 0.16)]),
+            (55,
+             [(40, 0.32), (42.5, 0.30), (45, 0.28), (47.5, 0.26), (50, 0.24), (52.5, 0.22), (55, 0.20), (57.5, 0.18)]),
+            (57.5,
+             [(40, 0.34), (42.5, 0.32), (45, 0.30), (47.5, 0.28), (50, 0.26), (52.5, 0.24), (55, 0.22), (57.5, 0.20)]),
+            (60,
+             [(40, 0.36), (42.5, 0.34), (45, 0.32), (47.5, 0.30), (50, 0.28), (52.5, 0.26), (55, 0.24), (57.5, 0.22)])
+        ]
 
-        adjusted_chance = max(0, min(1, adjusted_chance))
+        # Find closest powerplay and penaltykill scoring chance
+        closest_powerplay = min(ranges, key=lambda x: abs(x[0] - powerplay))
+        closest_penaltykill = min(closest_powerplay[1], key=lambda x: abs(x[0] - penaltykill))
 
-        powerplay_chance = random.random()
-
-        if powerplay_chance <= adjusted_chance:
-            return 1
-        return 0
-
+        return closest_penaltykill[1]
     @classmethod
     def __get_sog(cls, offense, defense, home_team=False):
         # Dictionary mapping offense ranges to defense ranges and corresponding SOG ranges
