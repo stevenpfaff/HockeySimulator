@@ -31,35 +31,83 @@ class Skater:
         self.role = role
         self.sog = sog
 
-    def overall(self):
-        # Define different weights for forwards and defensemen
-        if self.position == "forward":
-            weights = {'shooting': 0.2, 'passing': 0.1, 'offense': 0.40, 'defense': 0.30}
-        elif self.position == "defense":
-            weights = {'shooting': 0.05, 'passing': 0.15, 'offense': 0.3, 'defense': 0.50}
-        # else:
-        #     weights = {'shooting': 0.1, 'passing': 0.1, 'offense': 0.4, 'defense': 0.4}
-
-        role_weight = self.get_role_weight()
-
-        return role_weight * (
-                self.shooting * weights['shooting'] +
-                self.passing * weights['passing'] +
-                self.offense * weights['offense'] +
-                self.defense * weights['defense']
-        )
 
     def get_role_weight(self):
+        """Returns the role weight based on position and role."""
         if self.position == "forward":
             return self.fwd_role_weights.get(self.role, 0.2)
         elif self.position == "defense":
             return self.def_role_weights.get(self.role, 0.2)
-        return 0.2  # default to bench weight if unspecified
+        else:
+            return 0.2  # Default weight if role or position is not recognized
 
-    def update_stats(self, goals=0, assists=0):
-        self.goals += goals
-        self.assists += assists
-        self.points += goals + assists
+    def offensive_overall(self):
+        """ Calculate offensive overall score dynamically excluding None values """
+        if self.position == "forward":
+            weights = {'shooting': 0.25, 'passing': 0.05, 'offense': 0.7, 'penalties': 0, 'powerplay': 0}
+        elif self.position == "defense":
+            weights = {'shooting': 0.0, 'passing': 0.05, 'offense': 0.5, 'penalties': 0, 'powerplay': 0}
+
+        # Initialize score and weight sum
+        offensive_score = 0
+        weight_sum = 0
+
+        # Calculate score only for non-None attributes
+        offensive_score += self.shooting * weights['shooting']
+        weight_sum += weights['shooting']
+
+        offensive_score += self.passing * weights['passing']
+        weight_sum += weights['passing']
+
+        offensive_score += self.offense * weights['offense']
+        weight_sum += weights['offense']
+
+        offensive_score += self.penalties * weights['penalties']
+        weight_sum += weights['penalties']
+
+        # Include powerplay only if it is not None
+        if self.powerplay is not None:
+            offensive_score += self.powerplay * weights['powerplay']
+            weight_sum += weights['powerplay']
+
+        # Adjust score to account for only the included weights
+        if weight_sum > 0:
+            offensive_score = offensive_score / weight_sum * sum(weights.values())
+
+        return max(offensive_score, 20)
+
+    def defensive_overall(self):
+        """ Calculate defensive overall score dynamically excluding None values """
+        if self.position == "forward":
+            weights = {'defense': 1, 'penalties': 0, 'penaltykill': 0}
+        elif self.position == "defense":
+            weights = {'defense': 1, 'penalties': 0, 'penaltykill': 0}
+
+        # Initialize score and weight sum
+        defensive_score = 0
+        weight_sum = 0
+
+        # Calculate score only for non-None attributes
+        defensive_score += self.defense * weights['defense']
+        weight_sum += weights['defense']
+
+        defensive_score += self.penalties * weights['penalties']
+        weight_sum += weights['penalties']
+
+        # Include penaltykill only if it is not None
+        if self.penaltykill is not None:
+            defensive_score += self.penaltykill * weights['penaltykill']
+            weight_sum += weights['penaltykill']
+
+        # Adjust score to account for only the included weights
+        if weight_sum > 0:
+            defensive_score = defensive_score / weight_sum * sum(weights.values())
+
+        return max(defensive_score, 20)
+
+    def overall(self):
+        """ Combine offensive and defensive overall scores for the total """
+        return self.offensive_overall() + self.defensive_overall()
 
 ducks_players = [
     Skater("Leo Carlsson", 50, 30, 60, 60, 70, powerplay=55, role="1st Line"),
@@ -69,7 +117,7 @@ ducks_players = [
     Skater("Troy Terry", 60, 60, 60, 50, 80, powerplay=60, role="2nd Line"),
     Skater("Mason McTavish", 55, 60, 60, 30, 30, powerplay=60, role="2nd Line"),
     Skater("Frank Vatrano", 70, 40, 30, 30, 35, powerplay=35, penaltykill=30, role="3rd Line"),
-    Skater("Cutter Gauthier", role="3rd Line"),
+    Skater("Cutter Gauthier", offense=50, defense=50,role="3rd Line"),
     Skater("Ryan Strome", 55, 50, 50, 20, 20, powerplay=60, role="3rd Line"),
     Skater("Isac Lundestrom", 30, 30, 20, 60, 65, penaltykill=50, role="4th Line"),
     Skater("Brett Leason", 50, 30, 20, 30, 35, penaltykill=40, role="4th Line"),
@@ -84,6 +132,7 @@ ducks_players = [
     Skater("Jackson LaCombe", 30, 55, 30, 50, 40, penaltykill=60, role="3rd Pair", position="defense"),
     Skater("Urho Vaakanainen", 20, 40, 30, 50, 60, penaltykill=45, role="bench", position="defense")
 ]
+
 
 bruins_players = [
     Skater("Brad Marchand", 60, 65, 65, 50, 60, powerplay=65, penaltykill=50, role="1st Line"),
@@ -209,21 +258,21 @@ blackhawks_players = [
 avalanche_players = [
     Skater("Nathan MacKinnon", 80, 80, 80, 40, 80, powerplay=80,role="1st Line"),
     Skater("Mikko Rantanen", 80, 60, 70,20, 45, powerplay=80, role="1st Line"),
-    Skater("Jonathan Drouin", 55, 60, 60, 40, 35, powerplay=30,role="1st Line"),
+    Skater("Jonathan Drouin", 55, 60, 60, 40, 35, powerplay=30,role="2nd Line"),
+    Skater("Valeri Nichushkin", 60, 70, 65, 50, 60, 60, 60,role="1st Line"),
     Skater("Casey Mittelstadt", 60, 70, 55, 45, 45, powerplay=40, role="1st Line"),
     Skater("Artturi Lehkonen", 60, 60, 60, 80, 35, powerplay=60, penaltykill=80, role="2nd Line"),
     Skater("Logan O'Connor", 40, 50, 60, 80, 45, penaltykill=80, role="2nd Line"),
     Skater("Miles Wood", 20, 65, 55, 20, 40, penaltykill=45,role="3rd Line"),
     Skater("Ross Colton", 55, 55, 65, 45, 60, powerplay=20, role="3rd Line"),
-    Skater("Nikolai Kovalenko", role="3rd Line"),
+    Skater("Nikolai Kovalenko", offense=50, defense=50, role="3rd Line"),
     Skater("Parker Kelly", 30, 20, 20, 60, 45, penaltykill=65, role="4th Line"),
     Skater("Chris Wagner", role="4th Line"),
     Skater("Joel Kiviranta", 30, 20, 40, 60, 40, penaltykill=60, role="4th Line"),
-    Skater("Ivan Ivan",  role="4th Line"),
+    Skater("Ivan Ivan", offense=30, defense=60, role="4th Line"),
     Skater("Callum Ritchie",  role="4th Line"),
-    Skater("Matthew Stienburg",  role="bench"),
+    Skater("Matthew Stienburg", offense=55, defense=55, role="bench"),
     # Skater("Gabriel Landeskog", 60, 60, 60, 60, role="1st Line"),
-    # Skater("Valeri Nichushkin", 60, 70, 65, 45, role="1st Line"),
     Skater("Cale Makar", 80, 70, 60, 65, 80, powerplay=60, penaltykill=30, role="Number 1", position="defense"),
     Skater("Devon Toews", 65, 65, 60, 70, 70, powerplay=35, penaltykill=50, role="Top Pair", position="defense"),
     Skater("Samuel Girard", 55, 60, 60, 40, 70, penaltykill=60, role="2nd Pair", position="defense"),
@@ -273,8 +322,8 @@ stars_players = [
     Skater("Evgeni Dadonov", 55, 30,50, 40, 50,role="3rd Line"),
     Skater("Sam Steel", 35, 50, 50, 55, 40, penaltykill=70,role="4th Line"),
     Skater("Colin Blackwell", 30, 45, 35, 40, 70, penaltykill=60,role="4th Line"),
-    Skater("Mavrik Bourque", role="4th Line"),
-    Skater("Oskar Back", role="4th Line"),
+    Skater("Mavrik Bourque", offense=50, defense=40,role="4th Line"),
+    Skater("Oskar Back", offense=40, defense=50,role="4th Line"),
     Skater("Miro Heiskanen", 40, 60, 70,70, 70, powerplay=80,role="Number 1", position="defense"),
     Skater("Esa Lindell", 50, 55, 60, 70, 65, penaltykill=60,role="2nd Pair", position="defense"),
     Skater("Thomas Harley", 80, 55, 70, 40, 60, powerplay=50, penaltykill=65,role="Top Pair", position="defense"),
@@ -297,10 +346,10 @@ redwings_players = [
     Skater("Joe Veleno", 50, 30, 30,45, 50,role="4th Line"),
     Skater("Christian Fischer", 30, 40, 50, 50, 60,role="4th Line"),
     Skater("Tyler Motte", 30, 40, 35, 60, 70, penaltykill=50,role="4th Line"),
-    Skater("Marco Kasper", role="4th Line"),
+    Skater("Marco Kasper", offense=30, defense=50,role="4th Line"),
     Skater("Austin Watson", 30, 20, 20, 50, 20, role="bench"),
     Skater("Moritz Seider", 50, 60, 35, 55, 70, powerplay=55, penaltykill=20,role="Number 1", position="defense"),
-    Skater("Simon Edvinsson", 60, 35, 55, 60, 60, penaltykill=50,role="Top Pair", position="defense"),
+    Skater("Simon Edvinsson", 30, 30, 60, 65, 60, penaltykill=50,role="Top Pair", position="defense"),
     Skater("Ben Chiarot", 50, 55, 30, 35, 30, penaltykill=45,role="2nd Pair", position="defense"),
     Skater("Erik Gustafsson", 55, 65, 60, 65, 50, powerplay=30,role="3rd Pair", position="defense"),
     Skater("Jeff Petry", 50, 55, 50, 55, 40, penaltykill=35,role="3rd Pair", position="defense"),
@@ -392,7 +441,7 @@ wild_players = [
     Skater("Marat Kushnutdinov", 30, 20, 30, 50, 40, penaltykill=50,role="4th Line"),
     Skater("Yakov Trenin", 35, 20, 50, 70, 35,role="4th Line"),
     Skater("Jakub Lauko", 35, 45, 34, 60, 70,role="4th Line"),
-    Skater("Liam Ohgren", role="4th Line"),
+    Skater("Liam Ohgren", offense=40, defense=55,role="4th Line"),
     Skater("Brock Faber", 60, 65, 50, 60, 65, 50, 30,role="Number 1", position="defense"),
     Skater("Jonas Brodin", 40, 30, 40, 80, 60, penaltykill=60,role="Top Pair", position="defense"),
     Skater("Jared Spurgeon", 60, 50, 65, 80, 65, 60, 30,role="2nd Pair", position="defense"),
@@ -426,7 +475,7 @@ canadiens_players = [
 ]
 
 predators_players = [
-    Skater("Filip Forsberg", 80, 60, 70, 55, 70, 60,role="1st Line"),
+    Skater("Filip Forsberg", 80, 60, 70, 55, 70, 60, role="1st Line"),
     Skater("Ryan O'Reilly", 60, 45, 65, 65, 60, 60, 50,role="1st Line"),
     Skater("Steven Stamkos", 80, 70, 45, 35, 30, 60,role="1st Line"),
     Skater("Jonathan Marchessault", 65, 60, 65, 55, 30, 70,role="2nd Line"),
@@ -479,7 +528,7 @@ islanders_players = [
     Skater("Brock Nelson", 80, 60, 60, 30, 60, 60,role="1st Line"),
     Skater("Kyle Palmieri", 60, 50, 65, 35, 60, 60,role="2nd Line"),
     Skater("Anthony Duclair", 70, 70, 65, 20, 65, 30,role="2nd Line"),
-    Skater("Maxim Tsyplakov", role="2nd Line"),
+    Skater("Maxim Tsyplakov", 20, 60, 65, 60, 20, 30, role="2nd Line"),
     Skater("Anders Lee", 55, 20, 70, 55, 35, 60,role="3rd Line"),
     Skater("JG Pageau", 35, 60, 55, 60, 60, 45, 30,role="3rd Line"),
     Skater("Simon Holmstrom", 60, 30, 20, 70, 60, penaltykill=50,role="3rd Line"),
@@ -510,7 +559,7 @@ rangers_players = [
     Skater("Will Cuylle", 50, 30, 55, 60, 40,role="3rd Line"),
     Skater("Jimmy Vesey", 30, 30, 60, 65, 50, penaltykill=70,role="4th Line"),
     Skater("Sam Carrick", 40, 30, 20, 30, 35, penaltykill=20, role="4th Line"),
-    Skater("Adam Edstrom", role="4th Line"),
+    Skater("Adam Edstrom", offense=55, defense=50, role="4th Line"),
     Skater("Jonny Brodzinski", 35, 30, 35, 55, 40,role="4th Line"),
     Skater("Matt Rempe", role="bench"),
     Skater("Adam Fox", 80, 80, 80, 65, 70, 80,60,role="Top Pair", position="defense"),
@@ -596,7 +645,7 @@ sharks_players = [
     Skater("Fabian Zetterlund", 50, 55, 40, 30, 50, 30,role="2nd Line"),
     Skater("Alexander Wennberg", 40, 50, 30, 70, 55, 50, 20,role="2nd Line"),
     Skater("Macklin Celebrini", role="2nd Line"),
-    Skater("Will Smith",  role="3rd Line"),
+    Skater("Will Smith", offense=45, defense=30,  role="3rd Line"),
     Skater("Luke Kunin", 40, 35, 30, 20, 30, penaltykill=30,role="3rd Line"),
     Skater("Barclay Goodrow", 45, 45, 30, 40, 30, penaltykill=60,role="3rd Line"),
     Skater("Nico Sturm", 50, 45, 50, 35, 50, penaltykill=35,role="4th Line"),
@@ -670,7 +719,7 @@ lightning_players = [
     Skater("Brandon Hagel", 65, 65, 70, 65, 60, 35, 65,role="2nd Line"),
     Skater("Anthony Cirelli", 45, 60, 60, 80, 80, 50, 40,role="2nd Line"),
     Skater("Nicholas Paul", 60, 35, 30, 70, 50, 50,role="2nd Line"),
-    Skater("Connor Geekie", role="4th Line"),
+    Skater("Connor Geekie", defense=55, role="4th Line"),
     Skater("Zemgus Girgensons", 45, 30, 40, 60, 60,role="4th Line"),
     Skater("Luke Glendening", 30, 20, 20, 60, 60, penaltykill=60,role="4th Line"),
     Skater("Conor Sheary", 50, 60, 50, 35, 55,role="4th Line"),
@@ -678,10 +727,11 @@ lightning_players = [
     Skater("Cam Atkinson", 30, 45, 40, 30, 50, 40, 60,role="4th Line"),
     Skater("Mitchell Chaffee", 65, 30, 30, 35, 65, role="4th Line"),
     Skater("Victor Hedman", 70, 70, 65, 30, 55, 60, 55,role="Number 1", position="defense"),
-    Skater("JJ Moser", 60, 60, 40, 40, 60, penaltykill=20,role="Top Pair", position="defense"),
+    Skater("JJ Moser", 60, 60, 40, 45, 60, penaltykill=20,role="Top Pair", position="defense"),
     Skater("Erik Cernak", 30, 50, 40, 55,  50, penaltykill=40,role="2nd Pair", position="defense"),
     Skater("Ryan McDonagh", 30, 60, 70, 60, 60, penaltykill=40, role="2nd Pair", position="defense"),
     Skater("Darren Raddysh", 60, 40, 40, 60, 60, role="3rd Pair", position="defense"),
+    Skater("Emil Lilleberg", 20, 65, 30, 30, 20, penaltykill=35, role="3rd Pair", position="defense"),
     Skater("Nick Perbix", 40, 70, 40, 60, 70,role="3rd Pair", position="defense")
 ]
 
@@ -828,3 +878,10 @@ jets_players = [
     Skater("Haydn Fleury", 30, 30, 30, 60, 65,role="bench", position="defense"),
     Skater("Colin Miller", 65, 60, 35, 50, 60, role="3rd Pair", position="defense")
 ]
+
+# for player in canadiens_players:
+#     print(f"{player.name}: Offense = {player.offensive_overall()}, Defense = {player.defensive_overall()}")
+#
+# team_offensive_rating, team_defensive_rating = calculate_team_offense_and_defense(canadiens_players)
+# print(f"Team Offensive Rating: {team_offensive_rating:.2f}")
+# print(f"Team Defensive Rating: {team_defensive_rating:.2f}")

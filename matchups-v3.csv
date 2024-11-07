@@ -191,20 +191,20 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 11/3/2024,chi,ana,4,2,29,39,Arvid Soderblom,Lukas Dostal,TRUE,chi
 11/4/2024,la,nsh,3,0,27,16,Darcy Kuemper,Juuse Saros,TRUE,la
 11/4/2024,nj,edm,3,0,16,31,Jake Allen,Calvin Pickard,TRUE,nj
-11/5/2024,ott,buf,,,,,,,,
-11/5/2024,bos,tor,,,,,,,,
-11/5/2024,cgy,mtl,,,,,,,,
-11/5/2024,phi,car,,,,,,,,
-11/5/2024,pit,nyi,,,,,,,,
-11/5/2024,tb,stl,,,,,,,,
-11/5/2024,la,min,,,,,,,,
-11/5/2024,ari,wpg,,,,,,,,
-11/5/2024,sea,col,,,,,,,,
-11/5/2024,van,ana,,,,,,,,
-11/5/2024,cbj,sj,,,,,,,,
-11/6/2024,nsh,wsh,,,,,,,,
-11/6/2024,det,chi,,,,,,,,
-11/6/2024,vgk,edm,,,,,,,,
+11/5/2024,ott,buf,1,5,38,34,Linus Ullmark,Ukko-Pekka Luukkonen,TRUE,buf
+11/5/2024,bos,tor,0,4,29,27,Jeremy Swayman,Anthony Stolarz,TRUE,tor
+11/5/2024,cgy,mtl,3,2,35,23,Dustin Wolf,Sam Montembeault,FALSE,cgy
+11/5/2024,phi,car,4,6,16,35,Aleksei Kolosov,Pyotr Kochetkov,TRUE,car
+11/5/2024,pit,nyi,3,4,35,26,Alex Nedeljkovic,Ilya Sorokin,FALSE,nyi
+11/5/2024,tb,stl,2,3,23,23,Andrei Vasilevskiy,Jordan Binnington,TRUE,stl
+11/5/2024,la,min,5,1,28,24,David Rittich,Filip Gustavsson,TRUE,min
+11/5/2024,ari,wpg,0,3,21,28,Karel Vejmelka,Connor Hellebuyck,TRUE,wpg
+11/5/2024,sea,col,3,6,20,32,Philipp Grubauer,Justus Annunen,TRUE,col
+11/5/2024,van,ana,5,1,37,22,Kevin Lankinen,Lukas Dostal,TRUE,van
+11/5/2024,cbj,sj,1,2,50,27,Elvis Merzlikins,Vitek Vanecek,FALSE,sj
+11/6/2024,nsh,wsh,2,3,35,36,Juuse Saros,Logan Thompson,TRUE,wsh
+11/6/2024,det,chi,4,1,25,29,Cam Talbot,Petr Mrazek,TRUE,det
+11/6/2024,vgk,edm,4,2,35,29,Adin Hill,Stuart Skinner,TRUE,vgk
 11/7/2024,cgy,bos,,,,,,,,
 11/7/2024,nyi,ott,,,,,,,,
 11/7/2024,phi,tb,,,,,,,,

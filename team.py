@@ -4,13 +4,16 @@ import random
 import random
 
 class Team:
-    def __init__(self, name, abrv, offense, defense, starting_goalie, backup_goalie, third_goalie=None,
+    def __init__(self, name, abrv, offense, defense, powerplay, penaltykill, penalty, starting_goalie, backup_goalie, third_goalie=None,
                  wins=0, regulation_wins=0, losses=0, otl=0, points=0, playoffs=0,
                  second_round=0, conf_final=0, cup_final=0, cup_win=0):
         self.name = name
         self.abrv = abrv
         self.offense = offense
         self.defense = defense
+        self.powerplay = powerplay
+        self.penaltykill = penaltykill
+        self.penalty = penalty
         self.starting_goalie = starting_goalie
         self.backup_goalie = backup_goalie
         self.third_goalie = third_goalie
@@ -24,7 +27,7 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 57
+        self.max_selections = 56
         self.players = []
         # self.reset_selections()
 
@@ -102,123 +105,121 @@ class Team:
 def compute_team_ratings(players):
     total_weighted_offense = 0
     total_weighted_defense = 0
-    total_offense_weights = 0
-    total_defense_weights = 0
+    total_weighted_powerplay = 0
+    total_weighted_penaltykill = 0
+    total_weighted_penalty = 0  # New variable for penalties
+    total_role_weight = 0
+    total_pp_weight = 0
+    total_pk_weight = 0
+    total_penalty_weight = 0
 
     for skater in players:
-        role_weight = skater.get_role_weight()  # Use the role weight from the skater's position
+        # Determine the role weight based on the skater's role and position
+        role_weight = skater.get_role_weight()
 
-        # Set position-specific weights
-        if skater.position == "forward":
-            offense_weights = {'shooting': 0.25, 'passing': 0.05, 'offense': 0.6, 'penalties': 0.1}
-            defense_weight = 1  # Defense isn't primary for forwards
-        elif skater.position == "defense":
-            offense_weights = {'shooting': 0.025, 'passing': 0.025, 'offense': 0.85, 'penalties': 0.1}
-            defense_weight = 2  # More emphasis on defense
+        # Calculate the skater's weighted offensive and defensive scores
+        weighted_offense = skater.offensive_overall() * role_weight
+        weighted_defense = skater.defensive_overall() * role_weight
 
-        # Calculate weighted offense for each skater
-        weighted_offense = (
-            skater.shooting * offense_weights['shooting'] +
-            skater.passing * offense_weights['passing'] +
-            skater.offense * offense_weights['offense']
-        ) * role_weight
+        # Sum up weighted scores and the total role weights
+        total_weighted_offense += weighted_offense
+        total_weighted_defense += weighted_defense
+        total_role_weight += role_weight
 
-        # Add power play rating if available
+        # Calculate weighted powerplay and penaltykill scores if they exist
         if skater.powerplay is not None:
-            pp_weight = 0.15  # Set desired weight for power play
-            weighted_offense += skater.powerplay * pp_weight * role_weight
-            total_offense_weights += pp_weight * role_weight
+            total_weighted_powerplay += skater.powerplay * role_weight
+            total_pp_weight += role_weight
 
-        # Calculate weighted defense for each skater
-        weighted_defense = skater.defense * defense_weight * role_weight
-
-        # Add penalty kill rating if available
         if skater.penaltykill is not None:
-            pk_weight = 0.2  # Set desired weight for penalty kill
-            weighted_defense += skater.penaltykill * pk_weight * role_weight
-            total_defense_weights += pk_weight * role_weight
+            total_weighted_penaltykill += skater.penaltykill * role_weight
+            total_pk_weight += role_weight
 
-        # Sum up weighted stats and total weights
-        total_weighted_offense += weighted_offense * 2
-        total_weighted_defense += weighted_defense * 2
-        total_offense_weights += sum(offense_weights.values()) * role_weight
-        total_defense_weights += defense_weight * role_weight
+        # Calculate weighted penalty score if it exists
+        if skater.penalties is not None:
+            total_weighted_penalty += skater.penalties * role_weight
+            total_penalty_weight += role_weight
 
-    # Compute team weighted averages
-    weighted_avg_offense = total_weighted_offense / total_offense_weights if total_offense_weights else 0
-    weighted_avg_defense = total_weighted_defense / total_defense_weights if total_defense_weights else 0
+    # Calculate team ratings by averaging the weighted scores
+    team_offensive_rating = total_weighted_offense / total_role_weight if total_role_weight > 0 else 0
+    team_defensive_rating = total_weighted_defense / total_role_weight if total_role_weight > 0 else 0
+    team_powerplay_rating = total_weighted_powerplay / total_pp_weight if total_pp_weight > 0 else 0
+    team_penaltykill_rating = total_weighted_penaltykill / total_pk_weight if total_pk_weight > 0 else 0
+    team_penalty_rating = total_weighted_penalty / total_penalty_weight if total_penalty_weight > 0 else 0
 
-    return weighted_avg_offense, weighted_avg_defense
+    return team_offensive_rating, team_defensive_rating, team_powerplay_rating, team_penaltykill_rating, team_penalty_rating
+
+
 
 
 # Compute team ratings
-ana_offense, ana_defense = compute_team_ratings(ducks_players)
-bos_offense, bos_defense = compute_team_ratings(bruins_players)
-buf_offense, buf_defense = compute_team_ratings(sabres_players)
-cgy_offense, cgy_defense = compute_team_ratings(flames_players)
-car_offense, car_defense = compute_team_ratings(hurricanes_players)
-chi_offense, chi_defense = compute_team_ratings(blackhawks_players)
-col_offense, col_defense = compute_team_ratings(avalanche_players)
-cbj_offense, cbj_defense = compute_team_ratings(bluejackets_players)
-dal_offense, dal_defense = compute_team_ratings(stars_players)
-det_offense, det_defense = compute_team_ratings(redwings_players)
-edm_offense, edm_defense = compute_team_ratings(oilers_players)
-fla_offense, fla_defense = compute_team_ratings(panthers_players)
-la_offense, la_defense = compute_team_ratings(kings_players)
-min_offense, min_defense = compute_team_ratings(wild_players)
-mtl_offense, mtl_defense = compute_team_ratings(canadiens_players)
-nsh_offense, nsh_defense = compute_team_ratings(predators_players)
-nj_offense, nj_defense = compute_team_ratings(devils_players)
-nyi_offense, nyi_defense = compute_team_ratings(islanders_players)
-nyr_offense, nyr_defense = compute_team_ratings(rangers_players)
-ott_offense, ott_defense = compute_team_ratings(senators_players)
-phi_offense, phi_defense = compute_team_ratings(flyers_players)
-pit_offense, pit_defense = compute_team_ratings(penguins_players)
-sj_offense, sj_defense = compute_team_ratings(sharks_players)
-sea_offense, sea_defense = compute_team_ratings(kraken_players)
-stl_offense, stl_defense = compute_team_ratings(blues_players)
-tb_offense, tb_defense = compute_team_ratings(lightning_players)
-tor_offense, tor_defense = compute_team_ratings(leafs_players)
-ut_offense, ut_defense = compute_team_ratings(utah_players)
-van_offense, van_defense = compute_team_ratings(canucks_players)
-vgk_offense, vgk_defense = compute_team_ratings(knights_players)
-wsh_offense, wsh_defense = compute_team_ratings(capitals_players)
-wpg_offense, wpg_defense = compute_team_ratings(jets_players)
+ana_offense, ana_defense, ana_powerplay, ana_penaltykill, ana_penalty = compute_team_ratings(ducks_players)
+bos_offense, bos_defense, bos_powerplay, bos_penaltykill, bos_penalty = compute_team_ratings(bruins_players)
+buf_offense, buf_defense, buf_powerplay, buf_penaltykill, buf_penalty = compute_team_ratings(sabres_players)
+cgy_offense, cgy_defense, cgy_powerplay, cgy_penaltykill, cgy_penalty = compute_team_ratings(flames_players)
+car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty = compute_team_ratings(hurricanes_players)
+chi_offense, chi_defense, chi_powerplay, chi_penaltykill, chi_penalty = compute_team_ratings(blackhawks_players)
+col_offense, col_defense, col_powerplay, col_penaltykill, col_penalty = compute_team_ratings(avalanche_players)
+cbj_offense, cbj_defense, cbj_powerplay, cbj_penaltykill, cbj_penalty = compute_team_ratings(bluejackets_players)
+dal_offense, dal_defense, dal_powerplay, dal_penaltykill, dal_penalty = compute_team_ratings(stars_players)
+det_offense, det_defense, det_powerplay, det_penaltykill, det_penalty = compute_team_ratings(redwings_players)
+edm_offense, edm_defense, edm_powerplay, edm_penaltykill, edm_penalty = compute_team_ratings(oilers_players)
+fla_offense, fla_defense, fla_powerplay, fla_penaltykill, fla_penalty = compute_team_ratings(panthers_players)
+la_offense, la_defense, la_powerplay, la_penaltykill, la_penalty = compute_team_ratings(kings_players)
+min_offense, min_defense, min_powerplay, min_penaltykill, min_penalty = compute_team_ratings(wild_players)
+mtl_offense, mtl_defense, mtl_powerplay, mtl_penaltykill, mtl_penalty = compute_team_ratings(canadiens_players)
+nsh_offense, nsh_defense, nsh_powerplay, nsh_penaltykill, nsh_penalty = compute_team_ratings(predators_players)
+nj_offense, nj_defense, nj_powerplay, nj_penaltykill, nj_penalty = compute_team_ratings(devils_players)
+nyi_offense, nyi_defense, nyi_powerplay, nyi_penaltykill, nyi_penalty = compute_team_ratings(islanders_players)
+nyr_offense, nyr_defense, nyr_powerplay, nyr_penaltykill, nyr_penalty = compute_team_ratings(rangers_players)
+ott_offense, ott_defense, ott_powerplay, ott_penaltykill, ott_penalty = compute_team_ratings(senators_players)
+phi_offense, phi_defense, phi_powerplay, phi_penaltykill, phi_penalty = compute_team_ratings(flyers_players)
+pit_offense, pit_defense, pit_powerplay, pit_penaltykill, pit_penalty = compute_team_ratings(penguins_players)
+sj_offense, sj_defense, sj_powerplay, sj_penaltykill, sj_penalty = compute_team_ratings(sharks_players)
+sea_offense, sea_defense, sea_powerplay, sea_penaltykill, sea_penalty = compute_team_ratings(kraken_players)
+stl_offense, stl_defense, stl_powerplay, stl_penaltykill, stl_penalty = compute_team_ratings(blues_players)
+tb_offense, tb_defense, tb_powerplay, tb_penaltykill, tb_penalty = compute_team_ratings(lightning_players)
+tor_offense, tor_defense, tor_powerplay, tor_penaltykill, tor_penalty = compute_team_ratings(leafs_players)
+ut_offense, ut_defense, ut_powerplay, ut_penaltykill, ut_penalty = compute_team_ratings(utah_players)
+van_offense, van_defense, van_powerplay, van_penaltykill, van_penalty = compute_team_ratings(canucks_players)
+vgk_offense, vgk_defense, vgk_powerplay, vgk_penaltykill, vgk_penalty = compute_team_ratings(knights_players)
+wsh_offense, wsh_defense, wsh_powerplay, wsh_penaltykill, wsh_penalty = compute_team_ratings(capitals_players)
+wpg_offense, wpg_defense, wpg_powerplay, wpg_penaltykill, wpg_penalty = compute_team_ratings(jets_players)
 
 # Create team objects
 teams = {
-    "ana": Team("Anaheim Ducks", "ANA", ana_offense, ana_defense, goalies["gibson"], goalies["dostal"], goalies["reimer"]),
-    "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, goalies["swayman"], goalies["korp"]),
-    "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, goalies["luukkonen"], goalies["levi"]),
-    "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, goalies["wolf"], goalies["vladar"]),
-    "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
-    "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),
-    "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, goalies["georgiev"], goalies["annunen"], goalies["kahkonen"]),
-    "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, goalies["merzlikins"], goalies["tarasov"]),
-    "dal": Team("Dallas Stars", "DAL", dal_offense, dal_defense, goalies["oettinger"], goalies["desmith"]),
-    "det": Team("Detroit Red Wings", "DET", det_offense, det_defense, goalies["talbot"], goalies["lyon"], goalies["husso"],),
-    "edm": Team("Edmonton Oilers", "EDM", edm_offense, edm_defense, goalies["skinner"], goalies["pickard"]),
-    "fla": Team("Florida Panthers", "FLA", fla_offense, fla_defense, goalies["bobrovsky"], goalies["knight"]),
-    "la": Team("Los Angeles Kings", "LA", la_offense, la_defense, goalies["kuemper"], goalies["rittich"], goalies["copley"]),
-    "min": Team("Minnesota Wild", "MIN", min_offense, min_defense, goalies["gustavsson"], goalies["fleury"]),
-    "mtl": Team("Montreal Canadiens", "MTL", mtl_offense, mtl_defense, goalies["montembeault"], goalies["primeau"]),
-    "nsh": Team("Nashville Predators", "NSH", nsh_offense, nsh_defense, goalies["saros"], goalies["wedgewood"]),
-    "nj": Team("New Jersey Devils", "NJ", nj_offense, nj_defense, goalies["markstrom"], goalies["allen"]),
-    "nyi": Team("New York Islanders", "NYI", nyi_offense, nyi_defense, goalies["sorokin"], goalies["varlamov"]),
-    "nyr": Team("New York Rangers", "NYR", nyr_offense, nyr_defense, goalies["shesterkin"], goalies["quick"]),
-    "ott": Team("Ottawa Senators", "OTT", ott_offense, ott_defense, goalies["ullmark"], goalies["forsberg"], goalies["sogaard"]),
-    "phi": Team("Philadelphia Flyers", "PHI", phi_offense, phi_defense, goalies["fedotov"], goalies["ersson"], goalies["kolosov"]),
-    "pit": Team("Pittsburgh Penguins", "PIT", pit_offense, pit_defense, goalies["jarry"], goalies["ned"], goalies["blomqvist"]),
-    "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, goalies["blackwood"], goalies["vanacek"], goalies["askarov"]),
-    "sea": Team("Seattle Kraken", "SEA", sea_offense, sea_defense, goalies["daccord"], goalies["grubauer"]),
-    "stl": Team("St. Louis Blues", "STL", stl_offense, stl_defense, goalies["binner"], goalies["hofer"]),
-    "tb": Team("Tampa Bay Lightning", "TB", tb_offense, tb_defense, goalies["vasy"], goalies["johansson"]),
-    "tor": Team("Toronto Maple Leafs", "TOR", tor_offense, tor_defense, goalies["stolarz"], goalies["woll"], goalies["hildeby"]),
-    "ari": Team("Utah Hockey Club", "UT", ut_offense, ut_defense, goalies["ingram"], goalies["vemelka"]),
-    "van": Team("Vancouver Canucks", "VAN", van_offense, van_defense, goalies["demko"], goalies["lankinen"], goalies["silvos"]),
-    "vgk": Team("Vegas Golden Knights", "VGK", vgk_offense, vgk_defense, goalies["hill"], goalies["samsonov"]),
-    "wsh": Team("Washington Capitals", "WSH", wsh_offense, wsh_defense, goalies["lindgren"], goalies["thompson"]),
-    "wpg": Team("Winnipeg Jets", "WPG", wpg_offense, wpg_defense, goalies["hellebuyck"], goalies["comrie"]),
+    "ana": Team("Anaheim Ducks", "ANA", ana_offense, ana_defense, ana_powerplay, ana_penaltykill, ana_penalty, goalies["gibson"], goalies["dostal"], goalies["reimer"]),
+    "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, bos_powerplay,bos_penaltykill, bos_penalty, goalies["swayman"], goalies["korp"]),
+    "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, buf_powerplay, buf_penaltykill, buf_penalty, goalies["luukkonen"], goalies["levi"]),
+    "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, cgy_powerplay, cgy_penaltykill, cgy_penalty,  goalies["wolf"], goalies["vladar"]),
+    "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
+    "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, chi_powerplay, chi_penaltykill, chi_penalty, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),
+    "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, col_powerplay, col_penaltykill, col_penalty, goalies["georgiev"], goalies["annunen"], goalies["kahkonen"]),
+    "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, cbj_powerplay, cbj_penaltykill, cbj_penalty, goalies["merzlikins"], goalies["tarasov"]),
+    "dal": Team("Dallas Stars", "DAL", dal_offense, dal_defense, dal_powerplay, dal_penaltykill, dal_penalty, goalies["oettinger"], goalies["desmith"]),
+    "det": Team("Detroit Red Wings", "DET", det_offense, det_defense, det_powerplay, det_penaltykill, det_penalty, goalies["talbot"], goalies["lyon"], goalies["husso"],),
+    "edm": Team("Edmonton Oilers", "EDM", edm_offense, edm_defense, edm_powerplay, edm_penaltykill, edm_penalty, goalies["skinner"], goalies["pickard"]),
+    "fla": Team("Florida Panthers", "FLA", fla_offense, fla_defense, fla_powerplay, fla_penaltykill, fla_penalty, goalies["bobrovsky"], goalies["knight"]),
+    "la": Team("Los Angeles Kings", "LA", la_offense, la_defense, la_powerplay, la_penaltykill, la_penalty, goalies["kuemper"], goalies["rittich"], goalies["copley"]),
+    "min": Team("Minnesota Wild", "MIN", min_offense, min_defense, min_powerplay, min_penaltykill, min_penalty, goalies["gustavsson"], goalies["fleury"]),
+    "mtl": Team("Montreal Canadiens", "MTL", mtl_offense, mtl_defense, mtl_powerplay, mtl_penaltykill, mtl_penalty,goalies["montembeault"], goalies["primeau"]),
+    "nsh": Team("Nashville Predators", "NSH", nsh_offense, nsh_defense, nsh_powerplay, nsh_penaltykill, nsh_penalty, goalies["saros"], goalies["wedgewood"]),
+    "nj": Team("New Jersey Devils", "NJ", nj_offense, nj_defense, nj_powerplay, nj_penaltykill, nj_penalty, goalies["markstrom"], goalies["allen"]),
+    "nyi": Team("New York Islanders", "NYI", nyi_offense, nyi_defense, nyi_powerplay, nyi_penaltykill, nyi_penalty, goalies["sorokin"], goalies["varlamov"]),
+    "nyr": Team("New York Rangers", "NYR", nyr_offense, nyr_defense, nyr_powerplay, nyr_penaltykill, nyr_penalty, goalies["shesterkin"], goalies["quick"]),
+    "ott": Team("Ottawa Senators", "OTT", ott_offense, ott_defense, ott_powerplay, ott_penaltykill, ott_penalty, goalies["ullmark"], goalies["forsberg"], goalies["sogaard"]),
+    "phi": Team("Philadelphia Flyers", "PHI", phi_offense, phi_defense, phi_powerplay, phi_penaltykill, phi_penalty, goalies["fedotov"], goalies["ersson"], goalies["kolosov"]),
+    "pit": Team("Pittsburgh Penguins", "PIT", pit_offense, pit_defense, pit_powerplay, pit_penaltykill, pit_penalty,goalies["jarry"], goalies["ned"], goalies["blomqvist"]),
+    "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, sj_powerplay, sj_penaltykill, sj_penalty, goalies["blackwood"], goalies["vanacek"], goalies["askarov"]),
+    "sea": Team("Seattle Kraken", "SEA", sea_offense, sea_defense, sea_powerplay, sea_penaltykill, sea_penalty,goalies["daccord"], goalies["grubauer"]),
+    "stl": Team("St. Louis Blues", "STL", stl_offense, stl_defense, stl_powerplay, stl_penaltykill, stl_penalty, goalies["binner"], goalies["hofer"]),
+    "tb": Team("Tampa Bay Lightning", "TB", tb_offense, tb_defense, tb_powerplay, tb_penaltykill, tb_penalty, goalies["vasy"], goalies["johansson"]),
+    "tor": Team("Toronto Maple Leafs", "TOR", tor_offense, tor_defense, tor_powerplay, tor_penaltykill, tor_penalty, goalies["stolarz"], goalies["woll"], goalies["hildeby"]),
+    "ari": Team("Utah Hockey Club", "UT", ut_offense, ut_defense, ut_powerplay, ut_penaltykill, ut_penalty, goalies["ingram"], goalies["vemelka"]),
+    "van": Team("Vancouver Canucks", "VAN", van_offense, van_defense, van_powerplay, van_penaltykill, van_penalty, goalies["demko"], goalies["lankinen"], goalies["silvos"]),
+    "vgk": Team("Vegas Golden Knights", "VGK", vgk_offense, vgk_defense, vgk_powerplay, vgk_penaltykill, vgk_penalty, goalies["hill"], goalies["samsonov"]),
+    "wsh": Team("Washington Capitals", "WSH", wsh_offense, wsh_defense, wsh_powerplay, wsh_penaltykill, wsh_penalty,  goalies["lindgren"], goalies["thompson"]),
+    "wpg": Team("Winnipeg Jets", "WPG", wpg_offense, wpg_defense, wpg_powerplay, wpg_penaltykill, wpg_penalty, goalies["hellebuyck"], goalies["comrie"]),
 }
 
 teams["ana"].players = ducks_players
@@ -254,38 +255,20 @@ teams["vgk"].players = knights_players
 teams["wsh"].players = capitals_players
 teams["wpg"].players = jets_players
 
-print(f"ANA {ana_offense:.1f} {ana_defense:.1f}")
-print(f"BOS {bos_offense:.1f} {bos_defense:.1f}")
-print(f"BUF {buf_offense:.1f} {buf_defense:.1f}")
-print(f"CGY {cgy_offense:.1f} {cgy_defense:.1f}")
-print(f"CAR {car_offense:.1f} {car_defense:.1f}")
-print(f"CHI {chi_offense:.1f} {chi_defense:.1f}")
-print(f"COL {col_offense:.1f} {col_defense:.1f}")
-print(f"CBJ {cbj_offense:.1f} {cbj_defense:.1f}")
-print(f"DAL {dal_offense:.1f} {dal_defense:.1f}")
-print(f"DET {det_offense:.1f} {det_defense:.1f}")
-print(f"EDM {edm_offense:.1f} {edm_defense:.1f}")
-print(f"FLA {fla_offense:.1f} {fla_defense:.1f}")
-print(f"LA {la_offense:.1f} {la_defense:.1f}")
-print(f"MIN {min_offense:.1f} {min_defense:.1f}")
-print(f"MTL {mtl_offense:.1f} {mtl_defense:.1f}")
-print(f"NSH {nsh_offense:.1f} {nsh_defense:.1f}")
-print(f"NJ {nj_offense:.1f} {nj_defense:.1f}")
-print(f"NYI {nyi_offense:.1f} {nyi_defense:.1f}")
-print(f"NYR {nyr_offense:.1f} {nyr_defense:.1f}")
-print(f"OTT {ott_offense:.1f} {ott_defense:.1f}")
-print(f"PHI {phi_offense:.1f} {phi_defense:.1f}")
-print(f"PIT {pit_offense:.1f} {pit_defense:.1f}")
-print(f"SJ {sj_offense:.1f} {sj_defense:.1f}")
-print(f"SEA {sea_offense:.1f} {sea_defense:.1f}")
-print(f"STL {stl_offense:.1f} {stl_defense:.1f}")
-print(f"TB {tb_offense:.1f} {tb_defense:.1f}")
-print(f"TOR {tor_offense:.1f} {tor_defense:.1f}")
-print(f"UT {ut_offense:.1f} {ut_defense:.1f}")
-print(f"VAN {van_offense:.1f} {van_defense:.1f}")
-print(f"VGK {vgk_offense:.1f} {vgk_defense:.1f}")
-print(f"WSH {wsh_offense:.1f} {wsh_defense:.1f}")
-print(f"WPG {wpg_offense:.1f} {wpg_defense:.1f}")
+def print_team_ratings(teams):
+    for team, stats in teams.items():
+        output = f"{team.upper()} OFF:{stats.offense:.1f} DEF:{stats.defense:.1f}"
+
+        if stats.powerplay is not None:
+            output += f" PP:{stats.powerplay:.1f}"
+        if stats.penaltykill is not None:
+            output += f" PK:{stats.penaltykill:.1f}"
+        if stats.penalty is not None:
+            output += f" PEN:{stats.penalty:.1f}"
+
+        print(output)
+
+print_team_ratings(teams)
 
 # Define divisions
 metropolitan_division = [teams["car"], teams["cbj"], teams["phi"], teams["pit"], teams["nj"], teams["nyi"], teams["nyr"], teams["wsh"]]

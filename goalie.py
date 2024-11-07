@@ -36,8 +36,8 @@ goalies = {
     "brossoit": Goalie("Laurent Brossoit", 55, "1A"),
     "soderblom": Goalie("Arvid Soderblom", 20, "Third"),
     # Avalanche
-    "georgiev": Goalie("Alexandar Georgiev", 50, "Starter"),
-    "annunen": Goalie("Justus Annunen", 45, "Backup"),
+    "georgiev": Goalie("Alexandar Georgiev", 50, "1A"),
+    "annunen": Goalie("Justus Annunen", 50, "1B"),
     "kahkonen": Goalie("Kaapo Kahkonen", 40, "Third"),
     # Blue Jackets
     "merzlikins": Goalie("Elvis Merzlikins", 40, "1B"),
