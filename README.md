@@ -5,3 +5,7 @@ Originally this began as a basic hockey game simulator based on the NHL league a
 8/27/2024 - Goalies now will only start a maximum of 65 games per season.
 
 9/1/2024 - Added roles to each skater to weigh team offenses and defenses more accurately.
+
+10/2/2024 - Now reads NHL schedule and results from .csv to update playoff odds throughout the season.
+
+11/8/2024 - Powerplay, Penalty Kill, and penalty differential logic implemented. 
