@@ -716,7 +716,7 @@ lightning_players = [
     Skater("Nikita Kucherov", 70, 80, 80, 30, 70, 80,role="1st Line"),
     Skater("Brayden Point", 80, 60, 80, 30, 65, 65,role="1st Line"),
     Skater("Jake Guentzel", 45, 70, 80, 30, 70, 60,role="1st Line"),
-    Skater("Brandon Hagel", 65, 65, 70, 65, 60, 35, 65,role="2nd Line"),
+    Skater("Brandon Hagel", 65, 65, 70, 65, 60, 35, 65,role="1st Line"),
     Skater("Anthony Cirelli", 45, 60, 60, 80, 80, 50, 40,role="2nd Line"),
     Skater("Nicholas Paul", 60, 35, 30, 70, 50, 50,role="2nd Line"),
     Skater("Connor Geekie", defense=55, role="4th Line"),
@@ -727,11 +727,11 @@ lightning_players = [
     Skater("Cam Atkinson", 30, 45, 40, 30, 50, 40, 60,role="4th Line"),
     Skater("Mitchell Chaffee", 65, 30, 30, 35, 65, role="4th Line"),
     Skater("Victor Hedman", 70, 70, 65, 30, 55, 60, 55,role="Number 1", position="defense"),
-    Skater("JJ Moser", 60, 60, 40, 45, 60, penaltykill=20,role="Top Pair", position="defense"),
+    Skater("JJ Moser", 60, 60, 40, 50, 60, penaltykill=20,role="Top Pair", position="defense"),
     Skater("Erik Cernak", 30, 50, 40, 55,  50, penaltykill=40,role="2nd Pair", position="defense"),
     Skater("Ryan McDonagh", 30, 60, 70, 60, 60, penaltykill=40, role="2nd Pair", position="defense"),
     Skater("Darren Raddysh", 60, 40, 40, 60, 60, role="3rd Pair", position="defense"),
-    Skater("Emil Lilleberg", 20, 65, 30, 30, 20, penaltykill=35, role="3rd Pair", position="defense"),
+    Skater("Emil Lilleberg", 20, 65, 30, 30, 20, penaltykill=35, role="bench", position="defense"),
     Skater("Nick Perbix", 40, 70, 40, 60, 70,role="3rd Pair", position="defense")
 ]
 

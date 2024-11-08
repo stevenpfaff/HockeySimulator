@@ -28,38 +28,6 @@ class Game:
 
         self.winner, self.regulation = self.__get_winner()
 
-    def __get_penalties(self, team):
-        """Determine if a team gets penalized, based on its penalty stat."""
-        # You want a team with a penalty rating of 50 to get ~3 penalties per game.
-        target_penalties_per_game = 3
-        # Penalty probability is inversely proportional to the penalty rating (lower rating -> more penalties)
-        penalty_rate = 100 - team.penalty  # Lower penalty rating = more likely to take penalties
-        # Scale penalty chance to get an average of 3 penalties for a penalty rating of 50
-        expected_penalties = (penalty_rate / 100) * target_penalties_per_game
-
-        penalties = 0
-        for _ in range(int(expected_penalties)):  # Simulate expected penalties
-            penalty_chance = random.random()
-            if penalty_chance <= expected_penalties / target_penalties_per_game:
-                penalties += 1
-
-        return penalties
-
-    def __get_powerplay_goals(self, team, opponent):
-        """Calculate powerplay goals based on powerplay stat and opponent penaltykill."""
-        # Number of powerplays = number of penalties by the opponent
-        num_powerplays = self.__get_penalties(opponent)
-        goals = 0
-
-        # Lookup scoring chance based on team powerplay and opponent penalty kill
-        scoring_chance = Game.__lookup_scoring_chance(team.powerplay, opponent.penaltykill)
-
-        # Simulate each powerplay opportunity
-        for _ in range(num_powerplays):
-            if random.random() <= scoring_chance:
-                goals += 1
-        return goals
-
     @classmethod
     def __lookup_scoring_chance(cls, powerplay, penaltykill):
         """Lookup scoring chance from the powerplay and penaltykill rating ranges."""
