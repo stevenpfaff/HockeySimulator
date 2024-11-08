@@ -34,7 +34,7 @@ goalies = {
     # Blackhawks
     "mrazek": Goalie("Petr Mrazek", 40, "1B"),
     "brossoit": Goalie("Laurent Brossoit", 55, "1A"),
-    "soderblom": Goalie("Arvid Soderblom", 20, "Third"),
+    "soderblom": Goalie("Arvid Soderblom", 30, "Backup"),
     # Avalanche
     "georgiev": Goalie("Alexandar Georgiev", 50, "1A"),
     "annunen": Goalie("Justus Annunen", 50, "1B"),

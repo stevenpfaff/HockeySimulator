@@ -205,18 +205,18 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 11/6/2024,nsh,wsh,2,3,35,36,Juuse Saros,Logan Thompson,TRUE,wsh
 11/6/2024,det,chi,4,1,25,29,Cam Talbot,Petr Mrazek,TRUE,det
 11/6/2024,vgk,edm,4,2,35,29,Adin Hill,Stuart Skinner,TRUE,vgk
-11/7/2024,cgy,bos,,,,,,,,
-11/7/2024,nyi,ott,,,,,,,,
-11/7/2024,phi,tb,,,,,,,,
-11/7/2024,nsh,fla,,,,,,,,
-11/7/2024,mtl,nj,,,,,,,,
-11/7/2024,buf,nyr,,,,,,,,
-11/7/2024,pit,car,,,,,,,,
-11/7/2024,ari,stl,,,,,,,,
-11/7/2024,chi,dal,,,,,,,,
-11/7/2024,col,wpg,,,,,,,,
-11/7/2024,van,la,,,,,,,,
-11/7/2024,min,sj,,,,,,,,
+11/7/2024,cgy,bos,3,4,37,38,Dustin Wolf,Joonas Korpisalo,FALSE,bos
+11/7/2024,nyi,ott,4,2,25,30,Semyon Varlamov,Anton Forsberg,TRUE,nyi
+11/7/2024,phi,tb,2,1,32,24,Ivan Fedotov,Andrei Vasilevskiy,FALSE,phi
+11/7/2024,nsh,fla,2,6,18,34,Scott Wedgewood,Sergei Bobrovsky,TRUE,fla
+11/7/2024,mtl,nj,3,5,24,27,Sam Montembeault,Jacob Markstrom,TRUE,nj
+11/7/2024,buf,nyr,6,1,22,26,Ukko-Pekka Luukkonen,Igor Shesterkin,TRUE,buf
+11/7/2024,pit,car,1,5,37,19,Alex Nedeljkovic,Pyotr Kochetkov,TRUE,car
+11/7/2024,ari,stl,4,2,31,15,Connor Ingram,Joel Hofer,TRUE,ari
+11/7/2024,chi,dal,1,3,26,40,Arvid Soderblom,Jake Oettinger,TRUE,dal
+11/7/2024,col,wpg,0,1,35,28,Alexandar Georgiev,Connor Hellebuyck,TRUE,wpg
+11/7/2024,van,la,4,2,23,28,Kevin Lankinen,Darcy Kuemper,TRUE,van
+11/7/2024,min,sj,5,2,31,26,Marc-Andre Fleury,Vitek Vanecek,TRUE,min
 11/8/2024,det,tor,,,,,,,,
 11/8/2024,pit,wsh,,,,,,,,
 11/8/2024,min,ana,,,,,,,,

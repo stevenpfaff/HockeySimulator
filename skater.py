@@ -157,26 +157,28 @@ bruins_players = [
 ]
 
 sabres_players = [
-    Skater("Tage Thompson", 80, 65, 65, 30, 60, powerplay=60, role="1st Line"),
-    Skater("Alex Tuch", 55, 80, 70, 45, 50, powerplay=40, penaltykill=55, role="1st Line"),
-    Skater("Dylan Cozens", 50, 60, 60, 30, 60, powerplay=35, penaltykill=30, role="1st Line"),
-    Skater("Jack Quinn", 60, 60, 60, 50, 60, powerplay=35, role="2nd Line"),
-    Skater("Jason Zucker", 55, 50, 70, 30, 60, powerplay=50, role="2nd Line"),
+    Skater("Tage Thompson", 80, 65, 70, 30, 60, powerplay=60, role="1st Line"),
+    Skater("Alex Tuch", 55, 80, 70, 50, 50, powerplay=40, penaltykill=55, role="1st Line"),
+    Skater("Dylan Cozens", 50, 60, 60, 30, 60, powerplay=35, penaltykill=30, role="2nd Line"),
     Skater("Jordan Greenway", 30, 30, 30, 65, 20, penaltykill=60, role="2nd Line"),
+    Skater("JJ Peterka", 60, 55, 60, 30, 65, powerplay=20, role="2nd Line"),
     Skater("Zach Benson", 40, 60, 60, 60, 35, role="3rd Line"),
-    Skater("JJ Peterka", 60, 55, 60, 30, 65, powerplay=20, role="3rd Line"),
-    Skater("Ryan McLeod", 50, 60, 60, 65, 50, penaltykill=80, role="3rd Line"),
+    Skater("Jack Quinn", 60, 60, 60, 50, 60, powerplay=35, role="3rd Line"),
+    Skater("Jason Zucker", 55, 50, 70, 30, 60, powerplay=50, role="3rd Line"),
+    Skater("Ryan McLeod", 55, 60, 60, 65, 50, penaltykill=80, role="3rd Line"),
     Skater("Sam Lafferty", 55, 35, 20, 50, 50, role="4th Line"),
-    Skater("Nicolas Aube-Kubel", 35, 45, 30, 70, 20, role="4th Line"),
-    Skater("Beck Malenstyn", 30, 30, 30, 30, 60, penaltykill=20, role="4th Line"),
+    Skater("Nicolas Aube-Kubel", 40, 45, 35, 80, 30, role="4th Line"),
+    Skater("Beck Malenstyn", 35, 30, 30, 30, 60, penaltykill=20, role="4th Line"),
     Skater("Peyton Krebs", 30, 30, 20, 55, 35, role="4th Line"),
-    Skater("Rasmus Dahlin", 70, 70, 80, 65, 50, powerplay=60, penaltykill=50, role="Number 1", position="defense"),
-    Skater("Owen Power", 30, 50, 60, 40, 50, powerplay=30, penaltykill=40,role="Top Pair", position="defense"),
-    Skater("Bowen Byram", 80, 60, 30, 20, 40, role="2nd Pair", position="defense"),
-    Skater("Henri Jokijarju", 30, 50, 35, 35, 45, role="2nd Pair", position="defense"),
-    Skater("Connor Clifton", 30, 60, 50, 35, 50, penaltykill=55, role="3rd Pair", position="defense"),
-    Skater("Mattias Samuelsson", 20, 30, 40, 50, 55, penaltykill=30, role="3rd Pair", position="defense"),
-    Skater("Jacob Bryson", 35, 55, 30, 60, 65, role="bench", position="defense")
+    Skater("Jiri Kulich", role="4th Line"),
+    Skater("Rasmus Dahlin", 80, 70, 80, 65, 50, powerplay=60, penaltykill=50, role="Number 1", position="defense"),
+    Skater("Owen Power", 30, 50, 60, 45, 50, powerplay=30, penaltykill=40,role="Top Pair", position="defense"),
+    Skater("Bowen Byram", 80, 60, 30, 30, 40, role="2nd Pair", position="defense"),
+    Skater("Henri Jokijarju", 50, 50, 35, 35, 45, role="2nd Pair", position="defense"),
+    Skater("Connor Clifton", 35, 60, 50, 40, 50, penaltykill=60, role="3rd Pair", position="defense"),
+    Skater("Mattias Samuelsson", 30, 30, 45, 50, 55, penaltykill=30, role="3rd Pair", position="defense"),
+    Skater("Jacob Bryson", 35, 55, 30, 60, 65, role="bench", position="defense"),
+    Skater("Dennis Gilbert", 50, 30, 50, 55, 65, role="bench", position="defense")
 ]
 
 flames_players = [
