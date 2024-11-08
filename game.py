@@ -1,30 +1,32 @@
 import random
-
+import math
 
 class Game:
-    def __init__(self, home_team, away_team, home_goalie, away_goalie):
+    def __init__(self, home_team, away_team, home_goalie, visitor_goalie):
         self.home = home_team
         self.visitor = away_team
         self.home_goalie = home_goalie
-        self.visitor_goalie = away_goalie
-        self.home_sog = self.__get_sog(self.home.offense, self.visitor.defense, home_team=True)
-        self.visitor_sog = self.__get_sog(self.visitor.offense, self.home.defense, home_team=False)
+        self.visitor_goalie = visitor_goalie
+
+        # Initialize SOG, goals, penalties, etc.
+        self.home_sog = self.__get_sog(self.home.offense, self.visitor.defense,
+                                       home_team=True)
+        self.visitor_sog = self.__get_sog(self.visitor.offense, self.home.defense,
+                                          home_team=False)
+
         self.home_goals = self.__get_goals(self.home_sog, self.visitor_goalie.rating, self.home)
         self.visitor_goals = self.__get_goals(self.visitor_sog, self.home_goalie.rating, self.visitor)
 
-        # Simulate penalties during the game
-        self.home_penalties = self.__get_penalties(self.home)
-        self.visitor_penalties = self.__get_penalties(self.visitor)
+        # Simulate penalties and adjust powerplay goals
+        self.home_penalties = self.__get_penalties(self.home.penalty)
+        self.visitor_penalties = self.__get_penalties(self.visitor.penalty)
 
-        # Adjust goals scored based on powerplay efficiency
-        self.home_goals += self.__get_powerplay_goals(self.home, self.visitor)
-        self.visitor_goals += self.__get_powerplay_goals(self.visitor, self.home)
+        self.home_goals += self.__get_powerplay_goals(self.home.powerplay, self.visitor.penaltykill,
+                                                      self.visitor_penalties)
+        self.visitor_goals += self.__get_powerplay_goals(self.visitor.powerplay, self.home.penaltykill,
+                                                         self.home_penalties)
 
         self.winner, self.regulation = self.__get_winner()
-
-    @staticmethod
-    def find_closest_value(value, keys):
-        return min(keys, key=lambda k: abs(k - value))
 
     def __get_penalties(self, team):
         """Determine if a team gets penalized, based on its penalty stat."""
@@ -79,8 +81,6 @@ class Game:
              [(40, 0.32), (42.5, 0.30), (45, 0.28), (47.5, 0.26), (50, 0.24), (52.5, 0.22), (55, 0.20), (57.5, 0.18)]),
             (57.5,
              [(40, 0.34), (42.5, 0.32), (45, 0.30), (47.5, 0.28), (50, 0.26), (52.5, 0.24), (55, 0.22), (57.5, 0.20)]),
-            (60,
-             [(40, 0.36), (42.5, 0.34), (45, 0.32), (47.5, 0.30), (50, 0.28), (52.5, 0.26), (55, 0.24), (57.5, 0.22)])
         ]
 
         # Find closest powerplay and penaltykill scoring chance
@@ -88,51 +88,32 @@ class Game:
         closest_penaltykill = min(closest_powerplay[1], key=lambda x: abs(x[0] - penaltykill))
 
         return closest_penaltykill[1]
-    @classmethod
-    def __get_sog(cls, offense, defense, home_team=False):
-        # Dictionary mapping offense ranges to defense ranges and corresponding SOG ranges
-        ranges = [
-            (40, [(40, (15, 38)), (42.5, (15, 35)), (45, (15, 32)), (47.5, (15, 30)), (50, (15, 28)), (52.5, (15, 25)),
-                  (55, (14, 25)), (57.5, (13, 25))]),
-            (42.5, [(40, (16, 40)), (42.5, (16, 38)), (45, (16, 35)), (47.5, (16, 32)), (50, (16, 30)), (52.5, (16, 28)),
-                  (55, (15, 28)), (57.5, (14, 28))]),
-            (45, [(40, (17, 40)), (42.5, (17, 38)), (45, (17, 35)), (47.5, (17, 32)), (50, (17, 30)), (52.5, (17, 28)),
-                  (110, (16, 28)), (115, (15, 28))]),
-            (47.5, [(40, (18, 40)), (42.5, (18, 38)), (45, (18, 36)), (47.5, (18, 35)), (50, (18, 32)), (52.5, (18, 30)),
-                  (55, (17, 30)), (57.5, (16, 30))]),
-            (50, [(40, (19, 40)), (42.5, (19, 38)), (45, (19, 36)), (47.5, (19, 35)), (50, (19, 34)), (52.5, (19, 32)),
-                   (55, (18, 31)), (57.5, (17, 31))]),
-            (52.5, [(40, (20, 40)), (42.5, (20, 38)), (45, (20, 36)), (47.5, (20, 36)), (50, (20, 34)), (52.5, (20, 32)),
-                   (55, (18, 32)), (57.5, (17, 32))]),
-            (55, [(40, (21, 42)), (42.5, (21, 40)), (45, (21, 38)), (47.5, (21, 36)), (50, (20, 35)), (52.5, (20, 32)),
-                   (55, (19, 32)), (57.5, (18, 32))]),
-            (57.5, [(40, (22, 45)), (42.5, (22, 42)), (45, (22, 40)), (47.5, (22, 38)), (50, (22, 35)), (52.5, (22, 32)),
-                   (55, (20, 32)), (57.5, (19, 32))]),
-            (60, [(40, (23, 46)), (42.5, (23, 45)), (45, (23, 42)), (47.5, (23, 40)), (50, (23, 38)), (52.5, (23, 35)),
-                   (55, (22, 34)), (57.5, (21, 34))])
-        ]
 
-        # Find the closest offense and defense ranges
-        closest_offense = min(ranges, key=lambda x: abs(x[0] - offense))
-        closest_defense = min(closest_offense[1], key=lambda x: abs(x[0] - defense))
+    def __get_sog(self, offense_rating, defense_rating, home_team=False):
+        """ Calculate SOG using offense and defense ratings with home-ice boost if applicable. """
+        base_sog = 30  # Base SOG, close to league average
 
-        # Extract the min and max SOG values
-        sog_min, sog_max = closest_defense[1]
+        offense_factor = (offense_rating - 50) * 0.4
+        if offense_rating > 55:
+            offense_factor *= 0.8
 
-        # Apply home-ice advantage: If home team, increase SOG range slightly
+        if defense_rating > 50:
+            defense_factor = (50 - defense_rating) * 0.4
+            defense_factor *= math.sqrt(defense_rating / 50)
+            if defense_rating > 51:
+                defense_factor *= 0.725
+        else:
+            defense_factor = (50 - defense_rating) * 0.5
+            defense_factor = min(defense_factor, 5)
+
+        sog = base_sog + offense_factor + defense_factor
+
+        # Apply a 5% boost for home team
         if home_team:
-            sog_min += 2  # Slight boost for the home team
-            sog_max += 2  # Slight boost for the home team
+            sog *= 1.05
 
-        jitter_min = sog_min + random.randint(-2, 2)  # Adjust these jitter ranges as needed
-        jitter_max = sog_max + random.randint(-2, 2)
-
-        # Make sure jitter doesn't push values outside reasonable limits
-        jitter_min = max(10, jitter_min)
-        jitter_max = max(jitter_min, jitter_max)
-
-        # Generate the SOG with the adjusted random range
-        sog = random.randint(jitter_min, jitter_max)
+        # Add jitter for realism and clamp within a reasonable range (e.g., 20-40)
+        sog = max(20, min(int(sog + random.randint(-2, 2)), 40))
 
         return sog
 
@@ -141,31 +122,34 @@ class Game:
         for _ in range(sog):
             probability = self.get_goal_probability(goalie_rating)
             if random.random() <= probability:
-                # self.assign_goal(team)
+                goals += 1
+        return goals
+
+    def __get_penalties(self, penalty_rating):
+        """ Determine penalties based on team’s penalty rating. """
+        target_penalties_per_game = 3
+        expected_penalties = (100 - penalty_rating) / 100 * target_penalties_per_game
+        penalties = 0
+
+        for _ in range(int(expected_penalties)):
+            if random.random() <= expected_penalties / target_penalties_per_game:
+                penalties += 1
+        return penalties
+
+    def __get_powerplay_goals(self, powerplay_rating, penaltykill_rating, num_powerplays):
+        """ Simulate powerplay goals based on powerplay and penalty kill ratings. """
+        scoring_chance = self.__lookup_scoring_chance(powerplay_rating, penaltykill_rating)
+        goals = 0
+        for _ in range(num_powerplays):
+            if random.random() <= scoring_chance:
                 goals += 1
         return goals
 
     @staticmethod
     def get_goal_probability(goalie_rating):
-        threshold = 20  # Example threshold, adjust as needed
-        if goalie_rating <= threshold:
-            return 0.130
-        elif goalie_rating > threshold and goalie_rating <= 30:
-            return 0.120
-        elif goalie_rating > 30 and goalie_rating <= 40:
-            return 0.110
-        elif goalie_rating > 40 and goalie_rating <= 45:
-            return 0.105
-        elif goalie_rating > 45 and goalie_rating <= 50:
-            return 0.102
-        elif goalie_rating > 50 and goalie_rating <= 55:
-            return 0.100
-        elif goalie_rating > 55 and goalie_rating <= 60:
-            return 0.095
-        elif goalie_rating > 60 and goalie_rating <= 70:
-            return 0.090
-        elif goalie_rating > 70 and goalie_rating <= 80:
-            return 0.085
+        """ Probability of scoring based on goalie rating """
+        # Adjust probabilities based on realistic goalie save percentages
+        return max(0.085, 0.130 - (goalie_rating - 20) * 0.001)
 
     def __get_winner(self):
         team1_goals = self.home_goals

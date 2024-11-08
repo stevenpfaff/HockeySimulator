@@ -107,35 +107,30 @@ def compute_team_ratings(players):
     total_weighted_defense = 0
     total_weighted_powerplay = 0
     total_weighted_penaltykill = 0
-    total_weighted_penalty = 0  # New variable for penalties
+    total_weighted_penalty = 0
     total_role_weight = 0
     total_pp_weight = 0
     total_pk_weight = 0
     total_penalty_weight = 0
 
     for skater in players:
-        # Determine the role weight based on the skater's role and position
+        # Use the appropriate role weights based on whether they’re for even-strength or special teams
         role_weight = skater.get_role_weight()
 
-        # Calculate the skater's weighted offensive and defensive scores
-        weighted_offense = skater.offensive_overall() * role_weight
-        weighted_defense = skater.defensive_overall() * role_weight
-
-        # Sum up weighted scores and the total role weights
-        total_weighted_offense += weighted_offense
-        total_weighted_defense += weighted_defense
+        # Calculate weighted offensive and defensive scores
+        total_weighted_offense += skater.offensive_overall() * role_weight
+        total_weighted_defense += skater.defensive_overall() * role_weight
         total_role_weight += role_weight
 
-        # Calculate weighted powerplay and penaltykill scores if they exist
+        # Powerplay and penalty kill contributions, if applicable
         if skater.powerplay is not None:
             total_weighted_powerplay += skater.powerplay * role_weight
             total_pp_weight += role_weight
-
         if skater.penaltykill is not None:
             total_weighted_penaltykill += skater.penaltykill * role_weight
             total_pk_weight += role_weight
 
-        # Calculate weighted penalty score if it exists
+        # Penalties taken by the skater, contributing to the penalty rating
         if skater.penalties is not None:
             total_weighted_penalty += skater.penalties * role_weight
             total_penalty_weight += role_weight
@@ -148,6 +143,7 @@ def compute_team_ratings(players):
     team_penalty_rating = total_weighted_penalty / total_penalty_weight if total_penalty_weight > 0 else 0
 
     return team_offensive_rating, team_defensive_rating, team_powerplay_rating, team_penaltykill_rating, team_penalty_rating
+
 
 
 
@@ -257,15 +253,7 @@ teams["wpg"].players = jets_players
 
 def print_team_ratings(teams):
     for team, stats in teams.items():
-        output = f"{team.upper()} OFF:{stats.offense:.1f} DEF:{stats.defense:.1f}"
-
-        if stats.powerplay is not None:
-            output += f" PP:{stats.powerplay:.1f}"
-        if stats.penaltykill is not None:
-            output += f" PK:{stats.penaltykill:.1f}"
-        if stats.penalty is not None:
-            output += f" PEN:{stats.penalty:.1f}"
-
+        output = f"{team.upper()} OFF:{stats.offense:.1f} DEF:{stats.defense:.1f} PP:{stats.powerplay:.1f} PK:{stats.penaltykill:.1f} PEN:{stats.penalty:.1f}"
         print(output)
 
 print_team_ratings(teams)

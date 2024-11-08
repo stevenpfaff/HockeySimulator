@@ -541,9 +541,9 @@ class SeasonSimulator:
                 home_team_goals, away_team_goals, game.winner, regulation, home_goalie, visitor_goalie
             )
 
-
-              # Log the game result
+        #
+        #       # Log the game result
         #     self.log_game_result(game)
-
-        # log final goalie stats
+        #
+        # # log final goalie stats
         # self.log_goalie_stats()
