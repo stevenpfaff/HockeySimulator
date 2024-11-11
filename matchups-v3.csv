@@ -217,26 +217,26 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 11/7/2024,col,wpg,0,1,35,28,Alexandar Georgiev,Connor Hellebuyck,TRUE,wpg
 11/7/2024,van,la,4,2,23,28,Kevin Lankinen,Darcy Kuemper,TRUE,van
 11/7/2024,min,sj,5,2,31,26,Marc-Andre Fleury,Vitek Vanecek,TRUE,min
-11/8/2024,det,tor,,,,,,,,
-11/8/2024,pit,wsh,,,,,,,,
-11/8/2024,min,ana,,,,,,,,
-11/8/2024,vgk,sea,,,,,,,,
-11/9/2024,cgy,buf,,,,,,,,
-11/9/2024,phi,fla,,,,,,,,
-11/9/2024,ott,bos,,,,,,,,
-11/9/2024,mtl,tor,,,,,,,,
-11/9/2024,nyr,det,,,,,,,,
-11/9/2024,wsh,stl,,,,,,,,
-11/9/2024,dal,wpg,,,,,,,,
-11/9/2024,nj,nyi,,,,,,,,
-11/9/2024,ari,nsh,,,,,,,,
-11/9/2024,car,col,,,,,,,,
-11/9/2024,cbj,la,,,,,,,,
-11/9/2024,edm,van,,,,,,,,
-11/10/2024,sj,nj,,,,,,,,
-11/10/2024,min,chi,,,,,,,,
-11/10/2024,cbj,ana,,,,,,,,
-11/11/2024,mtl,buf,,,,,,,,
+11/8/2024,det,tor,1,3,22,20,Cam Talbot,Anthony Stolarz,TRUE,tor
+11/8/2024,pit,wsh,4,2,32,34,Joel Blomqvist,Charlie Lindgren,TRUE,pit
+11/8/2024,min,ana,5,2,31,35,Filip Gustavsson,Lukas Dostal,TRUE,min
+11/8/2024,vgk,sea,3,4,24,32,Adin Hill,Joey Daccord,FALSE,sea
+11/9/2024,cgy,buf,2,3,26,19,Dan Vladar,Ukko-Pekka Luukkonen,FALSE,buf
+11/9/2024,phi,fla,3,4,37,31,Samuel Ersson,Sergei Bobrovsky,FALSE,fla
+11/9/2024,ott,bos,3,2,34,16,Linus Ullmark,Jeremy Swayman,FALSE,ott
+11/9/2024,mtl,tor,1,4,21,27,Sam Montembeault,Joseph Woll,TRUE,tor
+11/9/2024,nyr,det,4,0,24,37,Jonathan Quick,Ville Husso,TRUE,nyr
+11/9/2024,wsh,stl,8,1,27,25,Logan Thompson,Jordan Binnington,TRUE,wsh
+11/9/2024,dal,wpg,1,4,33,25,Jake Oettinger,Connor Hellebuyck,TRUE,wpg
+11/9/2024,nj,nyi,4,3,33,22,Jacob Markstrom,Ilya Sorokin,FALSE,nj
+11/9/2024,ari,nsh,0,4,26,21,Connor Ingram,Juuse Saros,TRUE,nsh
+11/9/2024,car,col,4,6,31,29,Spencer Martin,Alexandar Georgiev,TRUE,col
+11/9/2024,cbj,la,2,5,26,23,Elvis Merzlikins,David Rittich,TRUE,la
+11/9/2024,edm,van,7,3,31,20,Stuart Skinner,Kevin Lankinen,TRUE,edm
+11/10/2024,sj,nj,1,0,27,44,Mackenzie Blackwood,Jake Allen,TRUE,sj
+11/10/2024,min,chi,1,2,33,22,Filip Gustavsson,Petr Mrazek,FALSE,chi
+11/10/2024,cbj,ana,2,4,40,30,Daniil Tarasov,John Gibson,TRUE,ana
+11/11/2024,mtl,buf,7,5,23,18,Sam Montembeault,Ukko-Pekka Luukkonen,TRUE,mtl
 11/11/2024,sj,phi,,,,,,,,
 11/11/2024,dal,pit,,,,,,,,
 11/11/2024,la,cgy,,,,,,,,
