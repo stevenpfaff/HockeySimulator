@@ -206,7 +206,7 @@ teams = {
     "ott": Team("Ottawa Senators", "OTT", ott_offense, ott_defense, ott_powerplay, ott_penaltykill, ott_penalty, goalies["ullmark"], goalies["forsberg"], goalies["sogaard"]),
     "phi": Team("Philadelphia Flyers", "PHI", phi_offense, phi_defense, phi_powerplay, phi_penaltykill, phi_penalty, goalies["fedotov"], goalies["ersson"], goalies["kolosov"]),
     "pit": Team("Pittsburgh Penguins", "PIT", pit_offense, pit_defense, pit_powerplay, pit_penaltykill, pit_penalty,goalies["jarry"], goalies["ned"], goalies["blomqvist"]),
-    "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, sj_powerplay, sj_penaltykill, sj_penalty, goalies["blackwood"], goalies["vanacek"], goalies["askarov"]),
+    "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, sj_powerplay, sj_penaltykill, sj_penalty, goalies["blackwood"], goalies["vanacek"]),
     "sea": Team("Seattle Kraken", "SEA", sea_offense, sea_defense, sea_powerplay, sea_penaltykill, sea_penalty,goalies["daccord"], goalies["grubauer"]),
     "stl": Team("St. Louis Blues", "STL", stl_offense, stl_defense, stl_powerplay, stl_penaltykill, stl_penalty, goalies["binner"], goalies["hofer"]),
     "tb": Team("Tampa Bay Lightning", "TB", tb_offense, tb_defense, tb_powerplay, tb_penaltykill, tb_penalty, goalies["vasy"], goalies["johansson"]),

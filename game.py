@@ -33,16 +33,16 @@ class Game:
         """Lookup scoring chance from the powerplay and penaltykill rating ranges."""
         # Dictionary mapping powerplay ratings to penalty kill ratings with corresponding scoring chances
         ranges = [
-            (40,
-             [(40, 0.20), (45, 0.18), (50, 0.16),  (55, 0.14), (60, 0.12)]),
-            (45,
-             [(40, 0.22), (45, 0.20), (50, 0.18), (55, 0.16), (60, 0.14)]),
-            (50,
-             [(40, 0.24), (45, 0.22), (50, 0.20), (55, 0.18), (60, 0.16)]),
-            (55,
-             [(40, 0.26), (45, 0.24), (50, 0.22), (55, 0.20), (60, 0.18)]),
-            (60,
-             [(40, 0.28), (45, 0.26), (50, 0.24), (55, 0.22), (60, 0.20)]),
+            (41,
+             [(40, 0.20), (44, 0.18), (48, 0.16),  (52, 0.14), (60, 0.12)]),
+            (46,
+             [(40, 0.22), (44, 0.20), (48, 0.18), (52, 0.16), (60, 0.14)]),
+            (51,
+             [(40, 0.24), (44, 0.22), (48, 0.20), (52, 0.18), (60, 0.16)]),
+            (56,
+             [(40, 0.26), (44, 0.24), (48, 0.22), (52, 0.20), (60, 0.18)]),
+            (61,
+             [(40, 0.28), (44, 0.26), (48, 0.24), (52, 0.22), (60, 0.20)]),
         ]
 
         # Find closest powerplay and penaltykill scoring chance
@@ -56,8 +56,8 @@ class Game:
         base_sog = 30  # Base SOG, close to league average
 
         offense_factor = (offense_rating - 50) * 0.4
-        if offense_rating > 55:
-            offense_factor *= 0.8
+        # if offense_rating > 55:
+        #     offense_factor *= 0.8
 
         if defense_rating > 50:
             defense_factor = (50 - defense_rating) * 0.4
@@ -110,8 +110,7 @@ class Game:
     @staticmethod
     def get_goal_probability(goalie_rating):
         """ Probability of scoring based on goalie rating """
-        # Adjust probabilities based on realistic goalie save percentages
-        return max(0.085, 0.130 - (goalie_rating - 20) * 0.001)
+        return max(0.085, 0.1333 - 0.0006667 * goalie_rating)
 
     def __get_winner(self):
         team1_goals = self.home_goals

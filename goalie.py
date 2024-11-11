@@ -25,7 +25,7 @@ goalies = {
     "levi": Goalie("Devon Levi", 45, "1B"),
     # Flames
     "wolf": Goalie("Dustin Wolf", 50, "1B"),
-    "vladar": Goalie("Dan Vladar", 40, "1A"),
+    "vladar": Goalie("Dan Vladar", 45, "1A"),
     "cooley": Goalie("Devin Cooley", 30, "Third"),
     # Hurricanes
     "andersen": Goalie("Frederik Andersen", 60, "1A"),
@@ -51,7 +51,7 @@ goalies = {
     "lyon": Goalie("Alex Lyon", 50, "1B"),
     "campbell": Goalie("Jack Campbell", 40),
     # Oilers
-    "skinner": Goalie("Stuart Skinner", 55, "Starter"),
+    "skinner": Goalie("Stuart Skinner", 60, "Starter"),
     "pickard": Goalie("Calvin Pickard", 40, "Backup"),
     # Panthers
     "bobrovsky": Goalie("Sergei Bobrovsky", 70, "Starter"),
@@ -102,7 +102,7 @@ goalies = {
     "hofer": Goalie("Joel Hofer", 50, "Backup"),
     # Lightning
     "vasy": Goalie("Andrei Vasilevskiy", 70, "Starter"),
-    "johansson": Goalie("Jonas Johansson", 20, "Backup"),
+    "johansson": Goalie("Jonas Johansson", 30, "Backup"),
     # Leafs
     "stolarz": Goalie("Anthony Stolarz", 60, "1A"),
     "woll": Goalie("Joseph Woll", 55, "1B"),
