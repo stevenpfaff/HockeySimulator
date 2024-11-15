@@ -1,6 +1,6 @@
 from goalie import goalies
 from skater import ducks_players,bruins_players,sabres_players,flames_players,hurricanes_players, blackhawks_players,avalanche_players,bluejackets_players,stars_players,redwings_players,oilers_players,panthers_players,kings_players,wild_players,canadiens_players,predators_players,devils_players,islanders_players,rangers_players,senators_players,flyers_players,penguins_players,sharks_players,kraken_players,blues_players,lightning_players,leafs_players,utah_players,canucks_players,knights_players,capitals_players,jets_players
-import random
+import csv
 import random
 
 class Team:
@@ -27,7 +27,7 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 56
+        self.max_selections = 55
         self.players = []
         # self.reset_selections()
 
@@ -46,7 +46,7 @@ class Team:
             "1A": 2.5,
             "1B": 2.4,
             "Backup": 1.5,
-            "Third": .33
+            "Third": 0
         }
 
         # Gather available goalies
@@ -186,7 +186,7 @@ wpg_offense, wpg_defense, wpg_powerplay, wpg_penaltykill, wpg_penalty = compute_
 teams = {
     "ana": Team("Anaheim Ducks", "ANA", ana_offense, ana_defense, ana_powerplay, ana_penaltykill, ana_penalty, goalies["gibson"], goalies["dostal"], goalies["reimer"]),
     "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, bos_powerplay,bos_penaltykill, bos_penalty, goalies["swayman"], goalies["korp"]),
-    "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, buf_powerplay, buf_penaltykill, buf_penalty, goalies["luukkonen"], goalies["levi"]),
+    "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, buf_powerplay, buf_penaltykill, buf_penalty, goalies["luukkonen"], goalies["levi"], goalies["reimer"]),
     "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, cgy_powerplay, cgy_penaltykill, cgy_penalty,  goalies["wolf"], goalies["vladar"]),
     "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
     "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, chi_powerplay, chi_penaltykill, chi_penalty, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),
@@ -268,3 +268,29 @@ eastern_conference = atlantic_division + metropolitan_division
 western_conference = central_division + pacific_division
 
 league = eastern_conference + western_conference
+
+
+def save_team_ratings_to_csv(teams, filename="output/team_ratings.csv"):
+    # Define CSV headers
+    headers = ["Team","Offense", "Defense", "Powerplay", "Penalty Kill", "Penalty"]
+
+    # Open the CSV file for writing
+    with open(filename, mode="w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(headers)  # Write header row
+
+        # Write each team's ratings to the CSV
+        for team_code, team in teams.items():
+            row = [
+                team.name,  # Team name
+                team.offense,  # Offense rating
+                team.defense,  # Defense rating
+                team.powerplay,  # Powerplay rating
+                team.penaltykill,  # Penalty kill rating
+                team.penalty  # Penalty rating
+            ]
+            writer.writerow(row)
+
+
+# Example usage
+save_team_ratings_to_csv(teams)

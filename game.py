@@ -56,8 +56,6 @@ class Game:
         base_sog = 30  # Base SOG, close to league average
 
         offense_factor = (offense_rating - 50) * 0.4
-        # if offense_rating > 55:
-        #     offense_factor *= 0.8
 
         if defense_rating > 50:
             defense_factor = (50 - defense_rating) * 0.4
@@ -75,7 +73,7 @@ class Game:
             sog *= 1.05
 
         # Add jitter for realism and clamp within a reasonable range (e.g., 20-40)
-        sog = max(20, min(int(sog + random.randint(-2, 2)), 40))
+        sog = max(18, min(int(sog + random.randint(-5, 5)), 50))
 
         return sog
 
@@ -110,7 +108,7 @@ class Game:
     @staticmethod
     def get_goal_probability(goalie_rating):
         """ Probability of scoring based on goalie rating """
-        return max(0.085, 0.1333 - 0.0006667 * goalie_rating)
+        return max(0.0825, 0.1333 - 0.00078 * goalie_rating)
 
     def __get_winner(self):
         team1_goals = self.home_goals
