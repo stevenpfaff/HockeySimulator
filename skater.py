@@ -268,7 +268,7 @@ avalanche_players = [
     Skater("Chris Wagner", role="4th Line"),
     Skater("Joel Kiviranta", 30, 20, 40, 60, 40, penaltykill=60, role="4th Line"),
     Skater("Ivan Ivan", offense=30, defense=60, role="4th Line"),
-    Skater("Callum Ritchie",  role="bench"),
+    # Skater("Callum Ritchie",  role="bench"),
     Skater("Matthew Stienburg", offense=55, defense=55, role="bench"),
     # Skater("Gabriel Landeskog", 60, 60, 60, 60, role="1st Line"),
     Skater("Cale Makar", 80, 70, 60, 65, 80, powerplay=60, penaltykill=30, role="Number 1", position="defense"),

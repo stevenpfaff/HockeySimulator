@@ -234,21 +234,36 @@ class SeasonSimulator:
             if team.backup_goalie.rating > team.starting_goalie.rating:
                 return team.backup_goalie
             return team.starting_goalie
+
         def simulate_series(matchup):
             team1, team2 = matchup
             team1_wins = 0
             team2_wins = 0
             total_games = 0
 
-            while team1_wins < 4 and team2_wins < 4 and total_games < 7:
-                home_goalie = get_top_rated_goalie(team1)
-                away_goalie = get_top_rated_goalie(team2)
+            # Home and away sequence for 2-2-1-1-1
+            home_sequence = [team1, team1, team2, team2, team1, team2, team1]
 
-                game = Game(team1, team2, home_goalie, away_goalie)
-                if game.winner == team1:
-                    team1_wins += 1
-                elif game.winner == team2:
-                    team2_wins += 1
+            while team1_wins < 4 and team2_wins < 4 and total_games < 7:
+                home_team = home_sequence[total_games]
+                away_team = team1 if home_team == team2 else team2
+
+                home_goalie = get_top_rated_goalie(home_team)
+                away_goalie = get_top_rated_goalie(away_team)
+
+                # Simulate the game
+                game = Game(home_team, away_team, home_goalie, away_goalie)
+                if game.winner == home_team:
+                    if home_team == team1:
+                        team1_wins += 1
+                    else:
+                        team2_wins += 1
+                else:
+                    if away_team == team1:
+                        team1_wins += 1
+                    else:
+                        team2_wins += 1
+
                 total_games += 1
 
             series_winner = team1 if team1_wins > team2_wins else team2
@@ -437,7 +452,6 @@ class SeasonSimulator:
         playoff_results = self.playoff_bracket(output_file)
         return playoff_results
 
-    import csv
 
     def write_cup_winners(self, num_simulations):
         with open('output/playoff_data.csv', mode='w', newline='') as file:

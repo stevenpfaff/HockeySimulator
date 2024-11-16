@@ -111,9 +111,9 @@ goalies = {
     "vemelka": Goalie("Karel Vejmelka", 40, "1B"),
     "ingram": Goalie("Connor Ingram", 55, "1A"),
     # Canucks
-    "demko": Goalie("Thatcher Demko", 60, "Starter"),
+    "demko": Goalie("Thatcher Demko", 60, "Backup"),
     "silvos": Goalie("Arturs Silovs", 30, "Third"),
-    "lankinen": Goalie("Kevin Lankinen", 50, "Backup"),
+    "lankinen": Goalie("Kevin Lankinen", 50, "1A"),
     # Golden Knights
     "hill": Goalie("Adin Hill", 55, "1A"),
     "samsonov": Goalie("Ilya Samsonov", 45, "1B"),
