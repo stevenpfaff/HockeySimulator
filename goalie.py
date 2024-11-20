@@ -28,9 +28,9 @@ goalies = {
     "vladar": Goalie("Dan Vladar", 45, "1A"),
     "cooley": Goalie("Devin Cooley", 30, "Third"),
     # Hurricanes
-    "andersen": Goalie("Frederik Andersen", 60, "Backup"),
-    "kochetkov": Goalie("Pyotr Kochetkov", 50, "Starter"),
-    "martin": Goalie("Spencer Martin", 30, "1B"),
+    "andersen": Goalie("Frederik Andersen", 60, "1A"),
+    "kochetkov": Goalie("Pyotr Kochetkov", 50, "1B"),
+    "martin": Goalie("Spencer Martin", 30, "Third"),
     # Blackhawks
     "mrazek": Goalie("Petr Mrazek", 40, "1B"),
     "brossoit": Goalie("Laurent Brossoit", 55, "1A"),
@@ -111,16 +111,16 @@ goalies = {
     "vemelka": Goalie("Karel Vejmelka", 40, "1B"),
     "ingram": Goalie("Connor Ingram", 55, "1A"),
     # Canucks
-    "demko": Goalie("Thatcher Demko", 60, "Backup"),
+    "demko": Goalie("Thatcher Demko", 60, "Starter"),
     "silvos": Goalie("Arturs Silovs", 30, "Third"),
-    "lankinen": Goalie("Kevin Lankinen", 50, "1A"),
+    "lankinen": Goalie("Kevin Lankinen", 50, "Backup"),
     # Golden Knights
     "hill": Goalie("Adin Hill", 55, "1A"),
     "samsonov": Goalie("Ilya Samsonov", 45, "1B"),
     "schmid": Goalie("Akira Schmid", 20, "Third"),
     # Capitals
-    "thompson": Goalie("Logan Thompson", 55, "1B"),
-    "lindgren": Goalie("Charlie Lindgren", 55, "1A"),
+    "thompson": Goalie("Logan Thompson", 60, "1A"),
+    "lindgren": Goalie("Charlie Lindgren", 55, "1B"),
     # Jets
     "hellebuyck": Goalie("Connor Hellebuyck", 80, "Starter"),
     "comrie": Goalie("Eric Comrie", 40, "Backup")

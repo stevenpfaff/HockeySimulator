@@ -27,7 +27,7 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 55
+        self.max_selections = 54
         self.players = []
         # self.reset_selections()
 
