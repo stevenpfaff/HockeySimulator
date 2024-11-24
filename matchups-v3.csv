@@ -298,38 +298,38 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 11/19/2024,ana,chi,3,2,24,20,John Gibson,Arvid Soderblom,TRUE,ana
 11/19/2024,nyi,cgy,1,2,29,31,Semyon Varlamov,Dustin Wolf,FALSE,cgy
 11/19/2024,nyr,van,4,3,33,24,Igor Shesterkin,Arturs Silovs,TRUE,nyr
-11/20/2024,vgk,tor,,,,,,,,
-11/20/2024,car,phi,,,,,,,,
-11/20/2024,sj,dal,,,,,,,,
-11/20/2024,nsh,sea,,,,,,,,
-11/20/2024,buf,la,,,,,,,,
-11/21/2024,ari,bos,,,,,,,,
-11/21/2024,vgk,ott,,,,,,,,
-11/21/2024,nyi,det,,,,,,,,
-11/21/2024,car,nj,,,,,,,,
-11/21/2024,col,wsh,,,,,,,,
-11/21/2024,tb,cbj,,,,,,,,
-11/21/2024,sj,stl,,,,,,,,
-11/21/2024,fla,chi,,,,,,,,
-11/21/2024,nyr,cgy,,,,,,,,
-11/21/2024,min,edm,,,,,,,,
-11/22/2024,wpg,pit,,,,,,,,
-11/22/2024,buf,ana,,,,,,,,
-11/23/2024,chi,phi,,,,,,,,
-11/23/2024,min,cgy,,,,,,,,
-11/23/2024,sea,la,,,,,,,,
-11/23/2024,col,fla,,,,,,,,
-11/23/2024,vgk,mtl,,,,,,,,
-11/23/2024,van,ott,,,,,,,,
-11/23/2024,bos,det,,,,,,,,
-11/23/2024,dal,tb,,,,,,,,
-11/23/2024,ari,pit,,,,,,,,
-11/23/2024,nj,wsh,,,,,,,,
-11/23/2024,car,cbj,,,,,,,,
-11/23/2024,wpg,nsh,,,,,,,,
-11/23/2024,stl,nyi,,,,,,,,
-11/23/2024,buf,sj,,,,,,,,
-11/23/2024,nyr,edm,,,,,,,,
+11/20/2024,vgk,tor,0,3,31,26,Adin Hill,Joseph Woll,TRUE,tor
+11/20/2024,car,phi,4,1,37,19,Pyotr Kochetkov,Ivan Fedotov,TRUE,car
+11/20/2024,sj,dal,2,5,23,31,Mackenzie Blackwood,Jake Oettinger,TRUE,dal
+11/20/2024,nsh,sea,0,3,24,36,Juuse Saros,Joey Daccord,TRUE,sea
+11/20/2024,buf,la,1,0,19,23,Ukko-Pekka Luukkonen,David Rittich,TRUE,buf
+11/21/2024,ari,bos,0,1,21,31,Karel Vejmelka,Joonas Korpisalo,TRUE,bos
+11/21/2024,vgk,ott,3,2,32,40,Ilya Samsonov,Linus Ullmark,TRUE,vgk
+11/21/2024,nyi,det,1,2,23,31,Ilya Sorokin,Alex Lyon,TRUE,det
+11/21/2024,car,nj,2,4,22,21,Spencer Martin,Jacob Markstrom,TRUE,nj
+11/21/2024,col,wsh,2,1,27,29,Alexandar Georgiev,Logan Thompson,TRUE,col
+11/21/2024,tb,cbj,6,7,30,43,Jonas Johansson,Elvis Merzlikins,FALSE,cbj
+11/21/2024,sj,stl,2,3,24,31,Yaroslav Askarov,Jordan Binnington,FALSE,stl
+11/21/2024,fla,chi,1,3,33,20,Spencer Knight,Petr Mrazek,TRUE,chi
+11/21/2024,nyr,cgy,2,3,29,49,Igor Shesterkin,Dustin Wolf,TRUE,cgy
+11/21/2024,min,edm,5,3,26,31,Marc-Andre Fleury,Stuart Skinner,TRUE,min
+11/22/2024,wpg,pit,4,1,30,18,Connor Hellebuyck,Tristan Jarry,TRUE,wpg
+11/22/2024,buf,ana,3,2,32,24,Ukko-Pekka Luukkonen,John Gibson,FALSE,buf
+11/23/2024,chi,phi,2,3,21,37,Petr Mrazek,Aleksei Kolosov,FALSE,phi
+11/23/2024,min,cgy,3,4,23,31,Filip Gustavsson,Dan Vladar,FALSE,cgy
+11/23/2024,sea,la,1,2,20,21,Joey Daccord,David Rittich,TRUE,la
+11/23/2024,col,fla,7,4,25,31,Alexandar Georgiev,Sergei Bobrovsky,TRUE,col
+11/23/2024,vgk,mtl,6,2,28,17,Adin Hill,Sam Montembeault,TRUE,vgk
+11/23/2024,van,ott,4,3,21,29,Kevin Lankinen,Linus Ullmark,TRUE,van
+11/23/2024,bos,det,2,1,29,20,Jeremy Swayman,Cam Talbot,TRUE,bos
+11/23/2024,dal,tb,4,2,28,29,Jake Oettinger,Andrei Vasilevskiy,TRUE,dal
+11/23/2024,ari,pit,6,1,30,28,Karel Vejmelka,Alex Nedeljkovic,TRUE,ari
+11/23/2024,nj,wsh,3,2,33,25,Jake Allen,Charlie Lindgren,TRUE,nj
+11/23/2024,car,cbj,4,5,36,32,Pyotr Kochetkov,Elvis Merzlikins,FALSE,cbj
+11/23/2024,wpg,nsh,1,4,24,36,Eric Comrie,Juuse Saros,TRUE,nsh
+11/23/2024,stl,nyi,1,3,25,31,Jordan Binnington,Ilya Sorokin,TRUE,nyi
+11/23/2024,buf,sj,4,2,31,33,James Reimer,Mackenzie Blackwood,TRUE,buf
+11/23/2024,nyr,edm,2,6,34,40,Jonathan Quick,Stuart Skinner,TRUE,edm
 11/24/2024,ari,tor,,,,,,,,
 11/25/2024,col,tb,,,,,,,,
 11/25/2024,wsh,fla,,,,,,,,

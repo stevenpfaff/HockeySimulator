@@ -18,19 +18,19 @@ goalies = {
     "dostal": Goalie("Lukas Dostal", 60, "1A"),
     "reimer": Goalie("James Reimer", 40, "Third"),
     # Bruins
-    "swayman": Goalie("Jeremy Swayman", 65, "Starter"),
+    "swayman": Goalie("Jeremy Swayman", 60, "Starter"),
     "korp": Goalie("Joonas Korpisalo", 30, "Backup"),
     # Sabres
-    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55, "Starter"),
-    "levi": Goalie("Devon Levi", 40, "1B"),
+    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 60, "Starter"),
+    "levi": Goalie("Devon Levi", 40, "Backup"),
     # Flames
-    "wolf": Goalie("Dustin Wolf", 50, "1B"),
-    "vladar": Goalie("Dan Vladar", 45, "1A"),
+    "wolf": Goalie("Dustin Wolf", 55, "1A"),
+    "vladar": Goalie("Dan Vladar", 45, "1B"),
     "cooley": Goalie("Devin Cooley", 30, "Third"),
     # Hurricanes
-    "andersen": Goalie("Frederik Andersen", 60, "1A"),
-    "kochetkov": Goalie("Pyotr Kochetkov", 50, "1B"),
-    "martin": Goalie("Spencer Martin", 30, "Third"),
+    "andersen": Goalie("Frederik Andersen", 60, "Backup"),
+    "kochetkov": Goalie("Pyotr Kochetkov", 50, "1A"),
+    "martin": Goalie("Spencer Martin", 30, "Backup"),
     # Blackhawks
     "mrazek": Goalie("Petr Mrazek", 40, "1B"),
     "brossoit": Goalie("Laurent Brossoit", 55, "1A"),
@@ -91,7 +91,7 @@ goalies = {
     "ned": Goalie("Alex Nedeljkovic", 40, "Backup"),
     "blomqvist": Goalie("Joel Blomqvist", 50, "1B"),
     # Sharks
-    "askarov": Goalie("Yaroslav Askarov", 30, "Third"),
+    "askarov": Goalie("Yaroslav Askarov", 40, "Third"),
     "blackwood": Goalie("Mackenzie Blackwood", 50, "1A"),
     "vanacek": Goalie("Vitek Vanecek", 50, "1B"),
     # Kraken
