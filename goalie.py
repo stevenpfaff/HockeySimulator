@@ -102,10 +102,10 @@ goalies = {
     "hofer": Goalie("Joel Hofer", 50, "Backup"),
     # Lightning
     "vasy": Goalie("Andrei Vasilevskiy", 70, "Starter"),
-    "johansson": Goalie("Jonas Johansson", 30, "Backup"),
+    "johansson": Goalie("Jonas Johansson", 20, "Backup"),
     # Leafs
     "stolarz": Goalie("Anthony Stolarz", 60, "1A"),
-    "woll": Goalie("Joseph Woll", 55, "1B"),
+    "woll": Goalie("Joseph Woll", 60, "1B"),
     "hildeby": Goalie("Dennis Hildeby", 30, "Third"),
     # Utah
     "vemelka": Goalie("Karel Vejmelka", 40, "1B"),
