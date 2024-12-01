@@ -36,9 +36,10 @@ goalies = {
     "brossoit": Goalie("Laurent Brossoit", 55, "1A"),
     "soderblom": Goalie("Arvid Soderblom", 30, "Backup"),
     # Avalanche
-    "georgiev": Goalie("Alexandar Georgiev", 50, "1A"),
-    "annunen": Goalie("Justus Annunen", 50, "1B"),
+    "georgiev": Goalie("Alexandar Georgiev", 50, "Starter"),
+    "annunen": Goalie("Justus Annunen", 50, "Third"),
     "kahkonen": Goalie("Kaapo Kahkonen", 40, "Third"),
+    "wedgewoodcol": Goalie("Scott Wedgewood", 40, "1B"),
     # Blue Jackets
     "merzlikins": Goalie("Elvis Merzlikins", 45, "1A"),
     "tarasov": Goalie("Daniil Tarasov", 40, "1B"),
@@ -46,7 +47,7 @@ goalies = {
     "oettinger": Goalie("Jake Oettinger", 60, "Starter"),
     "desmith": Goalie("Casey DeSmith", 50, "Backup"),
     # Red Wings
-    "talbot": Goalie("Cam Talbot", 55, "1A"),
+    "talbot": Goalie("Cam Talbot", 60, "Starter"),
     "husso": Goalie("Ville Husso", 40, "Third"),
     "lyon": Goalie("Alex Lyon", 50, "1B"),
     "campbell": Goalie("Jack Campbell", 40),
@@ -59,7 +60,7 @@ goalies = {
     # Kings
     "kuemper": Goalie("Darcy Kuemper", 60, "Starter"),
     "rittich": Goalie("David Rittich", 45, "Backup"),
-    "copley": Goalie("Phoenix Copley", 40, "Backup"),
+    "copley": Goalie("Erik Portillo", 40, "Third"),
     # Wild
     "fleury": Goalie("Marc-Andre Fleury", 50, "Backup"),
     "gustavsson": Goalie("Filip Gustavsson", 60, "Starter"),
@@ -68,6 +69,7 @@ goalies = {
     "montembeault": Goalie("Sam Montembeault", 55, "Starter"),
     # Predators
     "saros": Goalie("Juuse Saros", 70, "Starter"),
+    "annunennsh": Goalie("Justus Annunen", 50, "Backup"),
     "wedgewood": Goalie("Scott Wedgewood", 40, "Backup"),
     # Devils
     "markstrom": Goalie("Jacob Markstrom", 60, "Starter"),
@@ -108,8 +110,9 @@ goalies = {
     "woll": Goalie("Joseph Woll", 60, "1B"),
     "hildeby": Goalie("Dennis Hildeby", 30, "Third"),
     # Utah
-    "vemelka": Goalie("Karel Vejmelka", 40, "1B"),
+    "vemelka": Goalie("Karel Vejmelka", 45, "1B"),
     "ingram": Goalie("Connor Ingram", 55, "1A"),
+    "stauber": Goalie("Jaxson Stauber", 40, "Third"),
     # Canucks
     "demko": Goalie("Thatcher Demko", 60, "Starter"),
     "silvos": Goalie("Arturs Silovs", 30, "Third"),

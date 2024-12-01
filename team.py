@@ -46,7 +46,7 @@ class Team:
             "1A": 2.5,
             "1B": 2.4,
             "Backup": 1.5,
-            "Third": 0
+            "Third": 0.000001
         }
 
         # Gather available goalies
@@ -190,7 +190,7 @@ teams = {
     "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, cgy_powerplay, cgy_penaltykill, cgy_penalty,  goalies["wolf"], goalies["vladar"]),
     "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
     "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, chi_powerplay, chi_penaltykill, chi_penalty, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),
-    "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, col_powerplay, col_penaltykill, col_penalty, goalies["georgiev"], goalies["annunen"], goalies["kahkonen"]),
+    "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, col_powerplay, col_penaltykill, col_penalty, goalies["georgiev"], goalies["annunen"], goalies["kahkonen"], goalies["wedgewoodcol"]),
     "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, cbj_powerplay, cbj_penaltykill, cbj_penalty, goalies["merzlikins"], goalies["tarasov"]),
     "dal": Team("Dallas Stars", "DAL", dal_offense, dal_defense, dal_powerplay, dal_penaltykill, dal_penalty, goalies["oettinger"], goalies["desmith"]),
     "det": Team("Detroit Red Wings", "DET", det_offense, det_defense, det_powerplay, det_penaltykill, det_penalty, goalies["talbot"], goalies["lyon"], goalies["husso"],),
@@ -199,7 +199,7 @@ teams = {
     "la": Team("Los Angeles Kings", "LA", la_offense, la_defense, la_powerplay, la_penaltykill, la_penalty, goalies["kuemper"], goalies["rittich"], goalies["copley"]),
     "min": Team("Minnesota Wild", "MIN", min_offense, min_defense, min_powerplay, min_penaltykill, min_penalty, goalies["gustavsson"], goalies["fleury"]),
     "mtl": Team("Montreal Canadiens", "MTL", mtl_offense, mtl_defense, mtl_powerplay, mtl_penaltykill, mtl_penalty,goalies["montembeault"], goalies["primeau"]),
-    "nsh": Team("Nashville Predators", "NSH", nsh_offense, nsh_defense, nsh_powerplay, nsh_penaltykill, nsh_penalty, goalies["saros"], goalies["wedgewood"]),
+    "nsh": Team("Nashville Predators", "NSH", nsh_offense, nsh_defense, nsh_powerplay, nsh_penaltykill, nsh_penalty, goalies["saros"], goalies["wedgewood"], goalies["annunennsh"]),
     "nj": Team("New Jersey Devils", "NJ", nj_offense, nj_defense, nj_powerplay, nj_penaltykill, nj_penalty, goalies["markstrom"], goalies["allen"]),
     "nyi": Team("New York Islanders", "NYI", nyi_offense, nyi_defense, nyi_powerplay, nyi_penaltykill, nyi_penalty, goalies["sorokin"], goalies["varlamov"]),
     "nyr": Team("New York Rangers", "NYR", nyr_offense, nyr_defense, nyr_powerplay, nyr_penaltykill, nyr_penalty, goalies["shesterkin"], goalies["quick"]),
@@ -211,7 +211,7 @@ teams = {
     "stl": Team("St. Louis Blues", "STL", stl_offense, stl_defense, stl_powerplay, stl_penaltykill, stl_penalty, goalies["binner"], goalies["hofer"]),
     "tb": Team("Tampa Bay Lightning", "TB", tb_offense, tb_defense, tb_powerplay, tb_penaltykill, tb_penalty, goalies["vasy"], goalies["johansson"]),
     "tor": Team("Toronto Maple Leafs", "TOR", tor_offense, tor_defense, tor_powerplay, tor_penaltykill, tor_penalty, goalies["stolarz"], goalies["woll"], goalies["hildeby"]),
-    "ari": Team("Utah Hockey Club", "UT", ut_offense, ut_defense, ut_powerplay, ut_penaltykill, ut_penalty, goalies["ingram"], goalies["vemelka"]),
+    "ari": Team("Utah Hockey Club", "UT", ut_offense, ut_defense, ut_powerplay, ut_penaltykill, ut_penalty, goalies["ingram"], goalies["vemelka"], goalies["stauber"]),
     "van": Team("Vancouver Canucks", "VAN", van_offense, van_defense, van_powerplay, van_penaltykill, van_penalty, goalies["demko"], goalies["lankinen"], goalies["silvos"]),
     "vgk": Team("Vegas Golden Knights", "VGK", vgk_offense, vgk_defense, vgk_powerplay, vgk_penaltykill, vgk_penalty, goalies["hill"], goalies["samsonov"]),
     "wsh": Team("Washington Capitals", "WSH", wsh_offense, wsh_defense, wsh_powerplay, wsh_penaltykill, wsh_penalty,  goalies["lindgren"], goalies["thompson"]),
