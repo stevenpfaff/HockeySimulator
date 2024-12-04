@@ -32,8 +32,8 @@ goalies = {
     "kochetkov": Goalie("Pyotr Kochetkov", 50, "1A"),
     "martin": Goalie("Spencer Martin", 30, "Backup"),
     # Blackhawks
-    "mrazek": Goalie("Petr Mrazek", 40, "1B"),
-    "brossoit": Goalie("Laurent Brossoit", 55, "1A"),
+    "mrazek": Goalie("Petr Mrazek", 55, "Starter"),
+    "brossoit": Goalie("Laurent Brossoit", 55, "Backup"),
     "soderblom": Goalie("Arvid Soderblom", 30, "Backup"),
     # Avalanche
     "georgiev": Goalie("Alexandar Georgiev", 50, "Starter"),
@@ -41,14 +41,14 @@ goalies = {
     "kahkonen": Goalie("Kaapo Kahkonen", 40, "Third"),
     "wedgewoodcol": Goalie("Scott Wedgewood", 40, "1B"),
     # Blue Jackets
-    "merzlikins": Goalie("Elvis Merzlikins", 45, "1A"),
-    "tarasov": Goalie("Daniil Tarasov", 40, "1B"),
+    "merzlikins": Goalie("Elvis Merzlikins", 45, "Starter"),
+    "tarasov": Goalie("Daniil Tarasov", 40, "Backup"),
     # Stars
     "oettinger": Goalie("Jake Oettinger", 60, "Starter"),
     "desmith": Goalie("Casey DeSmith", 50, "Backup"),
     # Red Wings
     "talbot": Goalie("Cam Talbot", 60, "Starter"),
-    "husso": Goalie("Ville Husso", 40, "Third"),
+    "husso": Goalie("Ville Husso", 40, "Backup"),
     "lyon": Goalie("Alex Lyon", 50, "1B"),
     "campbell": Goalie("Jack Campbell", 40),
     # Oilers
@@ -69,8 +69,8 @@ goalies = {
     "montembeault": Goalie("Sam Montembeault", 55, "Starter"),
     # Predators
     "saros": Goalie("Juuse Saros", 70, "Starter"),
-    "annunennsh": Goalie("Justus Annunen", 50, "Backup"),
-    "wedgewood": Goalie("Scott Wedgewood", 40, "Backup"),
+    "annunennsh": Goalie("Justus Annunen", 45, "Backup"),
+    "wedgewood": Goalie("Scott Wedgewood", 40, "Third"),
     # Devils
     "markstrom": Goalie("Jacob Markstrom", 60, "Starter"),
     "allen": Goalie("Jake Allen", 50, "1B"),
@@ -107,16 +107,16 @@ goalies = {
     "johansson": Goalie("Jonas Johansson", 20, "Backup"),
     # Leafs
     "stolarz": Goalie("Anthony Stolarz", 60, "1A"),
-    "woll": Goalie("Joseph Woll", 60, "1B"),
+    "woll": Goalie("Joseph Woll", 60, "1A"),
     "hildeby": Goalie("Dennis Hildeby", 30, "Third"),
     # Utah
     "vemelka": Goalie("Karel Vejmelka", 45, "1B"),
     "ingram": Goalie("Connor Ingram", 55, "1A"),
     "stauber": Goalie("Jaxson Stauber", 40, "Third"),
     # Canucks
-    "demko": Goalie("Thatcher Demko", 60, "Starter"),
-    "silvos": Goalie("Arturs Silovs", 30, "Third"),
-    "lankinen": Goalie("Kevin Lankinen", 50, "Backup"),
+    "demko": Goalie("Thatcher Demko", 60, "1A"),
+    "silvos": Goalie("Arturs Silovs", 30, "Backup"),
+    "lankinen": Goalie("Kevin Lankinen", 55, "1B"),
     # Golden Knights
     "hill": Goalie("Adin Hill", 55, "1A"),
     "samsonov": Goalie("Ilya Samsonov", 45, "1B"),

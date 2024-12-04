@@ -154,7 +154,7 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 10/29/2024,la,sj,2,4,28,21,David Rittich,Vitek Vanecek,TRUE,sj
 10/30/2024,nyi,cbj,0,2,26,26,Semyon Varlamov,Elvis Merzlikins,TRUE,cbj
 10/30/2024,wpg,det,6,2,29,21,Connor Hellebuyck,Alex Lyon,TRUE,wpg
-10/30/2024,tb,col,5,2,21,35,Andrei Vasilevskiy,Scott Wedgewood,TRUE,tb
+10/30/2024,tb,col,5,2,21,35,Andrei Vasilevskiy,Kaapo Kahkonen,TRUE,tb
 10/30/2024,cgy,ari,1,5,31,28,Dustin Wolf,Connor Ingram,TRUE,ari
 10/30/2024,nj,van,6,0,22,20,Jacob Markstrom,Arturs Silovs,TRUE,nj
 10/30/2024,vgk,la,3,6,26,27,Ilya Samsonov,Darcy Kuemper,TRUE,la
@@ -381,7 +381,7 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 11/30/2024,phi,stl,3,2,31,27,Aleksei Kolosov,Jordan Binnington,FALSE,phi
 11/30/2024,ott,la,2,5,22,27,Anton Forsberg,David Rittich,TRUE,la
 11/30/2024,buf,nyi,0,3,29,20,James Reimer,Ilya Sorokin,TRUE,nyi
-11/30/2024,nsh,min,2,3,27,28,Juuse Saros,Filip Gustavsson,FALSE,min
+11/30/2024,nsh,min,2,3,27,28,Justus Annunen,Filip Gustavsson,FALSE,min
 11/30/2024,edm,col,4,1,32,28,Stuart Skinner,Alexandar Georgiev,TRUE,edm
 11/30/2024,ari,vgk,6,0,28,29,Jaxson Stauber,Ilya Samsonov,TRUE,ari
 11/30/2024,sj,sea,4,2,23,38,Mackenzie Blackwood,Joey Daccord,TRUE,sj
