@@ -128,10 +128,9 @@ ducks_players = [
     Skater("Olen Zellweger", 60, 35, 35, 30, 80, powerplay=20, role="2nd Pair", position="defense"),
     Skater("Brian Dumoulin", 40, 55, 40, 70, 65, penaltykill=35, role="3rd Pair", position="defense"),
     Skater("Radko Gudas", 50, 50, 55, 70, 30, penaltykill=30, role="2nd Pair", position="defense"),
+    Skater("Jacob Trouba", 30, 60, 55, 35, 50, penaltykill=40, role="2nd Pair", position="defense"),
     Skater("Jackson LaCombe", 30, 55, 30, 50, 40, penaltykill=60, role="2nd Pair", position="defense"),
-    Skater("Tristan Luneau", 60, 20, 60, 20, 30, role="3rd Pair", position="defense"),
-    Skater("Urho Vaakanainen", 20, 40, 30, 50, 60, penaltykill=45, role="3rd Pair", position="defense")
-]
+    Skater("Tristan Luneau", 60, 20, 60, 20, 30, role="3rd Pair", position="defense"),]
 
 
 bruins_players = [
@@ -573,9 +572,9 @@ rangers_players = [
     Skater("Adam Fox", 80, 80, 80, 65, 70, 80,60,role="Top Pair", position="defense"),
     Skater("K'Andre Miller", 60, 45, 40, 60, 50, penaltykill=70,role="2nd Pair", position="defense"),
     Skater("Ryan Lindgren", 20, 60, 20, 60, 55, penaltykill=60, role="2nd Pair", position="defense"),
-    Skater("Jacob Trouba", 30, 60, 55,35, 50, penaltykill=40,role="2nd Pair", position="defense"),
     Skater("Braden Schneider", 60, 45, 50, 45, 60, penaltykill=60,role="3rd Pair", position="defense"),
     Skater("Zachary Jones", 55, 40, 35, 30, 50,role="Depth", position="defense"),
+    Skater("Urho Vaakanainen", 20, 40, 30, 50, 60, penaltykill=45, role="3rd Pair", position="defense"),
     Skater("Chad Ruhwedel", 35, 20, 40, 60, 60, penaltykill=65,role="bench", position="defense")
 ]
 

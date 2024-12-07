@@ -403,25 +403,25 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/3/2024,stl,wpg,4,1,32,23,Joel Hofer,Connor Hellebuyck,TRUE,stl
 12/3/2024,cbj,cgy,0,3,16,22,Elvis Merzlikins,Dan Vladar,TRUE,cgy
 12/3/2024,edm,vgk,0,1,28,16,Stuart Skinner,Adin Hill,TRUE,vgk
-12/4/2024,nsh,tor,,,,,,,,
-12/4/2024,bos,chi,,,,,,,,
-12/4/2024,vgk,ana,,,,,,,,
-12/4/2024,dal,la,,,,,,,,
-12/5/2024,wpg,buf,,,,,,,,
-12/5/2024,nsh,mtl,,,,,,,,
-12/5/2024,det,ott,,,,,,,,
-12/5/2024,sj,tb,,,,,,,,
-12/5/2024,fla,phi,,,,,,,,
-12/5/2024,col,car,,,,,,,,
-12/5/2024,sea,nyi,,,,,,,,
-12/5/2024,stl,cgy,,,,,,,,
-12/5/2024,cbj,edm,,,,,,,,
-12/6/2024,wsh,tor,,,,,,,,
-12/6/2024,sea,nj,,,,,,,,
-12/6/2024,pit,nyr,,,,,,,,
-12/6/2024,cbj,van,,,,,,,,
-12/6/2024,dal,vgk,,,,,,,,
-12/6/2024,min,ana,,,,,,,,
+12/4/2024,nsh,tor,2,3,24,28,Juuse Saros,Joseph Woll,TRUE,tor
+12/4/2024,bos,chi,4,2,27,22,Jeremy Swayman,Petr Mrazek,TRUE,bos
+12/4/2024,vgk,ana,4,1,33,20,Ilya Samsonov,John Gibson,TRUE,vgk
+12/4/2024,dal,la,2,3,28,17,Jake Oettinger,David Rittich,TRUE,la
+12/5/2024,wpg,buf,3,2,31,30,Connor Hellebuyck,Ukko-Pekka Luukkonen,FALSE,wpg
+12/5/2024,nsh,mtl,0,3,29,30,Justus Annunen,Sam Montembeault,TRUE,mtl
+12/5/2024,det,ott,1,2,20,32,Ville Husso,Linus Ullmark,TRUE,ott
+12/5/2024,sj,tb,1,8,21,35,Mackenzie Blackwood,Andrei Vasilevskiy,TRUE,tb
+12/5/2024,fla,phi,7,5,28,34,Spencer Knight,Aleksei Kolosov,TRUE,fla
+12/5/2024,col,car,3,5,19,35,Scott Wedgewood,Pyotr Kochetkov,TRUE,car
+12/5/2024,sea,nyi,5,2,25,30,Joey Daccord,Ilya Sorokin,TRUE,sea
+12/5/2024,stl,cgy,4,3,24,39,Jordan Binnington,Dan Vladar,FALSE,stl
+12/5/2024,cbj,edm,3,6,22,37,Daniil Tarasov,Calvin Pickard,TRUE,edm
+12/6/2024,wsh,tor,3,1,26,21,Charlie Lindgren,Anthony Stolarz,TRUE,wsh
+12/6/2024,sea,nj,2,3,19,36,Philipp Grubauer,Jacob Markstrom,TRUE,nj
+12/6/2024,pit,nyr,2,4,22,32,Alex Nedeljkovic,Igor Shesterkin,TRUE,nyr
+12/6/2024,cbj,van,2,5,32,17,Elvis Merzlikins,Kevin Lankinen,TRUE,van
+12/6/2024,dal,vgk,2,3,40,28,Jake Oettinger,Adin Hill,TRUE,vgk
+12/6/2024,min,ana,5,1,33,27,Filip Gustavsson,John Gibson,TRUE,min
 12/7/2024,phi,bos,,,,,,,,
 12/7/2024,ari,buf,,,,,,,,
 12/7/2024,wpg,chi,,,,,,,,
