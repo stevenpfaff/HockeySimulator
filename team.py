@@ -4,7 +4,7 @@ import csv
 import random
 
 class Team:
-    def __init__(self, name, abrv, offense, defense, powerplay, penaltykill, penalty, starting_goalie, backup_goalie, third_goalie=None,
+    def __init__(self, name, abrv, offense, defense, powerplay, penaltykill, penalty, starting_goalie, backup_goalie, third_goalie=None, fourth_goalie=None,
                  wins=0, regulation_wins=0, losses=0, otl=0, points=0, playoffs=0,
                  second_round=0, conf_final=0, cup_final=0, cup_win=0):
         self.name = name
@@ -17,6 +17,7 @@ class Team:
         self.starting_goalie = starting_goalie
         self.backup_goalie = backup_goalie
         self.third_goalie = third_goalie
+        self.fourth_goalie = fourth_goalie
         self.wins = wins
         self.regulation_wins = regulation_wins
         self.losses = losses
@@ -27,17 +28,15 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 46
+        self.max_selections = 44
         self.players = []
-        # self.reset_selections()
-
-    def add_player(self, player):
-        self.players.append(player)
+        self.reset_selections()  # Ensure goalie selections are initialized
 
     def reset_selections(self):
         self.starting_goalie_selections = 0
         self.backup_goalie_selections = 0
         self.third_goalie_selections = 0
+        self.fourth_goalie_selections = 0
 
     def select_goalie(self):
         # Define a base priority based on role
@@ -53,6 +52,8 @@ class Team:
         goalies = [self.starting_goalie, self.backup_goalie]
         if self.third_goalie:
             goalies.append(self.third_goalie)
+        if self.fourth_goalie:
+            goalies.append(self.fourth_goalie)
 
         # Calculate total rating with role adjustments
         total_priority = sum([goalie.rating * goalie_priority[goalie.role] for goalie in goalies])
@@ -61,9 +62,12 @@ class Team:
         goalie_probabilities = [(goalie.rating * goalie_priority[goalie.role]) / total_priority for goalie in goalies]
 
         # Adjust probabilities based on the number of starts each goalie has already had
-        total_selections = self.starting_goalie_selections + self.backup_goalie_selections
-        if self.third_goalie:
-            total_selections += self.third_goalie_selections
+        total_selections = (
+            self.starting_goalie_selections +
+            self.backup_goalie_selections +
+            (self.third_goalie_selections if self.third_goalie else 0) +
+            (self.fourth_goalie_selections if self.fourth_goalie else 0)
+        )
 
         if self.starting_goalie_selections >= self.max_selections:
             goalie_probabilities[0] = 0
@@ -71,6 +75,8 @@ class Team:
             goalie_probabilities[1] = 0
         if self.third_goalie and self.third_goalie_selections >= self.max_selections:
             goalie_probabilities[2] = 0
+        if self.fourth_goalie and self.fourth_goalie_selections >= self.max_selections:
+            goalie_probabilities[3] = 0
 
         # Re-normalize probabilities after adjustment
         total_probability = sum(goalie_probabilities)
@@ -85,8 +91,10 @@ class Team:
             self.starting_goalie_selections += 1
         elif selected_goalie == self.backup_goalie:
             self.backup_goalie_selections += 1
-        else:
+        elif self.third_goalie and selected_goalie == self.third_goalie:
             self.third_goalie_selections += 1
+        elif self.fourth_goalie and selected_goalie == self.fourth_goalie:
+            self.fourth_goalie_selections += 1
 
         return selected_goalie
 
@@ -97,6 +105,8 @@ class Team:
             return self.backup_goalie
         elif self.third_goalie and self.third_goalie.name == goalie_name:
             return self.third_goalie
+        elif self.fourth_goalie and self.fourth_goalie.name == goalie_name:
+            return self.fourth_goalie
         else:
             raise ValueError(f"Goalie {goalie_name} not found in team {self.name}")
 
@@ -190,7 +200,7 @@ teams = {
     "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, cgy_powerplay, cgy_penaltykill, cgy_penalty,  goalies["wolf"], goalies["vladar"]),
     "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
     "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, chi_powerplay, chi_penaltykill, chi_penalty, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),
-    "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, col_powerplay, col_penaltykill, col_penalty, goalies["georgiev"], goalies["annunen"], goalies["wedgewoodcol"]),
+    "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, col_powerplay, col_penaltykill, col_penalty, goalies["blackwoodcol"], goalies["wedgewoodcol"],goalies["annunen"],goalies["georgiev"]),
     "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, cbj_powerplay, cbj_penaltykill, cbj_penalty, goalies["merzlikins"], goalies["tarasov"]),
     "dal": Team("Dallas Stars", "DAL", dal_offense, dal_defense, dal_powerplay, dal_penaltykill, dal_penalty, goalies["oettinger"], goalies["desmith"]),
     "det": Team("Detroit Red Wings", "DET", det_offense, det_defense, det_powerplay, det_penaltykill, det_penalty, goalies["talbot"], goalies["lyon"], goalies["husso"],),
@@ -206,7 +216,7 @@ teams = {
     "ott": Team("Ottawa Senators", "OTT", ott_offense, ott_defense, ott_powerplay, ott_penaltykill, ott_penalty, goalies["ullmark"], goalies["forsberg"], goalies["sogaard"]),
     "phi": Team("Philadelphia Flyers", "PHI", phi_offense, phi_defense, phi_powerplay, phi_penaltykill, phi_penalty, goalies["fedotov"], goalies["ersson"], goalies["kolosov"]),
     "pit": Team("Pittsburgh Penguins", "PIT", pit_offense, pit_defense, pit_powerplay, pit_penaltykill, pit_penalty,goalies["jarry"], goalies["ned"], goalies["blomqvist"]),
-    "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, sj_powerplay, sj_penaltykill, sj_penalty, goalies["blackwood"], goalies["vanacek"], goalies["askarov"]),
+    "sj": Team("San Jose Sharks", "SJ", sj_offense, sj_defense, sj_powerplay, sj_penaltykill, sj_penalty, goalies["vanacek"], goalies["georgievsj"],goalies["blackwood"],goalies["askarov"]),
     "sea": Team("Seattle Kraken", "SEA", sea_offense, sea_defense, sea_powerplay, sea_penaltykill, sea_penalty,goalies["daccord"], goalies["grubauer"]),
     "stl": Team("St. Louis Blues", "STL", stl_offense, stl_defense, stl_powerplay, stl_penaltykill, stl_penalty, goalies["binner"], goalies["hofer"]),
     "tb": Team("Tampa Bay Lightning", "TB", tb_offense, tb_defense, tb_powerplay, tb_penaltykill, tb_penalty, goalies["vasy"], goalies["johansson"]),

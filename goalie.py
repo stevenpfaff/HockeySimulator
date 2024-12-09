@@ -36,10 +36,11 @@ goalies = {
     "brossoit": Goalie("Laurent Brossoit", 55, "Backup"),
     "soderblom": Goalie("Arvid Soderblom", 30, "Backup"),
     # Avalanche
-    "georgiev": Goalie("Alexandar Georgiev", 50, "Starter"),
+    "georgiev": Goalie("Alexandar Georgiev", 50, "Third"),
     "annunen": Goalie("Justus Annunen", 50, "Third"),
+    "blackwoodcol": Goalie("Mackenzie Blackwood", 55, "Starter"),
     "kahkonen": Goalie("Kaapo Kahkonen", 40, "Third"),
-    "wedgewoodcol": Goalie("Scott Wedgewood", 40, "1B"),
+    "wedgewoodcol": Goalie("Scott Wedgewood", 40, "Backup"),
     # Blue Jackets
     "merzlikins": Goalie("Elvis Merzlikins", 45, "Starter"),
     "tarasov": Goalie("Daniil Tarasov", 40, "Backup"),
@@ -94,8 +95,9 @@ goalies = {
     "blomqvist": Goalie("Joel Blomqvist", 50, "1B"),
     # Sharks
     "askarov": Goalie("Yaroslav Askarov", 40, "Third"),
-    "blackwood": Goalie("Mackenzie Blackwood", 50, "1A"),
-    "vanacek": Goalie("Vitek Vanecek", 50, "1B"),
+    "blackwood": Goalie("Mackenzie Blackwood", 50, "Third"),
+    "vanacek": Goalie("Vitek Vanecek", 50, "1A"),
+    "georgievsj": Goalie("Alexandar Georgiev", 45, "1B"),
     # Kraken
     "daccord": Goalie("Joey Daccord", 55, "Starter"),
     "grubauer": Goalie("Philipp Grubauer", 40, "1B"),
