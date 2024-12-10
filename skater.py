@@ -44,7 +44,7 @@ class Skater:
 
     def offensive_overall(self):
         if self.position == "forward":
-            weights = {'shooting': 0.25, 'passing': 0.05, 'offense': 0.7, 'penalties': 0, 'powerplay': 0}
+            weights = {'shooting': 0.50, 'passing': 0.05, 'offense': 0.45, 'penalties': 0, 'powerplay': 0}
         elif self.position == "defense":
             weights = {'shooting': 0.05, 'passing': 0.05, 'offense': .7, 'penalties': 0, 'powerplay': 0}
 
@@ -80,7 +80,7 @@ class Skater:
         if self.position == "forward":
             weights = {'defense': 1, 'penalties': 0, 'penaltykill': 0}
         elif self.position == "defense":
-            weights = {'defense': 1, 'penalties': 0, 'penaltykill': 0}
+            weights = {'defense': 1.15, 'penalties': 0, 'penaltykill': 0}
 
         # Initialize score and weight sum
         defensive_score = 0
@@ -136,13 +136,13 @@ ducks_players = [
 bruins_players = [
     Skater("Brad Marchand", 60, 65, 65, 50, 60, powerplay=65, penaltykill=50, role="1st Line"),
     Skater("David Pastrnak", 80, 80, 80, 40, 70, powerplay=70, role="1st Line"),
-    Skater("Elias Lindholm", 55, 60, 50, 40, 60, powerplay=60, penaltykill=55, role="1st Line"),
-    Skater("Charlie Coyle", 65, 55, 45, 35, 60, powerplay=35, penaltykill=55, role="2nd Line"),
-    Skater("Pavel Zacha", 60, 60, 45, 35, 50, powerplay=55, penaltykill=60, role="2nd Line"),
+    Skater("Elias Lindholm", 55, 60, 40, 40, 60, powerplay=60, penaltykill=55, role="1st Line"),
+    Skater("Charlie Coyle", 60, 55, 45, 35, 60, powerplay=35, penaltykill=55, role="2nd Line"),
+    Skater("Pavel Zacha", 50, 60, 45, 35, 50, powerplay=55, penaltykill=60, role="2nd Line"),
     Skater("Trent Frederic", 60, 55, 60, 50, 30, role="4th Line"),
-    Skater("Morgan Geekie", 55, 60, 50, 30, 45, powerplay=30, role="3rd Line"),
+    Skater("Morgan Geekie", 50, 60, 50, 30, 45, powerplay=30, role="3rd Line"),
     Skater("John Beecher", 60, 50, 20, 50, 30, penaltykill=35, role="4th Line"),
-    Skater("Mark Kastelic", 40, 30, 45, 60, 30, role="4th Line"),
+    Skater("Mark Kastelic", 40, 30, 40, 60, 30, role="4th Line"),
     Skater("Matthew Poitras", 50, 35, 55, 55, 80, role="4th Line"),
     Skater("Justin Brazeau", 60, 30, 60, 60, 60, powerplay=40,role="4th Line"),
     Skater("Tyler Johnson", 45, 30, 20, 30, 30, role="Depth"),
@@ -151,7 +151,7 @@ bruins_players = [
     Skater("Charlie McAvoy", 60, 65, 80, 60, 60, powerplay=20, penaltykill=65, role="Number 1", position="defense"),
     Skater("Hampus Lindholm", 35, 60, 65, 70, 45, powerplay=20, penaltykill=60, role="Top Pair", position="defense"),
     Skater("Brandon Carlo", 50, 55, 30, 65, 45, penaltykill=80, role="2nd Pair", position="defense"),
-    Skater("Nikita Zadorov", 60, 55, 40, 60, 20,role="3rd Pair", position="defense"),
+    Skater("Nikita Zadorov", 60, 55, 50, 60, 20,role="3rd Pair", position="defense"),
     Skater("Andrew Peeke", 40, 50, 20, 60, 60, role="3rd Pair", position="defense"),
     Skater("Mason Lohrei", 60, 30, 20, 20, 40, role="3rd Pair", position="defense"),
     Skater("Parker Wotherspoon", 20, 20, 60, 60, 65, penaltykill=65, role="3rd Pair", position="defense")

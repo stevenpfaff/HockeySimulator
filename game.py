@@ -52,28 +52,35 @@ class Game:
         return closest_penaltykill[1]
 
     def __get_sog(self, offense_rating, defense_rating, home_team=False):
-        """ Calculate SOG using offense and defense ratings with home-ice boost if applicable. """
+        """Calculate SOG using offense and defense ratings with home-ice boost and added randomness."""
         base_sog = 30  # Base SOG, close to league average
 
+        # Calculate offense factor
         offense_factor = (offense_rating - 50) * 0.4
 
+        # Calculate defense factor
         if defense_rating > 50:
             defense_factor = (50 - defense_rating) * 0.4
             defense_factor *= math.sqrt(defense_rating / 50)
-            if defense_rating > 51:
-                defense_factor *= 0.5
+            if defense_rating > 55:
+                defense_factor *= 0.45
         else:
             defense_factor = (50 - defense_rating) * 0.5
             defense_factor = min(defense_factor, 5)
 
         sog = base_sog + offense_factor + defense_factor
 
-        # Apply a 5% boost for home team
+        # Apply a 2% boost for home team
         if home_team:
-            sog *= 1.05
+            sog *= 1.02
 
-        # Add jitter for realism and clamp within a reasonable range (e.g., 20-40)
-        sog = max(18, min(int(sog + random.randint(-5, 5)), 50))
+        # Add random variation using a normal distribution
+        # Mean is 0, standard deviation is 3 (tweak as needed)
+        random_variation = random.gauss(0, 8)
+        sog += random_variation
+
+        # Clamp within a reasonable range (e.g., 18-50)
+        sog = max(18, min(int(sog), 50))
 
         return sog
 

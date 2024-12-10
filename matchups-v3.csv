@@ -440,9 +440,9 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/8/2024,col,nj,4,0,23,25,Scott Wedgewood,Jake Allen,TRUE,col
 12/8/2024,ari,phi,4,2,25,24,Jaxson Stauber,Samuel Ersson,TRUE,ari
 12/8/2024,cgy,dal,2,6,31,28,Dustin Wolf,Jake Oettinger,TRUE,dal
-12/9/2024,det,buf,,,,,,,,
-12/9/2024,chi,nyr,,,,,,,,
-12/9/2024,ana,mtl,,,,,,,,
+12/9/2024,det,buf,6,5,31,21,Ville Husso,James Reimer,FALSE,det
+12/9/2024,chi,nyr,2,1,32,30,Arvid Soderblom,Igor Shesterkin,TRUE,chi
+12/9/2024,ana,mtl,2,3,29,21,Lukas Dostal,Sam Montembeault,FALSE,mtl
 12/10/2024,tor,nj,,,,,,,,
 12/10/2024,col,pit,,,,,,,,
 12/10/2024,sj,car,,,,,,,,
