@@ -443,17 +443,17 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/9/2024,det,buf,6,5,31,21,Ville Husso,James Reimer,FALSE,det
 12/9/2024,chi,nyr,2,1,32,30,Arvid Soderblom,Igor Shesterkin,TRUE,chi
 12/9/2024,ana,mtl,2,3,29,21,Lukas Dostal,Sam Montembeault,FALSE,mtl
-12/10/2024,tor,nj,,,,,,,,
-12/10/2024,col,pit,,,,,,,,
-12/10/2024,sj,car,,,,,,,,
-12/10/2024,phi,cbj,,,,,,,,
-12/10/2024,la,nyi,,,,,,,,
-12/10/2024,cgy,nsh,,,,,,,,
-12/10/2024,bos,wpg,,,,,,,,
-12/10/2024,tb,edm,,,,,,,,
-12/10/2024,min,ari,,,,,,,,
-12/10/2024,stl,van,,,,,,,,
-12/10/2024,fla,sea,,,,,,,,
+12/10/2024,tor,nj,2,1,14,38,Anthony Stolarz,Jacob Markstrom,FALSE,tor
+12/10/2024,col,pit,6,2,27,26,Scott Wedgewood,Tristan Jarry,TRUE,col
+12/10/2024,sj,car,2,3,23,28,Vitek Vanecek,Pyotr Kochetkov,TRUE,car
+12/10/2024,phi,cbj,5,3,24,18,Samuel Ersson,Elvis Merzlikins,TRUE,phi
+12/10/2024,la,nyi,3,1,30,20,Darcy Kuemper,Ilya Sorokin,TRUE,la
+12/10/2024,cgy,nsh,4,3,28,20,Dan Vladar,Juuse Saros,TRUE,cgy
+12/10/2024,bos,wpg,1,8,24,35,Jeremy Swayman,Connor Hellebuyck,TRUE,wpg
+12/10/2024,tb,edm,1,2,22,25,Andrei Vasilevskiy,Stuart Skinner,TRUE,edm
+12/10/2024,min,ari,5,4,38,25,Filip Gustavsson,Karel Vejmelka,FALSE,min
+12/10/2024,stl,van,4,3,25,25,Joel Hofer,Thatcher Demko,FALSE,stl
+12/10/2024,fla,sea,2,1,33,18,Sergei Bobrovsky,Joey Daccord,FALSE,fla
 12/11/2024,nyr,buf,,,,,,,,
 12/11/2024,ana,ott,,,,,,,,
 12/12/2024,ana,tor,,,,,,,,

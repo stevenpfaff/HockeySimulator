@@ -21,7 +21,7 @@ goalies = {
     "swayman": Goalie("Jeremy Swayman", 60, "Starter"),
     "korp": Goalie("Joonas Korpisalo", 30, "Backup"),
     # Sabres
-    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 60, "Starter"),
+    "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55, "Starter"),
     "levi": Goalie("Devon Levi", 40, "Backup"),
     # Flames
     "wolf": Goalie("Dustin Wolf", 55, "1A"),

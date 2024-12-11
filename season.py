@@ -544,8 +544,8 @@ class SeasonSimulator:
             )
 
         #
-            #   # Log the game result
+            # #   # Log the game result
             # self.log_game_result(game)
-        # #
-        # # log final goalie stats
+        #
+        # log final goalie stats
         # self.log_goalie_stats()
