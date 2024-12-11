@@ -196,7 +196,7 @@ wpg_offense, wpg_defense, wpg_powerplay, wpg_penaltykill, wpg_penalty = compute_
 teams = {
     "ana": Team("Anaheim Ducks", "ANA", ana_offense, ana_defense, ana_powerplay, ana_penaltykill, ana_penalty, goalies["gibson"], goalies["dostal"], goalies["reimer"]),
     "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, bos_powerplay,bos_penaltykill, bos_penalty, goalies["swayman"], goalies["korp"]),
-    "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, buf_powerplay, buf_penaltykill, buf_penalty, goalies["luukkonen"], goalies["levi"], goalies["reimer"]),
+    "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, buf_powerplay, buf_penaltykill, buf_penalty, goalies["luukkonen"], goalies["levi"], goalies["reimerbuf"]),
     "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, cgy_powerplay, cgy_penaltykill, cgy_penalty,  goalies["wolf"], goalies["vladar"]),
     "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
     "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, chi_powerplay, chi_penaltykill, chi_penalty, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),

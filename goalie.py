@@ -22,7 +22,8 @@ goalies = {
     "korp": Goalie("Joonas Korpisalo", 30, "Backup"),
     # Sabres
     "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55, "Starter"),
-    "levi": Goalie("Devon Levi", 40, "Backup"),
+    "levi": Goalie("Devon Levi", 40, "Third"),
+    "reimerbuf": Goalie("James Reimer", 40, "Backup"),
     # Flames
     "wolf": Goalie("Dustin Wolf", 55, "1A"),
     "vladar": Goalie("Dan Vladar", 45, "1B"),
