@@ -454,8 +454,8 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/10/2024,min,ari,5,4,38,25,Filip Gustavsson,Karel Vejmelka,FALSE,min
 12/10/2024,stl,van,4,3,25,25,Joel Hofer,Thatcher Demko,FALSE,stl
 12/10/2024,fla,sea,2,1,33,18,Sergei Bobrovsky,Joey Daccord,FALSE,fla
-12/11/2024,nyr,buf,,,,,,,,
-12/11/2024,ana,ott,,,,,,,,
+12/11/2024,nyr,buf,3,2,28,31,Igor Shesterkin,Ukko-Pekka Luukkonen,TRUE,nyr
+12/11/2024,ana,ott,1,5,32,34,John Gibson,Linus Ullmark,TRUE,ott
 12/12/2024,ana,tor,,,,,,,,
 12/12/2024,pit,mtl,,,,,,,,
 12/12/2024,la,nj,,,,,,,,

@@ -45,7 +45,8 @@ class Team:
             "1A": 2.5,
             "1B": 2.4,
             "Backup": 1.5,
-            "Third": 0.000001
+            "Third": 0.5,
+            "Inactive": 0.000000001
         }
 
         # Gather available goalies
