@@ -405,17 +405,59 @@ class SeasonSimulator:
 
         # Stanley Cup Final
         cup_final = [
-            (ecf_results[0][0], wcf_results[0][0])
+            (ecf_results[0][0], wcf_results[0][0])  # Eastern vs Western champs
         ]
 
         cup_final_results = []
         for matchup in cup_final:
-            home_team, away_team = matchup
-            home_goalie = get_top_rated_goalie(home_team)
-            away_goalie = get_top_rated_goalie(away_team)
-            series_winner, total_games = simulate_series(matchup)
+            east_champion, west_champion = matchup
+            # Determine home-ice advantage by regular-season points
+            if east_champion.points >= west_champion.points:
+                home_team = east_champion
+                away_team = west_champion
+            else:
+                home_team = west_champion
+                away_team = east_champion
+
+            # Define home and away sequence for the Final (2-2-1-1-1 format)
+            home_sequence = [home_team, home_team, away_team, away_team, home_team, away_team, home_team]
+
+            team1_wins = 0
+            team2_wins = 0
+            total_games = 0
+
+            # Simulate up to 7 games
+            while team1_wins < 4 and team2_wins < 4 and total_games < 7:
+                current_home_team = home_sequence[total_games]
+                current_away_team = home_team if current_home_team == away_team else away_team
+                # print(current_away_team.name, current_home_team.name)
+
+                # Determine goalies for the game
+                home_goalie = get_top_rated_goalie(current_home_team)
+                away_goalie = get_top_rated_goalie(current_away_team)
+
+                # Simulate the game
+                game = Game(current_home_team, current_away_team, home_goalie, away_goalie)
+                if game.winner == current_home_team:
+                    if current_home_team == home_team:
+                        team1_wins += 1
+                    else:
+                        team2_wins += 1
+                else:
+                    if current_away_team == home_team:
+                        team1_wins += 1
+                    else:
+                        team2_wins += 1
+
+                total_games += 1
+
+            # Determine the series winner
+            series_winner = home_team if team1_wins > team2_wins else away_team
             series_winner.cup_win += 1
             cup_final_results.append(series_winner)
+
+            # Log result in the CSV
+
 
         with open(output_file, mode='w', newline='') as file:
             writer = csv.writer(file)
@@ -444,7 +486,7 @@ class SeasonSimulator:
 
             # Cup Final
             for matchup, result in zip(cup_final, cup_final_results):
-                writer.writerow(["Cup Final", matchup[0].abrv, matchup[1].abrv, result.abrv, total_games])
+                writer.writerow(["Cup Final", matchup[0].abrv, matchup[1].abrv, series_winner.abrv, total_games])
 
         return cup_final_results
 

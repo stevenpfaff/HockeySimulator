@@ -80,7 +80,7 @@ class Game:
 
         # Apply a 2% boost for home team
         if home_team:
-            sog *= 1.02
+            sog *= 1.025
 
         # Add random variation using a normal distribution
         # Mean is 0, standard deviation is 3 (tweak as needed)

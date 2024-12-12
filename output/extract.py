@@ -56,13 +56,13 @@ def calculate_team_percentiles_and_average(file_path, output_file):
         writer = csv.writer(file)
 
         # Write the header row
-        writer.writerow(['Team', 'Stat', '25th Percentile', '50th Percentile (Median)', '75th Percentile', 'Average Points'])
+        writer.writerow(['Team', 'Stat','0th Percentile', '25th Percentile', '50th Percentile (Median)', '75th Percentile', '100th Percentile', 'Average Points'])
 
         # Write the data for each team
         for team, stats in team_stats.items():
             for stat, values in stats.items():
                 if values:
-                    percentiles = np.percentile(values, [25, 50, 75])
+                    percentiles = np.percentile(values, [0, 25, 50, 75, 100])
                     average_points = team_average_points[team] if stat == 'PTS' else ''
                     writer.writerow([
                         team,
@@ -70,6 +70,8 @@ def calculate_team_percentiles_and_average(file_path, output_file):
                         percentiles[0],
                         percentiles[1],
                         percentiles[2],
+                        percentiles[3],
+                        percentiles[4],
                         average_points if average_points != '' else ''  # Only show average for PTS stat
                     ])
                 else:

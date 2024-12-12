@@ -23,6 +23,7 @@ goalies = {
     # Sabres
     "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55, "Starter"),
     "levi": Goalie("Devon Levi", 40, "Backup"),
+    "reimerbuf": Goalie("James Reimer", 40, "Inactive"),
     # Flames
     "wolf": Goalie("Dustin Wolf", 55, "1A"),
     "vladar": Goalie("Dan Vladar", 45, "1B"),
@@ -38,9 +39,9 @@ goalies = {
     # Avalanche
     "georgiev": Goalie("Alexandar Georgiev", 55, "Starter"),
     "annunen": Goalie("Justus Annunen", 50, "Backup"),
-    # "blackwoodcol": Goalie("Mackenzie Blackwood", 55, "Third"),
-    "kahkonen": Goalie("Kaapo Kahkonen", 40, "Third"),
-    # "wedgewoodcol": Goalie("Scott Wedgewood", 40, "Third"),
+    "blackwoodcol": Goalie("Mackenzie Blackwood", 55, "Inactive"),
+    "kahkonen": Goalie("Kaapo Kahkonen", 40, "Inactive"),
+    "wedgewoodcol": Goalie("Scott Wedgewood", 40, "Inactive"),
     # Blue Jackets
     "merzlikins": Goalie("Elvis Merzlikins", 45, "Starter"),
     "tarasov": Goalie("Daniil Tarasov", 40, "Backup"),
@@ -70,7 +71,7 @@ goalies = {
     "montembeault": Goalie("Sam Montembeault", 55, "Starter"),
     # Predators
     "saros": Goalie("Juuse Saros", 70, "Starter"),
-    # "annunennsh": Goalie("Justus Annunen", 45, "Third"),
+    "annunennsh": Goalie("Justus Annunen", 45, "Inactive"),
     "wedgewood": Goalie("Scott Wedgewood", 40, "Backup"),
     # Devils
     "markstrom": Goalie("Jacob Markstrom", 60, "Starter"),
@@ -97,7 +98,7 @@ goalies = {
     "askarov": Goalie("Yaroslav Askarov", 40, "Third"),
     "blackwood": Goalie("Mackenzie Blackwood", 50, "1A"),
     "vanacek": Goalie("Vitek Vanecek", 50, "1B"),
-    # "georgievsj": Goalie("Alexandar Georgiev", 45, "Third"),
+    "georgievsj": Goalie("Alexandar Georgiev", 45, "Inactive"),
     # Kraken
     "daccord": Goalie("Joey Daccord", 55, "Starter"),
     "grubauer": Goalie("Philipp Grubauer", 40, "Backup"),
