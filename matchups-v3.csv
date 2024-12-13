@@ -456,20 +456,20 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/10/2024,fla,sea,2,1,33,18,Sergei Bobrovsky,Joey Daccord,FALSE,fla
 12/11/2024,nyr,buf,3,2,28,31,Igor Shesterkin,Ukko-Pekka Luukkonen,TRUE,nyr
 12/11/2024,ana,ott,1,5,32,34,John Gibson,Linus Ullmark,TRUE,ott
-12/12/2024,ana,tor,,,,,,,,
-12/12/2024,pit,mtl,,,,,,,,
-12/12/2024,la,nj,,,,,,,,
-12/12/2024,det,phi,,,,,,,,
-12/12/2024,wsh,cbj,,,,,,,,
-12/12/2024,chi,nyi,,,,,,,,
-12/12/2024,sj,stl,,,,,,,,
-12/12/2024,nsh,dal,,,,,,,,
-12/12/2024,edm,min,,,,,,,,
-12/12/2024,vgk,wpg,,,,,,,,
-12/12/2024,ari,col,,,,,,,,
-12/12/2024,tb,cgy,,,,,,,,
-12/12/2024,fla,van,,,,,,,,
-12/12/2024,bos,sea,,,,,,,,
+12/12/2024,ana,tor,2,3,28,33,Lukas Dostal,Joseph Woll,TRUE,tor
+12/12/2024,pit,mtl,9,2,36,23,Tristan Jarry,Sam Montembeault,TRUE,pit
+12/12/2024,la,nj,1,3,13,26,David Rittich,Jacob Markstrom,TRUE,nj
+12/12/2024,det,phi,1,4,26,36,Cam Talbot,Aleksei Kolosov,TRUE,phi
+12/12/2024,wsh,cbj,2,1,36,33,Charlie Lindgren,Jet Greaves,FALSE,wsh
+12/12/2024,chi,nyi,4,5,29,21,Arvid Soderblom,Ilya Sorokin,TRUE,nyi
+12/12/2024,sj,stl,4,3,31,19,Alexandar Georgiev,Jordan Binnington,TRUE,sj
+12/12/2024,nsh,dal,4,1,26,36,Justus Annunen,Jake Oettinger,TRUE,nsh
+12/12/2024,edm,min,7,1,35,30,Calvin Pickard,Filip Gustavsson,TRUE,edm
+12/12/2024,vgk,wpg,3,2,36,20,Adin Hill,Connor Hellebuyck,TRUE,vgk
+12/12/2024,ari,col,4,1,23,24,Karel Vejmelka,Scott Wedgewood,TRUE,ari
+12/12/2024,tb,cgy,8,3,26,22,Andrei Vasilevskiy,Dan Vladar,TRUE,tb
+12/12/2024,fla,van,0,4,27,19,Sergei Bobrovsky,Kevin Lankinen,TRUE,van
+12/12/2024,bos,sea,1,5,34,21,Joonas Korpisalo,Philipp Grubauer,TRUE,sea
 12/13/2024,ott,car,,,,,,,,
 12/14/2024,chi,nj,,,,,,,,
 12/14/2024,la,nyr,,,,,,,,

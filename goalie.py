@@ -45,6 +45,7 @@ goalies = {
     # Blue Jackets
     "merzlikins": Goalie("Elvis Merzlikins", 45, "Starter"),
     "tarasov": Goalie("Daniil Tarasov", 40, "Backup"),
+    "greaves": Goalie("Jet Greaves", 40, "Third"),
     # Stars
     "oettinger": Goalie("Jake Oettinger", 60, "Starter"),
     "desmith": Goalie("Casey DeSmith", 50, "Backup"),

@@ -202,7 +202,7 @@ teams = {
     "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
     "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, chi_powerplay, chi_penaltykill, chi_penalty, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"]),
     "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, col_powerplay, col_penaltykill, col_penalty, goalies["blackwoodcol"], goalies["wedgewoodcol"],goalies["annunen"],goalies["georgiev"]),
-    "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, cbj_powerplay, cbj_penaltykill, cbj_penalty, goalies["merzlikins"], goalies["tarasov"]),
+    "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, cbj_powerplay, cbj_penaltykill, cbj_penalty, goalies["merzlikins"], goalies["tarasov"], goalies["greaves"]),
     "dal": Team("Dallas Stars", "DAL", dal_offense, dal_defense, dal_powerplay, dal_penaltykill, dal_penalty, goalies["oettinger"], goalies["desmith"]),
     "det": Team("Detroit Red Wings", "DET", det_offense, det_defense, det_powerplay, det_penaltykill, det_penalty, goalies["talbot"], goalies["lyon"], goalies["husso"],),
     "edm": Team("Edmonton Oilers", "EDM", edm_offense, edm_defense, edm_powerplay, edm_penaltykill, edm_penalty, goalies["skinner"], goalies["pickard"]),

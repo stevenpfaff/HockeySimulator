@@ -292,7 +292,7 @@ bluejackets_players = [
     Skater("Sean Monahan", 50, 65, 60, 35, 35, powerplay=60, role="1st Line"),
     Skater("Adam Fantilli", 60, 60, 30, 30, 80, powerplay=40, role="3rd Line"),
     Skater("Cole Sillinger", 30, 50, 40, 30, 30, powerplay=40, penaltykill=35,role="2nd Line"),
-    Skater("Kent Johnson", 55, 60, 30, 40, 45, powerplay=40, role="4th Line"),
+    Skater("Kent Johnson", 60, 60, 30, 50, 45, powerplay=50, role="3rd Line"),
     Skater("Dmitri Voronkov", 50, 60, 65, 30, 20, powerplay=50, role="4th Line"),
     Skater("Mikael Pyyhtia", 20, 50, 20, 30, 60, penaltykill=35, role="4th Line"),
     Skater("Sean Kuraly", 50, 30, 35, 40, 30, penaltykill=40, role="4th Line"),
@@ -382,7 +382,6 @@ oilers_players = [
     Skater("Darnell Nurse", 60, 60, 70, 50, 30,30,30,role="2nd Pair", position="defense"),
     Skater("Troy Stecher", 30, 40, 30, 40, 35, penaltykill=40,role="3rd Pair", position="defense"),
     Skater("Ty Emberson", 40, 55, 30, 70, 60, role="3rd Pair", position="defense"),
-    Skater("Travis Dermott", 40, 20, 45, 50, 50, penaltykill=50,role="Depth", position="defense"),
     Skater("Josh Brown", 40, 30, 40, 30, 35, penaltykill=35,role="bench", position="defense")
 ]
 
@@ -445,9 +444,10 @@ wild_players = [
     Skater("Ryan Hartman", 60, 60, 60, 35, 45, 50,role="3rd Line"),
     Skater("Marcus Foligno", 60, 50, 60, 80, 40, penaltykill=55,role="4th Line"),
     Skater("Frederick Gaudreau", 50, 35, 30, 45, 50, 50, 30,role="4th Line"),
-    Skater("Marat Kushnutdinov", 30, 20, 30, 50, 40, penaltykill=50,role="4th Line"),
+    Skater("Marat Kushnutdinov", 35, 20, 20, 40, 30, penaltykill=60,role="4th Line"),
     Skater("Yakov Trenin", 35, 20, 50, 70, 35,role="4th Line"),
     Skater("Jakub Lauko", 35, 45, 34, 60, 70,role="4th Line"),
+    Skater("Devin Shore", 30, 60, 45, 40, 45,role="Depth"),
     Skater("Liam Ohgren", offense=40, defense=55,role="Depth"),
     Skater("Brock Faber", 60, 65, 50, 60, 65, 50, 30,role="Number 1", position="defense"),
     Skater("Jonas Brodin", 40, 30, 40, 80, 60, penaltykill=60,role="Top Pair", position="defense"),
@@ -455,6 +455,7 @@ wild_players = [
     Skater("Jake Middleton", 50, 45, 20, 45, 60, penaltykill=35,role="2nd Pair", position="defense"),
     Skater("Zach Bogosian", 30, 45, 45,45, 30, penaltykill=40,role="3rd Pair", position="defense"),
     Skater("Declan Chisholm", 60, 55, 60, 60, 40, 65,role="3rd Pair", position="defense"),
+    Skater("Travis Dermott", 40, 20, 45, 50, 50, penaltykill=50, role="Depth", position="defense"),
     Skater("David Jiricek", 35, 65, 50, 45, 30, role="Depth", position="defense"),
     Skater("Jon Merrill", 50, 50, 20, 55, 30,role="Depth", position="defense")
 ]
@@ -551,7 +552,9 @@ islanders_players = [
     Skater("Adam Pelech", 35, 60, 35, 80, 55, penaltykill=40,role="2nd Pair", position="defense"),
     Skater("Alexander Romanov", 50, 50, 50, 35, 60, penaltykill=40,role="2nd Pair", position="defense"),
     Skater("Scott Mayfield", 40, 50, 30, 55, 40, penaltykill=20,role="3rd Pair", position="defense"),
+    Skater("Isaiah George", 30, 20, 40, 50, 40, role="3rd Pair", position="defense"),
     Skater("Mike Reilly", 35, 60, 60, 60, 30, 50,role="Depth", position="defense"),
+    Skater("Dennis Cholowski", 70, 60, 45, 45, 40, 35, role="Depth", position="defense"),
     Skater("Samuel Bolduc", 55, 20, 40, 35, 50,role="Depth", position="defense")
 ]
 
@@ -575,6 +578,7 @@ rangers_players = [
     Skater("Ryan Lindgren", 20, 60, 20, 60, 55, penaltykill=60, role="2nd Pair", position="defense"),
     Skater("Braden Schneider", 60, 45, 50, 45, 60, penaltykill=60,role="3rd Pair", position="defense"),
     Skater("Zachary Jones", 55, 40, 35, 30, 50,role="Depth", position="defense"),
+    Skater("Victor Mancini", 60, 20, 40, 20, 50, role="Depth", position="defense"),
     Skater("Urho Vaakanainen", 20, 40, 30, 50, 60, penaltykill=45, role="3rd Pair", position="defense"),
     Skater("Chad Ruhwedel", 35, 20, 40, 60, 60, penaltykill=65,role="bench", position="defense")
 ]
@@ -593,6 +597,7 @@ senators_players = [
     Skater("Noah Gregor", 20, 40, 45, 20, 50,role="4th Line"),
     Skater("Nick Cousins", 30, 30, 50, 30, 65,role="4th Line"),
     Skater("Adam Gaudette", 60, 20, 50, 50, 20, 40,role="4th Line"),
+    Skater("Zack Ostapchuk", 20, 30, 40, 50, 80,  role="4th Line"),
     Skater("Jake Sanderson", 45, 45, 60, 60, 80,45, 35,role="Top Pair", position="defense"),
     Skater("Thomas Chabot", 60, 50, 80, 50, 60, 45,role="Top Pair", position="defense"),
     Skater("Artem Zub", 45, 50, 30, 70, 30, penaltykill=60,role="2nd Pair", position="defense"),
@@ -605,7 +610,7 @@ senators_players = [
 flyers_players = [
     Skater("Travis Konecny", 60, 70, 80, 20, 60, 50, 35,role="1st Line"),
     Skater("Owen Tippett", 60, 60, 70, 35, 60, 60,role="2nd Line"),
-    Skater("Matvei Michkov", 80, 30, 50, 40, 20, 30,role="2nd Line"),
+    Skater("Matvei Michkov", 80, 60, 60, 40, 30, 30,role="2nd Line"),
     Skater("Joel Farabee", 60, 60, 60, 30, 60, 30,role="3rd Line"),
     Skater("Tyson Foerster", 50, 20, 50, 80, 60, 55,role="2nd Line"),
     Skater("Morgan Frost", 30, 60, 60, 60, 50, 40,role="3rd Line"),
@@ -691,6 +696,7 @@ kraken_players = [
     Skater("Shane Wright", 80, 30, 60, 40, 65, 20,role="4th Line"),
     Skater("Tye Kartye", 40, 30, 45, 50, 60,role="4th Line"),
     Skater("Daniel Sprong", 60, 80, 60, 35, 45, 45, role="4th Line"),
+    Skater("Mitchell Stephens", 40, 50, 30, 40, 40, role="Depth"),
     Skater("Vince Dunn", 80, 65, 80, 40, 50, 40,role="Top Pair", position="defense"),
     Skater("Brandon Montour", 65, 50, 60, 40, 35, 65,role="Top Pair", position="defense"),
     Skater("Adam Larsson", 55, 50, 30, 45, 35, penaltykill=20,role="Top Pair", position="defense"),
@@ -739,6 +745,7 @@ lightning_players = [
     Skater("Mikey Eyssimont", 30, 40, 60, 60, 40,role="4th Line"),
     Skater("Cam Atkinson", 30, 45, 40, 30, 50, 40, 60,role="4th Line"),
     Skater("Mitchell Chaffee", 65, 30, 30, 35, 65, role="4th Line"),
+    Skater("Gage Concalves", 30, 20, 30, 60, 40, role="4th Line"),
     Skater("Victor Hedman", 70, 70, 65, 30, 55, 60, 55,role="Number 1", position="defense"),
     Skater("JJ Moser", 60, 60, 40, 50, 60, penaltykill=20,role="2nd Pair", position="defense"),
     Skater("Erik Cernak", 30, 50, 40, 55,  50, penaltykill=40,role="2nd Pair", position="defense"),
@@ -760,11 +767,11 @@ leafs_players = [
     Skater("Bobby McMann", 65, 30, 40, 60, 30,role="3rd Line"),
     Skater("David Kampf", 35, 30, 30, 55, 55, penaltykill=55,role="4th Line"),
     Skater("Max Pacioretty", 45, 50, 60, 30, 30, 60,role="4th Line"),
-    Skater("Ryan Reaves", 40, 30, 30, 50, 35,role="Depth"),
+    Skater("Ryan Reaves", 40, 30, 30, 50, 35,role="4th Line"),
     Skater("Steven Lorentz", 35, 20, 55, 60, 40,role="4th Line"),
-    Skater("Alex Nylander", 60, 30, 60, 30, 45, 45, role="Depth"),
     Skater("Connor Dewar", 35, 35, 35, 70, 50, penaltykill=70,role="4th Line"),
     # Skater("Calle Jarnkrok", 60, 45, 50, 50, 60, 35, 40,role="Depth"),
+    Skater("Alex Nylander", 60, 30, 60, 30, 45, 45, role="bench"),
     Skater("Morgan Rielly", 40, 80, 60, 20, 60, 70,role="2nd Pair", position="defense"),
     Skater("Oliver Ekman-Larsson", 60, 60, 60, 40, 50, 35, 70,role="2nd Pair", position="defense"),
     Skater("Jake McCabe", 50, 60, 65, 60, 60, penaltykill=65,role="2nd Pair", position="defense"),
