@@ -470,22 +470,22 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/12/2024,tb,cgy,8,3,26,22,Andrei Vasilevskiy,Dan Vladar,TRUE,tb
 12/12/2024,fla,van,0,4,27,19,Sergei Bobrovsky,Kevin Lankinen,TRUE,van
 12/12/2024,bos,sea,1,5,34,21,Joonas Korpisalo,Philipp Grubauer,TRUE,sea
-12/13/2024,ott,car,,,,,,,,
-12/14/2024,chi,nj,,,,,,,,
-12/14/2024,la,nyr,,,,,,,,
-12/14/2024,phi,min,,,,,,,,
-12/14/2024,vgk,edm,,,,,,,,
-12/14/2024,pit,ott,,,,,,,,
-12/14/2024,tor,det,,,,,,,,
-12/14/2024,buf,wsh,,,,,,,,
-12/14/2024,ana,cbj,,,,,,,,
-12/14/2024,mtl,wpg,,,,,,,,
-12/14/2024,stl,dal,,,,,,,,
-12/14/2024,nsh,col,,,,,,,,
-12/14/2024,fla,cgy,,,,,,,,
-12/14/2024,bos,van,,,,,,,,
-12/14/2024,ari,sj,,,,,,,,
-12/14/2024,tb,sea,,,,,,,,
+12/13/2024,ott,car,3,0,22,32,Linus Ullmark,Pyotr Kochetkov,TRUE,ott
+12/14/2024,chi,nj,1,4,17,24,Drew Commesso,Jacob Markstrom,TRUE,nj
+12/14/2024,la,nyr,5,1,32,32,Darcy Kuemper,Igor Shesterkin,TRUE,la
+12/14/2024,phi,min,1,4,22,23,Samuel Ersson,Marc-Andre Fleury,TRUE,min
+12/14/2024,vgk,edm,3,6,41,34,Adin Hill,Stuart Skinner,TRUE,edm
+12/14/2024,pit,ott,2,3,27,31,Tristan Jarry,Linus Ullmark,FALSE,ott
+12/14/2024,tor,det,2,4,25,26,Joseph Woll,Ville Husso,TRUE,det
+12/14/2024,buf,wsh,2,4,21,31,Ukko-Pekka Luukkonen,Logan Thompson,TRUE,wsh
+12/14/2024,ana,cbj,4,3,27,42,John Gibson,Jet Greaves,FALSE,ana
+12/14/2024,mtl,wpg,2,4,28,27,Sam Montembeault,Connor Hellebuyck,TRUE,wpg
+12/14/2024,stl,dal,1,2,16,37,Jordan Binnington,Jake Oettinger,FALSE,dal
+12/14/2024,nsh,col,2,5,39,34,Juuse Saros,Mackenzie Blackwood,TRUE,col
+12/14/2024,fla,cgy,0,3,32,27,Spencer Knight,Dustin Wolf,TRUE,cgy
+12/14/2024,bos,van,5,1,28,20,Jeremy Swayman,Thatcher Demko,TRUE,bos
+12/14/2024,ari,sj,4,3,40,22,Karel Vejmelka,Vitek Vanecek,TRUE,ari
+12/14/2024,tb,sea,5,1,31,22,Jonas Johansson,Philipp Grubauer,TRUE,tb
 12/15/2024,nyi,chi,,,,,,,,
 12/15/2024,buf,tor,,,,,,,,
 12/15/2024,cbj,car,,,,,,,,

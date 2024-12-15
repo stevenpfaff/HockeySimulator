@@ -36,6 +36,7 @@ goalies = {
     "mrazek": Goalie("Petr Mrazek", 55, "1A"),
     "brossoit": Goalie("Laurent Brossoit", 55, "1B"),
     "soderblom": Goalie("Arvid Soderblom", 40, "Third"),
+    "commesso": Goalie("Drew Commesso", 40, "Third"),
     # Avalanche
     "georgiev": Goalie("Alexandar Georgiev", 50, "Inactive"),
     "annunen": Goalie("Justus Annunen", 50, "Inactive"),
