@@ -486,11 +486,11 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/14/2024,bos,van,5,1,28,20,Jeremy Swayman,Thatcher Demko,TRUE,bos
 12/14/2024,ari,sj,4,3,40,22,Karel Vejmelka,Vitek Vanecek,TRUE,ari
 12/14/2024,tb,sea,5,1,31,22,Jonas Johansson,Philipp Grubauer,TRUE,tb
-12/15/2024,nyi,chi,,,,,,,,
-12/15/2024,buf,tor,,,,,,,,
-12/15/2024,cbj,car,,,,,,,,
-12/15/2024,nyr,stl,,,,,,,,
-12/15/2024,vgk,min,,,,,,,,
+12/15/2024,nyi,chi,3,5,33,23,Ilya Sorokin,Arvid Soderblom,TRUE,chi
+12/15/2024,buf,tor,3,5,27,41,Devon Levi,Dennis Hildeby,TRUE,tor
+12/15/2024,cbj,car,1,4,28,28,Elvis Merzlikins,Dustin Tokarski,TRUE,car
+12/15/2024,nyr,stl,2,3,28,24,Jonathan Quick,Joel Hofer,TRUE,stl
+12/15/2024,vgk,min,3,2,27,22,Ilya Samsonov,Jesper Wallstedt,TRUE,vgk
 12/16/2024,wsh,dal,,,,,,,,
 12/16/2024,fla,edm,,,,,,,,
 12/16/2024,col,van,,,,,,,,

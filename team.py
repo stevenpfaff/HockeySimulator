@@ -28,7 +28,7 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 43
+        self.max_selections = 42
         self.players = []
         self.reset_selections()  # Ensure goalie selections are initialized
 
@@ -199,7 +199,7 @@ teams = {
     "bos": Team("Boston Bruins", "BOS", bos_offense, bos_defense, bos_powerplay,bos_penaltykill, bos_penalty, goalies["swayman"], goalies["korp"]),
     "buf": Team("Buffalo Sabres", "BUF", buf_offense, buf_defense, buf_powerplay, buf_penaltykill, buf_penalty, goalies["luukkonen"], goalies["levi"], goalies["reimerbuf"]),
     "cgy": Team("Calgary Flames", "CGY", cgy_offense, cgy_defense, cgy_powerplay, cgy_penaltykill, cgy_penalty,  goalies["wolf"], goalies["vladar"]),
-    "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty, goalies["andersen"], goalies["kochetkov"], goalies["martin"]),
+    "car": Team("Carolina Hurricanes", "CAR", car_offense, car_defense, car_powerplay, car_penaltykill, car_penalty, goalies["andersen"], goalies["kochetkov"], goalies["martin"], goalies["tokarski"]),
     "chi": Team("Chicago Blackhawks", "CHI", chi_offense, chi_defense, chi_powerplay, chi_penaltykill, chi_penalty, goalies["mrazek"], goalies["brossoit"], goalies["soderblom"], goalies["commesso"]),
     "col": Team("Colorado Avalanche", "COL", col_offense, col_defense, col_powerplay, col_penaltykill, col_penalty, goalies["blackwoodcol"], goalies["wedgewoodcol"],goalies["annunen"],goalies["georgiev"]),
     "cbj": Team("Columbus Blue Jackets", "CBJ", cbj_offense, cbj_defense, cbj_powerplay, cbj_penaltykill, cbj_penalty, goalies["merzlikins"], goalies["tarasov"], goalies["greaves"]),
@@ -208,7 +208,7 @@ teams = {
     "edm": Team("Edmonton Oilers", "EDM", edm_offense, edm_defense, edm_powerplay, edm_penaltykill, edm_penalty, goalies["skinner"], goalies["pickard"]),
     "fla": Team("Florida Panthers", "FLA", fla_offense, fla_defense, fla_powerplay, fla_penaltykill, fla_penalty, goalies["bobrovsky"], goalies["knight"]),
     "la": Team("Los Angeles Kings", "LA", la_offense, la_defense, la_powerplay, la_penaltykill, la_penalty, goalies["kuemper"], goalies["rittich"], goalies["copley"]),
-    "min": Team("Minnesota Wild", "MIN", min_offense, min_defense, min_powerplay, min_penaltykill, min_penalty, goalies["gustavsson"], goalies["fleury"]),
+    "min": Team("Minnesota Wild", "MIN", min_offense, min_defense, min_powerplay, min_penaltykill, min_penalty, goalies["gustavsson"], goalies["fleury"], goalies["wallstedt"]),
     "mtl": Team("Montreal Canadiens", "MTL", mtl_offense, mtl_defense, mtl_powerplay, mtl_penaltykill, mtl_penalty,goalies["montembeault"], goalies["primeau"]),
     "nsh": Team("Nashville Predators", "NSH", nsh_offense, nsh_defense, nsh_powerplay, nsh_penaltykill, nsh_penalty, goalies["saros"], goalies["wedgewood"], goalies["annunennsh"]),
     "nj": Team("New Jersey Devils", "NJ", nj_offense, nj_defense, nj_powerplay, nj_penaltykill, nj_penalty, goalies["markstrom"], goalies["allen"]),

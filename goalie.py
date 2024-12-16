@@ -22,8 +22,8 @@ goalies = {
     "korp": Goalie("Joonas Korpisalo", 30, "Backup"),
     # Sabres
     "luukkonen": Goalie("Ukko-Pekka Luukkonen", 55, "Starter"),
-    "levi": Goalie("Devon Levi", 40, "Third"),
-    "reimerbuf": Goalie("James Reimer", 40, "Backup"),
+    "levi": Goalie("Devon Levi", 40, "Backup"),
+    "reimerbuf": Goalie("James Reimer", 40, "Third"),
     # Flames
     "wolf": Goalie("Dustin Wolf", 55, "1A"),
     "vladar": Goalie("Dan Vladar", 45, "1B"),
@@ -32,6 +32,7 @@ goalies = {
     "andersen": Goalie("Frederik Andersen", 60, "Third"),
     "kochetkov": Goalie("Pyotr Kochetkov", 50, "1A"),
     "martin": Goalie("Spencer Martin", 30, "Backup"),
+    "tokarski": Goalie("Dustin Tokarski", 30, "Third"),
     # Blackhawks
     "mrazek": Goalie("Petr Mrazek", 55, "1A"),
     "brossoit": Goalie("Laurent Brossoit", 55, "1B"),
@@ -66,6 +67,7 @@ goalies = {
     "rittich": Goalie("David Rittich", 45, "Backup"),
     "copley": Goalie("Erik Portillo", 40, "Third"),
     # Wild
+    "wallstedt": Goalie("Jesper Wallstedt", 50, "Third"),
     "fleury": Goalie("Marc-Andre Fleury", 50, "Backup"),
     "gustavsson": Goalie("Filip Gustavsson", 60, "Starter"),
     # Canadiens

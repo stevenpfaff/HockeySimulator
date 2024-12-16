@@ -816,12 +816,12 @@ canucks_players = [
     Skater("Jake DeBrusk", 60, 45, 70, 60, 60, 60, 60,role="2nd Line"),
     Skater("Conor Garland", 60, 65, 60, 80, 80, 30,role="3rd Line"),
     Skater("Nils Hoglander", 60, 55, 60, 60, 50,role="4th Line"),
-    Skater("Dakota Joshua", 60, 45, 60, 50, 60, penaltykill=60,role="3rd Line"),
+    Skater("Dakota Joshua", 55, 45, 60, 50, 60, penaltykill=60,role="4th Line"),
     Skater("Teddy Blueger", 30, 60, 60, 55, 50, penaltykill=60,role="3rd Line"),
     Skater("Danton Heinen", 55, 60, 60, 50, 30, penaltykill=65,role="3rd Line"),
     Skater("Pius Suter", 55, 40, 50, 80, 60, 40, 80,role="3rd Line"),
     Skater("Kiefer Sherwood", 60, 55, 40, 55, 30,role="4th Line"),
-    Skater("Nils Aman", 30, 40, 20, 60, 40, penaltykill=70,role="4th Line"),
+    Skater("Nils Aman", 30, 40, 20, 60, 40, penaltykill=70,role="Depth"),
     Skater("Arshdeep Bains",  35, 20, 30, 40, 45,role="Depth"),
     Skater("Quinn Hughes", 70, 70, 80, 60, 70, 80,role="Number 1", position="defense"),
     Skater("Filip Hronek", 45, 60, 40, 40, 60, 60, 60,role="Top Pair", position="defense"),
@@ -830,7 +830,7 @@ canucks_players = [
     Skater("Derek Forbort", 60, 45, 30, 60, 50, penaltykill=80,role="3rd Pair", position="defense"),
     Skater("Vincent Desharnais", 40, 40, 45, 55, 30, penaltykill=80,role="Depth", position="defense"),
     Skater("Noah Juulsen", 30, 40, 30, 50, 40, penaltykill=70,role="Depth", position="defense"),
-    Skater("Erik Brannstrom", 20, 55, 70, 60, 45, penaltykill=40,role="3rd Pair", position="defense")
+    Skater("Erik Brannstrom", 20, 55, 70, 60, 45, penaltykill=40,role="Depth", position="defense")
 ]
 
 knights_players = [
