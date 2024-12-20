@@ -504,20 +504,20 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/17/2024,bos,cgy,4,3,35,23,Jeremy Swayman,Dustin Wolf,FALSE,bos
 12/17/2024,ott,sea,3,0,27,30,Linus Ullmark,Joey Daccord,TRUE,ott
 12/17/2024,wpg,sj,4,3,33,35,Connor Hellebuyck,Alexandar Georgiev,TRUE,wpg
-12/18/2024,phi,det,,,,,,,,
-12/18/2024,tor,dal,,,,,,,,
-12/18/2024,fla,min,,,,,,,,
-12/18/2024,van,ari,,,,,,,,
-12/18/2024,wpg,ana,,,,,,,,
-12/19/2024,stl,tb,,,,,,,,
-12/19/2024,la,phi,,,,,,,,
-12/19/2024,nj,cbj,,,,,,,,
-12/19/2024,pit,nsh,,,,,,,,
-12/19/2024,sea,chi,,,,,,,,
-12/19/2024,ott,cgy,,,,,,,,
-12/19/2024,bos,edm,,,,,,,,
-12/19/2024,van,vgk,,,,,,,,
-12/19/2024,col,sj,,,,,,,,
+12/18/2024,phi,det,4,6,19,24,Samuel Ersson,Alex Lyon,TRUE,det
+12/18/2024,tor,dal,5,3,19,39,Joseph Woll,Jake Oettinger,TRUE,tor
+12/18/2024,fla,min,6,1,33,27,Sergei Bobrovsky,Marc-Andre Fleury,TRUE,fla
+12/18/2024,van,ari,2,3,26,31,Thatcher Demko,Karel Vejmelka,FALSE,ari
+12/18/2024,wpg,ana,2,3,23,31,Eric Comrie,Lukas Dostal,TRUE,ana
+12/19/2024,stl,tb,1,3,32,18,Jordan Binnington,Andrei Vasilevskiy,TRUE,tb
+12/19/2024,la,phi,7,3,27,26,Darcy Kuemper,Aleksei Kolosov,TRUE,la
+12/19/2024,nj,cbj,2,4,42,20,Jake Allen,Elvis Merzlikins,TRUE,cbj
+12/19/2024,pit,nsh,5,4,20,26,Tristan Jarry,Juuse Saros,FALSE,pit
+12/19/2024,sea,chi,1,3,28,24,Joey Daccord,Arvid Soderblom,TRUE,chi
+12/19/2024,ott,cgy,3,2,29,31,Linus Ullmark,Dan Vladar,FALSE,ott
+12/19/2024,bos,edm,2,3,26,26,Jeremy Swayman,Stuart Skinner,FALSE,edm
+12/19/2024,van,vgk,1,3,20,21,Kevin Lankinen,Adin Hill,TRUE,vgk
+12/19/2024,col,sj,4,2,31,34,Mackenzie Blackwood,Alexandar Georgiev,TRUE,col
 12/20/2024,tor,buf,,,,,,,,
 12/20/2024,mtl,det,,,,,,,,
 12/20/2024,stl,fla,,,,,,,,

@@ -502,6 +502,8 @@ predators_players = [
     Skater("Jeremy Lauzon", 40, 20, 45, 50, 35, penaltykill=30, role="3rd Pair", position="defense"),
     Skater("Justin Barron", 60, 55, 50, 30, 45, 60, role="3rd Pair", position="defense"),
     Skater("Luke Schenn", 50, 55, 30, 40, 20, penaltykill=40,role="Depth", position="defense"),
+    Skater("Nick Blankenburg", 50, 30, 60, 45, 60, role="3rd Pair", position="defense"),
+    Skater("Adam Wilsby", 60, 20, 55, 70, 70, penaltykill=50, role="3rd Pair", position="defense"),
     Skater("Marc Del Gaizo", 20, 45, 40, 55, 40,role="Depth", position="defense"),
     Skater("Spencer Stastney", 60, 35, 65, 50, 60, penaltykill=45,role="bench", position="defense")
 ]
@@ -745,7 +747,7 @@ lightning_players = [
     Skater("Mikey Eyssimont", 30, 40, 60, 60, 40,role="4th Line"),
     Skater("Cam Atkinson", 30, 45, 40, 30, 50, 40, 60,role="4th Line"),
     Skater("Mitchell Chaffee", 65, 30, 30, 35, 65, role="4th Line"),
-    Skater("Gage Concalves", 30, 20, 30, 60, 40, role="4th Line"),
+    Skater("Gage Goncalves", 30, 20, 30, 60, 40, role="4th Line"),
     Skater("Victor Hedman", 70, 70, 70, 30, 60, 60, 60,role="Number 1", position="defense"),
     Skater("JJ Moser", 60, 60, 40, 50, 60, penaltykill=20,role="2nd Pair", position="defense"),
     Skater("Erik Cernak", 30, 50, 40, 55,  50, penaltykill=40,role="2nd Pair", position="defense"),
