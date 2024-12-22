@@ -89,6 +89,7 @@ goalies = {
     # Senators
     "ullmark": Goalie("Linus Ullmark", 65, "Starter"),
     "forsberg": Goalie("Anton Forsberg", 45, "Backup"),
+    "merilainen": Goalie("Leevi Merilainen", 40, "Third"),
     "sogaard": Goalie("Mads Sogaard", 30, "Inactive"),
     # Flyers
     "fedotov": Goalie("Ivan Fedotov", 40, "1B"),
@@ -115,6 +116,7 @@ goalies = {
     # Leafs
     "stolarz": Goalie("Anthony Stolarz", 60, "1A"),
     "woll": Goalie("Joseph Woll", 60, "1A"),
+    "murray": Goalie("Matt Murray", 40, "Third"),
     "hildeby": Goalie("Dennis Hildeby", 30, "Inactive"),
     # Utah
     "vemelka": Goalie("Karel Vejmelka", 50, "1B"),
