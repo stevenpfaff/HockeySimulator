@@ -536,12 +536,12 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/21/2024,min,wpg,0,5,19,24,Jesper Wallstedt,Connor Hellebuyck,TRUE,wpg
 12/21/2024,ott,van,5,4,22,25,Leevi Merilainen,Kevin Lankinen,FALSE,ott
 12/21/2024,sea,vgk,2,6,23,34,Philipp Grubauer,Ilya Samsonov,TRUE,vgk
-12/22/2024,car,nyr,,,,,,,,
-12/22/2024,fla,tb,,,,,,,,
-12/22/2024,la,wsh,,,,,,,,
-12/22/2024,ana,ari,,,,,,,,
-12/22/2024,sea,col,,,,,,,,
-12/22/2024,ott,edm,,,,,,,,
+12/22/2024,car,nyr,3,1,31,23,Pyotr Kochetkov,Igor Shesterkin,TRUE,car
+12/22/2024,fla,tb,4,2,26,21,Spencer Knight,Andrei Vasilevskiy,TRUE,fla
+12/22/2024,la,wsh,1,3,26,21,David Rittich,Logan Thompson,TRUE,wsh
+12/22/2024,ana,ari,5,4,30,25,Lukas Dostal,Jaxson Stauber,FALSE,ana
+12/22/2024,sea,col,2,5,19,29,Joey Daccord,Mackenzie Blackwood,TRUE,col
+12/22/2024,ott,edm,1,3,21,21,Linus Ullmark,Stuart Skinner,TRUE,edm
 12/23/2024,nyr,nj,,,,,,,,
 12/23/2024,wpg,tor,,,,,,,,
 12/23/2024,wsh,bos,,,,,,,,
