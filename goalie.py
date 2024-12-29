@@ -71,7 +71,8 @@ goalies = {
     "fleury": Goalie("Marc-Andre Fleury", 50, "Backup"),
     "gustavsson": Goalie("Filip Gustavsson", 60, "Starter"),
     # Canadiens
-    "primeau": Goalie("Cayden Primeau", 45, "Backup"),
+    "primeau": Goalie("Cayden Primeau", 45, "Inactive"),
+    "dobes": Goalie("Jakub Dobes", 40, "Backup"),
     "montembeault": Goalie("Sam Montembeault", 55, "Starter"),
     # Predators
     "saros": Goalie("Juuse Saros", 70, "Starter"),

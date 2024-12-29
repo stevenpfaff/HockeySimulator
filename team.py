@@ -209,7 +209,7 @@ teams = {
     "fla": Team("Florida Panthers", "FLA", fla_offense, fla_defense, fla_powerplay, fla_penaltykill, fla_penalty, goalies["bobrovsky"], goalies["knight"]),
     "la": Team("Los Angeles Kings", "LA", la_offense, la_defense, la_powerplay, la_penaltykill, la_penalty, goalies["kuemper"], goalies["rittich"], goalies["copley"]),
     "min": Team("Minnesota Wild", "MIN", min_offense, min_defense, min_powerplay, min_penaltykill, min_penalty, goalies["gustavsson"], goalies["fleury"], goalies["wallstedt"]),
-    "mtl": Team("Montreal Canadiens", "MTL", mtl_offense, mtl_defense, mtl_powerplay, mtl_penaltykill, mtl_penalty,goalies["montembeault"], goalies["primeau"]),
+    "mtl": Team("Montreal Canadiens", "MTL", mtl_offense, mtl_defense, mtl_powerplay, mtl_penaltykill, mtl_penalty,goalies["montembeault"], goalies["dobes"], goalies["primeau"]),
     "nsh": Team("Nashville Predators", "NSH", nsh_offense, nsh_defense, nsh_powerplay, nsh_penaltykill, nsh_penalty, goalies["saros"], goalies["wedgewood"], goalies["annunennsh"]),
     "nj": Team("New Jersey Devils", "NJ", nj_offense, nj_defense, nj_powerplay, nj_penaltykill, nj_penalty, goalies["markstrom"], goalies["allen"]),
     "nyi": Team("New York Islanders", "NYI", nyi_offense, nyi_defense, nyi_powerplay, nyi_penaltykill, nyi_penalty, goalies["sorokin"], goalies["varlamov"]),
