@@ -69,9 +69,9 @@ class Game:
             offense_factor = (offense_rating - 50) * 0.5
             offense_factor = min(offense_factor, 5)
 
-        # if defense_rating > 55:
-        #     defense_factor = (50 - defense_rating) * 0.3
-        #     defense_factor *= math.sqrt(defense_rating / 50)
+        if defense_rating > 55:
+            defense_factor = (50 - defense_rating) * 0.3
+            defense_factor *= math.sqrt(defense_rating / 50)
         # else:
         defense_factor = (50 - defense_rating) * 0.5
         defense_factor = min(defense_factor, 5)
@@ -80,7 +80,7 @@ class Game:
 
         # Apply a 2% boost for home team
         if home_team:
-            sog *= 1.025
+            sog *= 1.05
 
         # Add random variation using a normal distribution
         # Mean is 0, standard deviation is 3 (tweak as needed)

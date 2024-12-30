@@ -574,15 +574,15 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/28/2024,ott,wpg,2,4,35,23,Mads Sogaard,Connor Hellebuyck,TRUE,wpg
 12/28/2024,pit,nyi,3,6,25,34,Tristan Jarry,Ilya Sorokin,TRUE,nyi
 12/28/2024,cgy,sj,3,1,33,22,Dustin Wolf,Yaroslav Askarov,TRUE,cgy
-12/29/2024,dal,chi,,,,,,,,
-12/29/2024,edm,ana,,,,,,,,
-12/29/2024,wsh,det,,,,,,,,
-12/29/2024,mtl,tb,,,,,,,,
-12/29/2024,nyi,pit,,,,,,,,
-12/29/2024,buf,stl,,,,,,,,
-12/29/2024,ott,min,,,,,,,,
-12/29/2024,cgy,vgk,,,,,,,,
-12/29/2024,phi,la,,,,,,,,
+12/29/2024,dal,chi,5,1,35,25,Jake Oettinger,Arvid Soderblom,TRUE,dal
+12/29/2024,edm,ana,3,5,23,32,Calvin Pickard,Lukas Dostal,TRUE,ana
+12/29/2024,wsh,det,2,4,27,27,Charlie Lindgren,Alex Lyon,TRUE,det
+12/29/2024,mtl,tb,5,2,37,23,Sam Montembeault,Jonas Johansson,TRUE,mtl
+12/29/2024,nyi,pit,2,3,31,41,Marcus Hogberg,Alex Nedeljkovic,TRUE,pit
+12/29/2024,buf,stl,4,2,16,37,Ukko-Pekka Luukkonen,Jordan Binnington,TRUE,buf
+12/29/2024,ott,min,3,1,37,31,Leevi Merilainen,Filip Gustavsson,TRUE,ott
+12/29/2024,cgy,vgk,0,3,31,37,Dan Vladar,Ilya Samsonov,TRUE,vgk
+12/29/2024,phi,la,4,5,21,20,Aleksei Kolosov,David Rittich,TRUE,la
 12/30/2024,nyr,fla,,,,,,,,
 12/30/2024,nsh,wpg,,,,,,,,
 12/30/2024,ari,sea,,,,,,,,

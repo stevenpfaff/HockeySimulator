@@ -781,6 +781,7 @@ leafs_players = [
     Skater("Simon Benoit", 30, 20, 30, 40, 40, penaltykill=40,role="3rd Pair", position="defense"),
     Skater("Conor Timmins", 55, 70, 60, 50, 30, 45,role="3rd Pair", position="defense"),
     Skater("Jani Hakanpaa", 55, 40, 30, 40, 40, penaltykill=65, role="Depth", position="defense"),
+    Skater("Philippe Myers", 30, 30, 55, 40, 40, penaltykill=40, role="Depth", position="defense"),
 ]
 
 utah_players = [
