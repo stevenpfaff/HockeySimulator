@@ -583,9 +583,9 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 12/29/2024,ott,min,3,1,37,31,Leevi Merilainen,Filip Gustavsson,TRUE,ott
 12/29/2024,cgy,vgk,0,3,31,37,Dan Vladar,Ilya Samsonov,TRUE,vgk
 12/29/2024,phi,la,4,5,21,20,Aleksei Kolosov,David Rittich,TRUE,la
-12/30/2024,nyr,fla,,,,,,,,
-12/30/2024,nsh,wpg,,,,,,,,
-12/30/2024,ari,sea,,,,,,,,
+12/30/2024,nyr,fla,3,5,36,26,Igor Shesterkin,Sergei Bobrovsky,TRUE,fla
+12/30/2024,nsh,wpg,0,3,22,28,Juuse Saros,Connor Hellebuyck,TRUE,wpg
+12/30/2024,ari,sea,2,5,30,33,Karel Vejmelka,Philipp Grubauer,TRUE,sea
 12/31/2024,bos,wsh,,,,,,,,
 12/31/2024,nyi,tor,,,,,,,,
 12/31/2024,mtl,vgk,,,,,,,,

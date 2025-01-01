@@ -125,7 +125,7 @@ goalies = {
     "ingram": Goalie("Connor Ingram", 50, "1B"),
     "stauber": Goalie("Jaxson Stauber", 40, "Third"),
     # Canucks
-    "demko": Goalie("Thatcher Demko", 60, "1A"),
+    "demko": Goalie("Thatcher Demko", 57, "1A"),
     "silvos": Goalie("Arturs Silovs", 30, "Third"),
     "lankinen": Goalie("Kevin Lankinen", 55, "1B"),
     # Golden Knights
