@@ -14,7 +14,7 @@ class Goalie:
 
 goalies = {
     # Ducks
-    "gibson": Goalie("John Gibson", 40, "1A"),
+    "gibson": Goalie("John Gibson", 45, "1A"),
     "dostal": Goalie("Lukas Dostal", 60, "1B"),
     "reimer": Goalie("James Reimer", 40, "Inactive"),
     # Bruins
@@ -88,6 +88,7 @@ goalies = {
     # Rangers
     "shesterkin": Goalie("Igor Shesterkin", 70, "Starter"),
     "quick": Goalie("Jonathan Quick", 50, "Backup"),
+    "domingue": Goalie("Louis Domingue", 40, "Backup"),
     # Senators
     "ullmark": Goalie("Linus Ullmark", 65, "Starter"),
     "forsberg": Goalie("Anton Forsberg", 45, "Backup"),

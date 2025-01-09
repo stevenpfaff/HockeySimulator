@@ -28,7 +28,7 @@ class Team:
         self.conf_final = conf_final
         self.cup_final = cup_final
         self.cup_win = cup_win
-        self.max_selections = 40
+        self.max_selections = 36
         self.players = []
         self.reset_selections()  # Ensure goalie selections are initialized
 
@@ -213,7 +213,7 @@ teams = {
     "nsh": Team("Nashville Predators", "NSH", nsh_offense, nsh_defense, nsh_powerplay, nsh_penaltykill, nsh_penalty, goalies["saros"], goalies["wedgewood"], goalies["annunennsh"]),
     "nj": Team("New Jersey Devils", "NJ", nj_offense, nj_defense, nj_powerplay, nj_penaltykill, nj_penalty, goalies["markstrom"], goalies["allen"]),
     "nyi": Team("New York Islanders", "NYI", nyi_offense, nyi_defense, nyi_powerplay, nyi_penaltykill, nyi_penalty, goalies["sorokin"], goalies["varlamov"], goalies["hogberg"]),
-    "nyr": Team("New York Rangers", "NYR", nyr_offense, nyr_defense, nyr_powerplay, nyr_penaltykill, nyr_penalty, goalies["shesterkin"], goalies["quick"]),
+    "nyr": Team("New York Rangers", "NYR", nyr_offense, nyr_defense, nyr_powerplay, nyr_penaltykill, nyr_penalty, goalies["shesterkin"], goalies["quick"], goalies["domingue"]),
     "ott": Team("Ottawa Senators", "OTT", ott_offense, ott_defense, ott_powerplay, ott_penaltykill, ott_penalty, goalies["ullmark"], goalies["forsberg"], goalies["merilainen"], goalies["sogaard"]),
     "phi": Team("Philadelphia Flyers", "PHI", phi_offense, phi_defense, phi_powerplay, phi_penaltykill, phi_penalty, goalies["fedotov"], goalies["ersson"], goalies["kolosov"]),
     "pit": Team("Pittsburgh Penguins", "PIT", pit_offense, pit_defense, pit_powerplay, pit_penaltykill, pit_penalty,goalies["jarry"], goalies["ned"], goalies["blomqvist"]),
