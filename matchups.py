@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv('matchups-v3.csv')
+df = pd.read_csv('simulated-points.csv')
 
 # Strip whitespace from column names
 df.columns = df.columns.str.strip()
