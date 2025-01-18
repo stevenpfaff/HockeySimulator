@@ -685,37 +685,37 @@ date,away_team,home_team,visitor_goals,home_goals,visitor_sog,home_sog,visitor_g
 1/12/2025,tb,pit,5,2,19,33,Jonas Johansson,Tristan Jarry,TRUE,tb
 1/12/2025,ana,car,3,2,20,37,Lukas Dostal,Pyotr Kochetkov,FALSE,ana
 1/12/2025,min,vgk,1,4,16,37,Filip Gustavsson,Adin Hill,TRUE,vgk
-1/13/2025,fla,phi,,,,,,,,
-1/13/2025,cgy,chi,,,,,,,,
-1/13/2025,la,edm,,,,,,,,
-1/14/2025,tb,bos,,,,,,,,
-1/14/2025,dal,tor,,,,,,,,
-1/14/2025,sj,det,,,,,,,,
-1/14/2025,fla,nj,,,,,,,,
-1/14/2025,sea,pit,,,,,,,,
-1/14/2025,ana,wsh,,,,,,,,
-1/14/2025,phi,cbj,,,,,,,,
-1/14/2025,ott,nyi,,,,,,,,
-1/14/2025,cgy,stl,,,,,,,,
-1/14/2025,vgk,nsh,,,,,,,,
-1/14/2025,van,wpg,,,,,,,,
-1/14/2025,nyr,col,,,,,,,,
-1/14/2025,mtl,ari,,,,,,,,
-1/15/2025,car,buf,,,,,,,,
-1/15/2025,edm,min,,,,,,,,
-1/16/2025,nj,tor,,,,,,,,
-1/16/2025,wsh,ott,,,,,,,,
-1/16/2025,ana,tb,,,,,,,,
-1/16/2025,det,fla,,,,,,,,
-1/16/2025,sj,cbj,,,,,,,,
-1/16/2025,phi,nyi,,,,,,,,
-1/16/2025,cgy,stl,,,,,,,,
-1/16/2025,chi,nsh,,,,,,,,
-1/16/2025,mtl,dal,,,,,,,,
-1/16/2025,sea,wpg,,,,,,,,
-1/16/2025,nyr,ari,,,,,,,,
-1/16/2025,edm,col,,,,,,,,
-1/16/2025,la,van,,,,,,,,
+1/13/2025,fla,phi,3,4,23,29,Sergei Bobrovsky,Samuel Ersson,TRUE,phi
+1/13/2025,cgy,chi,5,2,36,25,Dustin Wolf,Petr Mrazek,TRUE,cgy
+1/13/2025,la,edm,0,1,30,30,Darcy Kuemper,Stuart Skinner,TRUE,edm
+1/14/2025,tb,bos,2,6,45,24,Andrei Vasilevskiy,Jeremy Swayman,TRUE,bos
+1/14/2025,dal,tor,4,1,23,28,Jake Oettinger,Joseph Woll,TRUE,dal
+1/14/2025,sj,det,6,3,24,28,Alexandar Georgiev,Ville Husso,TRUE,sj
+1/14/2025,fla,nj,2,1,28,27,Spencer Knight,Jacob Markstrom,FALSE,fla
+1/14/2025,sea,pit,4,2,18,33,Joey Daccord,Tristan Jarry,TRUE,sea
+1/14/2025,ana,wsh,0,3,19,25,John Gibson,Logan Thompson,TRUE,wsh
+1/14/2025,phi,cbj,2,3,25,28,Ivan Fedotov,Daniil Tarasov,FALSE,cbj
+1/14/2025,ott,nyi,2,0,27,24,Leevi Merilainen,Marcus Hogberg,TRUE,ott
+1/14/2025,cgy,stl,1,2,27,25,Dan Vladar,Jordan Binnington,TRUE,stl
+1/14/2025,vgk,nsh,3,5,22,23,Ilya Samsonov,Justus Annunen,TRUE,nsh
+1/14/2025,van,wpg,1,6,24,33,Kevin Lankinen,Connor Hellebuyck,TRUE,wpg
+1/14/2025,nyr,col,2,3,29,26,Igor Shesterkin,Mackenzie Blackwood,FALSE,col
+1/14/2025,mtl,ari,5,3,26,25,Sam Montembeault,Karel Vejmelka,TRUE,mtl
+1/15/2025,car,buf,2,4,37,24,Dustin Tokarski,Ukko-Pekka Luukkonen,TRUE,buf
+1/15/2025,edm,min,5,3,36,34,Calvin Pickard,Filip Gustavsson,TRUE,edm
+1/16/2025,nj,tor,3,4,24,41,Jacob Markstrom,Joseph Woll,FALSE,tor
+1/16/2025,wsh,ott,1,0,27,24,Logan Thompson,Leevi Merilainen,FALSE,wsh
+1/16/2025,ana,tb,3,4,37,35,Lukas Dostal,Andrei Vasilevskiy,FALSE,tb
+1/16/2025,det,fla,5,2,20,43,Cam Talbot,Sergei Bobrovsky,TRUE,det
+1/16/2025,sj,cbj,1,4,19,34,Alexandar Georgiev,Elvis Merzlikins,TRUE,cbj
+1/16/2025,phi,nyi,5,3,24,29,Samuel Ersson,Ilya Sorokin,TRUE,phi
+1/16/2025,cgy,stl,1,4,29,29,Dustin Wolf,Joel Hofer,TRUE,stl
+1/16/2025,chi,nsh,2,3,26,41,Arvid Soderblom,Juuse Saros,FALSE,nsh
+1/16/2025,mtl,dal,3,1,24,33,Jakub Dobes,Jake Oettinger,TRUE,mtl
+1/16/2025,sea,wpg,1,2,19,36,Joey Daccord,Connor Hellebuyck,TRUE,wpg
+1/16/2025,nyr,ari,5,3,25,31,Igor Shesterkin,Karel Vejmelka,TRUE,nyr
+1/16/2025,edm,col,4,3,27,25,Stuart Skinner,Mackenzie Blackwood,TRUE,edm
+1/16/2025,la,van,5,1,21,21,Darcy Kuemper,Thatcher Demko,TRUE,la
 1/17/2025,pit,buf,,,,,,,,
 1/17/2025,vgk,car,,,,,,,,
 1/18/2025,phi,nj,,,,,,,,

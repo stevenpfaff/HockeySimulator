@@ -14,7 +14,7 @@ class Goalie:
 
 goalies = {
     # Ducks
-    "gibson": Goalie("John Gibson", 45, "1A"),
+    "gibson": Goalie("John Gibson", 50, "1A"),
     "dostal": Goalie("Lukas Dostal", 60, "1B"),
     "reimer": Goalie("James Reimer", 40, "Inactive"),
     # Bruins
@@ -103,10 +103,10 @@ goalies = {
     "ned": Goalie("Alex Nedeljkovic", 45, "1B"),
     "blomqvist": Goalie("Joel Blomqvist", 50, "Third"),
     # Sharks
-    "askarov": Goalie("Yaroslav Askarov", 50, "Third"),
+    "askarov": Goalie("Yaroslav Askarov", 55, "1A"),
     "blackwood": Goalie("Mackenzie Blackwood", 50, "Inactive"),
-    "vanacek": Goalie("Vitek Vanecek", 45, "1B"),
-    "georgievsj": Goalie("Alexandar Georgiev", 40, "1A"),
+    "vanacek": Goalie("Vitek Vanecek", 45, "Backup"),
+    "georgievsj": Goalie("Alexandar Georgiev", 40, "1B"),
     # Kraken
     "daccord": Goalie("Joey Daccord", 60, "Starter"),
     "grubauer": Goalie("Philipp Grubauer", 40, "1B"),
@@ -117,8 +117,8 @@ goalies = {
     "vasy": Goalie("Andrei Vasilevskiy", 70, "Starter"),
     "johansson": Goalie("Jonas Johansson", 40, "Backup"),
     # Leafs
-    "stolarz": Goalie("Anthony Stolarz", 60, "1A"),
-    "woll": Goalie("Joseph Woll", 60, "1A"),
+    "stolarz": Goalie("Anthony Stolarz", 62, "1A"),
+    "woll": Goalie("Joseph Woll", 62, "1A"),
     "murray": Goalie("Matt Murray", 40, "Third"),
     "hildeby": Goalie("Dennis Hildeby", 30, "Inactive"),
     # Utah
@@ -126,15 +126,15 @@ goalies = {
     "ingram": Goalie("Connor Ingram", 50, "1B"),
     "stauber": Goalie("Jaxson Stauber", 40, "Third"),
     # Canucks
-    "demko": Goalie("Thatcher Demko", 57, "1A"),
+    "demko": Goalie("Thatcher Demko", 55, "1A"),
     "silvos": Goalie("Arturs Silovs", 30, "Third"),
-    "lankinen": Goalie("Kevin Lankinen", 55, "1B"),
+    "lankinen": Goalie("Kevin Lankinen", 52, "1B"),
     # Golden Knights
     "hill": Goalie("Adin Hill", 55, "1A"),
     "samsonov": Goalie("Ilya Samsonov", 50, "1B"),
     "schmid": Goalie("Akira Schmid", 20, "Inactive"),
     # Capitals
-    "thompson": Goalie("Logan Thompson", 60, "1A"),
+    "thompson": Goalie("Logan Thompson", 62, "1A"),
     "lindgren": Goalie("Charlie Lindgren", 55, "1B"),
     # Jets
     "hellebuyck": Goalie("Connor Hellebuyck", 80, "Starter"),

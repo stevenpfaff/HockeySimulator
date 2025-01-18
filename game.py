@@ -56,10 +56,10 @@ class Game:
         base_sog = 30  # Base SOG, close to league average
 
 
-        if offense_rating > 55:
+        if offense_rating > 53:
             offense_factor = (offense_rating - 50)
             offense_factor *= math.sqrt(offense_rating / 50)
-            if offense_rating > 53:
+            if offense_rating > 51:
                 offense_factor = (offense_rating - 50) * 0.75
             offense_factor *= math.sqrt(offense_rating / 50)
             if offense_rating < 47:
@@ -70,11 +70,11 @@ class Game:
             offense_factor = min(offense_factor, 5)
 
         if defense_rating > 55:
-            defense_factor = (50 - defense_rating) * 0.3
+            defense_factor = (50 - defense_rating) * 0.33
             defense_factor *= math.sqrt(defense_rating / 50)
-        # else:
-        defense_factor = (50 - defense_rating) * 0.5
-        defense_factor = min(defense_factor, 5)
+        else:
+            defense_factor = (50 - defense_rating) * 0.5
+            defense_factor = min(defense_factor, 5)
 
         sog = base_sog + offense_factor + defense_factor
 
